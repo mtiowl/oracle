@@ -1,3 +1,5 @@
+REM *****
+
 col column_name  format a30
 col num_distinct format 999999999 head 'DISTINCT'
 col num_nulls    format 99999999  head 'NULLS'
