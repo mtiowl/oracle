@@ -1,0 +1,43 @@
+DECLARE
+  CURSOR get_indexes IS
+    SELECT owner, index_name
+      FROM dba_indexes
+      WHERE owner NOT IN ('SYS', 'SYSTEM', 'CTXSYS','DBSNMP', 'XDB','WMSYS', 'AIM_ADMINISTRATOR', 'PPLQUEST', 'OAS_PUBLIC', 'WEBSYS')
+        AND owner = 'PVIEW';
+BEGIN
+  FOR irec IN get_indexes LOOP
+     execute immediate 'analyze index '||irec.owner||'.'||irec.index_name||' validate structure';
+     INSERT INTO bsts_index_statistics
+      SELECT di.owner, di.index_name, di.freelists, di.pct_free, di.logging, di.last_analyzed
+          ,round(sum(ds.bytes)/1024/1024, 2) index_size
+          ,istat.height
+          ,istat.blocks
+          ,di.clustering_factor
+          ,istat.lf_blks
+          ,istat.br_blks
+          ,istat.del_lf_rows
+          ,istat.pct_used
+          ,istat.blks_gets_per_access
+          ,istat.distinct_keys
+          ,sysdate
+      FROM dba_indexes di
+          ,dba_segments ds
+          ,index_stats istat
+      WHERE di.index_name = ds.segment_name
+        AND di.index_name = istat.name
+        AND di.owner NOT IN ('SYS', 'SYSTEM', 'CTXSYS','DBSNMP', 'XDB','WMSYS', 'AIM_ADMINISTRATOR', 'PPLQUEST', 'OAS_PUBLIC', 'WEBSYS')
+      HAVING round(sum(ds.bytes)/1024/1024, 2) > 200
+      GROUP BY di.owner, di.index_name, di.freelists, di.pct_free, di.logging, di.last_analyzed
+          ,istat.height
+          ,istat.blocks
+          ,di.clustering_factor
+          ,istat.lf_blks
+          ,istat.br_blks
+          ,istat.del_lf_rows
+          ,istat.pct_used
+          ,istat.blks_gets_per_access
+          ,istat.distinct_keys;
+      COMMIT;
+  END LOOP;
+END;
+/

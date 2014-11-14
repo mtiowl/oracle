@@ -1,0 +1,60 @@
+Running in Debug
+If you want to get a bit more information, you can take activate the Conditional Compilation blocks in the code by compiling with the appropriate flags set. If we take one of these blocks as an example :
+
+view sourceprint?
+1 $IF $$debug $THEN 
+
+2             DBMS_OUTPUT.PUT_LINE('dependent_objs count for ' 
+
+3                 ||tbl_tabs(i).table_owner||'.'||tbl_tabs(i).table_name  
+
+4                 ||' = '||tbl_dep_objs.COUNT);  
+
+5             l_start := DBMS_UTILITY.GET_TIME;  
+
+6         $END 
+The IF statement ( or $IF statement) is looking for a variable called debug being set to true. You can activate this code as follows :
+
+SQL> ALTER SESSION SET PLSQL_CCFLAGS='debug:TRUE'  
+
+  2  /  
+
+   
+
+Session altered.  
+
+   
+
+SQL> ALTER PROCEDURE crud COMPILE  
+
+  2  /  
+
+   
+
+Procedure altered.  
+
+   
+
+SQL> 
+Now we’ll get the debug lines out when we run the procedure :
+
+set serveroutput on size 1000000  
+
+set timing on  
+
+spool crud.log  
+
+BEGIN  
+
+    crud( pa_refresh => 'Y');  
+
+END;  
+
+/  
+
+spool off 
+If you look in the crud.log file we’ve just written the output to, you’ll find entries such as :
+
+dependent_objs count for HR.EMPLOYEES = 3  
+
+Total time for table HR.EMPLOYEES - 0 seconds. 

@@ -1,0 +1,5 @@
+select osuser, username, machine, program, logon_time, SQL_EXEC_START, status
+from v$session
+where osuser <> 'oracle'
+order by 1,2
+/

@@ -1,0 +1,2 @@
+create synonym syn_fl_summary_bill for fl_summary_bill@css_batch
+/

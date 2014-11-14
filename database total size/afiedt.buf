@@ -1,0 +1,2 @@
+select status from all_objects where object_name = 'P_SS_DYN_REPORTS'
+/

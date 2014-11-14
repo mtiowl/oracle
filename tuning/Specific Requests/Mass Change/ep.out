@@ -1,0 +1,34 @@
+
+Session altered.
+
+
+7 rows deleted.
+
+
+Explained.
+
+
+Plan Table                                                                                                                                                                                              
+-------------------------------------------------------------------------------------------                                                                                                             
+| Operation                        |  Name                         |  Rows | Bytes|  Cost |                                                                                                             
+-------------------------------------------------------------------------------------------                                                                                                             
+| SELECT STATEMENT                 |                              |   119K|   20M| 14245 |                                                                                                              
+|  SORT GROUP BY                   |                              |   119K|   20M| 14245 |                                                                                                              
+|   MERGE JOIN SEMI                |                              |   119K|   20M| 11002 |                                                                                                              
+|    SORT JOIN                     |                              |   119K|   20M|  8742 |                                                                                                              
+|     VIEW                         |                              |   119K|   20M|  5597 |                                                                                                              
+|      SORT UNIQUE                 |                              |   119K|   21M|  5597 |                                                                                                              
+|       HASH JOIN                  |                              |   119K|   21M|  2267 |                                                                                                              
+|        HASH JOIN                 |                              |    73 |   12K|    22 |                                                                                                              
+|         TABLE ACCESS FULL        |GW_MASS_CHANGE_FILE           |    74 |    9K|     5 |                                                                                                              
+|         TABLE ACCESS FULL        |CODE                          |   218 |    9K|    16 |                                                                                                              
+|        TABLE ACCESS FULL         |GOODWRENCH_IMPORT             |   238K|    2M|  2242 |                                                                                                              
+|    SORT UNIQUE                   |                              |     4K|   21K|  2261 |                                                                                                              
+|     VIEW                         |VW_NSO_1                      |     4K|   21K|517282 |                                                                                                              
+|      FILTER                      |                              |       |      |       |                                                                                                              
+|       TABLE ACCESS FULL          |GOODWRENCH_IMPORT             |     4K|   52K|  2242 |                                                                                                              
+|       INDEX FULL SCAN            |CODE_PK                       |    11 |  220 |   116 |                                                                                                              
+--------------------------------------------------------------------------------                                                                                                                        
+
+19 rows selected.
+

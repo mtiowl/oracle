@@ -1,0 +1,2 @@
+select owner, object_type from all_objects where object_name = upper('ss_user_account_access')
+/

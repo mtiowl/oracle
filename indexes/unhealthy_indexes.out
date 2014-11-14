@@ -1,0 +1,84 @@
+
+Table dropped.
+
+
+Table created.
+
+
+INSTANCE_NAME    HOST_NAME                                                        VERSION                                                                                                                                                                                                                   
+---------------- ---------------------------------------------------------------- -----------------                                                                                                                                                                                                         
+PSOLPT           lnx-dbfm-b-001.ppl.com                                           11.2.0.3.0                                                                                                                                                                                                                
+
+
+OWNER                            COUNT(*)                                                                                                                                                                                                                                                                   
+------------------------------ ----------                                                                                                                                                                                                                                                                   
+CUSTPRO                               366                                                                                                                                                                                                                                                                   
+PVIEW                                 305                                                                                                                                                                                                                                                                   
+PPLSCIS                               167                                                                                                                                                                                                                                                                   
+SELFSERV                               65                                                                                                                                                                                                                                                                   
+EXFSYS                                 41                                                                                                                                                                                                                                                                   
+SELFSERV_EP                            17                                                                                                                                                                                                                                                                   
+RPT_PSOL                               16                                                                                                                                                                                                                                                                   
+PFTP                                    9                                                                                                                                                                                                                                                                   
+PGOODWRENCH                             8                                                                                                                                                                                                                                                                   
+OUTLN                                   5                                                                                                                                                                                                                                                                   
+                               ----------                                                                                                                                                                                                                                                                   
+sum                                   999                                                                                                                                                                                                                                                                   
+
+10 rows selected.
+
+
+PL/SQL procedure successfully completed.
+
+  1  DECLARE
+  2  
+  3    CURSOR get_indexes IS
+  4      SELECT owner, index_name
+  5        FROM dba_indexes
+  6        WHERE owner NOT IN ('SYS', 'SYSTEM', 'CTXSYS','DBSNMP', 'XDB','WMSYS', 'AIM_ADMINISTRATOR', 'PPLQUEST', 'OAS_PUBLIC', 'WEBSYS')
+  7          AND owner = 'PPLSCIS';
+  8  
+  9  
+ 10  
+ 11  BEGIN
+ 12  
+ 13    FOR irec IN get_indexes LOOP
+ 14       execute immediate 'analyze index '||irec.owner||'.'||irec.index_name||' validate structure';
+ 15  
+ 16       INSERT INTO bsts_index_statistics
+ 17        SELECT di.owner, di.index_name, di.freelists, di.pct_free, di.logging, di.last_analyzed
+ 18            ,round(sum(ds.bytes)/1024/1024, 2) index_size
+ 19            ,istat.height
+ 20            ,istat.blocks
+ 21            ,di.clustering_factor
+ 22            ,istat.lf_blks
+ 23            ,istat.br_blks
+ 24            ,istat.del_lf_rows
+ 25            ,istat.pct_used
+ 26            ,istat.blks_gets_per_access
+ 27            ,istat.distinct_keys
+ 28            ,sysdate
+ 29        FROM dba_indexes di
+ 30            ,dba_segments ds
+ 31            ,index_stats istat
+ 32        WHERE di.index_name = ds.segment_name
+ 33          AND di.index_name = istat.name
+ 34          AND di.owner NOT IN ('SYS', 'SYSTEM', 'CTXSYS','DBSNMP', 'XDB','WMSYS', 'AIM_ADMINISTRATOR', 'PPLQUEST', 'OAS_PUBLIC', 'WEBSYS')
+ 35        GROUP BY di.owner, di.index_name, di.freelists, di.pct_free, di.logging, di.last_analyzed
+ 36            ,istat.height
+ 37            ,istat.blocks
+ 38            ,di.clustering_factor
+ 39            ,istat.lf_blks
+ 40            ,istat.br_blks
+ 41            ,istat.del_lf_rows
+ 42            ,istat.pct_used
+ 43            ,istat.blks_gets_per_access
+ 44            ,istat.distinct_keys;
+ 45  
+ 46        COMMIT;
+ 47  
+ 48    END LOOP;
+ 49* END;
+
+PL/SQL procedure successfully completed.
+

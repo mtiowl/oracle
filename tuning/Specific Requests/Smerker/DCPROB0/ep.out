@@ -1,0 +1,25 @@
+
+Session altered.
+
+
+0 rows deleted.
+
+
+Explained.
+
+
+Plan Table                                                                                                                                                                                                                                                                                                  
+-------------------------------------------------------------------------------------------                                                                                                                                                                                                                 
+| Operation                        |  Name                         |  Rows | Bytes|  Cost |                                                                                                                                                                                                                 
+-------------------------------------------------------------------------------------------                                                                                                                                                                                                                 
+| SELECT STATEMENT                 |                              |     1 |   61 |    15 |                                                                                                                                                                                                                  
+|  SORT AGGREGATE                  |                              |     1 |   61 |       |                                                                                                                                                                                                                  
+|   NESTED LOOPS                   |                              |     1 |   61 |    15 |                                                                                                                                                                                                                  
+|    TABLE ACCESS BY INDEX ROWID   |CPM_PND_TRAN_HDR              |     1 |   55 |    14 |                                                                                                                                                                                                                  
+|     INDEX RANGE SCAN             |CPM_PND_TRAN_HDR_IX5          |    11 |      |     3 |                                                                                                                                                                                                                  
+|    TABLE ACCESS BY INDEX ROWID   |CPM_CD_PURPOSE                |     1 |    6 |     1 |                                                                                                                                                                                                                  
+|     INDEX UNIQUE SCAN            |CPM_CD_PURPOSE_PK             |     1 |      |       |                                                                                                                                                                                                                  
+--------------------------------------------------------------------------------                                                                                                                                                                                                                            
+
+10 rows selected.
+

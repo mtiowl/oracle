@@ -1,0 +1,9 @@
+select c.day, m.metric, bm.count, batch_group_id
+from metrics m
+    ,batch_metrics bm
+    ,calendar c
+where m.id = bm.metric_id
+  and c.id = bm.batch_date_id
+  and m.id = 2
+  and count > 30000
+/

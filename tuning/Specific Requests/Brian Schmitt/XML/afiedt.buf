@@ -1,0 +1,13 @@
+SELECT beh.ky_bill
+  FROM BILL_EMAIL_HISTORY_HDR BEH
+      ,BILL_HDR BH
+      ,SS_ACCOUNT SSA
+      ,ACCOUNT A
+      ,ss_user_account_access UA
+  WHERE BEH.fl_processed = 'N'
+     AND BEH.ky_bill = BH.ky_bill
+     AND BH.ky_enroll = UA.ky_enroll
+     AND UA.ky_enroll = SSA.ky_enroll
+     AND SSA.ky_enroll = A.ky_enroll
+     AND BH.ky_supplier = 'TESI'
+/

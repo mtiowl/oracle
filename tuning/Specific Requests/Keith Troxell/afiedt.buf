@@ -1,0 +1,2 @@
+select count(*) from cpm_edc_state
+/

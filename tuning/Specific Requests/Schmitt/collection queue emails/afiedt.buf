@@ -1,0 +1,2 @@
+select OWNER,object_name, object_type from all_objects where object_name = 'GET_CUSTPRO_BILL_DATA'
+/

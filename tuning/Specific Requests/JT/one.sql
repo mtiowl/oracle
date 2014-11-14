@@ -1,0 +1,9 @@
+SELECT
+        a.ID_BA_ESCO, a.KY_BA, a.KY_OLD_ACCTNO, a.KY_SUPPLIER_ID, a.SERV_STATE, a.CSS_NAME,
+        a.CSS_STATUS, a.CSS_BILL_OPTION
+    FROM
+        PVIEW.CSS_ER_XREF_CUST_INFO a
+    WHERE
+        a.KY_SUPPLIER_ID = 'TESI'
+        AND a.SERV_STATE IN('DC','DE','IL','MD','NJ','OH','PA')
+/

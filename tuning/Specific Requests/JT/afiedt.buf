@@ -1,0 +1,6 @@
+create index mti_test_1 on CSS_ER_XREF_CUST_INFO (KY_SUPPLIER
+                                                 ,CD_TRAN_STATUS
+                                                 ,CD_PURPOSE
+                                                 ,ID_EDC_DUNS
+                                                 ,KY_ENROLL)
+/

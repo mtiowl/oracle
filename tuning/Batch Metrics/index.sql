@@ -1,0 +1,1 @@
+CREATE INDEX mti_test_pnd_tran ON cpm_pnd_tran_hdr (cd_tran_status, cd_bill_type, cd_bill_calc_method, TRUNC(DT_BILLED_BY_CSS) );

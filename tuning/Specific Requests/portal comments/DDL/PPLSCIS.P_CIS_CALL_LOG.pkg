@@ -1,0 +1,1876 @@
+SET SCAN OFF
+CREATE OR REPLACE PACKAGE P_CIS_CALL_LOG
+  IS
+-- To modify this template, edit file PKGSPEC.TXT in TEMPLATE 
+-- directory of SQL Navigator
+--
+-- Purpose: Briefly explain the functionality of the package
+--
+-- MODIFICATION HISTORY
+-- Person      Date         Comments
+-- E162689     05/27/2010   Create to get all Call Types 
+-- ---------   ------  ------------------------------------------       
+   -- Enter package declarations as shown below
+   
+    TYPE TIER_PATHS IS TABLE OF NUMBER INDEX BY BINARY_INTEGER;
+    
+    TYPE TIER_PATH_NAMES IS TABLE OF VARCHAR2(500) INDEX BY BINARY_INTEGER;
+    
+    ERNumberNotFound          EXCEPTION;
+
+  PROCEDURE get_all_call_types
+  ( p_call_types OUT SYS_REFCURSOR);
+  
+  PROCEDURE get_all_follow_up_statuses
+  ( p_fu_statuses OUT SYS_REFCURSOR);
+  
+  PROCEDURE get_all_follow_up_hours
+  ( p_fu_hours OUT SYS_REFCURSOR);
+
+ PROCEDURE insert_note
+  (
+    in_notated_by in CIS_USER_XREF.id_user_guid%TYPE,
+    in_enroll_no in CIS_CL_HEADER.ky_enroll%TYPE,
+    in_KyBa in CIS_CL_HEADER.tx_billing_number%TYPE,
+    in_first_name in CIS_CL_HEADER.tx_first_name%TYPE,
+    in_last_name in CIS_CL_HEADER.tx_last_name%TYPE,
+    in_email in CIS_CL_HEADER.tx_email%TYPE,
+    in_phno in CIS_CL_HEADER.tx_phone_no%TYPE,
+    in_acnt_asscociation in CIS_CL_HEADER.tx_position%TYPE,
+    in_follow_up_status in CIS_CL_HEADER.cd_follow_up_status%TYPE,
+    in_follow_up_hours in CIS_CL_HEADER.cd_follow_up_hours%TYPE,
+    in_fl_critical_comment in CIS_CL_HEADER.fl_critical_comment%TYPE,
+    in_ts_critical_comment_expire in CIS_CL_HEADER.ts_critical_comment_expire%TYPE,    
+    in_notate_type in CIS_CL_HEADER.ky_notate_type%TYPE,  
+    in_call_info in CIS_CL_MESSAGES.tx_call_log_msg%TYPE,
+    in_wfg_no in CIS_CL_LINKED_WFG.wfg_number%type,
+    in_additional_accounts in CLOB,
+    in_call_types in CLOB        
+  );
+  
+  PROCEDURE insert_call_types
+  (
+    call_log_id CIS_CL_HEADER.ky_call_log_id%TYPE,
+    xmlDoc  IN XMLTYPE
+  );
+  
+  
+    PROCEDURE insert_additional_account
+    ( 
+        call_log_id CIS_CL_HEADER.ky_call_log_id%TYPE,
+        xmlDoc  IN XMLTYPE
+    );
+
+
+
+   /**************************************************************************
+    *  get_headers
+    *
+    *  Retrieves all the comments for a given ky_enroll (p_ky_enroll)
+    *
+    *  Output - Refcursor of all the comments for the ky_enroll
+    ***************************************************************************/
+   PROCEDURE get_headers (p_ky_enroll   IN   cis_cl_header.ky_enroll%type
+                         ,p_headers     OUT  sys_refcursor
+                         ,p_error       OUT  NUMBER
+                         ,p_error_msg   OUT  VARCHAR2);
+
+
+
+    PROCEDURE get_call_log_details
+    (
+        p_ky_enroll             IN      NUMBER,
+        p_call_log_type         IN      CHAR,
+        p_cur_call_log_details      OUT SYS_REFCURSOR,
+        p_cur_addl_acct_comments    OUT     SYS_REFCURSOR,
+        p_cur_legacy_contacts       OUT SYS_REFCURSOR
+    );
+
+    PROCEDURE get_addl_acct_comments
+    (
+        p_ky_enroll             IN      NUMBER,
+        p_cur_addl_acct_comments      OUT SYS_REFCURSOR
+    );
+
+    FUNCTION GET_BILLING_ACCOUNT_NO
+    ( 
+        p_ky_enroll IN NUMBER
+    ) 
+    RETURN NUMBER;
+    
+        
+    PROCEDURE close_call_log_entry
+    (
+        p_ky_call_log_id        IN  NUMBER,
+        p_err_code              OUT NUMBER
+    ) ;
+    
+    PROCEDURE save_notes_from_css
+    (
+        in_notated_by                   in  CIS_USER_XREF.id_user_guid%TYPE,
+        in_enroll_no                    in  CIS_CL_HEADER.ky_enroll%TYPE,
+        in_KyBa                         in  CIS_CL_HEADER.tx_billing_number%TYPE,
+        in_first_name                   in  CIS_CL_HEADER.tx_first_name%TYPE,
+        in_last_name                    in  CIS_CL_HEADER.tx_last_name%TYPE,
+        in_email                        in  CIS_CL_HEADER.tx_email%TYPE,
+        in_phno                         in  CIS_CL_HEADER.tx_phone_no%TYPE,
+        in_acnt_asscociation            in  CIS_CL_HEADER.tx_position%TYPE,
+        in_follow_up_status             in  CIS_CL_HEADER.cd_follow_up_status%TYPE,
+        in_follow_up_hours              in  CIS_CL_HEADER.cd_follow_up_hours%TYPE,
+        in_fl_critical_comment          in  CIS_CL_HEADER.fl_critical_comment%TYPE,
+        in_ts_critical_comment_expire   in  CIS_CL_HEADER.ts_critical_comment_expire%TYPE,    
+        in_notate_type                  in  CIS_CL_HEADER.ky_notate_type%TYPE,  
+        in_call_info                    in  CIS_CL_MESSAGES.tx_call_log_msg%TYPE,
+
+        in_call_type_string             in  CIS_CL_CALL_TYPES.tx_call_type%TYPE,
+        in_call_type_id_tier1           in  CIS_CL_CALL_TYPES.id_tier1%TYPE,
+        in_call_type_id_tier2           in  CIS_CL_CALL_TYPES.id_tier2%TYPE,
+        in_call_type_id_tier3           in  CIS_CL_CALL_TYPES.id_tier3%TYPE,
+        in_call_type_id_tier4           in  CIS_CL_CALL_TYPES.id_tier4%TYPE
+    );   
+
+ FUNCTION get_call_rep_name
+    ( 
+       p_call_rep_guid IN CIS_CL_HEADER.ID_USER_GUID%TYPE      
+    )
+    RETURN VARCHAR2;
+    
+    FUNCTION illustrate_path (p_id_tier         IN      NUMBER,
+                              p_iteration       IN      NUMBER DEFAULT 0)
+    RETURN VARCHAR2;
+    
+    PROCEDURE classic_contact_insert (
+        p_user_name         IN      VARCHAR2,
+        p_tx_billing_number IN      VARCHAR2,
+        p_id_tier           IN      VARCHAR2,
+        p_remarks           IN      VARCHAR2,
+        p_critical_fl       IN      VARCHAR2 DEFAULT 'N');
+        
+    FUNCTION does_call_type_exist (
+        p_id_tier           IN      NUMBER)
+    RETURN BOOLEAN;
+    
+    PROCEDURE process_mass_change (
+        p_file_id           IN      NUMBER,
+        p_transaction_id    IN      NUMBER,
+        p_data_type         IN      VARCHAR2, 
+        p_error_code        IN  OUT NUMBER,
+        p_error_message     IN  OUT VARCHAR2);
+
+  PROCEDURE AssignTransactionValues(
+        p_file_id           IN      NUMBER, 
+        p_tran_id           IN      NUMBER,
+        p_data_type         IN      VARCHAR2, 
+        p_fields_arr            OUT PGOODWRENCH.field_values,
+        p_error_code        IN  OUT NUMBER, 
+        p_error_msg         IN  OUT VARCHAR2);
+
+    PROCEDURE backtrack_call_path (
+        p_id_tier               IN      NUMBER,
+        p_tier_path             OUT     TIER_PATHS,
+        p_tier_path_name        OUT     TIER_PATH_NAMES);
+        
+    PROCEDURE get_cl_details_by_tier1id(
+        p_supplier_no               IN      NUMBER,
+        p_tier1_id                  IN      NUMBER,             
+        p_call_log_type             IN      CHAR,
+        p_cur_call_log_details      OUT     SYS_REFCURSOR);
+        
+    PROCEDURE get_cl_details_prev_month( 
+        p_supplier_no               IN      NUMBER,
+        p_call_log_type             IN      CHAR,
+        p_cur_call_log_details      OUT     SYS_REFCURSOR);
+
+    PROCEDURE delete_call_log_entry
+    (
+        p_ky_call_log_id        IN  NUMBER,
+        p_modified_by           IN  CIS_USER_XREF.id_user_guid%TYPE,
+        p_tx_delete_reason      IN  VARCHAR2,
+        p_err_code              OUT NUMBER
+    );
+
+    PROCEDURE get_bill_accounts_by_criteria
+    (
+        p_notating_user_guid        IN      CIS_USER_XREF.id_user_guid%TYPE,
+        p_initial_ky_ba             IN      PVIEW.BILL_ACCOUNT.TX_BILLING_NUMBER%TYPE,
+        p_tx_contract_name          IN      VARCHAR2 DEFAULT NULL,
+        p_tx_client_acct_no         IN      VARCHAR2 DEFAULT NULL,
+        p_billing_accounts              OUT SYS_REFCURSOR,
+        p_err_code                      OUT NUMBER
+    );
+
+  PROCEDURE cas_insert_note
+  (  
+    in_enroll_no in CIS_CL_HEADER.ky_enroll%TYPE,
+    in_KyBa in CIS_CL_HEADER.tx_billing_number%TYPE,
+    in_call_info in VARCHAR2,  
+    in_call_types in VARCHAR2,
+    in_additional_accounts in Varchar2,
+    out_err_code out number,
+    out_err_msg out varchar    
+  );
+  
+    PROCEDURE validate_additional_accounts (
+        p_notating_user_guid        IN      CIS_USER_XREF.id_user_guid%TYPE,
+        p_initial_ky_ba             IN      PVIEW.BILL_ACCOUNT.TX_BILLING_NUMBER%TYPE,
+        p_account_list              IN      CLOB,
+        p_valid_account_list            OUT SYS_REFCURSOR,
+        p_invalid_account_list          OUT SYS_REFCURSOR);
+          
+END P_CIS_CALL_LOG;
+
+/
+CREATE OR REPLACE PACKAGE BODY P_CIS_CALL_LOG
+AS
+
+    -- DEFINED LATER
+    
+    /*PROCEDURE AssignTransactionValues(
+        p_file_id           IN      NUMBER, 
+        p_tran_id           IN      NUMBER,
+        p_data_type         IN      VARCHAR2, 
+        p_fields_arr            OUT PGOODWRENCH.field_values,
+        p_error_code        IN  OUT NUMBER, 
+        p_error_msg         IN  OUT VARCHAR2);*/
+        
+    PROCEDURE insert_call_types (
+        call_log_id                 IN      CIS_CL_HEADER.ky_call_log_id%TYPE,
+        xmlDoc                      IN      XMLTYPE,
+        p_collections_call_placed       OUT BOOLEAN);
+        
+    PROCEDURE insert_additional_account( 
+        call_log_id                     IN      CIS_CL_HEADER.ky_call_log_id%TYPE,
+        xmlDoc                          IN      XMLTYPE,
+        in_notated_by                   IN      CIS_USER_XREF.id_user_guid%TYPE,
+        removeFromCollectionsQueue      IN      BOOLEAN);
+        
+    PROCEDURE process_dcct ( 
+        p_requesting_user       IN      VARCHAR2,
+        p_fields_arr            IN      PGOODWRENCH.field_values,
+        p_error_code            IN  OUT NUMBER,
+        p_error_msg             IN  OUT VARCHAR2);
+
+    PROCEDURE get_legacy_portal_contacts (
+        p_ky_enroll             IN      NUMBER,
+        p_legacy_contacts           OUT SYS_REFCURSOR)
+    IS
+    
+    BEGIN
+        OPEN 
+            p_legacy_contacts
+        FOR
+            SELECT  A.KY_CUSTOMER_CONTACT, 
+                    A.KY_ENROLL, 
+                    A.KY_SUPPLIER, 
+                    (SELECT 
+                         C.TX_DECODE
+                         FROM CODE C 
+                         WHERE C.KY_TABLE LIKE 'CALL_REP'      
+                         AND C.KY_CODE = A.KY_CALL_REP
+                     ) AS KY_CALL_REP,
+                    (    SELECT 
+                         C.TX_DECODE 
+                         FROM CODE C 
+                         WHERE C.KY_TABLE LIKE 'CONTACT%' 
+                         AND C.KY_CODE = A.KY_CONTACT_TYPE
+                    ) AS KY_CONTACT_TYPE, 
+                    A.TX_REQUESTED_BY, 
+                    A.TX_REMARKS, 
+                    A.DT_CONTACT,
+                    A.DT_MODIFY, 
+                    A.FL_CRITICAL_CONTACT
+            FROM CUSTOMER_CONTACT A
+            WHERE 
+                KY_ENROLL = p_ky_enroll
+            ORDER BY 
+                DT_CONTACT DESC;
+    END;
+    
+    FUNCTION get_call_rep_name
+    (
+       p_call_rep_guid IN CIS_CL_HEADER.ID_USER_GUID%TYPE
+    )
+    RETURN VARCHAR2    
+    IS
+      l_system_guid VARCHAR2(36);  
+      CURSOR c1 IS SELECT  a.tx_item_value
+        FROM cis_user_profile a
+        WHERE a.id_user_guid = p_call_rep_guid
+        AND a.ky_item IN ( 'FirstName' , 'LastName');
+
+       output_table   dbms_utility.uncl_array;
+       cnt            BINARY_INTEGER;
+       output_string  VARCHAR2(80);
+       counter INTEGER:= 0;
+    BEGIN
+    
+        SELECT LOWER(a.id_user_guid)
+        INTO l_system_guid
+        FROM cis_user_xref a
+        where a.id_user_id = 'SYSTEM';
+        
+      IF lower(p_call_rep_guid) = l_system_guid THEN
+        RETURN 'SYSTEM';
+      ELSE
+        FOR i IN c1 LOOP
+          output_table(counter+1) := I.tx_item_value;
+          counter := counter + 1;
+        END LOOP;
+        DBMS_UTILITY.TABLE_TO_COMMA(output_table, cnt, output_string);
+        RETURN output_string;
+       END IF;
+    END;
+
+-- To modify this template, edit file PKGBODY.TXT in TEMPLATE 
+-- directory of SQL Navigator
+--
+-- Purpose: Briefly explain the functionality of the package body
+--
+-- MODIFICATION HISTORY
+-- Person      Date    Comments
+-- E162689     05/27/2010   Create to get all Call Types 
+-- ---------   ------  ------------------------------------------      
+   -- Enter procedure, function bodies as shown below
+   
+ PROCEDURE get_all_call_types
+     ( p_call_types OUT SYS_REFCURSOR)
+    IS         
+   BEGIN 
+        OPEN
+            p_call_types
+        FOR
+        SELECT a.qy_tier_level, a.id_tier, a.id_parent_tier, a.tx_tier 
+        FROM cis_cl_tier a WHERE a.cd_status = 'A'
+       -- ORDER BY a.id_parent_tier, a.id_tier;   
+       ORDER BY a.id_parent_tier, a.tx_tier ;
+             
+  END get_all_call_types; 
+  
+   PROCEDURE get_all_follow_up_statuses
+    ( p_fu_statuses OUT SYS_REFCURSOR)
+    IS       
+    BEGIN
+        OPEN
+            p_fu_statuses
+        FOR
+        SELECT a.cd_follow_up_status, a.tx_follow_up_status          
+        FROM cis_cl_follow_up_statuses a
+        ORDER BY a.qy_display_order;
+         
+    END get_all_follow_up_statuses;
+  
+  PROCEDURE get_all_follow_up_hours
+    ( p_fu_hours OUT SYS_REFCURSOR)
+    IS
+    BEGIN
+        OPEN
+            p_fu_hours
+        FOR
+        SELECT a.cd_follow_up_hours, a.tx_follow_up_hours        
+        FROM cis_cl_follow_up_hours a
+        ORDER BY a.qy_display_order;
+    END get_all_follow_up_hours;    
+
+ PROCEDURE cas_insert_note
+  (  
+    in_enroll_no in CIS_CL_HEADER.ky_enroll%TYPE,
+    in_KyBa in CIS_CL_HEADER.tx_billing_number%TYPE,
+    in_call_info in VARCHAR2,  
+    in_call_types in VARCHAR2,
+    in_additional_accounts in Varchar2,
+    out_err_code out number,
+    out_err_msg out varchar    
+  )
+  IS
+  temp_call_log_id CIS_CL_HEADER.ky_call_log_id%TYPE;
+  l_system_guid varchar2(36);   
+  BEGIN
+        out_err_code := 0 ;
+        out_err_msg := NULL;
+    SELECT a.id_user_guid 
+     INTO l_system_guid
+    FROM cis_user_xref a
+    WHERE a.id_user_id = 'SYSTEM';     
+  
+   p_cis_call_log.insert_note(
+    l_system_guid,           --in_notated_by,
+    in_enroll_no,            --in_enroll_no,
+    in_KyBa,                 --in_kyba,
+    null,                    --in_first_name,
+    null,                    --in_last_name,
+    null,                    --in_email,
+    null,                    --in_phno,
+    null,                    -- in_acnt_asscociation,
+    'CLOSED',                --in_follow_up_status,
+    24 ,                     --in_follow_up_hours,
+    'N',                     --in_fl_critical_comment,
+    sysdate,                 --in_ts_critical_comment_expire,
+    'N',                     --in_notate_type,
+    to_clob(in_call_info),   --in_call_info,
+    '0',                     --in_wfg_no,
+    to_clob(in_additional_accounts),
+    to_clob(in_call_types));
+  END cas_insert_note; 
+    
+  PROCEDURE insert_note
+  (
+    in_notated_by in CIS_USER_XREF.id_user_guid%TYPE,
+    in_enroll_no in CIS_CL_HEADER.ky_enroll%TYPE,
+    in_KyBa in CIS_CL_HEADER.tx_billing_number%TYPE,
+    in_first_name in CIS_CL_HEADER.tx_first_name%TYPE,
+    in_last_name in CIS_CL_HEADER.tx_last_name%TYPE,
+    in_email in CIS_CL_HEADER.tx_email%TYPE,
+    in_phno in CIS_CL_HEADER.tx_phone_no%TYPE,
+    in_acnt_asscociation in CIS_CL_HEADER.tx_position%TYPE,
+    in_follow_up_status in CIS_CL_HEADER.cd_follow_up_status%TYPE,
+    in_follow_up_hours in CIS_CL_HEADER.cd_follow_up_hours%TYPE,
+    in_fl_critical_comment in CIS_CL_HEADER.fl_critical_comment%TYPE,
+    in_ts_critical_comment_expire in CIS_CL_HEADER.ts_critical_comment_expire%TYPE,    
+    in_notate_type in CIS_CL_HEADER.ky_notate_type%TYPE, 
+    in_call_info in CIS_CL_MESSAGES.tx_call_log_msg%TYPE,
+    in_wfg_no in CIS_CL_LINKED_WFG.wfg_number%type,
+    in_additional_accounts in CLOB,    
+    in_call_types in CLOB    
+  )
+  IS
+  temp_call_log_id          CIS_CL_HEADER.ky_call_log_id%TYPE;
+  fl_was_collections_call   BOOLEAN;
+  BEGIN  
+  IF in_enroll_no <> 0 THEN
+      -- Insert Cal log Header data
+      INSERT INTO cis_cl_header
+      VALUES
+      (  -1,                    -- call log id
+         in_notated_by,         --GUID of Notated by
+         in_enroll_no,          --KY Enroll no   
+         in_KyBa,               --Bill No 
+         in_first_name,         -- First Name
+         in_last_name,          -- Last name
+         in_email,              -- Email 
+         in_phno,               -- Ph no
+         in_acnt_asscociation,  -- Position
+         in_follow_up_status,   -- CD_FOLLOW_UP_STATUS
+         in_follow_up_hours,    --CD_FOLLOW_UP_HOURS
+         in_fl_critical_comment,--FL_CRITICAL_COMMENT       
+          in_ts_critical_comment_expire,              --TS_CRITICAL_COMMENT_EXPIRE
+          sysdate,              --TS_ADDED
+          NULL,
+         in_notate_type,        --NOTATE TYPE
+         NULL,                  --Delete Reason
+         'A',                   -- Status of the entry (Active when created)
+         NULL                   -- Modified by
+         
+      )RETURNING ky_call_log_id
+	  INTO temp_call_log_id;
+   ELSE
+    RAISE ERNumberNotFound;
+   END IF;		
+   
+    -- Insert Messages 
+    INSERT INTO CIS_CL_MESSAGES
+    (
+       KY_CALL_LOG_MSG_ID,
+       TX_CALL_LOG_MSG,
+       KY_CALL_LOG_ID
+     )
+    VALUES
+    (
+      -1,
+      in_call_info,
+      temp_call_log_id);
+      
+    
+    -- Insert WFG number
+    IF in_wfg_no <> 0 THEN
+   
+        INSERT INTO CIS_CL_LINKED_WFG
+        (
+            KY_LINKED_WFG_ID,
+            KY_CALL_LOG_ID,
+            WFG_NUMBER,
+            FL_ACTIVE,
+            TS_ADDED
+        )
+        VALUES
+       (
+            -1,
+            temp_call_log_id,
+            in_wfg_no,
+            'A',
+            SYSDATE
+        );
+        
+    END IF;
+    
+   -- Insert call types   
+   insert_call_types( temp_call_log_id , XMLTYPE(in_call_types), fl_was_collections_call);
+   
+    -- If this was a collections call, make sure the accounts are removed from the 
+    -- collections queue
+    IF fl_was_collections_call THEN
+        PVIEW.P_CIS_COLLECTIONS.document_account_completed(in_enroll_no,in_notated_by);
+    END IF;
+    
+   -- Insert Accounts asscociated
+   insert_additional_account(temp_call_log_id , XMLTYPE(in_additional_accounts),
+                             in_notated_by, fl_was_collections_call);
+   
+  EXCEPTION
+    WHEN ERNumberNotFound THEN
+       RAISE_APPLICATION_ERROR(-20000, 'Found ERnumber = 0 '); 
+    WHEN OTHERS THEN
+      RAISE_APPLICATION_ERROR(-20000, 'Error in inserting call log / notate');  
+  END insert_note; 
+  
+    -- NOTE : XML format used for call types
+    -- <CALL_TYPES>
+    --  <CallType>
+    --      <Tier1>1</Tier1> 
+    --      <Tier2>4</Tier2> 
+    --      <Tier3>9</Tier3> 
+    --      <Tier4>29</Tier4> 
+    --      <CallTypeName>Inbound --> Account Maintenance --> Account Maintenance --> Mailing Address</CallTypeName> 
+    --  </CallType>
+    --  <CallType>
+    --      <Tier1>1</Tier1> 
+    --      <Tier2>4</Tier2> 
+    --      <Tier3>9</Tier3> 
+    --      <Tier4>30</Tier4> 
+    --      <CallTypeName>Inbound --> Account Maintenance --> Account Maintenance --> Contact Person</CallTypeName> 
+    --  </CallType>
+    --  <CallType>
+    --      <Tier1>1</Tier1> 
+    --      <Tier2>4</Tier2> 
+    --      <Tier3>9</Tier3> 
+    --      <Tier4>31</Tier4> 
+    --      <CallTypeName>Inbound --> Account Maintenance --> Account Maintenance --> Fax Number</CallTypeName> 
+    --  </CallType>
+    --</CALL_TYPES>
+  -- 
+  -- 
+  PROCEDURE insert_call_types
+  (
+    call_log_id CIS_CL_HEADER.ky_call_log_id%TYPE,
+    xmlDoc  IN XMLTYPE,
+    p_collections_call_placed       OUT BOOLEAN
+  )
+  IS        
+        nodePath			VARCHAR2(2000) := '//CALL_TYPES/CallType';
+		nodeCounter			BINARY_INTEGER := 1;
+		nodeCurrent			XMLTYPE;
+        l_was_collections_call_placed   BOOLEAN := FALSE;
+  BEGIN  
+  	<< XML_LOOP >>
+		LOOP
+		
+			-- Retrieve the current node from the Xpath expression		
+			nodeCurrent := xmlDoc.extract(nodePath||'['||nodeCounter||']');
+			EXIT XML_LOOP WHEN nodeCurrent IS NULL;	
+			
+			  -- Look to see if this call has anything to do with collections;
+			  -- If one call type already indicated this, we know and don't need
+			  -- to keep checking
+			  IF l_was_collections_call_placed THEN
+			  
+                -- Check to see if this was a collections call  
+                IF INSTR(UPPER(
+                    nodeCurrent.extract('//CallTypeName/text()').getStringVal()), 
+                    'COLLECTIONS') > 0 THEN
+                    
+                    l_was_collections_call_placed := TRUE;
+                    
+                END IF;
+			  
+			  END IF;
+            
+              -- Insert the call type
+              INSERT INTO cis_cl_call_types
+                VALUES
+                (-1,
+                call_log_id,                                            -- Call Log id 
+                nodeCurrent.extract('//Tier1/text()').getStringVal(),   -- Tier 1 ID
+                nodeCurrent.extract('//Tier2/text()').getStringVal(),   -- Tier 2 ID    
+                nodeCurrent.extract('//Tier3/text()').getStringVal(),   -- Tier 3 ID
+                nodeCurrent.extract('//Tier4/text()').getStringVal(),   -- Tier 4 ID
+                SYSDATE,                                                -- Date Added
+                NULL,                                                   -- Date Modified
+                replace(nodeCurrent.extract('//CallTypeName/text()').getStringVal(),'--&gt;','-->')
+                 ); -- Call Type string
+	
+		nodeCounter := nodeCounter + 1;
+		END LOOP XML_LOOP; 
+END insert_call_types;
+
+    PROCEDURE insert_call_types (
+        call_log_id             IN      CIS_CL_HEADER.ky_call_log_id%TYPE,
+        xmlDoc                  IN      XMLTYPE )
+    IS
+        dummyValue              BOOLEAN;     
+    BEGIN  
+  	
+        insert_call_types(call_log_id,xmlDoc,dummyValue);
+  	
+    END insert_call_types;
+
+    PROCEDURE insert_additional_account
+    ( 
+        call_log_id                     IN      CIS_CL_HEADER.ky_call_log_id%TYPE,
+        xmlDoc                          IN      XMLTYPE,
+        in_notated_by                   IN      CIS_USER_XREF.id_user_guid%TYPE,
+        removeFromCollectionsQueue      IN      BOOLEAN
+    )
+    IS
+            nodePath			VARCHAR2(2000) := '//ADDITIONAL_ACCOUNTS/Account';
+    		nodeCounter			BINARY_INTEGER := 1;
+    		nodeCurrent			XMLTYPE;
+    BEGIN
+    
+    	<< XML_LOOP >>
+    		LOOP
+    		
+    			-- Retrieve the current node from the Xpath expression		
+    			nodeCurrent := xmlDoc.extract(nodePath||'['||nodeCounter||']');
+    			EXIT XML_LOOP WHEN nodeCurrent IS NULL;	
+                
+                INSERT INTO cis_cl_linked_accounts
+                (KY_LINKED_ACCOUNT_ID,
+                 TX_BILLING_NUMBER,
+                 FL_ACTIVE,
+                 TS_ADDED,
+                 TS_REMOVED,
+                 KY_CALL_LOG_ID,
+                 TS_MODIFIED)
+               VALUES
+                (-1,
+                  nodeCurrent.extract('//text()').getStringVal(),
+                  --123,
+                 'A',
+                 sysdate,
+                 NULL,
+                 call_log_id,
+                 NULL);            
+                 
+            -- If directed to remove this account from the collections queue, 
+            -- do so
+            IF removeFromCollectionsQueue THEN
+                DECLARE
+                    in_enroll_no NUMBER;
+                BEGIN
+                
+                    SELECT
+                        KY_ENROLL
+                    INTO
+                        in_enroll_no
+                    FROM
+                        BILL_ACCOUNT
+                    WHERE
+                        TX_BILLING_NUMBER = LPAD(TX_BILLING_NUMBER,10,'0');
+                    
+                    PVIEW.P_CIS_COLLECTIONS.document_account_completed(in_enroll_no,in_notated_by);
+                    
+                EXCEPTION
+                    WHEN OTHERS THEN
+                        NULL;
+                END;
+            END IF;                 
+                 
+    		nodeCounter := nodeCounter + 1;
+    		END LOOP XML_LOOP; 
+    
+    END insert_additional_account;
+
+    PROCEDURE insert_additional_account ( 
+        call_log_id             IN      CIS_CL_HEADER.ky_call_log_id%TYPE,
+        xmlDoc                  IN      XMLTYPE)
+    IS
+    
+    BEGIN
+    
+        insert_additional_account(
+            call_log_id, xmlDoc, NULL, FALSE);
+    
+    END insert_additional_account;
+   -- Enter further code below as specified in the Package spec.
+
+
+    /**************************************************************************
+    *  get_headers
+    *
+    *  Retrieves all the comments for a given ky_enroll (p_ky_enroll)
+    *
+    *  Output - Refcursor of all the comments for the ky_enroll
+    ***************************************************************************/
+   PROCEDURE get_headers (p_ky_enroll   IN   cis_cl_header.ky_enroll%type
+                         ,p_headers     OUT  sys_refcursor
+                         ,p_error       OUT  NUMBER
+                         ,p_error_msg   OUT  VARCHAR2) IS
+
+    BEGIN
+        -- Initialize
+        p_error := 0;
+        p_error_msg := NULL;
+
+        --  Open the cursor that fetches all of the logged messages (comments)
+        OPEN p_headers FOR 
+             SELECT hdr.KY_CALL_LOG_ID ID
+                   ,'CIS_CL_HEADER' source
+                   ,hdr.TS_ADDED
+                   ,hdr.FL_CRITICAL_COMMENT
+                   ,hdr.CD_FOLLOW_UP_STATUS
+                   ,ct.TX_CALL_TYPE
+                   ,P_CIS_CALL_LOG.get_call_rep_name(hdr.ID_USER_GUID) AS NOTATED_BY
+                   ,hdr.KY_NOTATE_TYPE
+                   ,(CASE
+                        WHEN dbms_lob.getlength(msg.TX_CALL_LOG_MSG) > 100 THEN
+                             dbms_lob.substr(msg.TX_CALL_LOG_MSG,100,1)||'...'
+                        ELSE
+                             dbms_lob.substr(msg.TX_CALL_LOG_MSG,100,1)
+                     END) cal_log_msg
+               FROM CIS_CL_HEADER  hdr
+                   ,CIS_CL_MESSAGES msg
+                   ,CIS_CL_CALL_TYPES ct
+              WHERE msg.KY_CALL_LOG_ID = hdr.KY_CALL_LOG_ID
+                AND ct.KY_CALL_LOG_ID = hdr.KY_CALL_LOG_ID
+                AND (hdr.CD_STATUS IS NULL OR hdr.CD_STATUS <> 'D')
+                AND hdr.KY_ENROLL = p_ky_enroll
+         UNION
+             SELECT  ky_customer_contact id
+                    ,'CUSTOMER_CONTACT' source
+                    ,A.DT_CONTACT
+                    , A.FL_CRITICAL_CONTACT
+                    ,null cd_follow_up_status
+                    ,(SELECT C.TX_DECODE
+                        FROM CODE C
+                        WHERE C.KY_TABLE LIKE 'CONTACT%'
+                          AND C.KY_CODE = A.KY_CONTACT_TYPE) AS KY_CONTACT_TYPE
+                    ,(SELECT C.TX_DECODE
+                        FROM CODE C
+                        WHERE C.KY_TABLE LIKE 'CALL_REP'
+                          AND C.KY_CODE = A.KY_CALL_REP) AS KY_CALL_REP
+                    ,null ky_notate_type
+                    ,a.tx_remarks
+               FROM CUSTOMER_CONTACT A
+               WHERE a.KY_ENROLL = p_ky_enroll
+               ORDER BY ts_added DESC;
+
+    EXCEPTION
+       WHEN others THEN
+          p_error := sqlcode;
+          p_error_msg := substr(sqlerrm, 1, 200);
+    
+    END get_headers;
+
+    /**************************************************************************
+    *  get_details
+    *
+    *  Retrieves all the details for a given ID.
+    *
+    *  Output - Refcursor of all the details for the ID
+    ***************************************************************************/
+
+    PROCEDURE get_details (p_id                   NUMBER
+                          ,p_notated_by       OUT VARCHAR2
+                          ,p_first_name       OUT VARCHAR2
+                          ,p_last_name        OUT VARCHAR2
+                          ,p_email            OUT VARCHAR2
+                          ,p_phone            OUT VARCHAR2
+                          ,p_status           OUT VARCHAR2
+                          ,p_critical_flag    OUT VARCHAR2
+                          ,p_expiration_date  OUT DATE
+                          ,p_notate_type      OUT VARCHAR2
+                          ,p_added_date       OUT DATE
+                          ,p_wfg_number       OUT NUMBER
+                          ,p_error            OUT NUMBER
+                          ,p_error_msg        OUT VARCHAR2) IS
+    BEGIN
+      -- initialize
+      p_error := 0;
+      p_error_msg := NULL;
+      
+      SELECT  CIS_CL_HEADER.KY_CALL_LOG_ID,
+            P_CIS_CALL_LOG.get_call_rep_name(CIS_CL_HEADER.ID_USER_GUID) AS NOTATED_BY,
+            CIS_CL_HEADER.TX_FIRST_NAME,
+            CIS_CL_HEADER.TX_LAST_NAME,
+            CIS_CL_HEADER.TX_EMAIL,
+            CIS_CL_HEADER.TX_PHONE_NO,
+            --CIS_CL_HEADER.TX_POSITION,
+            CIS_CL_HEADER.CD_FOLLOW_UP_STATUS,
+            --CIS_CL_HEADER.CD_FOLLOW_UP_HOURS,
+            CIS_CL_HEADER.FL_CRITICAL_COMMENT,
+            CIS_CL_HEADER.TS_CRITICAL_COMMENT_EXPIRE,
+            CIS_CL_HEADER.KY_NOTATE_TYPE,
+            CIS_CL_HEADER.TS_ADDED,
+            --CIS_CL_HEADER.TS_MODIFIED,
+            --CIS_CL_MESSAGES.TX_CALL_LOG_MSG,
+            CIS_CL_LINKED_WFG.WFG_NUMBER WORKFLOW_GEN_NO
+    FROM    CIS_CL_HEADER,
+            CIS_CL_MESSAGES,
+            CIS_CL_LINKED_WFG
+    WHERE   CIS_CL_MESSAGES.KY_CALL_LOG_ID = CIS_CL_HEADER.KY_CALL_LOG_ID
+      AND   CIS_CL_HEADER.KY_CALL_LOG_ID = CIS_CL_LINKED_WFG.KY_CALL_LOG_ID (+)
+      AND   (CIS_CL_HEADER.CD_STATUS IS NULL OR CIS_CL_HEADER.CD_STATUS <> 'D')
+      AND   CIS_CL_HEADER.KY_CALL_LOG_ID = p_id
+    ORDER BY CIS_CL_HEADER.TS_ADDED DESC
+
+    EXCEPTION
+       WHEN others THEN
+          p_error := sqlcode;
+          p_error_msg := substr(sqlerrm, 1, 200);
+    
+    END get_details;
+    
+    /**************************************************************************
+    *
+    *
+    *
+    *
+    *
+    ***************************************************************************/
+    PROCEDURE get_call_log_details
+    (
+        p_ky_enroll                 IN      NUMBER,
+        p_call_log_type             IN      CHAR,
+        p_cur_call_log_details      OUT     SYS_REFCURSOR,
+        p_cur_addl_acct_comments    OUT     SYS_REFCURSOR,
+        p_cur_legacy_contacts       OUT     SYS_REFCURSOR
+    )
+    IS
+    BEGIN
+    OPEN p_cur_call_log_details FOR
+    SELECT DBMS_XMLGEN.getXml('
+    SELECT  CIS_CL_HEADER.KY_CALL_LOG_ID,
+            P_CIS_CALL_LOG.get_call_rep_name(CIS_CL_HEADER.ID_USER_GUID) AS NOTATED_BY,
+            CIS_CL_HEADER.TX_BILLING_NUMBER,
+            CIS_CL_HEADER.TX_FIRST_NAME,
+            CIS_CL_HEADER.TX_LAST_NAME,
+            CIS_CL_HEADER.TX_EMAIL,
+            CIS_CL_HEADER.TX_PHONE_NO,
+            CIS_CL_HEADER.TX_POSITION,
+            CIS_CL_HEADER.CD_FOLLOW_UP_STATUS,
+            CIS_CL_HEADER.CD_FOLLOW_UP_HOURS,
+            CIS_CL_HEADER.FL_CRITICAL_COMMENT,
+            CIS_CL_HEADER.TS_CRITICAL_COMMENT_EXPIRE,
+            CIS_CL_HEADER.KY_NOTATE_TYPE,
+            CIS_CL_HEADER.TS_ADDED,
+            CIS_CL_HEADER.TS_MODIFIED,
+            CIS_CL_MESSAGES.TX_CALL_LOG_MSG,
+            CIS_CL_LINKED_WFG.WFG_NUMBER WORKFLOW_GEN_NO,
+            CURSOR(SELECT   CIS_CL_CALL_TYPES.TX_CALL_TYPE 
+                     FROM   CIS_CL_CALL_TYPES 
+                    WHERE   CIS_CL_CALL_TYPES.KY_CALL_LOG_ID = CIS_CL_HEADER.KY_CALL_LOG_ID) CALL_TYPES,
+            CURSOR(SELECT   CIS_CL_LINKED_ACCOUNTS.TX_BILLING_NUMBER, CIS_CL_LINKED_ACCOUNTS.FL_ACTIVE
+                     FROM   CIS_CL_LINKED_ACCOUNTS 
+                    WHERE   CIS_CL_LINKED_ACCOUNTS.KY_CALL_LOG_ID = CIS_CL_HEADER.KY_CALL_LOG_ID) LINKED_ACCOUNTS
+    FROM    CIS_CL_HEADER, 
+            CIS_CL_MESSAGES,
+            CIS_CL_LINKED_WFG
+ 
+
+    WHERE   CIS_CL_MESSAGES.KY_CALL_LOG_ID = CIS_CL_HEADER.KY_CALL_LOG_ID
+      AND   CIS_CL_HEADER.KY_CALL_LOG_ID = CIS_CL_LINKED_WFG.KY_CALL_LOG_ID (+)
+      AND   (CIS_CL_HEADER.CD_STATUS IS NULL OR CIS_CL_HEADER.CD_STATUS <> ''D'')
+      AND   CIS_CL_HEADER.KY_ENROLL = ' || p_ky_enroll || ' ORDER BY CIS_CL_HEADER.TS_ADDED DESC', 0) CALL_LOGS FROM DUAL;
+    
+      --Commenting out the call log type selection as the users can see all the call log types
+      --AND   CIS_CL_HEADER.KY_NOTATE_TYPE =  ' || '''' || p_call_log_type || '''' || '
+       
+      --    Get comments for additional accounts 
+      get_addl_acct_comments(p_ky_enroll, p_cur_addl_acct_comments);
+        -- Open the legacy CSS contact cursor
+      get_legacy_portal_contacts(p_ky_enroll, p_cur_legacy_contacts);  
+           
+
+    END get_call_log_details;
+
+    PROCEDURE close_call_log_entry
+    (
+        p_ky_call_log_id        IN  NUMBER,
+        p_err_code              OUT NUMBER
+    )
+    IS
+    BEGIN
+
+        UPDATE  CIS_CL_HEADER 
+           SET  CIS_CL_HEADER.cd_follow_up_status = 'CLOSED',
+                CIS_CL_HEADER.ts_modified = SYSDATE
+         WHERE  CIS_CL_HEADER.KY_CALL_LOG_ID = p_ky_call_log_id;
+
+         p_err_code := 0;
+
+         EXCEPTION
+            WHEN OTHERS THEN
+                p_err_code := -1;
+         
+    END close_call_log_entry;
+    
+    
+    PROCEDURE save_notes_from_css
+    (
+        in_notated_by                   in  CIS_USER_XREF.id_user_guid%TYPE,
+        in_enroll_no                    in  CIS_CL_HEADER.ky_enroll%TYPE,
+        in_KyBa                         in  CIS_CL_HEADER.tx_billing_number%TYPE,
+        in_first_name                   in  CIS_CL_HEADER.tx_first_name%TYPE,
+        in_last_name                    in  CIS_CL_HEADER.tx_last_name%TYPE,
+        in_email                        in  CIS_CL_HEADER.tx_email%TYPE,
+        in_phno                         in  CIS_CL_HEADER.tx_phone_no%TYPE,
+        in_acnt_asscociation            in  CIS_CL_HEADER.tx_position%TYPE,
+        in_follow_up_status             in  CIS_CL_HEADER.cd_follow_up_status%TYPE,
+        in_follow_up_hours              in  CIS_CL_HEADER.cd_follow_up_hours%TYPE,
+        in_fl_critical_comment          in  CIS_CL_HEADER.fl_critical_comment%TYPE,
+        in_ts_critical_comment_expire   in  CIS_CL_HEADER.ts_critical_comment_expire%TYPE,    
+        in_notate_type                  in  CIS_CL_HEADER.ky_notate_type%TYPE,  
+        in_call_info                    in  CIS_CL_MESSAGES.tx_call_log_msg%TYPE,
+
+        in_call_type_string             in  CIS_CL_CALL_TYPES.tx_call_type%TYPE,
+        in_call_type_id_tier1           in  CIS_CL_CALL_TYPES.ID_TIER1%TYPE,
+        in_call_type_id_tier2           in  CIS_CL_CALL_TYPES.ID_TIER2%TYPE,
+        in_call_type_id_tier3           in  CIS_CL_CALL_TYPES.ID_TIER3%TYPE,
+        in_call_type_id_tier4           in  CIS_CL_CALL_TYPES.ID_TIER4%TYPE
+    )
+    IS
+        temp_call_log_id        CIS_CL_HEADER.ky_call_log_id%TYPE;
+    BEGIN
+        INSERT INTO cis_cl_header
+        VALUES
+        (   
+            -1,                             -- call log id
+            in_notated_by,                  -- GUID of Notated by
+            in_enroll_no,                   -- KY Enroll no   
+            in_KyBa,                        -- Bill No 
+            in_first_name,                  -- First Name
+            in_last_name,                   -- Last name
+            in_email,                       -- Email 
+            in_phno,                        -- Ph no
+            in_acnt_asscociation,           -- Position
+            in_follow_up_status,            -- CD_FOLLOW_UP_STATUS
+            in_follow_up_hours,             -- CD_FOLLOW_UP_HOURS
+            in_fl_critical_comment,         -- FL_CRITICAL_COMMENT       
+            in_ts_critical_comment_expire,  -- TS_CRITICAL_COMMENT_EXPIRE
+            sysdate,                        -- TS_ADDED
+            NULL,                           -- TS_MODIFIED
+            in_notate_type,                 -- NOTATE TYPE 
+            NULL,                           -- Delete reason
+            'A',                            -- Status
+            NULL                            -- Modified by
+        ) 
+        RETURNING ky_call_log_id INTO temp_call_log_id;		
+   
+        -- Insert Messages 
+        INSERT INTO CIS_CL_MESSAGES
+        (
+            KY_CALL_LOG_MSG_ID,
+            TX_CALL_LOG_MSG,
+            KY_CALL_LOG_ID
+        )
+        VALUES
+        (
+            -1,
+            in_call_info,
+            temp_call_log_id
+        );
+        
+        -- Insert call types info
+        INSERT INTO cis_cl_call_types
+        VALUES
+        (   
+            -1,                      -- Identity column
+            temp_call_log_id,        -- Call Log id 
+            in_call_type_id_tier1,   -- Tier 1 ID
+            in_call_type_id_tier2,   -- Tier 2 ID    
+            in_call_type_id_tier3,   -- Tier 3 ID
+            in_call_type_id_tier4,   -- Tier 4 ID
+            SYSDATE,                 -- Date Added
+            NULL,                    -- Date Modified
+            in_call_type_string      -- Call Type string
+        ); 
+
+    END save_notes_from_css;
+    
+    FUNCTION illustrate_path (p_id_tier         IN      NUMBER,
+                              p_iteration       IN      NUMBER DEFAULT 0)
+    RETURN VARCHAR2
+    IS
+        parentId        NUMBER;
+        thePath         VARCHAR2(500);
+    BEGIN
+    
+        -- Get the parent for this item
+        SELECT
+            ID_PARENT_TIER, TX_TIER
+        INTO
+            parentId, thePath
+        FROM
+            CIS_CL_TIER
+        WHERE
+            ID_TIER = p_id_tier;
+        
+        -- If parent is 0, return here
+        -- Otherwise, recursively call next iteration
+        IF parentId = 0 THEN
+            RETURN thePath;
+        ELSE
+            RETURN illustrate_path(parentId) || ' --> ' ||thePath;
+        END IF;
+        
+    END illustrate_path;
+    
+    PROCEDURE backtrack_call_path (
+        p_id_tier               IN      NUMBER,
+        p_tier_path             OUT     TIER_PATHS,
+        p_tier_path_name        OUT     TIER_PATH_NAMES)
+    IS
+        p_iteration             NUMBER := 0;
+
+        tierId                  CIS_CL_TIER.ID_TIER%TYPE;
+        tierText                CIS_CL_TIER.TX_TIER%TYPE;
+
+        parentId                NUMBER;
+
+        l_tier_path             TIER_PATHS;
+        l_tier_path_name        TIER_PATH_NAMES;
+        
+        PROCEDURE GetParent
+        IS
+        BEGIN
+            -- Get the parent for this item
+            SELECT
+                ID_PARENT_TIER, ID_TIER, TX_TIER
+            INTO
+                parentId, tierId, tierText
+            FROM
+                CIS_CL_TIER
+            WHERE
+                ID_TIER = tierId;
+        END;
+        
+        PROCEDURE ReverseCollection
+        IS
+            l_reverse_index         NUMBER;
+        BEGIN
+        
+            -- Set the reverse index as the max element in the array
+            l_reverse_index := l_tier_path.COUNT;
+            
+            -- Re-order the tiers; for now p_tier_path(1) holds the lowest call
+            -- path, and that needs to be moved to the front
+            FOR i IN 1..l_tier_path.COUNT
+            LOOP
+                p_tier_path(l_reverse_index) := l_tier_path(i);
+                p_tier_path_name(l_reverse_index) := l_tier_path_name(i);
+                l_reverse_index := l_reverse_index - 1;
+            END LOOP;
+        END;
+        
+    BEGIN
+    
+        -- Set the local instance of tier to look for
+        tierId := p_id_tier;
+        
+        << ParentSearch >>
+        LOOP
+        
+            p_iteration := p_iteration + 1;
+            
+            -- Look for the parent record
+            GetParent;
+            
+            -- Append the current child and path to the collection
+            l_tier_path(p_iteration) := tierId;
+            l_tier_path_name(p_iteration) := tierText;
+            
+            -- If parent is 0, we are done mapping this out
+            -- If not, continue the loop
+            IF parentId = 0 THEN
+                EXIT ParentSearch;
+            ELSE
+                -- Set the parent tier as the current one to look for
+                tierId := parentId;
+            END IF;
+        
+        END LOOP ParentSearch;
+        
+        -- Set the return object
+        p_tier_path := l_tier_path;
+        p_tier_path_name := l_tier_path_name;
+        
+        -- Reverse sort the entire collection            
+        ReverseCollection;
+
+    END;    
+    
+    PROCEDURE classic_contact_insert (
+        p_user_name         IN      VARCHAR2,
+        p_tx_billing_number IN      VARCHAR2,
+        p_id_tier           IN      VARCHAR2,
+        p_remarks           IN      VARCHAR2,
+        p_critical_fl       IN      VARCHAR2 DEFAULT 'N')
+    IS
+    
+        messageClob         CLOB;
+        userGuid            CHAR(36);
+        erNumber            NUMBER;
+        tmpCallLogId        CIS_CL_HEADER.ky_call_log_id%TYPE;
+        
+        tierPath            TIER_PATHS;
+        tierPathName        TIER_PATH_NAMES;
+        
+        FUNCTION GetErNumber RETURN NUMBER
+        IS
+            p_ky_enroll        NUMBER;
+            tmpKyBa            NUMBER;
+            tmpSupplier        VARCHAR2(50);
+            tmpState           VARCHAR2(2);
+            tmpService         VARCHAR2(20);
+            tmpDuns            VARCHAR2(50);
+        BEGIN
+            tmpKyBa := TO_NUMBER(p_tx_billing_number);
+            P_CIS_CUSTINFO.get_basic_account_context(
+                userGuid,
+                p_ky_enroll,
+                tmpKyBa,
+                tmpSupplier);
+            RETURN p_ky_enroll;
+        END;
+        
+        PROCEDURE InsertCallType
+        IS
+            new_record          CIS_CL_CALL_TYPES%ROWTYPE;
+            tierIndex           NUMBER := 1;
+        BEGIN
+        
+            -- Set the call log ID
+            new_record.KY_CALL_LOG_ID := tmpCallLogId;
+        
+            -- Go through all tiers and assign them as far out as they go
+            FOR i IN 1..tierPath.COUNT
+            LOOP
+                CASE i
+                    WHEN 1 THEN
+                        new_record.ID_TIER1 := tierPath(1);
+                        new_record.TX_CALL_TYPE := tierPathName(1);
+                    WHEN 2 THEN
+                        new_record.ID_TIER2 := tierPath(2);
+                        new_record.TX_CALL_TYPE := new_record.TX_CALL_TYPE || ' --> ' || tierPathName(2);
+                    WHEN 3 THEN
+                        new_record.ID_TIER3 := tierPath(3);
+                        new_record.TX_CALL_TYPE := new_record.TX_CALL_TYPE || ' --> ' || tierPathName(3);
+                    WHEN 4 THEN
+                        new_record.ID_TIER4 := tierPath(4);
+                        new_record.TX_CALL_TYPE := new_record.TX_CALL_TYPE || ' --> ' || tierPathName(4);
+                END CASE;
+            END LOOP;
+            
+            -- Insert the record
+            INSERT INTO CIS_CL_CALL_TYPES
+            VALUES new_record;
+        
+        END;
+        
+    BEGIN
+    
+        -- Retrieve the GUID for the current user
+        userGuid := P_CIS.get_user_guid(p_user_name);
+        
+        -- Get the ER number for this account
+        erNumber := GetErNumber;
+        
+        -- Add the record to the call header table
+        INSERT INTO 
+            cis_cl_header
+            (ID_USER_GUID,
+             KY_ENROLL,
+             TX_BILLING_NUMBER,
+             TS_ADDED,
+             TS_MODIFIED,
+             KY_NOTATE_TYPE,
+             CD_STATUS)
+        VALUES
+            (userGuid,
+             erNumber,
+             p_tx_billing_number,
+             SYSDATE,
+             SYSDATE,
+             'N',
+             'A')
+        RETURNING
+            KY_CALL_LOG_ID
+        INTO
+            tmpCallLogId;
+             
+        -- Convert the remarks to a CLOB
+        DBMS_LOB.createtemporary(messageClob,FALSE,DBMS_LOB.SESSION);
+        DBMS_LOB.writeappend(messageClob,LENGTH(p_remarks),p_remarks);
+    
+        -- Write the remarks to the message table
+        INSERT INTO 
+            CIS_CL_MESSAGES
+            (TX_CALL_LOG_MSG,
+             KY_CALL_LOG_ID)
+        VALUES
+            (messageClob,
+             tmpCallLogId);
+             
+        -- Back-track the tier ID through its hierarchy
+        backtrack_call_path (
+            TO_NUMBER(p_id_tier),
+            tierPath,
+            tierPathName);
+                         
+        -- Write the call type to the call types table
+        InsertCallType;
+        
+        -- Free the remarks CLOB
+        DBMS_LOB.freetemporary(messageClob);
+    
+    END;
+        
+    PROCEDURE get_addl_acct_comments
+    (
+        p_ky_enroll                 IN      NUMBER,
+        p_cur_addl_acct_comments    OUT     SYS_REFCURSOR
+    )
+    IS
+    BEGIN
+
+ 		OPEN p_cur_addl_acct_comments FOR
+    SELECT DBMS_XMLGEN.getXml('
+    SELECT  CIS_CL_HEADER.KY_CALL_LOG_ID,
+            P_CIS_CALL_LOG.get_call_rep_name(CIS_CL_HEADER.ID_USER_GUID) AS NOTATED_BY,
+            CIS_CL_HEADER.TX_BILLING_NUMBER,
+            CIS_CL_HEADER.TX_FIRST_NAME,
+            CIS_CL_HEADER.TX_LAST_NAME,
+            CIS_CL_HEADER.TX_EMAIL,
+            CIS_CL_HEADER.TX_PHONE_NO,
+            CIS_CL_HEADER.TX_POSITION,
+            CIS_CL_HEADER.CD_FOLLOW_UP_STATUS,
+            CIS_CL_HEADER.CD_FOLLOW_UP_HOURS,
+            CIS_CL_HEADER.FL_CRITICAL_COMMENT,
+            CIS_CL_HEADER.TS_CRITICAL_COMMENT_EXPIRE,
+            CIS_CL_HEADER.KY_NOTATE_TYPE,
+            CIS_CL_HEADER.TS_ADDED,
+            CIS_CL_HEADER.TS_MODIFIED,
+            CIS_CL_MESSAGES.TX_CALL_LOG_MSG,
+
+            CURSOR(SELECT   CIS_CL_CALL_TYPES.TX_CALL_TYPE 
+                     FROM   CIS_CL_CALL_TYPES 
+                    WHERE   CIS_CL_CALL_TYPES.KY_CALL_LOG_ID = CIS_CL_HEADER.KY_CALL_LOG_ID) CALL_TYPES,
+            CURSOR(SELECT   CIS_CL_LINKED_ACCOUNTS.TX_BILLING_NUMBER, CIS_CL_LINKED_ACCOUNTS.FL_ACTIVE
+                     FROM   CIS_CL_LINKED_ACCOUNTS 
+                    WHERE   CIS_CL_LINKED_ACCOUNTS.KY_CALL_LOG_ID = CIS_CL_HEADER.KY_CALL_LOG_ID) LINKED_ACCOUNTS
+    FROM    CIS_CL_HEADER, 
+            CIS_CL_MESSAGES 
+
+    WHERE   CIS_CL_MESSAGES.KY_CALL_LOG_ID = CIS_CL_HEADER.KY_CALL_LOG_ID
+      AND   (CIS_CL_HEADER.CD_STATUS IS NULL OR CIS_CL_HEADER.CD_STATUS <> ''D'')
+      AND   CIS_CL_HEADER.KY_CALL_LOG_ID in (
+                SELECT   CIS_CL_LINKED_ACCOUNTS.KY_CALL_LOG_ID
+                  FROM   CIS_CL_LINKED_ACCOUNTS 
+                 WHERE   CIS_CL_LINKED_ACCOUNTS.tx_billing_number = P_CIS_CALL_LOG.get_billing_account_no(' || p_ky_enroll || ')) ORDER BY CIS_CL_HEADER.TS_ADDED DESC', 0)  ADDL_CALL_LOGS FROM DUAL;
+
+    END  get_addl_acct_comments;
+
+
+    FUNCTION GET_BILLING_ACCOUNT_NO
+    ( 
+        p_ky_enroll IN NUMBER
+    )
+    RETURN  NUMBER IS p_ky_ba NUMBER;
+    BEGIN 
+        SELECT
+            TO_NUMBER(TX_BILLING_NUMBER)
+        INTO
+            p_ky_ba
+        FROM
+            PVIEW.BILL_ACCOUNT
+        WHERE
+            ky_enroll = p_ky_enroll;
+
+        RETURN p_ky_ba ;
+
+    EXCEPTION
+    WHEN OTHERS THEN
+       p_ky_ba := 0 ;
+    END;
+    
+    FUNCTION does_call_type_exist (
+        p_id_tier           IN      NUMBER)
+    RETURN BOOLEAN
+    IS
+        tmpCount            NUMBER;
+    BEGIN
+        SELECT
+            COUNT(*)
+        INTO
+            tmpCount
+        FROM
+            CIS_CL_TIER
+        WHERE
+            ID_TIER = p_id_tier;
+            
+        RETURN (tmpCount > 0);
+    EXCEPTION
+        WHEN OTHERS THEN
+            RETURN FALSE;
+    END;
+    
+    
+    PROCEDURE process_mass_change (
+        p_file_id           IN      NUMBER,
+        p_transaction_id    IN      NUMBER,
+        p_data_type         IN      VARCHAR2, 
+        p_error_code        IN  OUT NUMBER,
+        p_error_message     IN  OUT VARCHAR2)
+    IS
+        process_error               EXCEPTION;
+        l_fields_arr                pGoodwrench.field_values;
+        l_gw_mass_change_file_rec   GW_MASS_CHANGE_FILE%ROWTYPE;
+    BEGIN
+    
+        p_error_code := 0;
+        p_error_message := NULL;
+    
+        -- Get some basic information about what's taking place; we need to know
+        -- what user requested this for one
+        Pgw_Mass_Change_File.SelectGWMassChangeFile (
+            p_file_id,
+            l_gw_mass_change_file_rec,
+            p_error_code);
+                                                
+        IF p_error_code <> 0 THEN
+            RAISE_APPLICATION_ERROR(-20001,'Problem selecting File Id: '||p_file_id|| 'from GW_MASS_CHANGE_FILE table.');
+        END IF;
+        
+        -- Assign the values from the data repair to the array for insert
+        AssignTransactionValues(
+            p_file_id,
+            p_transaction_id, 
+            p_data_type,
+            l_fields_arr,
+            p_error_code,
+            p_error_message);
+            
+        IF p_error_message IS NOT NULL THEN
+            RAISE process_error;
+        END IF;
+        
+        -- Process the appropriate data repair for the call log insert
+        IF p_data_type = 'DCCT' THEN
+            process_dcct(
+                l_gw_mass_change_file_rec.TX_USER,
+                l_fields_arr,
+                p_error_code,
+                p_error_message);
+        END IF;
+
+    EXCEPTION
+    
+        WHEN process_error THEN
+            p_error_code := 98;
+            
+        WHEN OTHERS THEN
+            p_error_message := DBMS_UTILITY.format_error_stack ||'<br>'||' Error processing request, SQLCODE IS '||sqlcode;
+            p_error_code := 98;
+            
+    END process_mass_change;
+    
+    PROCEDURE AssignTransactionValues(
+        p_file_id           IN      NUMBER, 
+        p_tran_id           IN      NUMBER,
+        p_data_type         IN      VARCHAR2, 
+        p_fields_arr            OUT PGOODWRENCH.field_values,
+        p_error_code        IN  OUT NUMBER, 
+        p_error_msg         IN  OUT VARCHAR2)
+    IS
+        CURSOR field_crs(p_data_type VARCHAR2) IS
+        SELECT 
+            *
+        FROM   
+            GW_FIELD_AVAILABLE
+        WHERE  
+            KY_GOODWRENCH_FIELD = p_data_type AND
+            FL_REQUIRED = 'Y'
+        ORDER BY 
+            ky_field_available;
+    
+       l_arr_index     NUMBER(10);
+       fl_first_loop   BOOLEAN := TRUE;
+       l_field_value   GOODWRENCH_IMPORT.tx_value%TYPE;
+       FIELD_EXCEPTION EXCEPTION;
+       Required_EXCEPTION EXCEPTION;
+    
+    BEGIN
+    
+       p_error_code := 0;
+       p_error_msg  := NULL;
+       l_arr_index  := 1;
+    
+       FOR crs in field_crs(p_data_type) LOOP
+            l_field_value := NULL;
+            
+            PVIEW.PGW_DATA_REPAIR.GetFieldValue(
+                p_file_id,
+                p_tran_id,
+                crs.KY_GOODWRENCH_FIELD,
+                rtrim(crs.tx_field),
+                l_field_value,
+                p_error_code,
+                p_error_msg);
+    
+            IF p_error_code != 0 THEN
+                RAISE FIELD_EXCEPTION;
+            ELSE
+                p_fields_arr(l_arr_index) := rtrim(l_field_value);
+                l_arr_index := l_arr_index + 1;
+            END IF;
+       END LOOP;
+    
+    EXCEPTION
+       WHEN FIELD_EXCEPTION THEN
+            p_error_msg := 'Error looking up field value, sqlcode '||p_error_code||';'
+                            ||p_error_msg;
+       WHEN OTHERS THEN
+            p_error_code := sqlcode;
+            p_error_msg  := 'Error in AssignTransactionValues;Unable to populate transaction variables;'||CHR(13)||DBMS_UTILITY.format_error_stack;
+            
+    END AssignTransactionValues;
+    
+    PROCEDURE process_dcct ( 
+        p_requesting_user       IN      VARCHAR2,
+        p_fields_arr            IN      PGOODWRENCH.field_values,
+        p_error_code            IN  OUT NUMBER,
+        p_error_msg             IN  OUT VARCHAR2)
+    IS
+        
+        l_tx_billing_number     VARCHAR2(10);
+        l_supplier              VARCHAR2(20);    
+        l_remarks               VARCHAR2(4000);
+        l_id_tier               NUMBER;        
+        l_critical_fl           VARCHAR2(2);
+    
+    BEGIN
+    
+        -- Map out the fields for insert
+        l_tx_billing_number := TRIM(p_fields_arr(1));
+        l_supplier          := TRIM(p_fields_arr(2));
+        l_remarks           := TRIM(p_fields_arr(3));
+        l_id_tier           := TO_NUMBER(p_fields_arr(4));
+        l_critical_fl       := TRIM(p_fields_arr(5));
+        
+        -- Validate the call type
+        IF NOT does_call_type_exist(l_id_tier) THEN
+            p_error_msg     := 'Call Tier ID '||l_id_tier||' is not valid.'||CHR(13)||p_error_msg;
+            p_error_code    := 99;
+            RETURN;
+        END IF;
+        
+        -- If critical_fl is null, set it to no
+        IF l_critical_fl IS NULL THEN
+            l_critical_fl := 'N';
+        END IF;
+        
+        -- Insert the record
+        classic_contact_insert (
+            p_requesting_user,
+            l_tx_billing_number,
+            l_id_tier,
+            l_remarks,
+            l_critical_fl);
+    
+    END process_dcct;
+    
+    PROCEDURE get_cl_details_prev_month
+    ( 
+        p_supplier_no               IN      NUMBER,
+        p_call_log_type             IN      CHAR,
+        p_cur_call_log_details      OUT     SYS_REFCURSOR
+    )
+    IS    
+    supplierID Varchar(10);
+    BEGIN    
+    
+    SELECT PPLSCIS.CIS_SUPPLIER.KY_SUPPLIER_ID 
+    INTO supplierID
+    FROM PPLSCIS.CIS_SUPPLIER 
+    WHERE PPLSCIS.CIS_SUPPLIER.KY_SUPPLIER_NO = p_supplier_no;
+                            
+    IF p_supplier_no = 0 THEN    
+    OPEN p_cur_call_log_details FOR
+    SELECT DBMS_XMLGEN.getXml('
+    SELECT  CIS_CL_HEADER.KY_CALL_LOG_ID,
+            P_CIS_CALL_LOG.get_call_rep_name(CIS_CL_HEADER.ID_USER_GUID) AS NOTATED_BY,
+            CIS_CL_HEADER.TX_BILLING_NUMBER,
+            CIS_CL_HEADER.TX_FIRST_NAME,
+            CIS_CL_HEADER.TX_LAST_NAME,
+            CIS_CL_HEADER.TX_EMAIL,
+            CIS_CL_HEADER.TX_PHONE_NO,
+            CIS_CL_HEADER.TX_POSITION,
+            CIS_CL_HEADER.CD_FOLLOW_UP_STATUS,
+            CIS_CL_HEADER.CD_FOLLOW_UP_HOURS,
+            CIS_CL_HEADER.FL_CRITICAL_COMMENT,
+            CIS_CL_HEADER.TS_CRITICAL_COMMENT_EXPIRE,
+            CIS_CL_HEADER.KY_NOTATE_TYPE,
+            CIS_CL_HEADER.TS_ADDED,
+            CIS_CL_HEADER.TS_MODIFIED,
+            CIS_CL_MESSAGES.TX_CALL_LOG_MSG,
+
+            CURSOR(SELECT   CIS_CL_CALL_TYPES.TX_CALL_TYPE
+                     FROM   CIS_CL_CALL_TYPES
+                    WHERE   CIS_CL_CALL_TYPES.KY_CALL_LOG_ID = CIS_CL_HEADER.KY_CALL_LOG_ID) CALL_TYPES,
+            CURSOR(SELECT   CIS_CL_LINKED_ACCOUNTS.TX_BILLING_NUMBER, CIS_CL_LINKED_ACCOUNTS.FL_ACTIVE
+                     FROM   CIS_CL_LINKED_ACCOUNTS
+                    WHERE   CIS_CL_LINKED_ACCOUNTS.KY_CALL_LOG_ID = CIS_CL_HEADER.KY_CALL_LOG_ID) LINKED_ACCOUNTS
+    FROM    PPLSCIS.CIS_CL_HEADER,
+             PPLSCIS.CIS_CL_MESSAGES
+
+    WHERE    PPLSCIS.CIS_CL_MESSAGES.KY_CALL_LOG_ID =  PPLSCIS.CIS_CL_HEADER.KY_CALL_LOG_ID
+      AND   (CIS_CL_HEADER.CD_STATUS IS NULL OR CIS_CL_HEADER.CD_STATUS <> ''D'')
+    AND KY_NOTATE_TYPE = ''C''
+    AND TRUNC(TS_ADDED) >= TRUNC(SYSDATE -30)
+     ORDER BY  PPLSCIS.CIS_CL_HEADER.TS_ADDED DESC', 0) CALL_LOGS FROM DUAL;     
+    ELSE
+    
+    OPEN p_cur_call_log_details FOR
+    SELECT DBMS_XMLGEN.getXml('
+    SELECT  CIS_CL_HEADER.KY_CALL_LOG_ID,
+            P_CIS_CALL_LOG.get_call_rep_name(CIS_CL_HEADER.ID_USER_GUID) AS NOTATED_BY,
+            CIS_CL_HEADER.TX_BILLING_NUMBER,
+            CIS_CL_HEADER.TX_FIRST_NAME,
+            CIS_CL_HEADER.TX_LAST_NAME,
+            CIS_CL_HEADER.TX_EMAIL,
+            CIS_CL_HEADER.TX_PHONE_NO,
+            CIS_CL_HEADER.TX_POSITION,
+            CIS_CL_HEADER.CD_FOLLOW_UP_STATUS,
+            CIS_CL_HEADER.CD_FOLLOW_UP_HOURS,
+            CIS_CL_HEADER.FL_CRITICAL_COMMENT,
+            CIS_CL_HEADER.TS_CRITICAL_COMMENT_EXPIRE,
+            CIS_CL_HEADER.KY_NOTATE_TYPE,
+            CIS_CL_HEADER.TS_ADDED,
+            CIS_CL_HEADER.TS_MODIFIED,
+            CIS_CL_MESSAGES.TX_CALL_LOG_MSG,
+
+            CURSOR(SELECT   CIS_CL_CALL_TYPES.TX_CALL_TYPE
+                     FROM   CIS_CL_CALL_TYPES
+                    WHERE   CIS_CL_CALL_TYPES.KY_CALL_LOG_ID = CIS_CL_HEADER.KY_CALL_LOG_ID) CALL_TYPES,
+            CURSOR(SELECT   CIS_CL_LINKED_ACCOUNTS.TX_BILLING_NUMBER, CIS_CL_LINKED_ACCOUNTS.FL_ACTIVE
+                     FROM   CIS_CL_LINKED_ACCOUNTS
+                    WHERE   CIS_CL_LINKED_ACCOUNTS.KY_CALL_LOG_ID = CIS_CL_HEADER.KY_CALL_LOG_ID) LINKED_ACCOUNTS
+    FROM    PPLSCIS.CIS_CL_HEADER,
+             PPLSCIS.CIS_CL_MESSAGES,
+             PVIEW.BILL_ACCOUNT B
+
+    WHERE    PPLSCIS.CIS_CL_MESSAGES.KY_CALL_LOG_ID =  PPLSCIS.CIS_CL_HEADER.KY_CALL_LOG_ID
+    AND  PPLSCIS.CIS_CL_HEADER.TX_BILLING_NUMBER = B.TX_BILLING_NUMBER
+      AND   (CIS_CL_HEADER.CD_STATUS IS NULL OR CIS_CL_HEADER.CD_STATUS <> ''D'')
+    AND KY_NOTATE_TYPE = ''C''
+    AND TRUNC(TS_ADDED) >= TRUNC(SYSDATE -30)
+    AND B.KY_SUPPLIER = '''||supplierID||'''
+    ORDER BY  PPLSCIS.CIS_CL_HEADER.TS_ADDED DESC', 0) CALL_LOGS FROM DUAL;  
+    
+    END IF;
+    
+    END get_cl_details_prev_month;
+
+  PROCEDURE get_cl_details_by_tier1id
+    (
+        p_supplier_no               IN      NUMBER,
+        p_tier1_id                  IN      NUMBER,             
+        p_call_log_type             IN      CHAR,
+        p_cur_call_log_details      OUT     SYS_REFCURSOR
+    )
+    IS
+    supplierID Varchar(10);
+    BEGIN
+       
+    SELECT PPLSCIS.CIS_SUPPLIER.KY_SUPPLIER_ID 
+    INTO supplierID
+    FROM PPLSCIS.CIS_SUPPLIER 
+    WHERE PPLSCIS.CIS_SUPPLIER.KY_SUPPLIER_NO = p_supplier_no;
+    
+    IF p_supplier_no = 0 THEN 
+    
+    OPEN p_cur_call_log_details FOR
+    SELECT DBMS_XMLGEN.getXml('
+    SELECT  CIS_CL_HEADER.KY_CALL_LOG_ID,
+            P_CIS_CALL_LOG.get_call_rep_name(CIS_CL_HEADER.ID_USER_GUID) AS NOTATED_BY,
+            CIS_CL_HEADER.TX_BILLING_NUMBER,
+            CIS_CL_HEADER.TX_FIRST_NAME,
+            CIS_CL_HEADER.TX_LAST_NAME,
+            CIS_CL_HEADER.TX_EMAIL,
+            CIS_CL_HEADER.TX_PHONE_NO,
+            CIS_CL_HEADER.TX_POSITION,
+            CIS_CL_HEADER.CD_FOLLOW_UP_STATUS,
+            CIS_CL_HEADER.CD_FOLLOW_UP_HOURS,
+            CIS_CL_HEADER.FL_CRITICAL_COMMENT,
+            CIS_CL_HEADER.TS_CRITICAL_COMMENT_EXPIRE,
+            CIS_CL_HEADER.KY_NOTATE_TYPE,
+            CIS_CL_HEADER.TS_ADDED,
+            CIS_CL_HEADER.TS_MODIFIED,
+            CIS_CL_MESSAGES.TX_CALL_LOG_MSG,
+
+     CURSOR(SELECT   CIS_CL_CALL_TYPES.TX_CALL_TYPE
+                     FROM   CIS_CL_CALL_TYPES
+                    WHERE   CIS_CL_CALL_TYPES.KY_CALL_LOG_ID = CIS_CL_HEADER.KY_CALL_LOG_ID) CALL_TYPES,
+            CURSOR(SELECT   CIS_CL_LINKED_ACCOUNTS.TX_BILLING_NUMBER, CIS_CL_LINKED_ACCOUNTS.FL_ACTIVE
+                     FROM   CIS_CL_LINKED_ACCOUNTS
+                    WHERE   CIS_CL_LINKED_ACCOUNTS.KY_CALL_LOG_ID = CIS_CL_HEADER.KY_CALL_LOG_ID) LINKED_ACCOUNTS
+    FROM    PPLSCIS.CIS_CL_HEADER,
+            PPLSCIS.CIS_CL_MESSAGES
+
+    WHERE PPLSCIS.CIS_CL_MESSAGES.KY_CALL_LOG_ID =  PPLSCIS.CIS_CL_HEADER.KY_CALL_LOG_ID
+      AND   (CIS_CL_HEADER.CD_STATUS IS NULL OR CIS_CL_HEADER.CD_STATUS <> ''D'')
+   AND PPLSCIS.CIS_CL_MESSAGES.KY_CALL_LOG_ID 
+      IN(
+             SELECT 
+             DISTINCT(A.KY_CALL_LOG_ID) 
+             FROM PPLSCIS.CIS_CL_HEADER A,
+                  PPLSCIS.CIS_CL_CALL_TYPES B
+             WHERE A.KY_CALL_LOG_ID = B.KY_CALL_LOG_ID
+             AND KY_NOTATE_TYPE = ''C''
+             AND B.ID_TIER1 = '||p_tier1_id||'
+             AND TRUNC(A.TS_ADDED) >= TRUNC(SYSDATE -30)         
+         )       
+     ORDER BY  PPLSCIS.CIS_CL_HEADER.TS_ADDED DESC', 0) CALL_LOGS FROM DUAL;
+     
+    ELSE
+    
+    OPEN p_cur_call_log_details FOR
+     SELECT DBMS_XMLGEN.GETXML('
+    SELECT  CIS_CL_HEADER.KY_CALL_LOG_ID,
+            P_CIS_CALL_LOG.GET_CALL_REP_NAME(CIS_CL_HEADER.ID_USER_GUID) AS NOTATED_BY,
+            CIS_CL_HEADER.TX_BILLING_NUMBER,
+            CIS_CL_HEADER.TX_FIRST_NAME,
+            CIS_CL_HEADER.TX_LAST_NAME,
+            CIS_CL_HEADER.TX_EMAIL,
+            CIS_CL_HEADER.TX_PHONE_NO,
+            CIS_CL_HEADER.TX_POSITION,
+            CIS_CL_HEADER.CD_FOLLOW_UP_STATUS,
+            CIS_CL_HEADER.CD_FOLLOW_UP_HOURS,
+            CIS_CL_HEADER.FL_CRITICAL_COMMENT,
+            CIS_CL_HEADER.TS_CRITICAL_COMMENT_EXPIRE,
+            CIS_CL_HEADER.KY_NOTATE_TYPE,
+            CIS_CL_HEADER.TS_ADDED,
+            CIS_CL_HEADER.TS_MODIFIED,
+            CIS_CL_MESSAGES.TX_CALL_LOG_MSG,
+
+     CURSOR(SELECT   CIS_CL_CALL_TYPES.TX_CALL_TYPE
+                     FROM   CIS_CL_CALL_TYPES
+                    WHERE   CIS_CL_CALL_TYPES.KY_CALL_LOG_ID = CIS_CL_HEADER.KY_CALL_LOG_ID) CALL_TYPES,
+            CURSOR(SELECT   CIS_CL_LINKED_ACCOUNTS.TX_BILLING_NUMBER, CIS_CL_LINKED_ACCOUNTS.FL_ACTIVE
+                     FROM   CIS_CL_LINKED_ACCOUNTS
+                    WHERE   CIS_CL_LINKED_ACCOUNTS.KY_CALL_LOG_ID = CIS_CL_HEADER.KY_CALL_LOG_ID) LINKED_ACCOUNTS
+    
+    FROM    PPLSCIS.CIS_CL_HEADER,
+            PPLSCIS.CIS_CL_MESSAGES
+    WHERE PPLSCIS.CIS_CL_MESSAGES.KY_CALL_LOG_ID =  PPLSCIS.CIS_CL_HEADER.KY_CALL_LOG_ID
+      AND   (CIS_CL_HEADER.CD_STATUS IS NULL OR CIS_CL_HEADER.CD_STATUS <> ''D'')
+    AND PPLSCIS.CIS_CL_MESSAGES.KY_CALL_LOG_ID 
+      IN(
+             SELECT 
+             DISTINCT(A.KY_CALL_LOG_ID) 
+             FROM PPLSCIS.CIS_CL_HEADER A,             
+                  PVIEW.BILL_ACCOUNT C,
+                  PPLSCIS.CIS_CL_CALL_TYPES B
+             WHERE A.KY_CALL_LOG_ID = B.KY_CALL_LOG_ID
+             AND KY_NOTATE_TYPE = ''C''
+             AND B.ID_TIER1 =  '||p_tier1_id||'
+             AND C.TX_BILLING_NUMBER = A.TX_BILLING_NUMBER
+             AND C.KY_SUPPLIER = '''||supplierID||'''
+             AND TRUNC(A.TS_ADDED) >= TRUNC(SYSDATE -30)         
+         )     
+     ORDER BY  PPLSCIS.CIS_CL_HEADER.TS_ADDED DESC', 0) CALL_LOGS FROM DUAL;
+     
+    END IF;
+    END get_cl_details_by_tier1id;
+    
+    
+    
+    PROCEDURE delete_call_log_entry
+    (
+        p_ky_call_log_id        IN  NUMBER,
+        p_modified_by           IN  CIS_USER_XREF.id_user_guid%TYPE,
+        p_tx_delete_reason      IN  VARCHAR2,
+        p_err_code              OUT NUMBER
+    )
+    IS
+    BEGIN
+
+        UPDATE  CIS_CL_HEADER 
+           SET  CIS_CL_HEADER.cd_status = 'D',
+                CIS_CL_HEADER.tx_delete_reason = p_tx_delete_reason,
+                CIS_CL_HEADER.tx_modified_by = p_modified_by,
+                CIS_CL_HEADER.ts_modified = SYSDATE
+         WHERE  CIS_CL_HEADER.KY_CALL_LOG_ID = p_ky_call_log_id;
+
+         p_err_code := 0;
+
+         EXCEPTION
+            WHEN OTHERS THEN
+                p_err_code := -1;
+         
+    END delete_call_log_entry;
+
+    
+    PROCEDURE get_bill_accounts_by_criteria
+    (
+        p_notating_user_guid        IN      CIS_USER_XREF.id_user_guid%TYPE,
+        p_initial_ky_ba             IN      PVIEW.BILL_ACCOUNT.TX_BILLING_NUMBER%TYPE,
+        p_tx_contract_name          IN      VARCHAR2 DEFAULT NULL,
+        p_tx_client_acct_no         IN      VARCHAR2 DEFAULT NULL,
+        p_billing_accounts              OUT SYS_REFCURSOR,
+        p_err_code                      OUT NUMBER
+    )
+    IS
+    
+        accountSupplier             CIS_SUPPLIER.KY_SUPPLIER_ID%TYPE;
+    
+    BEGIN
+    
+        -- Get the account context for the first account to identify the supplier
+        DECLARE
+            tmpKyEnroll            PVIEW.BILL_ACCOUNT.KY_ENROLL%TYPE;
+            tmpKyBa                PVIEW.BILL_ACCOUNT.TX_BILLING_NUMBER%TYPE;
+        BEGIN
+        
+            tmpKyBa := p_initial_ky_ba;
+            
+            P_CIS_CUSTINFO.get_basic_account_context (
+                p_notating_user_guid, 
+                tmpKyEnroll,
+                tmpKyBa,
+                accountSupplier);
+            
+        END;
+    
+        IF p_tx_contract_name IS NOT NULL THEN
+
+            OPEN 
+                p_billing_accounts 
+            FOR SELECT
+                A.TX_BILLING_NUMBER
+            FROM
+                PVIEW.BILL_ACCOUNT A, 
+                PVIEW.ENROLL B 
+            WHERE 
+                A.KY_ENROLL = B.KY_ENROLL AND
+                A.KY_SUPPLIER = accountSupplier AND
+                B.TX_CONTRACT_NAME = p_tx_contract_name;
+            
+        ELSIF p_tx_client_acct_no IS NOT NULL THEN
+
+                OPEN 
+                    p_billing_accounts 
+                FOR SELECT
+                    A.TX_BILLING_NUMBER
+                FROM
+                    PVIEW.BILL_ACCOUNT A, 
+                    PVIEW.ENROLL B 
+                WHERE 
+                    A.KY_ENROLL = B.KY_ENROLL AND
+                    A.KY_SUPPLIER = accountSupplier AND
+                    B.TX_CLIENT_ACCOUNT = p_tx_client_acct_no;
+
+        END IF;
+        
+        p_err_code := 0;
+        
+    EXCEPTION
+        WHEN OTHERS THEN
+            p_err_code := 1;
+       
+    END get_bill_accounts_by_criteria;
+    
+    /*
+    * validate_additional_accounts
+    *
+    *   Given an initial account as the seed, retrieves the supplier for that
+    *   account and returns a list of accounts that are valid to be used for
+    *   notating additional accounts where the supplier is all the same.  Also
+    *   returns a list of accounts rejected for supplier inconsistency.
+    *
+    *   Author: M. Simmons
+    *   Written: 12.30.10
+    *   Revised: 12.30.10
+    *
+    *   Version History
+    *
+    *   M. Simmons      12.30.10        Initial version
+    */
+    PROCEDURE validate_additional_accounts (
+        p_notating_user_guid        IN      CIS_USER_XREF.id_user_guid%TYPE,
+        p_initial_ky_ba             IN      PVIEW.BILL_ACCOUNT.TX_BILLING_NUMBER%TYPE,
+        p_account_list              IN      CLOB,
+        p_valid_account_list            OUT SYS_REFCURSOR,
+        p_invalid_account_list          OUT SYS_REFCURSOR)
+    IS
+    
+        accountSupplier             CIS_SUPPLIER.KY_SUPPLIER_ID%TYPE;
+        accountsXml                 XMLTYPE;
+    
+    BEGIN
+    
+        -- Get the account context for the first account to identify the supplier
+        DECLARE
+            tmpKyEnroll            PVIEW.BILL_ACCOUNT.KY_ENROLL%TYPE;
+            tmpKyBa                PVIEW.BILL_ACCOUNT.TX_BILLING_NUMBER%TYPE;
+        BEGIN
+        
+            tmpKyBa := p_initial_ky_ba;
+            
+            P_CIS_CUSTINFO.get_basic_account_context (
+                p_notating_user_guid, 
+                tmpKyEnroll,
+                tmpKyBa,
+                accountSupplier);
+            
+        END;
+        
+        -- Cast the CLOB to XMLTYPE, extracting the accounts
+        accountsXml := XMLTYPE(p_account_list).extract('/Accounts/Account');
+        
+        -- Open the first cursor for all accounts that correspond to 
+        -- the selected supplier
+        OPEN
+            p_valid_account_list FOR
+        SELECT DISTINCT
+            TX_BILLING_NUMBER
+        FROM
+            PVIEW.BILL_ACCOUNT
+        WHERE
+            KY_SUPPLIER = accountSupplier AND
+            TX_BILLING_NUMBER IN 
+            (SELECT
+                extractValue(value(ACCTS), '/Account/text()') The_Value
+             FROM
+                TABLE(XMLSEQUENCE(accountsXml)) ACCTS);
+                
+        -- Open the second cursor for all accounts that do NOT correspond 
+        -- to the selected supplier, and should be rejected as invalid
+        OPEN
+            p_invalid_account_list FOR
+        SELECT DISTINCT
+            TX_BILLING_NUMBER
+        FROM
+            PVIEW.BILL_ACCOUNT
+        WHERE
+            KY_SUPPLIER <> accountSupplier AND
+            TX_BILLING_NUMBER IN 
+            (SELECT
+                extractValue(value(ACCTS), '/Account/text()') The_Value
+             FROM
+                TABLE(XMLSEQUENCE(accountsXml)) ACCTS);
+        
+        /*FOR REC IN (SELECT
+                extractValue(value(ACCTS), '/Account/text()') The_Value
+             FROM
+                TABLE(XMLSEQUENCE(accountsXml)) ACCTS)
+        LOOP
+        
+            DBMS_OUTPUT.put_line(REC.The_Value);
+        
+        END LOOP;*/
+    
+    END validate_additional_accounts;
+
+END P_CIS_CALL_LOG;
+/
+show errors

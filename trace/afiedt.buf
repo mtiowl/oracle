@@ -1,0 +1,2 @@
+select sql_id, program_id from v$sql where sql_id = 'a0f4nn77bryt7'
+/

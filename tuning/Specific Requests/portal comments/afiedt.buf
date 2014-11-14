@@ -1,0 +1,2 @@
+select distinct name from all_source where upper(text) like '%CIS_CL_HEADER%'
+/

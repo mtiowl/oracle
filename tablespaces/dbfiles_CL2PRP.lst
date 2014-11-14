@@ -1,0 +1,7 @@
+      ,v$datafile@monitor df
+       *
+ERROR at line 4:
+ORA-00942: table or view does not exist 
+ORA-02063: preceding line from MONITOR 
+
+

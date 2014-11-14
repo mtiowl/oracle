@@ -1,0 +1,2501 @@
+
+NAME      REPORT          FIRST_SNAP  LAST_SNAP REPORT_TIME
+--------- --------------- ---------- ---------- ----------------
+MISP      20 LARGEST SQLS      28974      28986 2013-09-16 08:34
+
+VERSION           HOST_NAME    STARTUP
+----------------- ------------ ----------------
+9.2.0.8.0         rp5450-a     2012-08-23 19:48
+
+2013-09-13 06:00 FIRST SNAPSHOT      28974
+2013-09-13 18:00  LAST SNAPSHOT      28986
+
+STARTING      SQLS    BUFFER_GETS   DISK_READS    PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------ -------------- ------------ ------------ ------ ------- --------
+09/13 06:00    907        485,231        8,692      665,679     40      54     98.2
+09/13 07:00    905      2,572,341    1,073,830       45,550    194     315     58.3
+09/13 08:00    908     24,570,303   10,617,460      262,786   1726    2174     56.8
+09/13 09:00    934     21,416,317    8,723,782      252,414   1516    2177     59.3
+09/13 10:00    960     25,243,256   10,206,621      245,521   1752    2364     59.6
+09/13 11:00    996     12,192,839    5,354,550      128,408    823     997     56.1
+09/13 12:00   1007      9,110,184    3,976,517      108,354    650     916     56.4
+09/13 13:00    986      5,872,957    2,495,881       74,435    415     894     57.5
+09/13 14:00    947     22,345,583    9,451,116      225,539   1451    1855     57.7
+09/13 15:00    971      7,224,288    2,951,344       78,010    486     648     59.1
+09/13 16:00    979      9,250,911    3,981,849       89,302    659     941     57.0
+09/13 17:00    986      1,418,111      150,505       25,894     60     146     89.4
+                   -------------- ------------ ------------ ------ -------
+sum                   141,702,321   58,992,147    2,201,892   9772   13481
+
+Top SQLs by BUFFER GETS
+
+RANK    BUFFER_GETS  GETS/EXEC     EXECS   DISK_READS    PROCESSED    CPU ELAPSED HASH_VALUE
+---- -------------- ---------- --------- ------------ ------------ ------ ------- ----------
+   1    114,533,225      32118      3566   43,688,128       41,685   7278    8741 2498004418
+   2      5,216,061      10248       509    3,510,167       10,177    446     539  912998561
+   3      2,383,775      37246        64    2,029,962          621    207     240 1163821154
+   4      2,195,042      27438        80    1,785,488        1,234    148     159  238203955
+   5      2,190,282      14040       156    1,629,951        1,716    178     211 3009845202
+   6      2,054,656      28146        73    1,674,441           73    169     216  519661303
+   7      1,719,360      23880        72            0            0     30      32 3203046046
+   8        908,066      22148        41      736,540           63     87     158 3461888741
+   9        759,980      28147        27      621,995          648     62      81  170953793
+  10        658,488      27437        24       50,273           24     25      61 2648671294
+  11        658,488      27437        24       50,273            0     24      61 2998120748
+  12        656,051      23430        28      536,977           41     52      60  519568494
+  13        586,368      24432        24            0           24     17      18 2246735936
+  14        562,844      46904        12        1,042           12     37      93  333476733
+  15        531,471      44289        12          139        1,981      7      19 1116368370
+  16        453,648      18902        24            0          840     14      14  283364978
+  17        445,865      13114        34      331,865           61     38      55 3209402547
+  18        387,758      14361        27      329,377           27     27      35  529456071
+  19        387,758      14361        27      329,377           27     26      36 1630218767
+  20        302,394      14400        21      221,688        3,991     27      30 4137781555
+     --------------            --------- ------------ ------------ ------ -------
+sum     137,591,580                 4845   57,527,683       63,245   8899   10859
+
+Top SQLs by DISK READS
+
+RANK   DISK_READS READS/EXEC     EXECS    BUFFER_GETS    PROCESSED    CPU ELAPSED HASH_VALUE
+---- ------------ ---------- --------- -------------- ------------ ------ ------- ----------
+   1   43,688,128      12251      3566    114,533,225       41,685   7278    8741 2498004418
+   2    3,510,167       6896       509      5,216,061       10,177    446     539  912998561
+   3    2,029,962      31718        64      2,383,775          621    207     240 1163821154
+   4    1,785,488      22319        80      2,195,042        1,234    148     159  238203955
+   5    1,674,441      22938        73      2,054,656           73    169     216  519661303
+   6    1,629,951      10448       156      2,190,282        1,716    178     211 3009845202
+   7      736,540      17964        41        908,066           63     87     158 3461888741
+   8      621,995      23037        27        759,980          648     62      81  170953793
+   9      536,977      19178        28        656,051           41     52      60  519568494
+  10      331,865       9761        34        445,865           61     38      55 3209402547
+  11      329,377      12199        27        387,758           27     27      35  529456071
+  12      329,377      12199        27        387,758           27     26      36 1630218767
+  13      221,688      10557        21        302,394        3,991     27      30 4137781555
+  14      217,375      21738        10        284,137           10     27      39  486605983
+  15      143,462      23910         6        168,850            4     14      13 1153068399
+  16      140,222      23370         6        168,888            9     12      12 2102611210
+  17      136,801      22800         6        169,255           39     13      21 4121519815
+  18      112,669      11267        10        146,578          106     14      24 1410135194
+  19      104,706      10471        10        136,746           14     12      14  928879001
+  20       95,654      19131         5        116,890          211     18      23 4103152418
+     ------------            --------- -------------- ------------ ------ -------
+sum    58,376,845                 4706    133,612,257       60,757   8855   10707
+
+Top SQLs by CPU
+
+RANK    CPU ELAPSED   DISK_READS READS/EXEC     EXECS    BUFFER_GETS    PROCESSED HASH_VALUE
+---- ------ ------- ------------ ---------- --------- -------------- ------------ ----------
+   1   7278    8741   43,688,128      12251      3566    114,533,225       41,685 2498004418
+   2    446     539    3,510,167       6896       509      5,216,061       10,177  912998561
+   3    207     240    2,029,962      31718        64      2,383,775          621 1163821154
+   4    178     211    1,629,951      10448       156      2,190,282        1,716 3009845202
+   5    169     216    1,674,441      22938        73      2,054,656           73  519661303
+   6    148     159    1,785,488      22319        80      2,195,042        1,234  238203955
+   7     87     158      736,540      17964        41        908,066           63 3461888741
+   8     83     255            0          0       157         43,180          157 1164658274
+   9     62      81      621,995      23037        27        759,980          648  170953793
+  10     52      60      536,977      19178        28        656,051           41  519568494
+  11     51      58            0          0       720              0          720 3517222579
+  12     44     178            3          0       154         24,367          154  244936920
+  13     41      46            0          0       720              0       33,120 1340227927
+  14     39     121            0          0       202            269      153,722   26153279
+  15     38      55      331,865       9761        34        445,865           61 3209402547
+  16     37      93        1,042         87        12        562,844           12  333476733
+  17     34      40            0          0       436         98,206          426 3880064830
+  18     30      32            0          0        72      1,719,360            0 3203046046
+  19     27      39      217,375      21738        10        284,137           10  486605983
+  20     27      35      329,377      12199        27        387,758           27  529456071
+     ------ ------- ------------            --------- -------------- ------------
+sum    9078   11357   57,093,311                 7088    134,463,124      244,667
+
+
+================================================================
+                            SQL 26153279
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT DISTINCT CRC FROM PROJECT_DENORMAL@BIRPD WHERE CRC IS NOT from
+ NULL ORDER BY 1
+
+FIRST TIME = 2013-07-16 09:59
+MODULE     = Apache.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      0       0         0              0            0         0 Apache.exe
+09/13 07    60      3      10        16             27            0     12176 Apache.exe
+09/13 08    60      4       9        16             20            0     12176 Apache.exe
+09/13 09    60      8      23        42             52            0     31962 Apache.exe
+09/13 10    60      5      16        27             31            0     20547 Apache.exe
+09/13 11    60      2       6        10             15            0      7610 Apache.exe
+09/13 12    60      4      13        25             31            0     19025 Apache.exe
+09/13 13    60      0       0         0              0            0         0 Apache.exe
+09/13 14    60      6      19        35             48            0     26635 Apache.exe
+09/13 15    60      4      14        17             22            0     12937 Apache.exe
+09/13 16    60      3      11        14             23            0     10654 Apache.exe
+09/13 17    60      0       0         0              0            0         0 Apache.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     39     121       202            269            0    153722
+
+
+================================================================
+                            SQL 170953793
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT CASE_TBL.BCS_CASE, CUSTOMER_TBL.KY_BA, CUSTOMER_TBL.FIRST
+_NAME || ' ' || CUSTOMER_TBL.LAST_NAME CUSTOMER_NAME, PKG_CASE.U
+DF_CALCULATE_DUE_DATE( CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDI
+ATION_TYPE_ID, CASE_TBL.RCVD_DT) DUE_DT, CASE_TBL.LAST_UPDATE_DT
+ FROM CASE_TBL, CUSTOMER_TBL, MEDIATION_TBL WHERE CASE_TBL.CASE_ from
+STATE_ID = 300 AND CASE_TBL.BCS_CASE = CUSTOMER_TBL.BCS_CASE AND
+ CASE_TBL.BCS_CASE = MEDIATION_TBL.BCS_CASE AND MEDIATION_TBL.ME
+DIATION_TYPE_ID = 100 AND CASE_TBL.OWNER_ID IS NULL ORDER BY CAS
+E_TBL.RCVD_DT ASC
+
+MODULE     = w3wp.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      0       0         0              0            0         0 w3wp.exe
+09/13 07    60      0       0         0              0            0         0 w3wp.exe
+09/13 08    60     18      21         8        225,116      196,209       192 w3wp.exe
+09/13 09    60     23      34         9        253,310      198,173       216 w3wp.exe
+09/13 10    60      0       0         0              0            0         0 w3wp.exe
+09/13 11    60      0       0         0              0            0         0 w3wp.exe
+09/13 12    60      0       0         0              0            0         0 w3wp.exe
+09/13 13    60      0       0         0              0            0         0 w3wp.exe
+09/13 14    60     12      12         6        168,906      136,126       144 w3wp.exe
+09/13 15    60      5       5         2         56,314       45,625        48 w3wp.exe
+09/13 16    60      4       9         2         56,334       45,862        48 w3wp.exe
+09/13 17    60      0       0         0              0            0         0 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     62      81        27        759,980      621,995       648
+
+
+================================================================
+                            SQL 238203955
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT CASE_TBL.BCS_CASE, CUSTOMER_TBL.KY_BA, CUSTOMER_TBL.FIRST
+_NAME || ' ' || CUSTOMER_TBL.LAST_NAME CUSTOMER_NAME, PKG_CASE.U
+DF_CALCULATE_DUE_DATE( CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDI
+ATION_TYPE_ID, CASE_TBL.RCVD_DT) DUE_DT FROM CASE_TBL, CUSTOMER_ from
+TBL, MEDIATION_TBL WHERE CASE_TBL.CASE_STATE_ID = 200 AND CASE_T where
+BL.BCS_CASE = CUSTOMER_TBL.BCS_CASE AND CASE_TBL.BCS_CASE = MEDI
+ATION_TBL.BCS_CASE
+
+MODULE     = w3wp.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      0       0         0              0            0         0 w3wp.exe
+09/13 07    60      0       0         0              0            0         0 w3wp.exe
+09/13 08    60      9      16         4        112,562       98,570        78 w3wp.exe
+09/13 09    60      3       4         1         28,143       23,394        21 w3wp.exe
+09/13 10    60      0       0         0              0            0         0 w3wp.exe
+09/13 11    60     52      52        28        788,249      640,469       770 w3wp.exe
+09/13 12    60     40      40        21        572,109      466,654       187 w3wp.exe
+09/13 13    60      0       0         0              0            0         0 w3wp.exe
+09/13 14    60     33      34        20        544,023      434,684       163 w3wp.exe
+09/13 15    60      0       0         0              0            0         0 w3wp.exe
+09/13 16    60     11      13         6        149,956      121,717        15 w3wp.exe
+09/13 17    60      0       0         0              0            0         0 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720    148     159        80      2,195,042    1,785,488      1234
+
+
+================================================================
+                            SQL 244936920
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+declare  rc__ number;  simple_list__ owa_util.vc_arr;  complex_l
+ist__ owa_util.vc_arr; begin  owa.init_cgi_env(:n__,:nm__,:v__);
+  htp.HTBUF_LEN := 255;  null;  null;  simple_list__(1) := 'sys.
+%';  simple_list__(2) := 'dbms\_%';  simple_list__(3) := 'utl\_%
+';  simple_list__(4) := 'owa\_%';  simple_list__(5) := 'owa.%';
+ simple_list__(6) := 'htp.%';  simple_list__(7) := 'htf.%';  sim
+ple_list__(8) := 'wpg_docload.%';  if ((owa_match.match_pattern(
+p_string =>    'bmi.home'    /* */,p_simple_pattern =>    simple
+_list__    ,p_complex_pattern =>    complex_list__    ,p_use_spe
+cial_chars =>    false)))   then   rc__ := 2;  else   null;   nu
+ll;   bmi.home;   if (wpg_docload.is_file_download) then    rc__
+ := 1;    wpg_docload.get_download_file(:doc_info);    null;
+null;    null;    commit;   else    rc__ := 0;    null;    null;
+    null;    commit;    owa.get_page(:data__,:ndata__);   end if
+;  end if;  :rc__ := rc__; end;
+
+FIRST TIME = 2012-10-11 20:49
+MODULE     = Apache.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      0       0         0              0            0         0 Apache.exe
+09/13 07    60      4      13        10          1,386            0        10 Apache.exe
+09/13 08    60      3      15         9          1,373            0         9 Apache.exe
+09/13 09    60      7      29        29          4,126            0        29 Apache.exe
+09/13 10    60      5      20        22          2,762            0        22 Apache.exe
+09/13 11    60      2       6         3            811            0         3 Apache.exe
+09/13 12    60      5      17        16          2,729            0        16 Apache.exe
+09/13 13    60      5      23        23          3,579            3        23 Apache.exe
+09/13 14    60      6      22        22          4,069            0        22 Apache.exe
+09/13 15    60      5      22        13          2,430            0        13 Apache.exe
+09/13 16    60      2      11         7          1,102            0         7 Apache.exe
+09/13 17    60      0       0         0              0            0         0 Apache.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     44     178       154         24,367            3       154
+
+
+================================================================
+                            SQL 283364978
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT A.TABLESPACE_NAME TBS_NAME, A."MB used", B."MB free", C."
+MB free" "MB free largest tablespace", A."MB used" + B."MB free"
+ "Total MB", ROUND(A."MB used" / (A."MB used" + B."MB free") * 1
+00, 2) "% Full", NVL(ROUND(A."MB used" / (A."MB used" + C."MB fr
+ee") * 100, 2),ROUND(A."MB used" / (A."MB used" + B."MB free") *
+ 100, 2)) PCT_FREE FROM (SELECT TABLESPACE_NAME, SUM(BYTES/10485 from
+76) "MB used" FROM DBA_DATA_FILES GROUP BY TABLESPACE_NAME) A, ( from
+SELECT TABLESPACE_NAME, SUM(BYTES)/1048576 "MB free" FROM DBA_FR from
+EE_SPACE GROUP BY TABLESPACE_NAME) B, (SELECT DFS.TABLESPACE_NAM
+E, SUM(BYTES)/1048576 "MB free" FROM DBA_FREE_SPACE DFS, (SELECT from
+ TABLESPACE_NAME, MAX(NEXT_EXTENT) NEXT_EXTENT FROM (SELECT TABL from
+ESPACE_NAME, NEXT_EXTENT FROM ALL_INDEXES UNION ALL SELECT TABLE from
+SPACE_NAME, NEXT_EXTENT FROM ALL_TABLES) GROUP BY TABLESPACE_NAM from
+E) NE WHERE DFS.TABLESPACE_NAME = NE.TABLESPACE_NAME AND BYTES > where
+= NE.NEXT_EXTENT GROUP BY DFS.TABLESPACE_NAME) C WHERE A.TABLESP where
+ACE_NAME=B.TABLESPACE_NAME AND B.TABLESPACE_NAME=C.TABLESPACE_NA
+ME (+) AND A.TABLESPACE_NAME NOT LIKE '%UNDO%'
+
+FIRST TIME = 2013-07-16 10:13
+MODULE     = sqlplus@rp5450-a (TNS V1-V3)
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                407
+HASH JOIN            OUTER                                      407      407        1
+HASH JOIN                                                       122      122        1
+VIEW                                                             62                 2
+SORT                 GROUP BY                                    62       62        2
+VIEW                                                             55                 2
+UNION-ALL
+NESTED LOOPS                                                     19       19        1
+NESTED LOOPS                                                     18       18        1
+FIXED TABLE          FULL           X$KCCFN                      17                 1
+TABLE ACCESS         BY INDEX ROWID FILE$                         1        1        4
+INDEX                UNIQUE SCAN    I_FILE1                                         1
+TABLE ACCESS         CLUSTER        TS$                           1        1        1
+INDEX                UNIQUE SCAN    I_TS#                                           1
+NESTED LOOPS                                                     36       36        1
+NESTED LOOPS                                                     35       35        1
+NESTED LOOPS                                                     18       18        1
+FIXED TABLE          FULL           X$KCCFN                      17                 1
+TABLE ACCESS         BY INDEX ROWID FILE$                         1        1        4
+INDEX                UNIQUE SCAN    I_FILE1                                         1
+FIXED TABLE          FIXED INDEX    X$KTFBHC (ind:1)             17                 1
+TABLE ACCESS         CLUSTER        TS$                           1        1        4
+INDEX                UNIQUE SCAN    I_TS#                                           1
+VIEW                                                             59                 2
+SORT                 GROUP BY                                    59       59        2
+VIEW                                                             52                 2
+UNION-ALL
+NESTED LOOPS                                                     18       18        1
+NESTED LOOPS                                                     17       17        1
+TABLE ACCESS         FULL           FET$                         17       17        1
+INDEX                UNIQUE SCAN    I_FILE2                                         1
+TABLE ACCESS         CLUSTER        TS$                           1        1        1
+NESTED LOOPS                                                     34       34        1
+NESTED LOOPS                                                     34       34        1
+TABLE ACCESS         FULL           TS$                          17       17        1
+FIXED TABLE          FIXED INDEX    X$KTFBFE (ind:1)             17                 1
+INDEX                UNIQUE SCAN    I_FILE2                                         1
+VIEW                                                            284                 5
+SORT                 GROUP BY                                   284      284        5
+HASH JOIN                                                       277      277        5
+VIEW                                                              2                 2
+UNION-ALL
+NESTED LOOPS                                                     18       18        1
+NESTED LOOPS                                                     17       17        1
+TABLE ACCESS         FULL           FET$                         17       17        1
+INDEX                UNIQUE SCAN    I_FILE2                                         1
+TABLE ACCESS         CLUSTER        TS$                           1        1        1
+NESTED LOOPS                                                     34       34        1
+NESTED LOOPS                                                     34       34        1
+TABLE ACCESS         FULL           TS$                          17       17        1
+FIXED TABLE          FIXED INDEX    X$KTFBFE (ind:1)             17                 1
+INDEX                UNIQUE SCAN    I_FILE2                                         1
+VIEW                                                            274              4525
+SORT                 GROUP BY                                   274      274     4525
+VIEW                                                            255              4525
+UNION-ALL
+FILTER
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+HASH JOIN                                                       117      117       78
+TABLE ACCESS         FULL           USER$                        17       17      289
+NESTED LOOPS                                                     99       99       78
+NESTED LOOPS         OUTER                                       93       93        6
+NESTED LOOPS         OUTER                                       87       87        6
+NESTED LOOPS                                                     81       81        6
+HASH JOIN                                                        75       75        6
+TABLE ACCESS         FULL           OBJ$                         17       17       57
+HASH JOIN            OUTER                                       57       57     1649
+HASH JOIN            OUTER                                       36       36     1649
+TABLE ACCESS         FULL           IND$                         17       17     1649
+TABLE ACCESS         FULL           TS$                          17       17       38
+TABLE ACCESS         FULL           SEG$                         17       17     4004
+TABLE ACCESS         CLUSTER        USER$                         1        1        1
+INDEX                UNIQUE SCAN    I_USER#                                         1
+TABLE ACCESS         BY INDEX ROWID OBJ$                          1        1        1
+INDEX                UNIQUE SCAN    I_OBJ1                                          1
+TABLE ACCESS         CLUSTER        USER$                         1        1        1
+INDEX                UNIQUE SCAN    I_USER#                                         1
+TABLE ACCESS         BY INDEX ROWID OBJ$                          1        1       13
+INDEX                UNIQUE SCAN    I_OBJ1                                          1
+NESTED LOOPS                                                    117      117       82
+FIXED TABLE          FULL           X$KZSRO                      17               100
+INDEX                RANGE SCAN     I_OBJAUTH2                    1        1        1
+FIXED TABLE          FULL           X$KZSPR                      17                 1
+FILTER
+NESTED LOOPS         OUTER                                      138      138     4447
+HASH JOIN                                                       138      138     4447
+TABLE ACCESS         FULL           USER$                        17       17      289
+HASH JOIN                                                       120      120     4447
+TABLE ACCESS         FULL           OBJ$                         17       17     4446
+HASH JOIN            OUTER                                      100      100     1510
+HASH JOIN            OUTER                                       80       80     1510
+HASH JOIN            OUTER                                       55       55     1510
+HASH JOIN                                                        35       35     1510
+TABLE ACCESS         FULL           TS$                          17       17       38
+TABLE ACCESS         FULL           TAB$                         17       17     1510
+TABLE ACCESS         FULL           SEG$                         17       17     4004
+TABLE ACCESS         FULL           OBJ$                         17       17    24896
+TABLE ACCESS         FULL           USER$                        17       17      289
+INDEX                UNIQUE SCAN    I_OBJ1                                          1
+NESTED LOOPS                                                    117      117       82
+FIXED TABLE          FULL           X$KZSRO                      17               100
+INDEX                RANGE SCAN     I_OBJAUTH2                    1        1        1
+FIXED TABLE          FULL           X$KZSPR                      17                 1
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      1       1         2         37,804            0        70 sqlplus@rp5450-a
+09/13 07    60      1       2         2         37,804            0        70 sqlplus@rp5450-a
+09/13 08    60      1       1         2         37,804            0        70 sqlplus@rp5450-a
+09/13 09    60      1       1         2         37,804            0        70 sqlplus@rp5450-a
+09/13 10    60      1       1         2         37,804            0        70 sqlplus@rp5450-a
+09/13 11    60      2       1         2         37,804            0        70 sqlplus@rp5450-a
+09/13 12    60      1       1         2         37,804            0        70 sqlplus@rp5450-a
+09/13 13    60      1       2         2         37,804            0        70 sqlplus@rp5450-a
+09/13 14    60      1       1         2         37,804            0        70 sqlplus@rp5450-a
+09/13 15    60      1       1         2         37,804            0        70 sqlplus@rp5450-a
+09/13 16    60      1       1         2         37,804            0        70 sqlplus@rp5450-a
+09/13 17    60      2       1         2         37,804            0        70 sqlplus@rp5450-a
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     14      14        24        453,648            0       840
+
+
+================================================================
+                            SQL 333476733
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+DECLARE job BINARY_INTEGER := :job; next_date DATE := :mydate;
+broken BOOLEAN := FALSE; BEGIN statspack.snap; :mydate := next_d
+ate; IF broken THEN :b := 1; ELSE :b := 0; END IF; END;
+
+FIRST TIME = 2013-07-16 10:00
+MODULE     =
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      3       4         1         44,911           69         1
+09/13 07    60      3       9         1         44,958           78         1
+09/13 08    60      4      13         1         43,663           76         1
+09/13 09    60      2       4         1         44,564          103         1
+09/13 10    60      4      12         1         45,444           92         1
+09/13 11    60      3       8         1         46,651          101         1
+09/13 12    60      3      15         1         48,338           88         1
+09/13 13    60      3       6         1         49,003           93         1
+09/13 14    60      3       6         1         49,573           92         1
+09/13 15    60      3       7         1         48,781           92         1
+09/13 16    60      3       5         1         48,689           82         1
+09/13 17    60      3       4         1         48,269           76         1
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     37      93        12        562,844        1,042        12
+
+
+================================================================
+                            SQL 486605983
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+begin PKG_IMPORTEXPORT.USP_BAT_OUT_CASES_UPD(:V00001,:V00002); e
+nd;
+
+FIRST TIME = 2013-07-16 11:00
+MODULE     = pucftp.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      0       0         0              0            0         0 pucftp.exe
+09/13 07    60      5      11         2         45,818       40,509         2 pucftp.exe
+09/13 08    60      0       0         0              0            0         0 pucftp.exe
+09/13 09    60      4       4         1         36,640       27,380         1 pucftp.exe
+09/13 10    60      0       0         0              0            0         0 pucftp.exe
+09/13 11    60      5       8         2         55,042       40,845         2 pucftp.exe
+09/13 12    60      0       0         0              0            0         0 pucftp.exe
+09/13 13    60      3       5         1         36,833       27,500         1 pucftp.exe
+09/13 14    60      0       0         0              0            0         0 pucftp.exe
+09/13 15    60      3       3         1         36,710       26,672         1 pucftp.exe
+09/13 16    60      0       0         0              0            0         0 pucftp.exe
+09/13 17    60      7       8         3         73,094       54,469         3 pucftp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     27      39        10        284,137      217,375        10
+
+
+================================================================
+                            SQL 519568494
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT CASE_TBL.BCS_CASE, CUSTOMER_TBL.KY_BA ACCOUNT_NUMBER, CUS
+TOMER_TBL.FIRST_NAME || ' ' || CUSTOMER_TBL.LAST_NAME CUSTOMER_N
+AME, CASE_TBL.BCS_INVESTIGATOR_FNAME || ' ' || CASE_TBL.BCS_INVE
+STIGATOR_LNAME PUC_INVESTIGATOR_NAME, NVL(PKG_CASE.UDF_CALCULATE
+_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDIATION_TYPE_ID
+, CASE_TBL.RCVD_DT),'') DUE_DT, NVL(HTV1.NAME,CASE_TBL.OWNER_ID)
+ CONTACT_PERSON, CASE_TBL.LAST_UPDATE_DT FROM CASE_TBL, CUSTOMER from
+_TBL, MEDIATION_TBL, HRPR_TOT_VW HTV1 WHERE CASE_TBL.BCS_CASE =  where
+MEDIATION_TBL.BCS_CASE (+) AND CASE_TBL.BCS_CASE = CUSTOMER_TBL.
+BCS_CASE (+) AND CASE_TBL.OWNER_ID = HTV1.OPRID (+) AND CASE_TBL
+.CASE_STATE_ID = 1200
+
+MODULE     = w3wp.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      0       0         0              0            0         0 w3wp.exe
+09/13 07    60      4       5         2         56,384       50,267         4 w3wp.exe
+09/13 08    60      8       9         4         93,690       80,722         4 w3wp.exe
+09/13 09    60      1       1         1          9,111        6,845         0 w3wp.exe
+09/13 10    60      7       6         3         84,612       67,726        10 w3wp.exe
+09/13 11    60     14      18         7        178,332      144,306        16 w3wp.exe
+09/13 12    60      5       5         3         65,520       52,863         2 w3wp.exe
+09/13 13    60      0       0         1          9,114        6,853         0 w3wp.exe
+09/13 14    60      3       4         2         37,320       29,255         1 w3wp.exe
+09/13 15    60      8       9         4         93,747       75,190         3 w3wp.exe
+09/13 16    60      2       3         1         28,221       22,950         1 w3wp.exe
+09/13 17    60      0       0         0              0            0         0 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     52      60        28        656,051      536,977        41
+
+
+================================================================
+                            SQL 519661303
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT * FROM ( SELECT CASE_TBL.BCS_CASE, CUSTOMER_TBL.KY_BA, CU from
+STOMER_TBL.FIRST_NAME || ' ' || CUSTOMER_TBL.LAST_NAME CUSTOMER_
+NAME, PKG_CASE.UDF_CALCULATE_DUE_DATE( CASE_TBL.CASE_TYPE_ID, ME
+DIATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT) DUE_DT, CASE_TB
+L.LAST_UPDATE_DT FROM CASE_TBL, CUSTOMER_TBL, MEDIATION_TBL WHER from
+E CASE_TBL.CASE_STATE_ID = 300 AND CASE_TBL.BCS_CASE = CUSTOMER_
+TBL.BCS_CASE AND CASE_TBL.BCS_CASE = MEDIATION_TBL.BCS_CASE AND
+MEDIATION_TBL.MEDIATION_TYPE_ID = 100 AND CASE_TBL.OWNER_ID IS N
+ULL ORDER BY CASE_TBL.RCVD_DT ASC ) WHERE ROWNUM < 2             where
+
+MODULE     = w3wp.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      0       0         0              0            0         0 w3wp.exe
+09/13 07    60      0       0         0              0            0         0 w3wp.exe
+09/13 08    60     39      47        16        450,232      393,608        16 w3wp.exe
+09/13 09    60     54      78        22        619,167      491,504        22 w3wp.exe
+09/13 10    60     38      48        17        478,533      381,435        17 w3wp.exe
+09/13 11    60      0       0         0              0            0         0 w3wp.exe
+09/13 12    60      0       0         0              0            0         0 w3wp.exe
+09/13 13    60      4       3         2         56,298       45,659         2 w3wp.exe
+09/13 14    60     34      40        16        450,426      362,235        16 w3wp.exe
+09/13 15    60      0       0         0              0            0         0 w3wp.exe
+09/13 16    60      0       0         0              0            0         0 w3wp.exe
+09/13 17    60      0       0         0              0            0         0 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720    169     216        73      2,054,656    1,674,441        73
+
+
+================================================================
+                            SQL 529456071
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT COUNT(*) FROM CASE_TBL, CUSTOMER_TBL, MEDIATION_TBL WHERE from
+ CASE_TBL.CASE_STATE_ID = 300 AND CASE_TBL.BCS_CASE = CUSTOMER_T
+BL.BCS_CASE AND CASE_TBL.BCS_CASE = MEDIATION_TBL.BCS_CASE AND M
+EDIATION_TBL.MEDIATION_TYPE_ID = 100 AND CASE_TBL.OWNER_ID IS NU
+LL
+
+MODULE     = w3wp.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      0       0         0              0            0         0 w3wp.exe
+09/13 07    60      0       0         0              0            0         0 w3wp.exe
+09/13 08    60      8       9         8        114,911       98,741         8 w3wp.exe
+09/13 09    60      9      15         9        129,203      106,916         9 w3wp.exe
+09/13 10    60      0       0         0              0            0         0 w3wp.exe
+09/13 11    60      0       0         0              0            0         0 w3wp.exe
+09/13 12    60      0       0         0              0            0         0 w3wp.exe
+09/13 13    60      0       0         0              0            0         0 w3wp.exe
+09/13 14    60      5       5         6         86,164       74,096         6 w3wp.exe
+09/13 15    60      2       2         2         28,741       24,782         2 w3wp.exe
+09/13 16    60      3       4         2         28,739       24,842         2 w3wp.exe
+09/13 17    60      0       0         0              0            0         0 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     27      35        27        387,758      329,377        27
+
+
+================================================================
+                            SQL 912998561
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT CASE_TBL.BCS_CASE, CUSTOMER_TBL.KY_BA, NVL(HRPR_TOT_VW.NA
+ME,INFORMALS_TBL.AUTHOR_ID) AUTHOR_NAME, NVL(HTV1.NAME, CASE_TBL
+.OWNER_ID) CONTACT_PERSON, CUSTOMER_TBL.FIRST_NAME || ' ' || CUS
+TOMER_TBL.LAST_NAME CUSTOMER_NAME, CASE_TBL.BCS_INVESTIGATOR_LNA
+ME || ', ' || CASE_TBL.BCS_INVESTIGATOR_FNAME BCS_INVESTIGATOR_N
+AME, PKG_CASE.UDF_CALCULATE_DUE_DATE( CASE_TBL.CASE_TYPE_ID, MED
+IATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT) DUE_DT, DECODE(M
+EDIATION_TBL.MEDIATION_TYPE_ID,NULL,'N/A', MEDIATION_TYPE_DESC)
+MEDIATION_TYPE_DESC, CASE_TYPE_CD.CASE_TYPE_ID, CASE_TYPE_CD.CAS
+E_TYPE_DESC, DECODE(INFORMALS_TBL.COMPLAINT_CATEGORY_ID_1,NULL,'
+N/A', COMPLAINT_CATEGORY_DESC) COMPLAINT_CATEGORY_DESC, CASE_TBL
+.LAST_UPDATE_DT FROM CASE_TBL, CASE_TYPE_CD, CUSTOMER_TBL, MEDIA from
+TION_TBL, INFORMALS_TBL, MEDIATION_TYPE_CD, COMPLAINT_CATEGORY_C
+D, HRPR_TOT_VW, HRPR_TOT_VW HTV1 WHERE (UPPER(CASE_TBL.OWNER_ID) where
+ = UPPER(:B1 ) OR CASE_TBL.OWNER_ID IN (SELECT PRIMARY_OWNER_ID
+FROM MY_WORK_ASSOC_TBL WHERE UPPER(SECONDARY_OWNER_ID) = UPPER(: where
+B1 )) ) AND CASE_TBL.CASE_TYPE_ID = CASE_TYPE_CD.CASE_TYPE_ID AN
+D CASE_TBL.BCS_CASE = CUSTOMER_TBL.BCS_CASE AND CASE_TBL.BCS_CAS
+E = MEDIATION_TBL.BCS_CASE (+) AND MEDIATION_TBL.MEDIATION_TYPE_
+ID = MEDIATION_TYPE_CD.MEDIATION_TYPE_ID (+) AND CASE_TBL.BCS_CA
+SE = INFORMALS_TBL.BCS_CASE (+) AND INFORMALS_TBL.COMPLAINT_CATE
+GORY_ID_1 = COMPLAINT_CATEGORY_CD.COMPLAINT_CATEGORY_ID (+) AND
+INFORMALS_TBL.AUTHOR_ID = HRPR_TOT_VW.OPRID (+) AND CASE_TBL.OWN
+ER_ID = HTV1.OPRID (+) AND CASE_TBL.CASE_STATE_ID = 400
+
+FIRST TIME = 2013-04-22 07:44
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                 88
+FILTER
+HASH JOIN            OUTER                                       88       88       12
+HASH JOIN            OUTER                                       78       78       12
+NESTED LOOPS                                                     68       68       12
+NESTED LOOPS         OUTER                                       56       56       12
+NESTED LOOPS         OUTER                                       44       44       12
+NESTED LOOPS         OUTER                                       32       32       12
+NESTED LOOPS         OUTER                                       20       20       12
+NESTED LOOPS                                                      6        6       12
+TABLE ACCESS         FULL           CASE_TYPE_CD                  2        2        2
+TABLE ACCESS         BY INDEX ROWID CASE_TBL                      2        2        6
+INDEX                RANGE SCAN     CASE_TYPE_STATE_OWNE          1        1       98
+                                    R
+
+TABLE ACCESS         BY INDEX ROWID INFORMALS_TBL                 2        2        1
+INDEX                UNIQUE SCAN    SYS_C004576                                     1
+TABLE ACCESS         BY INDEX ROWID COMPLAINT_CATEGORY_C          1        1        1
+                                    D
+
+INDEX                UNIQUE SCAN    SYS_C004536                                     1
+TABLE ACCESS         BY INDEX ROWID MEDIATION_TBL                 1        1        1
+INDEX                UNIQUE SCAN    SYS_C004588                                     1
+TABLE ACCESS         BY INDEX ROWID MEDIATION_TYPE_CD             1        1        1
+INDEX                UNIQUE SCAN    SYS_C004591                                     1
+TABLE ACCESS         BY INDEX ROWID CUSTOMER_TBL                  1        1        1
+INDEX                UNIQUE SCAN    SYS_C004543                                     1
+TABLE ACCESS         FULL           HRPR_TOT_VW                   9        9     3918
+TABLE ACCESS         FULL           HRPR_TOT_VW                   9        9     3918
+INDEX                RANGE SCAN     MY_WORK_ASSOC_PK              1        1        1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CASE_TBL               178761    365 09/14/13 11:03  100%      70      70      69   10   40
+CASE_TYPE_CD                2     12 05/29/12 11:51  100%       0       0       0   10   40
+COMPLAINT_CATEGORY         52     23 05/29/12 11:51  100%       0       0       0   10   40
+_CD
+
+CUSTOMER_TBL           178761    207 09/14/13 11:04  100%      40      40      39   10   40
+HRPR_TOT_VW              3918     86 05/29/12 11:52  100%       0       0       0   10   40
+INFORMALS_TBL           14351   4526 05/29/12 11:52  100%      80      80      69   10   40
+MEDIATION_TBL          160875    573 09/14/13 11:05  100%     107     107      98   10   40
+MEDIATION_TYPE_CD           5     11 05/29/12 11:52  100%       0       0       0   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CASE_TBL           CASE_TBL_CASE_TYPE_I            2   1 CASE_TYPE_ID              2     515
+                   D
+
+                                                       2 BCS_CASE             178761       0
+                   CASE_TBL_IDX1        UNIQ       2   1 CASE_STATE_ID            12       0
+                                                       2 OWNER_ID                127   55717
+                                                       3 CASE_TYPE_ID              2     515
+                                                       4 BCS_CASE             178761       0
+                   CASE_TBL_IDX2                   2   1 CASE_STATE_ID            12       0
+                                                       2 OWNER_ID                127   55717
+                                                       3 CASE_TYPE_ID              2     515
+                                                       4 JUSTIFICATION_STAT        3     102
+                                                         E_ID
+
+                   CASE_TBL_PK          UNIQ       3   1 BCS_CASE             178761       0
+                   CASE_TYPE_STATE_OWNE                1 CASE_STATE_ID            12       0
+                   R
+
+                                                       2 CASE_TYPE_ID              2     515
+                                                       3 OWNER_ID                127   55717
+                   STATE_ID_CASE_INDX                  1 CASE_STATE_ID            12       0
+                                                       2 BCS_CASE             178761       0
+CASE_TYPE_CD       SYS_C004532          UNIQ       0   1 CASE_TYPE_ID              2       0
+COMPLAINT_CATEGORY SYS_C004536          UNIQ       0   1 COMPLAINT_CATEGORY       52       0
+_CD                                                      _ID
+
+CUSTOMER_TBL       SYS_C004543          UNIQ       1   1 BCS_CASE             178761       0
+INFORMALS_TBL      SYS_C004576          UNIQ       0   1 BCS_CASE              14351       0
+MEDIATION_TBL      CASE_TYPE_IDX                       1 BCS_CASE             160875       0
+                                                       2 MEDIATION_TYPE_ID         5       0
+                   SYS_C004588          UNIQ       1   1 BCS_CASE             160875       0
+MEDIATION_TYPE_CD  SYS_C004591          UNIQ       0   1 MEDIATION_TYPE_ID         5       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      0       0         0              0            0         0 w3wp.exe
+09/13 07    60      5       9         5         51,210       40,477       233 w3wp.exe
+09/13 08    60     96     115       106      1,087,308      828,205      1152 w3wp.exe
+09/13 09    60     97     127       105      1,076,347      675,422      1570 w3wp.exe
+09/13 10    60     91     110       102      1,044,465      671,912      1511 w3wp.exe
+09/13 11    60     29      32        33        337,246      225,445      1548 w3wp.exe
+09/13 12    60     10      13        12        122,856       82,159       632 w3wp.exe
+09/13 13    60     12      13        14        143,334       95,826       709 w3wp.exe
+09/13 14    60     73      79        91        933,105      612,278      1130 w3wp.exe
+09/13 15    60     20      26        26        266,518      176,288      1106 w3wp.exe
+09/13 16    60     13      15        15        153,672      102,155       586 w3wp.exe
+09/13 17    60      0       0         0              0            0         0 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720    446     539       509      5,216,061    3,510,167     10177
+
+
+================================================================
+                            SQL 928879001
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT CASE_TBL.BCS_CASE FROM CASE_TBL WHERE (CASE_TBL.CASE_TYPE from
+_ID = 100) AND CASE_TBL.CASE_STATE_ID = 500 AND CASE_TBL.BATCH_I
+D IS NULL FOR UPDATE OF CASE_TBL.BATCH_ID NOWAIT
+
+FIRST TIME = 2013-07-16 11:00
+MODULE     = pucftp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                  3
+FOR UPDATE
+TABLE ACCESS         BY INDEX ROWID CASE_TBL                      3        3        1
+INDEX                RANGE SCAN     CASE_TYPE_STATE_OWNE          2        2        3
+                                    R
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CASE_TBL               178761    365 09/14/13 11:03  100%      70      70      69   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CASE_TBL           CASE_TBL_CASE_TYPE_I            2   1 CASE_TYPE_ID              2     515
+                   D
+
+                                                       2 BCS_CASE             178761       0
+                   CASE_TBL_IDX1        UNIQ       2   1 CASE_STATE_ID            12       0
+                                                       2 OWNER_ID                127   55717
+                                                       3 CASE_TYPE_ID              2     515
+                                                       4 BCS_CASE             178761       0
+                   CASE_TBL_IDX2                   2   1 CASE_STATE_ID            12       0
+                                                       2 OWNER_ID                127   55717
+                                                       3 CASE_TYPE_ID              2     515
+                                                       4 JUSTIFICATION_STAT        3     102
+                                                         E_ID
+
+                   CASE_TBL_PK          UNIQ       3   1 BCS_CASE             178761       0
+                   CASE_TYPE_STATE_OWNE                1 CASE_STATE_ID            12       0
+                   R
+
+                                                       2 CASE_TYPE_ID              2     515
+                                                       3 OWNER_ID                127   55717
+                   STATE_ID_CASE_INDX                  1 CASE_STATE_ID            12       0
+                                                       2 BCS_CASE             178761       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      0       0         0              0            0         0 pucftp.exe
+09/13 07    60      1       1         2         18,222       16,203         0 pucftp.exe
+09/13 08    60      0       0         0              0            0         0 pucftp.exe
+09/13 09    60      2       2         1         18,230       13,693         4 pucftp.exe
+09/13 10    60      0       0         0              0            0         0 pucftp.exe
+09/13 11    60      2       4         2         27,344       20,489         1 pucftp.exe
+09/13 12    60      0       0         0              0            0         0 pucftp.exe
+09/13 13    60      2       2         1         18,242       13,745         7 pucftp.exe
+09/13 14    60      0       0         0              0            0         0 pucftp.exe
+09/13 15    60      2       2         1         18,230       13,339         1 pucftp.exe
+09/13 16    60      0       0         0              0            0         0 pucftp.exe
+09/13 17    60      3       3         3         36,478       27,237         1 pucftp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     12      14        10        136,746      104,706        14
+
+
+================================================================
+                            SQL 1116368370
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+INSERT INTO STATS$SQLTEXT ( HASH_VALUE , TEXT_SUBSET , PIECE , S
+QL_TEXT , ADDRESS , COMMAND_TYPE , LAST_SNAP_ID ) SELECT ST1.HAS
+H_VALUE , SS.TEXT_SUBSET , ST1.PIECE , ST1.SQL_TEXT , ST1.ADDRES
+S , ST1.COMMAND_TYPE , SS.SNAP_ID FROM V$SQLTEXT ST1 , STATS$SQL from
+_SUMMARY SS WHERE SS.SNAP_ID = :B3 AND SS.DBID = :B2 AND SS.INST where
+ANCE_NUMBER = :B1 AND ST1.HASH_VALUE = SS.HASH_VALUE AND ST1.ADD
+RESS = SS.ADDRESS AND NOT EXISTS (SELECT 1 FROM STATS$SQLTEXT ST from
+2 WHERE ST2.HASH_VALUE = SS.HASH_VALUE AND ST2.TEXT_SUBSET = SS. where
+TEXT_SUBSET ) ORDER BY ST1.HASH_VALUE,SS.TEXT_SUBSET
+
+FIRST TIME = 2013-07-16 10:00
+MODULE     =
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+INSERT STATEMENT                                                 26
+SORT                 ORDER BY                                    26       26        1
+TABLE ACCESS         BY INDEX ROWID STATS$SQL_SUMMARY             2        2        1
+NESTED LOOPS                                                     19       19        1
+FIXED TABLE          FULL           X$KGLNA                      17                 1
+INDEX                RANGE SCAN     STATS$SQL_SUMMARY_PK          1        1        1
+INDEX                RANGE SCAN     STATS$SQLTEXT_PK              2        2        1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+STATS$SQL_SUMMARY        1601    148 07/04/08 18:48  100%       1       0       0    5   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+STATS$SQL_SUMMARY  STATS$SQL_SUMMARY_PK UNIQ       0   1 SNAP_ID                   8       0
+                                                       2 DBID                      1       0
+                                                       3 INSTANCE_NUMBER           1       0
+                                                       4 HASH_VALUE              355       0
+                                                       5 TEXT_SUBSET             264       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      1       1         1         42,406            0         0
+09/13 07    60      0       0         1         42,388            0         0
+09/13 08    60      1       2         1         41,071            2        27
+09/13 09    60      0       1         1         41,931           24       317
+09/13 10    60      1       4         1         42,833           19       283
+09/13 11    60      0       4         1         44,034           24       452
+09/13 12    60      1       1         1         45,653            7       148
+09/13 13    60      0       1         1         46,277            8        76
+09/13 14    60      1       1         1         46,944           15       148
+09/13 15    60      0       1         1         46,123           20       307
+09/13 16    60      1       2         1         46,040           16       177
+09/13 17    60      1       1         1         45,771            4        46
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720      7      19        12        531,471          139      1981
+
+
+================================================================
+                            SQL 1153068399
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT * FROM ( SELECT CASE_TBL.BCS_CASE, CUSTOMER_TBL.KY_BA, CU from
+STOMER_TBL.FIRST_NAME || ' ' || CUSTOMER_TBL.LAST_NAME CUSTOMER_
+NAME, PKG_CASE.UDF_CALCULATE_DUE_DATE( CASE_TBL.CASE_TYPE_ID, ME
+DIATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT) DUE_DT, CASE_TB
+L.LAST_UPDATE_DT FROM CASE_TBL, CUSTOMER_TBL, MEDIATION_TBL WHER from
+E CASE_TBL.CASE_STATE_ID = 300 AND CASE_TBL.BCS_CASE = CUSTOMER_
+TBL.BCS_CASE AND CASE_TBL.BCS_CASE = MEDIATION_TBL.BCS_CASE AND
+MEDIATION_TBL.MEDIATION_TYPE_ID = 300 AND CASE_TBL.OWNER_ID IS N
+ULL ORDER BY CASE_TBL.RCVD_DT ASC ) WHERE ROWNUM < 2             where
+
+MODULE     = w3wp.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      0       0         0              0            0         0 w3wp.exe
+09/13 07    60      0       0         0              0            0         0 w3wp.exe
+09/13 08    60      9       9         4        112,552       97,666         3 w3wp.exe
+09/13 09    60      0       0         0              0            0         0 w3wp.exe
+09/13 10    60      0       0         0              0            0         0 w3wp.exe
+09/13 11    60      0       0         0              0            0         0 w3wp.exe
+09/13 12    60      0       0         0              0            0         0 w3wp.exe
+09/13 13    60      5       4         2         56,298       45,796         1 w3wp.exe
+09/13 14    60      0       0         0              0            0         0 w3wp.exe
+09/13 15    60      0       0         0              0            0         0 w3wp.exe
+09/13 16    60      0       0         0              0            0         0 w3wp.exe
+09/13 17    60      0       0         0              0            0         0 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     14      13         6        168,850      143,462         4
+
+
+================================================================
+                            SQL 1163821154
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT( CASE WHEN CASE_TYPE_ID=200 THEN 'MEDIATION_TOTAL' WHEN C
+ASE_TYPE_ID=100 THEN 'INFORMAL_TOTAL' END) COUNT_DESC, COUNT(*)
+CNT FROM CASE_TBL, MEDIATION_TBL WHERE CASE_TYPE_ID IS NOT NULL  from
+AND CASE_TBL.BCS_CASE = MEDIATION_TBL.BCS_CASE (+) AND CASE_STAT
+E_ID IN (200,300,400,800) AND (MEDIATION_TBL.BCS_CASE IS NULL OR
+ MEDIATION_TBL.MEDIATION_TYPE_ID IN (100,300)) GROUP BY (CASE WH
+EN CASE_TYPE_ID=200 THEN 'MEDIATION_TOTAL' WHEN CASE_TYPE_ID=100
+ THEN 'INFORMAL_TOTAL' END) UNION SELECT ( CASE WHEN CASE_TYPE_I
+D=200 AND TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.CASE_
+TYPE_ID, MEDIATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT),'MM/
+DD/YYYY') >= (TO_DATE(TO_CHAR(SYSDATE,'mm/dd/yyyy'),'mm/dd/yyyy'
+) + 21) AND TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.CAS
+E_TYPE_ID, MEDIATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT),'M
+M/DD/YYYY') <= (TO_DATE(TO_CHAR(SYSDATE,'mm/dd/yyyy') || '23:59:
+59','mm/dd/yyyy hh24:mi:ss') + 31) THEN 'MEDIATION_21_31' WHEN C
+ASE_TYPE_ID=200 AND TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE
+_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCV
+D_DT),'MM/DD/YYYY') >= (TO_DATE(TO_CHAR(SYSDATE,'mm/dd/yyyy'),'m
+m/dd/yyyy') + 11) AND TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CA
+SE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.R
+CVD_DT),'MM/DD/YYYY') <= (TO_DATE(TO_CHAR(SYSDATE,'mm/dd/yyyy')
+|| '23:59:59','mm/dd/yyyy hh24:mi:ss') + 20) THEN 'MEDIATION_11_
+20' WHEN CASE_TYPE_ID=200 AND TO_DATE(PKG_CASE.UDF_CALCULATE_DUE
+_DATE(CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDIATION_TYPE_ID, CA
+SE_TBL.RCVD_DT),'MM/DD/YYYY') >= (TO_DATE(TO_CHAR(SYSDATE,'mm/dd
+/yyyy'),'mm/dd/yyyy') + 6) AND TO_DATE(PKG_CASE.UDF_CALCULATE_DU
+E_DATE(CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDIATION_TYPE_ID, C
+ASE_TBL.RCVD_DT),'MM/DD/YYYY') <= (TO_DATE(TO_CHAR(SYSDATE,'mm/d
+d/yyyy') || '23:59:59','mm/dd/yyyy hh24:mi:ss') + 10) THEN 'MEDI
+ATION_6_10' WHEN CASE_TYPE_ID=200 AND TO_DATE(PKG_CASE.UDF_CALCU
+LATE_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDIATION_TYP
+E_ID, CASE_TBL.RCVD_DT),'MM/DD/YYYY') >= (TO_DATE(TO_CHAR(SYSDAT
+E,'mm/dd/yyyy'),'mm/dd/yyyy') + 2) AND TO_DATE(PKG_CASE.UDF_CALC
+ULATE_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDIATION_TY
+PE_ID, CASE_TBL.RCVD_DT),'MM/DD/YYYY') <= (TO_DATE(TO_CHAR(SYSDA
+TE,'mm/dd/yyyy') || '23:59:59','mm/dd/yyyy hh24:mi:ss') + 5) THE
+N 'MEDIATION_2_5' WHEN CASE_TYPE_ID=200 AND TO_DATE(PKG_CASE.UDF
+_CALCULATE_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDIATI
+ON_TYPE_ID, CASE_TBL.RCVD_DT),'MM/DD/YYYY') >= (TO_DATE(TO_CHAR(
+SYSDATE,'mm/dd/yyyy'),'mm/dd/yyyy') + 1) AND TO_DATE(PKG_CASE.UD
+F_CALCULATE_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDIAT
+ION_TYPE_ID, CASE_TBL.RCVD_DT),'MM/DD/YYYY') <= (TO_DATE(TO_CHAR
+(SYSDATE,'mm/dd/yyyy') || '23:59:59','mm/dd/yyyy hh24:mi:ss') +
+1) THEN 'MEDIATION_1_1' WHEN CASE_TYPE_ID=100 AND TO_DATE(PKG_CA
+SE.UDF_CALCULATE_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.M
+EDIATION_TYPE_ID, CASE_TBL.RCVD_DT),'MM/DD/YYYY') >= (TO_DATE(TO
+_CHAR(SYSDATE,'mm/dd/yyyy'),'mm/dd/yyyy') + 21) AND TO_DATE(PKG_
+CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL
+.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT),'MM/DD/YYYY') <= (TO_DATE(
+TO_CHAR(SYSDATE,'mm/dd/yyyy') || '23:59:59','mm/dd/yyyy hh24:mi:
+ss') + 31) THEN 'INFORMAL_21_31' WHEN CASE_TYPE_ID=100 AND TO_DA
+TE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDIAT
+ION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT),'MM/DD/YYYY') >= (T
+O_DATE(TO_CHAR(SYSDATE,'mm/dd/yyyy'),'mm/dd/yyyy') + 11) AND TO_
+DATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDI
+ATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT),'MM/DD/YYYY') <=
+(TO_DATE(TO_CHAR(SYSDATE,'mm/dd/yyyy') || '23:59:59','mm/dd/yyyy
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+ hh24:mi:ss') + 20) THEN 'INFORMAL_11_20' WHEN CASE_TYPE_ID=100
+AND TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.CASE_TYPE_I
+D, MEDIATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT),'MM/DD/YYY
+Y') >= (TO_DATE(TO_CHAR(SYSDATE,'mm/dd/yyyy'),'mm/dd/yyyy') + 6)
+ AND TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.CASE_TYPE_
+ID, MEDIATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT),'MM/DD/YY
+YY') <= (TO_DATE(TO_CHAR(SYSDATE,'mm/dd/yyyy') || '23:59:59','mm
+/dd/yyyy hh24:mi:ss') + 10) THEN 'INFORMAL_6_10' WHEN CASE_TYPE_
+ID=100 AND TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.CASE
+_TYPE_ID, MEDIATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT),'MM
+/DD/YYYY') >= (TO_DATE(TO_CHAR(SYSDATE,'mm/dd/yyyy'),'mm/dd/yyyy
+') + 2) AND TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.CAS
+E_TYPE_ID, MEDIATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT),'M
+M/DD/YYYY') <= (TO_DATE(TO_CHAR(SYSDATE,'mm/dd/yyyy') || '23:59:
+59','mm/dd/yyyy hh24:mi:ss') + 5) THEN 'INFORMAL_2_5' WHEN CASE_
+TYPE_ID=100 AND TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL
+.CASE_TYPE_ID, MEDIATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT
+),'MM/DD/YYYY') >= (TO_DATE(TO_CHAR(SYSDATE,'mm/dd/yyyy'),'mm/dd
+/yyyy') + 1) AND TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TB
+L.CASE_TYPE_ID, MEDIATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_D
+T),'MM/DD/YYYY') <= (TO_DATE(TO_CHAR(SYSDATE,'mm/dd/yyyy') || '2
+3:59:59','mm/dd/yyyy hh24:mi:ss') + 1) THEN 'INFORMAL_1_1' WHEN
+CASE_TYPE_ID=100 AND SYSDATE < TO_DATE(PKG_CASE.UDF_CALCULATE_DU
+E_DATE(CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDIATION_TYPE_ID, C
+ASE_TBL.RCVD_DT) || ' 23:59:59','MM/DD/YYYY HH24:MI:SS') AND SYS
+DATE > TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.CASE_TYP
+E_ID, MEDIATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT),'MM/DD/
+YYYY') THEN 'INFORMAL_TODAY' WHEN CASE_TYPE_ID=200 AND SYSDATE <
+ TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.CASE_TYPE_ID,
+MEDIATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT) || ' 23:59:59
+','MM/DD/YYYY HH24:MI:SS') AND SYSDATE > TO_DATE(PKG_CASE.UDF_CA
+LCULATE_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDIATION_
+TYPE_ID, CASE_TBL.RCVD_DT),'MM/DD/YYYY') THEN 'MEDIATION_TODAY'
+WHEN CASE_TYPE_ID=100 AND SYSDATE > TO_DATE(PKG_CASE.UDF_CALCULA
+TE_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDIATION_TYPE_
+ID, CASE_TBL.RCVD_DT) || ' 23:59:59','MM/DD/YYYY HH24:MI:SS') TH
+EN 'INFORMAL_OVER' WHEN CASE_TYPE_ID=200 AND SYSDATE > TO_DATE(P
+KG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDIATION_
+TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT) || ' 23:59:59','MM/DD/Y
+YYY HH24:MI:SS') THEN 'MEDIATION_OVER' END ) COUNT_TYPE, COUNT(*
+) FROM CASE_TBL, MEDIATION_TBL WHERE CASE_TBL.BCS_CASE = MEDIATI from
+ON_TBL.BCS_CASE (+) AND (MEDIATION_TBL.BCS_CASE IS NULL OR MEDIA
+TION_TBL.MEDIATION_TYPE_ID IN (100,300)) AND CASE_STATE_ID IN (2
+00,300,400,800) GROUP BY ( CASE WHEN CASE_TYPE_ID=200 AND TO_DAT
+E(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDIATI
+ON_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT),'MM/DD/YYYY') >= (TO
+_DATE(TO_CHAR(SYSDATE,'mm/dd/yyyy'),'mm/dd/yyyy') + 21) AND TO_D
+ATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDIA
+TION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT),'MM/DD/YYYY') <= (
+TO_DATE(TO_CHAR(SYSDATE,'mm/dd/yyyy') || '23:59:59','mm/dd/yyyy
+hh24:mi:ss') + 31) THEN 'MEDIATION_21_31' WHEN CASE_TYPE_ID=200
+AND TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.CASE_TYPE_I
+D, MEDIATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT),'MM/DD/YYY
+Y') >= (TO_DATE(TO_CHAR(SYSDATE,'mm/dd/yyyy'),'mm/dd/yyyy') + 11
+) AND TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.CASE_TYPE
+_ID, MEDIATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT),'MM/DD/Y
+YYY') <= (TO_DATE(TO_CHAR(SYSDATE,'mm/dd/yyyy') || '23:59:59','m
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+m/dd/yyyy hh24:mi:ss') + 20) THEN 'MEDIATION_11_20' WHEN CASE_TY
+PE_ID=200 AND TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.C
+ASE_TYPE_ID, MEDIATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT),
+'MM/DD/YYYY') >= (TO_DATE(TO_CHAR(SYSDATE,'mm/dd/yyyy'),'mm/dd/y
+yyy') + 6) AND TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.
+CASE_TYPE_ID, MEDIATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT)
+,'MM/DD/YYYY') <= (TO_DATE(TO_CHAR(SYSDATE,'mm/dd/yyyy') || '23:
+59:59','mm/dd/yyyy hh24:mi:ss') + 10) THEN 'MEDIATION_6_10' WHEN
+ CASE_TYPE_ID=200 AND TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CA
+SE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.R
+CVD_DT),'MM/DD/YYYY') >= (TO_DATE(TO_CHAR(SYSDATE,'mm/dd/yyyy'),
+'mm/dd/yyyy') + 2) AND TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(C
+ASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.
+RCVD_DT),'MM/DD/YYYY') <= (TO_DATE(TO_CHAR(SYSDATE,'mm/dd/yyyy')
+ || '23:59:59','mm/dd/yyyy hh24:mi:ss') + 5) THEN 'MEDIATION_2_5
+' WHEN CASE_TYPE_ID=200 AND TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_D
+ATE(CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDIATION_TYPE_ID, CASE
+_TBL.RCVD_DT),'MM/DD/YYYY') >= (TO_DATE(TO_CHAR(SYSDATE,'mm/dd/y
+yyy'),'mm/dd/yyyy') + 1) AND TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_
+DATE(CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDIATION_TYPE_ID, CAS
+E_TBL.RCVD_DT),'MM/DD/YYYY') <= (TO_DATE(TO_CHAR(SYSDATE,'mm/dd/
+yyyy') || '23:59:59','mm/dd/yyyy hh24:mi:ss') + 1) THEN 'MEDIATI
+ON_1_1' WHEN CASE_TYPE_ID=100 AND TO_DATE(PKG_CASE.UDF_CALCULATE
+_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDIATION_TYPE_ID
+, CASE_TBL.RCVD_DT),'MM/DD/YYYY') >= (TO_DATE(TO_CHAR(SYSDATE,'m
+m/dd/yyyy'),'mm/dd/yyyy') + 21) AND TO_DATE(PKG_CASE.UDF_CALCULA
+TE_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDIATION_TYPE_
+ID, CASE_TBL.RCVD_DT),'MM/DD/YYYY') <= (TO_DATE(TO_CHAR(SYSDATE,
+'mm/dd/yyyy') || '23:59:59','mm/dd/yyyy hh24:mi:ss') + 31) THEN
+'INFORMAL_21_31' WHEN CASE_TYPE_ID=100 AND TO_DATE(PKG_CASE.UDF_
+CALCULATE_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDIATIO
+N_TYPE_ID, CASE_TBL.RCVD_DT),'MM/DD/YYYY') >= (TO_DATE(TO_CHAR(S
+YSDATE,'mm/dd/yyyy'),'mm/dd/yyyy') + 11) AND TO_DATE(PKG_CASE.UD
+F_CALCULATE_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDIAT
+ION_TYPE_ID, CASE_TBL.RCVD_DT),'MM/DD/YYYY') <= (TO_DATE(TO_CHAR
+(SYSDATE,'mm/dd/yyyy') || '23:59:59','mm/dd/yyyy hh24:mi:ss') +
+20) THEN 'INFORMAL_11_20' WHEN CASE_TYPE_ID=100 AND TO_DATE(PKG_
+CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL
+.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT),'MM/DD/YYYY') >= (TO_DATE(
+TO_CHAR(SYSDATE,'mm/dd/yyyy'),'mm/dd/yyyy') + 6) AND TO_DATE(PKG
+_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDIATION_TB
+L.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT),'MM/DD/YYYY') <= (TO_DATE
+(TO_CHAR(SYSDATE,'mm/dd/yyyy') || '23:59:59','mm/dd/yyyy hh24:mi
+:ss') + 10) THEN 'INFORMAL_6_10' WHEN CASE_TYPE_ID=100 AND TO_DA
+TE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDIAT
+ION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT),'MM/DD/YYYY') >= (T
+O_DATE(TO_CHAR(SYSDATE,'mm/dd/yyyy'),'mm/dd/yyyy') + 2) AND TO_D
+ATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDIA
+TION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT),'MM/DD/YYYY') <= (
+TO_DATE(TO_CHAR(SYSDATE,'mm/dd/yyyy') || '23:59:59','mm/dd/yyyy
+hh24:mi:ss') + 5) THEN 'INFORMAL_2_5' WHEN CASE_TYPE_ID=100 AND
+TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.CASE_TYPE_ID, M
+EDIATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT),'MM/DD/YYYY')
+>= (TO_DATE(TO_CHAR(SYSDATE,'mm/dd/yyyy'),'mm/dd/yyyy') + 1) AND
+ TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.CASE_TYPE_ID,
+MEDIATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT),'MM/DD/YYYY')
+ <= (TO_DATE(TO_CHAR(SYSDATE,'mm/dd/yyyy') || '23:59:59','mm/dd/
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+yyyy hh24:mi:ss') + 1) THEN 'INFORMAL_1_1' WHEN CASE_TYPE_ID=100
+ AND SYSDATE < TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.
+CASE_TYPE_ID, MEDIATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT)
+ || ' 23:59:59','MM/DD/YYYY HH24:MI:SS') AND SYSDATE > TO_DATE(P
+KG_CASE.UDF_CALCULATE_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDIATION_
+TBL.MEDIATION_TYPE_ID, CASE_TBL.RCVD_DT),'MM/DD/YYYY') THEN 'INF
+ORMAL_TODAY' WHEN CASE_TYPE_ID=200 AND SYSDATE < TO_DATE(PKG_CAS
+E.UDF_CALCULATE_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.ME
+DIATION_TYPE_ID, CASE_TBL.RCVD_DT) || ' 23:59:59','MM/DD/YYYY HH
+24:MI:SS') AND SYSDATE > TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_DATE
+(CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDIATION_TYPE_ID, CASE_TB
+L.RCVD_DT),'MM/DD/YYYY') THEN 'MEDIATION_TODAY' WHEN CASE_TYPE_I
+D=100 AND SYSDATE > TO_DATE(PKG_CASE.UDF_CALCULATE_DUE_DATE(CASE
+_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDIATION_TYPE_ID, CASE_TBL.RCV
+D_DT) || ' 23:59:59','MM/DD/YYYY HH24:MI:SS') THEN 'INFORMAL_OVE
+R' WHEN CASE_TYPE_ID=200 AND SYSDATE > TO_DATE(PKG_CASE.UDF_CALC
+ULATE_DUE_DATE(CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDIATION_TY
+PE_ID, CASE_TBL.RCVD_DT) || ' 23:59:59','MM/DD/YYYY HH24:MI:SS')
+ THEN 'MEDIATION_OVER' END )
+
+FIRST TIME = 2013-07-10 09:13
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                 60
+SORT                 UNIQUE                                      60       27      777
+UNION-ALL
+SORT                 GROUP BY                                    27       27        2
+FILTER
+HASH JOIN            OUTER
+INLIST ITERATOR
+INDEX                RANGE SCAN     CASE_TBL_IDX1                 3        3      772
+INDEX                FAST FULL SCAN CASE_TYPE_IDX                 5        5   160875
+SORT                 GROUP BY                                    33       33      775
+FILTER
+HASH JOIN            OUTER
+INLIST ITERATOR
+TABLE ACCESS         BY INDEX ROWID CASE_TBL                      6        6      775
+INDEX                RANGE SCAN     CASE_TYPE_STATE_OWNE          2        2      775
+                                    R
+
+INDEX                FAST FULL SCAN CASE_TYPE_IDX                 5        5   160875
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CASE_TBL               178761    365 09/14/13 11:03  100%      70      70      69   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CASE_TBL           CASE_TBL_CASE_TYPE_I            2   1 CASE_TYPE_ID              2     515
+                   D
+
+                                                       2 BCS_CASE             178761       0
+                   CASE_TBL_IDX1        UNIQ       2   1 CASE_STATE_ID            12       0
+                                                       2 OWNER_ID                127   55717
+                                                       3 CASE_TYPE_ID              2     515
+                                                       4 BCS_CASE             178761       0
+                   CASE_TBL_IDX2                   2   1 CASE_STATE_ID            12       0
+                                                       2 OWNER_ID                127   55717
+                                                       3 CASE_TYPE_ID              2     515
+                                                       4 JUSTIFICATION_STAT        3     102
+                                                         E_ID
+
+                   CASE_TBL_PK          UNIQ       3   1 BCS_CASE             178761       0
+                   CASE_TYPE_STATE_OWNE                1 CASE_STATE_ID            12       0
+                   R
+
+                                                       2 CASE_TYPE_ID              2     515
+                                                       3 OWNER_ID                127   55717
+                   STATE_ID_CASE_INDX                  1 CASE_STATE_ID            12       0
+                                                       2 BCS_CASE             178761       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      0       0         0              0            0         0 w3wp.exe
+09/13 07    60     16      22         5        186,145      166,802        50 w3wp.exe
+09/13 08    60     41      44        12        446,783      388,243       120 w3wp.exe
+09/13 09    60     26      30         8        297,900      244,701        72 w3wp.exe
+09/13 10    60     13      16         4        148,989      123,726        36 w3wp.exe
+09/13 11    60     22      22         7        260,736      221,467        70 w3wp.exe
+09/13 12    60     10      12         3        111,744       95,414        30 w3wp.exe
+09/13 13    60     12      12         4        148,992      127,261        40 w3wp.exe
+09/13 14    60     26      33         8        298,024      251,298        79 w3wp.exe
+09/13 15    60     21      25         7        260,848      220,924        66 w3wp.exe
+09/13 16    60     20      24         6        223,614      190,126        58 w3wp.exe
+09/13 17    60      0       0         0              0            0         0 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720    207     240        64      2,383,775    2,029,962       621
+
+
+================================================================
+                            SQL 1164658274
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+declare  rc__ number;  simple_list__ owa_util.vc_arr;  complex_l
+ist__ owa_util.vc_arr; begin  owa.init_cgi_env(:n__,:nm__,:v__);
+  htp.HTBUF_LEN := 255;  null;  null;  simple_list__(1) := 'sys.
+%';  simple_list__(2) := 'dbms\_%';  simple_list__(3) := 'utl\_%
+';  simple_list__(4) := 'owa\_%';  simple_list__(5) := 'owa.%';
+ simple_list__(6) := 'htp.%';  simple_list__(7) := 'htf.%';  sim
+ple_list__(8) := 'wpg_docload.%';  if ((owa_match.match_pattern(
+p_string =>    'bmi.home'    /* */,p_simple_pattern =>    simple
+_list__    ,p_complex_pattern =>    complex_list__    ,p_use_spe
+cial_chars =>    false)))   then   rc__ := 2;  else   null;   nu
+ll;   bmi.home(p_project_id=>:p_project_id,p_proj_descr=>:p_proj
+_descr,p_crc=>:p_crc,p_project_manager=>:p_project_manager,p_pro
+ject_status_descr=>:p_project_status_descr,p_project_type=>:p_pr
+oject_type,p_super_project=>:p_super_project,p_activity=>:p_acti
+vity);   if (wpg_docload.is_file_download) then    rc__ := 1;
+ wpg_docload.get_download_file(:doc_info);    null;    null;
+null;    commit;   else    rc__ := 0;    null;    null;    null;
+    commit;    owa.get_page(:data__,:ndata__);   end if;  end if
+;  :rc__ := rc__; end;
+
+FIRST TIME = 2012-10-11 20:51
+MODULE     = Apache.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      0       0         0              0            0         0 Apache.exe
+09/13 07    60      5      14        11          3,027            0        11 Apache.exe
+09/13 08    60      6      20        12          3,282            0        12 Apache.exe
+09/13 09    60     14      47        27          7,440            0        27 Apache.exe
+09/13 10    60      9      27        17          4,693            0        17 Apache.exe
+09/13 11    60      4       9         8          2,179            0         8 Apache.exe
+09/13 12    60      8      23        16          4,395            0        16 Apache.exe
+09/13 13    60     14      41        23          6,339            0        23 Apache.exe
+09/13 14    60     12      34        23          6,320            0        23 Apache.exe
+09/13 15    60      5      22        10          2,751            0        10 Apache.exe
+09/13 16    60      6      18        10          2,754            0        10 Apache.exe
+09/13 17    60      0       0         0              0            0         0 Apache.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     83     255       157         43,180            0       157
+
+
+================================================================
+                            SQL 1340227927
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT EVENT, TIME_WAITED/100 TIME_WAITED FROM V$SYSTEM_EVENT WH from
+ERE EVENT NOT IN ('ARCH random i/o', 'ARCH sequential i/o', 'KXF
+X: execution message dequeue - Slaves', 'LGWR random i/o', 'LGWR
+ sequential i/o', 'LGWR wait for redo copy', 'Null event', 'PL/S
+QL lock timer', 'PX Deq Credit: need buffer', 'PX Deq: Execute R
+eply', 'PX Deq: Execution Msg', 'PX Deq: Index Merge Close', 'PX
+ Deq: Index Merge Execute', 'PX Deq: Index Merge Reply', 'PX Deq
+: Join ACK', 'PX Deq: Msg Fragment', 'PX Deq: Par Recov Change V
+ector', 'PX Deq: Par Recov Execute', 'PX Deq: Par Recov Reply',
+'PX Deq: Parse Reply', 'PX Deq: Table Q Normal', 'PX Deq: Table
+Q Sample', 'PX Deq: Txn Recovery Reply', 'PX Deq: Txn Recovery S
+tart', 'PX Deque wait', 'PX Idle Wait', 'Queue Monitor Shutdown
+Wait', 'Queue Monitor Slave Wait', 'Queue Monitor Wait', 'RFS ra
+ndom i/o', 'RFS sequential i/o', 'RFS write', 'SQL*Net message f
+rom client', 'SQL*Net message from dblink', 'STREAMS apply coord from
+ waiting for slave message', 'STREAMS apply coord waiting for so
+me work to finish', 'STREAMS apply slave idle wait', 'STREAMS ca
+pture process filter callback wait for ruleset', 'STREAMS fetch
+slave waiting for txns', 'WMON goes to sleep', 'async disk IO',
+'client message', 'control file parallel write', 'control file s
+equential read', 'control file single write', 'db file single wr
+ite', 'db file parallel write', 'dispatcher timer', 'gcs log flu
+sh sync', 'gcs remote message', 'ges reconfiguration to start',
+'ges remote message', 'io done', 'jobq slave wait', 'lock manage
+r wait for remote message', 'log file parallel write', 'log file
+ sequential read', 'log file single write', 'parallel dequeue wa
+it', 'parallel recovery coordinator waits for cleanup of slaves'
+, 'parallel query dequeue', 'parallel query idle wait - Slaves',
+ 'pipe get', 'pmon timer', 'queue messages', 'rdbms ipc message'
+, 'recovery read', 'single-task message', 'slave wait', 'smon ti
+mer', 'statement suspended, wait error to be cleared', 'unread m
+essage', 'virtual circuit', 'virtual circuit status', 'wait for
+activate message', 'wait for transaction', 'wait for unread mess
+age on broadcast channel', 'wait for unread message on multiple
+broadcast channels', 'wakeup event for builder', 'wakeup event f
+or preparer', 'wakeup event for reader', 'wakeup time manager')
+
+FIRST TIME = 2012-08-23 19:58
+MODULE     = emagent@rp5450-a (TNS V1-V3)
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT
+MERGE JOIN
+FIXED TABLE          FULL           X$KSLED
+SORT                 JOIN
+FIXED TABLE          FULL           X$KSLEI
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      4       4        60              0            0      2760 emagent@rp5450-a
+09/13 07    60      3       3        60              0            0      2760 emagent@rp5450-a
+09/13 08    60      4       4        60              0            0      2760 emagent@rp5450-a
+09/13 09    60      3       5        60              0            0      2760 emagent@rp5450-a
+09/13 10    60      3       4        60              0            0      2760 emagent@rp5450-a
+09/13 11    60      4       4        60              0            0      2760 emagent@rp5450-a
+09/13 12    60      3       4        60              0            0      2760 emagent@rp5450-a
+09/13 13    60      4       4        60              0            0      2760 emagent@rp5450-a
+09/13 14    60      3       3        60              0            0      2760 emagent@rp5450-a
+09/13 15    60      3       3        60              0            0      2760 emagent@rp5450-a
+09/13 16    60      4       4        60              0            0      2760 emagent@rp5450-a
+09/13 17    60      3       4        60              0            0      2760 emagent@rp5450-a
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     41      46       720              0            0     33120
+
+
+================================================================
+                            SQL 1410135194
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT CASE_TBL.BCS_CASE FROM CASE_TBL, MEDIATION_TBL WHERE CASE from
+_TBL.BCS_CASE = MEDIATION_TBL.BCS_CASE (+) AND CASE_TBL.CASE_TYP
+E_ID = 200 AND CASE_TBL.CASE_STATE_ID = 500 AND CASE_TBL.BATCH_I
+D IS NULL FOR UPDATE OF CASE_TBL.BATCH_ID, MEDIATION_TBL.BCS_CAS
+E NOWAIT
+
+FIRST TIME = 2013-07-16 11:00
+MODULE     = pucftp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                  3
+FOR UPDATE
+NESTED LOOPS         OUTER                                        3        3        1
+TABLE ACCESS         BY INDEX ROWID CASE_TBL                      3        3        1
+INDEX                RANGE SCAN     CASE_TYPE_STATE_OWNE          2        2       29
+                                    R
+
+INDEX                UNIQUE SCAN    SYS_C004588                                     1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CASE_TBL               178761    365 09/14/13 11:03  100%      70      70      69   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CASE_TBL           CASE_TBL_CASE_TYPE_I            2   1 CASE_TYPE_ID              2     515
+                   D
+
+                                                       2 BCS_CASE             178761       0
+                   CASE_TBL_IDX1        UNIQ       2   1 CASE_STATE_ID            12       0
+                                                       2 OWNER_ID                127   55717
+                                                       3 CASE_TYPE_ID              2     515
+                                                       4 BCS_CASE             178761       0
+                   CASE_TBL_IDX2                   2   1 CASE_STATE_ID            12       0
+                                                       2 OWNER_ID                127   55717
+                                                       3 CASE_TYPE_ID              2     515
+                                                       4 JUSTIFICATION_STAT        3     102
+                                                         E_ID
+
+                   CASE_TBL_PK          UNIQ       3   1 BCS_CASE             178761       0
+                   CASE_TYPE_STATE_OWNE                1 CASE_STATE_ID            12       0
+                   R
+
+                                                       2 CASE_TYPE_ID              2     515
+                                                       3 OWNER_ID                127   55717
+                   STATE_ID_CASE_INDX                  1 CASE_STATE_ID            12       0
+                                                       2 BCS_CASE             178761       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      0       0         0              0            0         0 pucftp.exe
+09/13 07    60      3       9         2         27,472       24,306        18 pucftp.exe
+09/13 08    60      0       0         0              0            0         0 pucftp.exe
+09/13 09    60      2       2         1         18,303       13,687        11 pucftp.exe
+09/13 10    60      0       0         0              0            0         0 pucftp.exe
+09/13 11    60      2       5         2         27,526       20,356        25 pucftp.exe
+09/13 12    60      0       0         0              0            0         0 pucftp.exe
+09/13 13    60      2       2         1         18,383       13,755        25 pucftp.exe
+09/13 14    60      0       0         0              0            0         0 pucftp.exe
+09/13 15    60      2       2         1         18,352       13,333        18 pucftp.exe
+09/13 16    60      0       0         0              0            0         0 pucftp.exe
+09/13 17    60      3       4         3         36,542       27,232         9 pucftp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     14      24        10        146,578      112,669       106
+
+
+================================================================
+                            SQL 1630218767
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+begin PKG_LISTS.USP_OPEN_REGULARS_SEL(P_CURSOR=>:P_CURSOR, P_ROW
+_COUNT=>:P_ROW_COUNT); end;
+
+MODULE     = w3wp.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      0       0         0              0            0         0 w3wp.exe
+09/13 07    60      0       0         0              0            0         0 w3wp.exe
+09/13 08    60      8       9         8        114,911       98,741         8 w3wp.exe
+09/13 09    60      9      15         9        129,203      106,916         9 w3wp.exe
+09/13 10    60      0       0         0              0            0         0 w3wp.exe
+09/13 11    60      0       0         0              0            0         0 w3wp.exe
+09/13 12    60      0       0         0              0            0         0 w3wp.exe
+09/13 13    60      0       0         0              0            0         0 w3wp.exe
+09/13 14    60      5       5         6         86,164       74,096         6 w3wp.exe
+09/13 15    60      2       3         2         28,741       24,782         2 w3wp.exe
+09/13 16    60      2       4         2         28,739       24,842         2 w3wp.exe
+09/13 17    60      0       0         0              0            0         0 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     26      36        27        387,758      329,377        27
+
+
+================================================================
+                            SQL 2102611210
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT CASE_TBL.BCS_CASE, CUSTOMER_TBL.KY_BA, CUSTOMER_TBL.FIRST
+_NAME || ' ' || CUSTOMER_TBL.LAST_NAME CUSTOMER_NAME, PKG_CASE.U
+DF_CALCULATE_DUE_DATE( CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDI
+ATION_TYPE_ID, CASE_TBL.RCVD_DT) DUE_DT, CASE_TBL.LAST_UPDATE_DT
+ FROM CASE_TBL, CUSTOMER_TBL, MEDIATION_TBL WHERE CASE_TBL.CASE_ from
+STATE_ID = 300 AND CASE_TBL.BCS_CASE = CUSTOMER_TBL.BCS_CASE AND
+ CASE_TBL.BCS_CASE = MEDIATION_TBL.BCS_CASE AND MEDIATION_TBL.ME
+DIATION_TYPE_ID = 300 AND CASE_TBL.OWNER_ID IS NULL ORDER BY CAS
+E_TBL.RCVD_DT ASC
+
+MODULE     = w3wp.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      0       0         0              0            0         0 w3wp.exe
+09/13 07    60      0       0         0              0            0         0 w3wp.exe
+09/13 08    60      5       5         2         56,276       49,239         5 w3wp.exe
+09/13 09    60      0       0         0              0            0         0 w3wp.exe
+09/13 10    60      0       0         0              0            0         0 w3wp.exe
+09/13 11    60      0       0         0              0            0         0 w3wp.exe
+09/13 12    60      4       4         2         56,298       45,981         3 w3wp.exe
+09/13 13    60      0       0         0              0            0         0 w3wp.exe
+09/13 14    60      3       3         2         56,314       45,002         1 w3wp.exe
+09/13 15    60      0       0         0              0            0         0 w3wp.exe
+09/13 16    60      0       0         0              0            0         0 w3wp.exe
+09/13 17    60      0       0         0              0            0         0 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     12      12         6        168,888      140,222         9
+
+
+================================================================
+                            SQL 2246735936
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+DECLARE    vTbs                      dba_data_files.tablespace_n
+ame%TYPE;    vTbs_Sz                   dba_data_files.bytes%TYPE
+;    vTbs_Used                 dba_data_files.bytes%TYPE;    vPc
+t_Used                 NUMBER(10,0)  := 0;    vPct_Threshold_war
+n       NUMBER(10,0)  := 95;    vPct_Threshold_crit       NUMBER
+(10,0)  := 98;    vDb_Name                  v$database.name%TYPE
+;    v_check                   NUMBER(10,0);     CURSOR cTbs_Sz
+IS    select a.tablespace_name tbs_name, a."MB used", b."MB free
+", c."MB free" "MB free largest tablespace",        a."MB used"
++ b."MB free" "Total MB", round(a."MB used" / (a."MB used" + b."
+MB free") * 100, 2) "% Full",        nvl(round(a."MB used" / (a.
+"MB used" + c."MB free") * 100, 2),round(a."MB used" / (a."MB us
+ed" + b."MB free") * 100, 2)) Pct_Free    from    (select tables from
+pace_name, sum(bytes/1048576) "MB used" from dba_data_files grou from
+p by tablespace_name) a,    (select tablespace_name, sum(bytes)/
+1048576 "MB free" from dba_free_space group by tablespace_name)  from
+b,    (select DFS.tablespace_name, sum(bytes)/1048576 "MB free"
+   from dba_free_space DFS,       (SELECT tablespace_name, max(n from
+ext_extent) next_extent from               (SELECT tablespace_na from
+me, next_extent FROM all_indexes                union all        from
+         SELECT tablespace_name, next_extent FROM all_tables)    from
+  GROUP BY tablespace_name) NE        WHERE DFS.tablespace_name  where
+= NE.tablespace_name and     bytes >= NE.next_extent group by DF
+S.tablespace_name) c     where a.tablespace_name=b.tablespace_na where
+me and b.tablespace_name=c.tablespace_name (+)     and a.tablesp
+ace_name not like '%UNDO%';      vErrCode     NUMBER;     vErrMs
+g      VARCHAR2(2000);  BEGIN    SELECT name INTO vDb_Name FROM  from
+v$database;     for v_c_Tbs_Sz in cTbs_Sz loop    EXIT WHEN cTbs
+_Sz%NOTFOUND;         vPct_Used := v_c_Tbs_Sz.Pct_Free;        s
+elect count(*) into v_check from dba_data_files        where tab from
+lespace_name=v_c_Tbs_Sz.tbs_name and autoextensible='YES';
+  IF v_check = 0 THEN        IF trunc(vPct_Used) > vPct_Threshol
+d_warn AND trunc(vPct_Used) < vPct_Threshold_crit        THEN
+       DBMS_OUTPUT.PUT_LINE('WARNME:'||vDb_Name||':rp5450-a:Tabl
+espace '||v_c_Tbs_Sz.tbs_name||' Usage='||vPct_Used||'%');
+  ELSIF trunc(vPct_Used) >= vPct_Threshold_crit THEN          DB
+MS_OUTPUT.PUT_LINE('CRITME:'||vDb_Name||':rp5450-a:Tablespace '|
+|v_c_Tbs_Sz.tbs_name||' Usage='||vPct_Used||'%');        END IF;
+        END IF;     END LOOP;  EXCEPTION    WHEN others THEN
+DBMS_OUTPUT.PUT_LINE('WARNME:'||vDb_Name||':rp5450-a:Failure to
+complete Tablespace check'); END;
+
+FIRST TIME = 2013-07-16 10:13
+MODULE     = sqlplus@rp5450-a (TNS V1-V3)
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      1       2         2         48,864            0         2 sqlplus@rp5450-a
+09/13 07    60      1       2         2         48,864            0         2 sqlplus@rp5450-a
+09/13 08    60      2       1         2         48,864            0         2 sqlplus@rp5450-a
+09/13 09    60      1       2         2         48,864            0         2 sqlplus@rp5450-a
+09/13 10    60      2       1         2         48,864            0         2 sqlplus@rp5450-a
+09/13 11    60      1       2         2         48,864            0         2 sqlplus@rp5450-a
+09/13 12    60      2       1         2         48,864            0         2 sqlplus@rp5450-a
+09/13 13    60      1       2         2         48,864            0         2 sqlplus@rp5450-a
+09/13 14    60      1       1         2         48,864            0         2 sqlplus@rp5450-a
+09/13 15    60      2       1         2         48,864            0         2 sqlplus@rp5450-a
+09/13 16    60      1       2         2         48,864            0         2 sqlplus@rp5450-a
+09/13 17    60      2       1         2         48,864            0         2 sqlplus@rp5450-a
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     17      18        24        586,368            0        24
+
+
+================================================================
+                            SQL 2498004418
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT 'MyWork' COUNT_DESC, COUNT(*) CNT FROM CASE_TBL WHERE (UP from
+PER(OWNER_ID) = UPPER(:B1 ) OR CASE_TBL.OWNER_ID IN (SELECT PRIM
+ARY_OWNER_ID FROM MY_WORK_ASSOC_TBL WHERE UPPER(SECONDARY_OWNER_ from
+ID) = UPPER(:B1 ))) AND CASE_TBL.CASE_STATE_ID = 400 UNION SELEC
+T CASE WHEN MEDIATION_TYPE_ID = 100 THEN 'OpenLongs' WHEN MEDIAT
+ION_TYPE_ID = 300 THEN 'OpenOffs' WHEN MEDIATION_TYPE_ID = 500 T
+HEN 'OpenOnTrack' END COUNT_DESC, COUNT(*) CNT FROM CASE_TBL, ME from
+DIATION_TBL WHERE CASE_TBL.BCS_CASE = MEDIATION_TBL.BCS_CASE AND where
+ CASE_TBL.CASE_STATE_ID = 300 AND MEDIATION_TYPE_ID IN (100, 300
+,500) AND CASE_TBL.OWNER_ID IS NULL GROUP BY CASE WHEN MEDIATION
+_TYPE_ID = 100 THEN 'OpenLongs' WHEN MEDIATION_TYPE_ID = 300 THE
+N 'OpenOffs' WHEN MEDIATION_TYPE_ID = 500 THEN 'OpenOnTrack' END
+ UNION SELECT 'PrintCompliance', COUNT(*) FROM CASE_TBL, COMPLIA from
+NCE_REQ_TBL WHERE CASE_TBL.BCS_CASE = COMPLIANCE_REQ_TBL.BCS_CAS where
+E AND COMPLIANCE_REQ_TBL.COMPLETE_DT IS NOT NULL AND PRINT_BATCH
+_NO IS NULL UNION SELECT 'DecisionReceived', COUNT(*) FROM CASE_ from
+TBL, DECISION_TBL WHERE CASE_TBL.BCS_CASE = DECISION_TBL.BCS_CAS where
+E AND CASE_TBL.CASE_TYPE_ID = 100 AND DECISION_TBL.REVIEWED = '0
+' UNION SELECT CASE WHEN CASE_TBL.CASE_TYPE_ID = 100 THEN 'Reass
+ignInformals' WHEN CASE_TBL.CASE_TYPE_ID = 200 THEN 'ReassignMed
+iations' END , COUNT(*) FROM CASE_TBL WHERE CASE_TBL.CASE_STATE_ from
+ID = 400 AND CASE_TBL.CASE_TYPE_ID IN (100,200) AND CASE_TBL.OWN
+ER_ID IS NOT NULL GROUP BY CASE WHEN CASE_TBL.CASE_TYPE_ID = 100
+ THEN 'ReassignInformals' WHEN CASE_TBL.CASE_TYPE_ID = 200 THEN
+'ReassignMediations' END UNION SELECT CASE WHEN CASE_STATE_ID =
+200 THEN 'NewMediations' WHEN CASE_STATE_ID = 300 AND OWNER_ID I
+S NULL AND CASE_TYPE_ID = 100 THEN 'InformalAssign' WHEN CASE_TB
+L.CASE_STATE_ID = 1000 THEN 'Opening' WHEN CASE_TBL.CASE_STATE_I
+D = 1100 THEN 'Pending' WHEN CASE_TBL.CASE_STATE_ID = 1300 THEN
+'OpenCompliances' WHEN CASE_TBL.CASE_STATE_ID = 300 AND CASE_TBL
+.CASE_TYPE_ID = 100 AND CASE_TBL.OWNER_ID IS NULL THEN 'OpenInfo
+rmals' WHEN CASE_TBL.CASE_STATE_ID IN (500, 600, 700) AND CASE_T
+BL.JUSTIFICATION_STATE_ID = 300 AND CASE_TBL.CASE_TYPE_ID = 100
+THEN 'SentNotAnalyzed' WHEN CASE_TBL.CASE_STATE_ID = 1200 THEN '
+StenoReview' WHEN CASE_TBL.CASE_STATE_ID = 800 AND CASE_TBL.CASE
+_TYPE_ID = 100 THEN 'QAReview' WHEN CASE_TBL.CASE_STATE_ID = 800
+ AND CASE_TBL.CASE_TYPE_ID = 200 THEN 'MediationReview' ELSE 'ot
+her' END , COUNT(*) FROM CASE_TBL WHERE CASE_STATE_ID IN (200, 3 from
+00, 500, 600, 700, 800, 1000, 1100, 1200, 1300) GROUP BY CASE WH
+EN CASE_STATE_ID = 200 THEN 'NewMediations' WHEN CASE_STATE_ID =
+ 300 AND OWNER_ID IS NULL AND CASE_TYPE_ID = 100 THEN 'InformalA
+ssign' WHEN CASE_TBL.CASE_STATE_ID = 1000 THEN 'Opening' WHEN CA
+SE_TBL.CASE_STATE_ID = 1100 THEN 'Pending' WHEN CASE_TBL.CASE_ST
+ATE_ID = 1300 THEN 'OpenCompliances' WHEN CASE_TBL.CASE_STATE_ID
+ = 300 AND CASE_TBL.CASE_TYPE_ID = 100 AND CASE_TBL.OWNER_ID IS
+NULL THEN 'OpenInformals' WHEN CASE_TBL.CASE_STATE_ID IN (500, 6
+00, 700) AND CASE_TBL.JUSTIFICATION_STATE_ID = 300 AND CASE_TBL.
+CASE_TYPE_ID = 100 THEN 'SentNotAnalyzed' WHEN CASE_TBL.CASE_STA
+TE_ID = 1200 THEN 'StenoReview' WHEN CASE_TBL.CASE_STATE_ID = 80
+0 AND CASE_TBL.CASE_TYPE_ID = 100 THEN 'QAReview' WHEN CASE_TBL.
+CASE_STATE_ID = 800 AND CASE_TBL.CASE_TYPE_ID = 200 THEN 'Mediat
+ionReview' ELSE 'other' END
+
+FIRST TIME = 2013-04-22 07:39
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                171
+SORT                 UNIQUE                                     171        9     2703
+UNION-ALL
+SORT                 AGGREGATE                                    9        9        1
+FILTER
+INDEX                RANGE SCAN     CASE_TBL_IDX1                 2        2       12
+INDEX                RANGE SCAN     MY_WORK_ASSOC_PK              1        1        1
+SORT                 GROUP BY                                    22       22        3
+HASH JOIN                                                         8        8      172
+INDEX                RANGE SCAN     CASE_TBL_IDX1                 2        2      172
+INDEX                FAST FULL SCAN CASE_TYPE_IDX                 5        5    76758
+SORT                 AGGREGATE                                   15       15        1
+NESTED LOOPS                                                      4        4      993
+INDEX                FAST FULL SCAN COMPLIANCE_REQ_TBL_I          4        4      993
+                                    DX1
+
+INDEX                UNIQUE SCAN    CASE_TBL_PK                                     1
+SORT                 AGGREGATE                                   39       39        1
+NESTED LOOPS                                                     31       31      336
+INDEX                RANGE SCAN     CASE_TBL_CASE_TYPE_I         31       31    17387
+                                    D
+
+INDEX                UNIQUE SCAN    DECISION_TBL_IDX1                               1
+SORT                 GROUP BY                                    16       16        2
+INLIST ITERATOR
+INDEX                RANGE SCAN     CASE_TYPE_STATE_OWNE          2        2      135
+                                    R
+
+SORT                 GROUP BY                                    70       70     2695
+INLIST ITERATOR
+INDEX                RANGE SCAN     CASE_TBL_IDX2                13       13    10773
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      0       0         0              0            0         0 w3wp.exe
+09/13 07    60    101     126        49      1,573,139      618,678       619 w3wp.exe
+09/13 08    60   1348    1630       648     20,806,848    7,964,834      7303 w3wp.exe
+09/13 09    60   1179    1556       563     18,080,173    6,709,051      5741 w3wp.exe
+09/13 10    60   1433    1801       687     22,064,153    8,373,254      8923 w3wp.exe
+09/13 11    60    600     700       295      9,473,927    3,649,776      3287 w3wp.exe
+09/13 12    60    437     492       214      6,873,036    2,663,233      2674 w3wp.exe
+09/13 13    60    259     286       132      4,240,090    1,645,749      1468 w3wp.exe
+09/13 14    60   1129    1211       583     18,729,425    7,158,371      7031 w3wp.exe
+09/13 15    60    332     374       172      5,526,672    2,131,047      1872 w3wp.exe
+09/13 16    60    458     561       222      7,133,628    2,761,574      2756 w3wp.exe
+09/13 17    60      2       4         1         32,134       12,561        11 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720   7278    8741      3566    114,533,225   43,688,128     41685
+
+
+================================================================
+                            SQL 2648671294
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+DECLARE    vThreshold_crit       NUMBER(10,0)  := 5;    vDb_Name
+                  v$database.name%TYPE;     CURSOR cMaxExtentsCr
+it is    select tablespace_name, count(*) thetotal    from dba_s from
+egments    where max_extents - 5 < extents    and max_extents != where
+ 0 and extents <> 14660200000000    and tablespace_name not like
+ 'UNDO%' and tablespace_name not like 'RBS%'    group by tablesp
+ace_name    having count(*) > 0;     vErrCode     NUMBER;    vEr
+rMsg      VARCHAR2(2000);  BEGIN    SELECT name INTO vDb_Name FR
+OM v$database;     for vMaxExtentsCrit in cMaxExtentsCrit loop
+  EXIT WHEN cMaxExtentsCrit%NOTFOUND;       DBMS_OUTPUT.PUT_LINE
+('CRITME:'||vDb_Name||':rp5450-a:Tablespace '||vMaxExtentsCrit.t
+ablespace_name||' has '||vMaxExtentsCrit.thetotal||' segments wi
+thin 5 of max extents');     END LOOP;  EXCEPTION     WHEN no_da
+ta_found THEN    null;     WHEN others THEN    DBMS_OUTPUT.PUT_L
+INE('WARNME:'||vDb_Name||':rp5450-a:Failure to complete Max Exte
+nts check'); END;
+
+FIRST TIME = 2013-07-16 10:13
+MODULE     = sqlplus@rp5450-a (TNS V1-V3)
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      2       4         2         54,874        4,188         2 sqlplus@rp5450-a
+09/13 07    60      2       4         2         54,874        4,188         2 sqlplus@rp5450-a
+09/13 08    60      2       5         2         54,874        4,188         2 sqlplus@rp5450-a
+09/13 09    60      2       7         2         54,874        4,188         2 sqlplus@rp5450-a
+09/13 10    60      2       5         2         54,874        4,188         2 sqlplus@rp5450-a
+09/13 11    60      3       4         2         54,874        4,188         2 sqlplus@rp5450-a
+09/13 12    60      2       4         2         54,874        4,188         2 sqlplus@rp5450-a
+09/13 13    60      2       5         2         54,874        4,188         2 sqlplus@rp5450-a
+09/13 14    60      2       4         2         54,874        4,188         2 sqlplus@rp5450-a
+09/13 15    60      2       8         2         54,874        4,202         2 sqlplus@rp5450-a
+09/13 16    60      2       3         2         54,874        4,191         2 sqlplus@rp5450-a
+09/13 17    60      2       8         2         54,874        4,188         2 sqlplus@rp5450-a
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     25      61        24        658,488       50,273        24
+
+
+================================================================
+                            SQL 2998120748
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT TABLESPACE_NAME, COUNT(*) THETOTAL FROM DBA_SEGMENTS WHER from
+E MAX_EXTENTS - 5 < EXTENTS AND MAX_EXTENTS != 0 AND EXTENTS <>
+14660200000000 AND TABLESPACE_NAME NOT LIKE 'UNDO%' AND TABLESPA
+CE_NAME NOT LIKE 'RBS%' GROUP BY TABLESPACE_NAME HAVING COUNT(*)
+ > 0
+
+FIRST TIME = 2013-07-16 10:13
+MODULE     = sqlplus@rp5450-a (TNS V1-V3)
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT
+FILTER
+SORT                 GROUP BY
+VIEW
+UNION-ALL
+NESTED LOOPS         OUTER
+NESTED LOOPS
+NESTED LOOPS
+NESTED LOOPS
+NESTED LOOPS
+VIEW
+UNION-ALL
+TABLE ACCESS         FULL           TAB$
+TABLE ACCESS         FULL           TABPART$
+TABLE ACCESS         FULL           CLU$
+TABLE ACCESS         FULL           IND$
+TABLE ACCESS         FULL           INDPART$
+TABLE ACCESS         FULL           LOB$
+TABLE ACCESS         FULL           TABSUBPART$
+TABLE ACCESS         FULL           INDSUBPART$
+TABLE ACCESS         FULL           LOBFRAG$
+TABLE ACCESS         BY INDEX ROWID OBJ$
+INDEX                UNIQUE SCAN    I_OBJ1
+TABLE ACCESS         CLUSTER        SEG$
+INDEX                UNIQUE SCAN    I_FILE#_BLOCK#
+INDEX                UNIQUE SCAN    I_FILE2
+TABLE ACCESS         CLUSTER        TS$
+INDEX                UNIQUE SCAN    I_TS#
+TABLE ACCESS         CLUSTER        USER$
+INDEX                UNIQUE SCAN    I_USER#
+NESTED LOOPS         OUTER
+NESTED LOOPS
+NESTED LOOPS
+NESTED LOOPS
+TABLE ACCESS         FULL           UNDO$
+INDEX                UNIQUE SCAN    I_FILE2
+TABLE ACCESS         CLUSTER        SEG$
+INDEX                UNIQUE SCAN    I_FILE#_BLOCK#
+TABLE ACCESS         CLUSTER        TS$
+INDEX                UNIQUE SCAN    I_TS#
+TABLE ACCESS         CLUSTER        USER$
+INDEX                UNIQUE SCAN    I_USER#
+NESTED LOOPS         OUTER
+NESTED LOOPS
+NESTED LOOPS
+TABLE ACCESS         FULL           FILE$
+TABLE ACCESS         CLUSTER        SEG$
+INDEX                RANGE SCAN     I_FILE#_BLOCK#
+TABLE ACCESS         CLUSTER        TS$
+INDEX                UNIQUE SCAN    I_TS#
+TABLE ACCESS         CLUSTER        USER$
+INDEX                UNIQUE SCAN    I_USER#
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      2       4         2         54,874        4,188         0 sqlplus@rp5450-a
+09/13 07    60      2       4         2         54,874        4,188         0 sqlplus@rp5450-a
+09/13 08    60      2       5         2         54,874        4,188         0 sqlplus@rp5450-a
+09/13 09    60      2       7         2         54,874        4,188         0 sqlplus@rp5450-a
+09/13 10    60      2       5         2         54,874        4,188         0 sqlplus@rp5450-a
+09/13 11    60      2       4         2         54,874        4,188         0 sqlplus@rp5450-a
+09/13 12    60      2       4         2         54,874        4,188         0 sqlplus@rp5450-a
+09/13 13    60      2       5         2         54,874        4,188         0 sqlplus@rp5450-a
+09/13 14    60      2       4         2         54,874        4,188         0 sqlplus@rp5450-a
+09/13 15    60      2       8         2         54,874        4,202         0 sqlplus@rp5450-a
+09/13 16    60      2       3         2         54,874        4,191         0 sqlplus@rp5450-a
+09/13 17    60      2       8         2         54,874        4,188         0 sqlplus@rp5450-a
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     24      61        24        658,488       50,273         0
+
+
+================================================================
+                            SQL 3009845202
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT CASE_TBL.BCS_CASE, CUSTOMER_TBL.KY_BA ACCOUNT_NUMBER, CUS
+TOMER_TBL.FIRST_NAME || ' ' || CUSTOMER_TBL.LAST_NAME CUSTOMER_N
+AME, CASE_TBL.BCS_INVESTIGATOR_LNAME BCS_INVESTIGATOR_NAME, TO_C
+HAR(CASE_TBL.RCVD_DT, 'MM/DD/YYYY') RCVD_DT FROM CASE_TBL, CUSTO from
+MER_TBL WHERE CASE_TBL.CASE_STATE_ID = 1000 AND CASE_TBL.BCS_CAS where
+E = CUSTOMER_TBL.BCS_CASE
+
+FIRST TIME = 2013-07-16 10:12
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                  8
+NESTED LOOPS                                                      8        8        5
+TABLE ACCESS         BY INDEX ROWID CASE_TBL                      3        3        5
+INDEX                RANGE SCAN     CASE_TYPE_STATE_OWNE          2        2        5
+                                    R
+
+TABLE ACCESS         BY INDEX ROWID CUSTOMER_TBL                  1        1        1
+INDEX                UNIQUE SCAN    SYS_C004543                                     1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CASE_TBL               178761    365 09/14/13 11:03  100%      70      70      69   10   40
+CUSTOMER_TBL           178761    207 09/14/13 11:04  100%      40      40      39   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CASE_TBL           CASE_TBL_CASE_TYPE_I            2   1 CASE_TYPE_ID              2     515
+                   D
+
+                                                       2 BCS_CASE             178761       0
+                   CASE_TBL_IDX1        UNIQ       2   1 CASE_STATE_ID            12       0
+                                                       2 OWNER_ID                127   55717
+                                                       3 CASE_TYPE_ID              2     515
+                                                       4 BCS_CASE             178761       0
+                   CASE_TBL_IDX2                   2   1 CASE_STATE_ID            12       0
+                                                       2 OWNER_ID                127   55717
+                                                       3 CASE_TYPE_ID              2     515
+                                                       4 JUSTIFICATION_STAT        3     102
+                                                         E_ID
+
+                   CASE_TBL_PK          UNIQ       3   1 BCS_CASE             178761       0
+                   CASE_TYPE_STATE_OWNE                1 CASE_STATE_ID            12       0
+                   R
+
+                                                       2 CASE_TYPE_ID              2     515
+                                                       3 OWNER_ID                127   55717
+                   STATE_ID_CASE_INDX                  1 CASE_STATE_ID            12       0
+                                                       2 BCS_CASE             178761       0
+CUSTOMER_TBL       SYS_C004543          UNIQ       1   1 BCS_CASE             178761       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      0       0         0              0            0         0 w3wp.exe
+09/13 07    60      3       4         3         43,011       37,787        19 w3wp.exe
+09/13 08    60     16      26        12        166,828      143,376        34 w3wp.exe
+09/13 09    60      0       0         0              0            0         0 w3wp.exe
+09/13 10    60     42      49        36        516,241      372,467       421 w3wp.exe
+09/13 11    60      5       6         6         75,588       55,855         5 w3wp.exe
+09/13 12    60     52      59        45        630,960      464,974       771 w3wp.exe
+09/13 13    60     13      14        12        170,742      126,221        35 w3wp.exe
+09/13 14    60      6       5         5         71,700       51,691        30 w3wp.exe
+09/13 15    60      4       6         5         66,474       48,275        10 w3wp.exe
+09/13 16    60     36      41        31        439,619      322,483       391 w3wp.exe
+09/13 17    60      1       1         1          9,119        6,822         0 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720    178     211       156      2,190,282    1,629,951      1716
+
+
+================================================================
+                            SQL 3203046046
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+/* OracleOEM */   SELECT P.OBJECT_NAME,O.OBJECT_TYPE,P.OBJECT_OW
+NER,P.POLICY_NAME,P.POLICY_GROUP,P.ENABLE FROM DBA_POLICIES P, D from
+BA_OBJECTS O WHERE P.OBJECT_NAME=O.OBJECT_NAME                   where
+
+FIRST TIME = 2012-08-23 19:58
+MODULE     = emagent@rp5450-a (TNS V1-V3)
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT
+MERGE JOIN
+SORT                 JOIN
+VIEW
+UNION-ALL
+FILTER
+TABLE ACCESS         BY INDEX ROWID OBJ$
+NESTED LOOPS
+TABLE ACCESS         FULL           USER$
+INDEX                RANGE SCAN     I_OBJ2
+TABLE ACCESS         BY INDEX ROWID IND$
+INDEX                UNIQUE SCAN    I_IND1
+NESTED LOOPS
+TABLE ACCESS         FULL           USER$
+INDEX                RANGE SCAN     I_LINK1
+SORT                 JOIN
+VIEW
+SORT                 UNIQUE
+UNION-ALL
+NESTED LOOPS
+NESTED LOOPS
+TABLE ACCESS         FULL           RLS$
+TABLE ACCESS         BY INDEX ROWID OBJ$
+INDEX                UNIQUE SCAN    I_OBJ1
+TABLE ACCESS         CLUSTER        USER$
+INDEX                UNIQUE SCAN    I_USER#
+NESTED LOOPS
+NESTED LOOPS
+TABLE ACCESS         FULL           RLS$
+TABLE ACCESS         BY INDEX ROWID OBJ$
+INDEX                UNIQUE SCAN    I_OBJ1
+TABLE ACCESS         CLUSTER        USER$
+INDEX                UNIQUE SCAN    I_USER#
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      2       2         6        143,280            0         0 emagent@rp5450-a
+09/13 07    60      3       3         6        143,280            0         0 emagent@rp5450-a
+09/13 08    60      3       3         6        143,280            0         0 emagent@rp5450-a
+09/13 09    60      2       3         6        143,280            0         0 emagent@rp5450-a
+09/13 10    60      3       3         6        143,280            0         0 emagent@rp5450-a
+09/13 11    60      2       2         6        143,280            0         0 emagent@rp5450-a
+09/13 12    60      3       3         6        143,280            0         0 emagent@rp5450-a
+09/13 13    60      2       3         6        143,280            0         0 emagent@rp5450-a
+09/13 14    60      3       2         6        143,280            0         0 emagent@rp5450-a
+09/13 15    60      2       2         6        143,280            0         0 emagent@rp5450-a
+09/13 16    60      3       3         6        143,280            0         0 emagent@rp5450-a
+09/13 17    60      2       3         6        143,280            0         0 emagent@rp5450-a
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     30      32        72      1,719,360            0         0
+
+
+================================================================
+                            SQL 3209402547
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT CASE_TBL.BCS_CASE, CUSTOMER_TBL.KY_BA ACCOUNT_NUMBER, CUS
+TOMER_TBL.FIRST_NAME || ' ' || CUSTOMER_TBL.LAST_NAME CUSTOMER_N
+AME, CASE_TBL.BCS_INVESTIGATOR_LNAME BCS_INVESTIGATOR_NAME, TO_C
+HAR(CASE_TBL.RCVD_DT, 'MM/DD/YYYY') RCVD_DT FROM CASE_TBL, CUSTO from
+MER_TBL WHERE CASE_TBL.CASE_STATE_ID = 1100 AND CASE_TBL.BCS_CAS where
+E = CUSTOMER_TBL.BCS_CASE
+
+FIRST TIME = 2013-07-16 12:03
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                  4
+NESTED LOOPS                                                      4        4        1
+TABLE ACCESS         BY INDEX ROWID CASE_TBL                      3        3        1
+INDEX                RANGE SCAN     CASE_TBL_IDX1                 2        2        1
+TABLE ACCESS         BY INDEX ROWID CUSTOMER_TBL                  1        1        1
+INDEX                UNIQUE SCAN    SYS_C004543                                     1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CASE_TBL               178761    365 09/14/13 11:03  100%      70      70      69   10   40
+CUSTOMER_TBL           178761    207 09/14/13 11:04  100%      40      40      39   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CASE_TBL           CASE_TBL_CASE_TYPE_I            2   1 CASE_TYPE_ID              2     515
+                   D
+
+                                                       2 BCS_CASE             178761       0
+                   CASE_TBL_IDX1        UNIQ       2   1 CASE_STATE_ID            12       0
+                                                       2 OWNER_ID                127   55717
+                                                       3 CASE_TYPE_ID              2     515
+                                                       4 BCS_CASE             178761       0
+                   CASE_TBL_IDX2                   2   1 CASE_STATE_ID            12       0
+                                                       2 OWNER_ID                127   55717
+                                                       3 CASE_TYPE_ID              2     515
+                                                       4 JUSTIFICATION_STAT        3     102
+                                                         E_ID
+
+                   CASE_TBL_PK          UNIQ       3   1 BCS_CASE             178761       0
+                   CASE_TYPE_STATE_OWNE                1 CASE_STATE_ID            12       0
+                   R
+
+                                                       2 CASE_TYPE_ID              2     515
+                                                       3 OWNER_ID                127   55717
+                   STATE_ID_CASE_INDX                  1 CASE_STATE_ID            12       0
+                                                       2 BCS_CASE             178761       0
+CUSTOMER_TBL       SYS_C004543          UNIQ       1   1 BCS_CASE             178761       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      0       0         0              0            0         0 w3wp.exe
+09/13 07    60      4       9         3         37,785       33,299         2 w3wp.exe
+09/13 08    60      1       1         1          9,111        6,945         0 w3wp.exe
+09/13 09    60      0       0         0              0            0         0 w3wp.exe
+09/13 10    60      6       8         5         71,700       51,247        11 w3wp.exe
+09/13 11    60      5       6         5         56,022       41,587         2 w3wp.exe
+09/13 12    60      2       4         2         23,454       17,510         1 w3wp.exe
+09/13 13    60      0       0         0              0            0         0 w3wp.exe
+09/13 14    60      4       4         5         66,474       48,142        10 w3wp.exe
+09/13 15    60      0       0         0              0            0         0 w3wp.exe
+09/13 16    60     16      23        13        181,319      133,135        35 w3wp.exe
+09/13 17    60      0       0         0              0            0         0 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     38      55        34        445,865      331,865        61
+
+
+================================================================
+                            SQL 3461888741
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT CASE_TBL.BCS_CASE, CUSTOMER_TBL.KY_BA ACCOUNT_NUMBER, CUS
+TOMER_TBL.FIRST_NAME || ' ' || CUSTOMER_TBL.LAST_NAME CUSTOMER_N
+AME, CASE_TBL.BCS_INVESTIGATOR_LNAME || ' ' || CASE_TBL.BCS_INVE
+STIGATOR_FNAME PUC_INVESTIGATOR_NAME, NVL(PKG_CASE.UDF_CALCULATE
+_DUE_DATE(CASE_TBL.CASE_TYPE_ID, NULL, CASE_TBL.RCVD_DT),'') DUE
+_DT, TO_CHAR(DECISION_TBL.CLOSED_DT, 'MM/DD/YYYY') DECISION_DT F
+ROM CASE_TBL, CUSTOMER_TBL, INFORMALS_TBL, DECISION_TBL WHERE CA where
+SE_TBL.BCS_CASE = INFORMALS_TBL.BCS_CASE (+) AND CASE_TBL.BCS_CA
+SE = CUSTOMER_TBL.BCS_CASE (+) AND CASE_TBL.BCS_CASE = DECISION_
+TBL.BCS_CASE (+) AND CASE_TBL.CASE_TYPE_ID = 100 AND DECISION_TB
+L.REVIEWED = '0'
+
+MODULE     = w3wp.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      0       0         0              0            0         0 w3wp.exe
+09/13 07    60      0       0         0              0            0         0 w3wp.exe
+09/13 08    60      6       8         3         70,263       62,051         9 w3wp.exe
+09/13 09    60      5      27         2         41,613       33,610         1 w3wp.exe
+09/13 10    60     16      27         7        163,968      128,477        22 w3wp.exe
+09/13 11    60     14      17         7        158,721      125,965         6 w3wp.exe
+09/13 12    60      3       6         1         23,423       18,614         2 w3wp.exe
+09/13 13    60     22      36         9        210,808      170,498        18 w3wp.exe
+09/13 14    60      6      14         3         65,037       52,651         3 w3wp.exe
+09/13 15    60      4       6         3         54,579       45,750         0 w3wp.exe
+09/13 16    60     11      17         6        119,654       98,924         2 w3wp.exe
+09/13 17    60      0       0         0              0            0         0 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     87     158        41        908,066      736,540        63
+
+
+================================================================
+                            SQL 3517222579
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+/* OracleOEM */  DECLARE   local_write_wait_time          NUMBER
+ := NULL;   net_reset_to_client_time       NUMBER := NULL;   net
+_reset_to_dblink_time       NUMBER := NULL;   enqueue_dml_time
+             NUMBER := NULL;   enqueue_row_lock_time          NU
+MBER := NULL;   enqueue_userdef_time           NUMBER := NULL;
+ log_file_sync_time             NUMBER := NULL;   buffer_busy_wa
+its_time         NUMBER := NULL;   latch_cache_buffer_chains_tim
+e NUMBER := NULL;   latch_library_cache_time       NUMBER := NUL
+L;   library_cache_load_lock_time   NUMBER := NULL;   library_ca
+che_lock_time        NUMBER := NULL;   library_cache_pin_time
+      NUMBER := NULL;   pipe_put_time                  NUMBER :=
+ NULL;   row_cache_lock_time            NUMBER := NULL;   enqueu
+e_hw_time                NUMBER := NULL;   enqueue_st_time
+          NUMBER := NULL;   enqueue_alloc_itl_time         NUMBE
+R := NULL;   free_buffer_waits_time         NUMBER := NULL;   la
+tch_redo_copy_time           NUMBER := NULL;   latch_shared_pool
+_time         NUMBER := NULL;   log_buffer_space_time          N
+UMBER := NULL;   log_file_switch_arch_time      NUMBER := NULL;
+  log_file_switch_ckpt_time      NUMBER := NULL;   log_file_swit
+ch_complete_time  NUMBER := NULL;   log_switch_arch_time
+   NUMBER := NULL;   write_complete_waits_time      NUMBER := NU
+LL;   net_msg_to_client_time         NUMBER := NULL;   net_msg_t
+o_dblink_time         NUMBER := NULL;   net_more_from_client_tim
+e      NUMBER := NULL;   net_more_from_dblink_time      NUMBER :
+= NULL;   net_more_to_client_time        NUMBER := NULL;   net_m
+ore_to_dblink_time        NUMBER := NULL;   db_file_scattered_re
+ad_time    NUMBER := NULL;   db_file_sequential_read_time   NUMB
+ER := NULL;   db_file_single_write_time      NUMBER := NULL;   d
+irect_path_read_time          NUMBER := NULL;   direct_path_read
+_lob_time      NUMBER := NULL;   direct_path_write_time
+NUMBER := NULL;   direct_path_write_lob_time     NUMBER := NULL;
+   latch_free_time                NUMBER := NULL;   enqueue_time
+                   NUMBER := NULL;   user_wait_time
+    NUMBER := NULL;   user_cpu_time                  NUMBER := N
+ULL;   userio_time                    NUMBER := NULL;   cpu_cnt
+                       NUMBER       := :1;   timed_statistics
+            VARCHAR2(16) := :2;    TYPE userio_type IS TABLE OF
+VARCHAR2(64);   userio userio_type := userio_type('BFILE read',
+'buffer read retry', 'db file parallel read', 'db file scattered
+ read', 'db file sequential read', 'db file single write', 'dire
+ct path read', 'direct path read (lob)', 'direct path write', 'd
+irect path write (lob)' );    TYPE        data_cursor_type IS RE
+F CURSOR;   data_cursor data_cursor_type;  BEGIN    IF timed_sta
+tistics = 'TRUE' THEN      ----     -- initialize the time break
+down accumulators     ----     user_wait_time := 0;     userio_t
+ime := 0;      ----     -- get CPU time (total)     ----     SEL
+ECT NVL(value, 0)/100       INTO user_cpu_time       FROM v$syss from
+tat      WHERE statistic# = (SELECT statistic#                   where
+          FROM v$statname                           WHERE name = from
+ 'CPU used when call started');      ----     -- get wait time (
+total)     -- deduct idle waits and purely background waits
+----     FOR event_time_pair IN       (SELECT event, time_waited
+/100 time_waited          FROM v$system_event         WHERE even from
+t NOT IN              ('ARCH random i/o',               'ARCH se
+quential i/o',               'KXFX: execution message dequeue -
+Slaves',               'LGWR random i/o',               'LGWR se
+quential i/o',               'LGWR wait for redo copy',
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+      'Null event',               'PL/SQL lock timer',
+     'PX Deq Credit: need buffer',               'PX Deq: Execut
+e Reply',               'PX Deq: Execution Msg',               '
+PX Deq: Index Merge Close',               'PX Deq: Index Merge E
+xecute',               'PX Deq: Index Merge Reply',
+  'PX Deq: Join ACK',               'PX Deq: Msg Fragment',
+          'PX Deq: Par Recov Change Vector',               'PX D
+eq: Par Recov Execute',               'PX Deq: Par Recov Reply',
+               'PX Deq: Parse Reply',               'PX Deq: Tab
+le Q Normal',               'PX Deq: Table Q Sample',
+    'PX Deq: Txn Recovery Reply',               'PX Deq: Txn Rec
+overy Start',               'PX Deque wait',               'PX I
+dle Wait',               'Queue Monitor Shutdown Wait',
+      'Queue Monitor Slave Wait',               'Queue Monitor W
+ait',               'RFS random i/o',               'RFS sequent
+ial i/o',               'RFS write',               'SQL*Net mess
+age from client',               'SQL*Net message from dblink',   from
+             'STREAMS apply coord waiting for slave message',
+            'STREAMS apply coord waiting for some work to finish
+',               'STREAMS apply slave idle wait',
+'STREAMS capture process filter callback wait for ruleset',
+          'STREAMS fetch slave waiting for txns',
+'WMON goes to sleep',               'async disk IO',
+   'client message',               'control file parallel write'
+,               'control file sequential read',               'c
+ontrol file single write',               'db file single write',
+               'db file parallel write',               'dispatch
+er timer',               'gcs log flush sync',               'gc
+s remote message',               'ges reconfiguration to start',
+               'ges remote message',               'io done',
+            'jobq slave wait',               'lock manager wait
+for remote message',               'log file parallel write',
+            'log file sequential read',               'log file
+single write',               'parallel dequeue wait',
+    'parallel recovery coordinator waits for cleanup of slaves',
+               'parallel query dequeue',               'parallel
+ query idle wait - Slaves',               'pipe get',
+    'pmon timer',               'queue messages',
+'rdbms ipc message',               'recovery read',
+  'single-task message',               'slave wait',
+   'smon timer',               'statement suspended, wait error
+to be cleared',               'unread message',               'v
+irtual circuit',               'virtual circuit status',
+       'wait for activate message',               'wait for tran
+saction',               'wait for unread message on broadcast ch
+annel',               'wait for unread message on multiple broad
+cast channels',               'wakeup event for builder',
+        'wakeup event for preparer',               'wakeup event
+ for reader',               'wakeup time manager'))     LOOP
+    IF event_time_pair.event = 'SQL*Net break/reset to client' T
+HEN         net_reset_to_client_time := event_time_pair.time_wai
+ted;       ELSIF event_time_pair.event = 'SQL*Net break/reset to
+ dblink' THEN         net_reset_to_dblink_time := event_time_pai
+r.time_waited;       ELSIF event_time_pair.event = 'SQL*Net mess
+age to client' THEN         net_msg_to_client_time := event_time
+_pair.time_waited;       ELSIF event_time_pair.event = 'SQL*Net
+message to dblink' THEN         net_msg_to_dblink_time := event_
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+time_pair.time_waited;       ELSIF event_time_pair.event = 'SQL*
+Net more data from client' THEN         net_more_from_client_tim from
+e := event_time_pair.time_waited;       ELSIF event_time_pair.ev
+ent = 'SQL*Net more data from dblink' THEN         net_more_from from
+_dblink_time := event_time_pair.time_waited;       ELSIF event_t
+ime_pair.event = 'SQL*Net more data to client' THEN         net_
+more_to_client_time := event_time_pair.time_waited;       ELSIF
+event_time_pair.event = 'SQL*Net more data to dblink' THEN
+   net_more_to_dblink_time := event_time_pair.time_waited;
+ ELSIF event_time_pair.event = 'buffer busy waits' THEN
+buffer_busy_waits_time := event_time_pair.time_waited;       ELS
+IF event_time_pair.event = 'db file scattered read' THEN
+ db_file_scattered_read_time := event_time_pair.time_waited;
+   ELSIF event_time_pair.event = 'db file sequential read' THEN
+        db_file_sequential_read_time := event_time_pair.time_wai
+ted;       ELSIF event_time_pair.event = 'db file single write'
+THEN         db_file_single_write_time := event_time_pair.time_w
+aited;       ELSIF event_time_pair.event = 'direct path read' TH
+EN         direct_path_read_time := event_time_pair.time_waited;
+       ELSIF event_time_pair.event = 'direct path read (lob)' TH
+EN         direct_path_read_lob_time := event_time_pair.time_wai
+ted;       ELSIF event_time_pair.event = 'direct path write' THE
+N         direct_path_write_time := event_time_pair.time_waited;
+       ELSIF event_time_pair.event = 'direct path write (lob)' T
+HEN         direct_path_write_lob_time := event_time_pair.time_w
+aited;       ELSIF event_time_pair.event = 'enqueue: DML - conte
+ntion' THEN         enqueue_dml_time := event_time_pair.time_wai
+ted;       ELSIF event_time_pair.event = 'enqueue: HW, Segment H
+igh Water Mark - contention' THEN         enqueue_hw_time := eve
+nt_time_pair.time_waited;       ELSIF event_time_pair.event = 'e
+nqueue: ST, Space Transaction - contention' THEN         enqueue
+_st_time := event_time_pair.time_waited;       ELSIF event_time_
+pair.event = 'enqueue: TM,TX, Transaction - row lock contention'
+ THEN         enqueue_row_lock_time := event_time_pair.time_wait
+ed;       ELSIF event_time_pair.event = 'enqueue: TX mode 4, Tra
+nsaction - allocate ITL entry' THEN         enqueue_alloc_itl_ti
+me := event_time_pair.time_waited;       ELSIF event_time_pair.e
+vent = 'enqueue: UL: User-defined - contention' THEN         enq
+ueue_userdef_time := event_time_pair.time_waited;       ELSIF ev
+ent_time_pair.event LIKE 'enqueue%' THEN         enqueue_time :=
+ NVL(enqueue_time, 0) + event_time_pair.time_waited;       ELSIF
+ event_time_pair.event = 'free buffer waits' THEN         free_b
+uffer_waits_time := event_time_pair.time_waited;       ELSIF eve
+nt_time_pair.event = 'latch: cache buffers chains' THEN
+latch_cache_buffer_chains_time := event_time_pair.time_waited;
+     ELSIF event_time_pair.event = 'latch: library cache' THEN
+       latch_library_cache_time := event_time_pair.time_waited;
+      ELSIF event_time_pair.event = 'latch: redo copy' THEN
+    latch_redo_copy_time := event_time_pair.time_waited;       E
+LSIF event_time_pair.event = 'latch: shared pool' THEN         l
+atch_shared_pool_time := event_time_pair.time_waited;       ELSI
+F event_time_pair.event LIKE 'latch%' THEN         latch_free_ti
+me := NVL(latch_free_time, 0) + event_time_pair.time_waited;
+   ELSIF event_time_pair.event = 'library cache load lock' THEN
+        library_cache_load_lock_time := event_time_pair.time_wai
+ted;       ELSIF event_time_pair.event = 'library cache lock' TH
+EN         library_cache_lock_time := event_time_pair.time_waite
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+d;       ELSIF event_time_pair.event = 'library cache pin' THEN
+        library_cache_pin_time := event_time_pair.time_waited;
+     ELSIF event_time_pair.event = 'local write wait' THEN
+   local_write_wait_time := event_time_pair.time_waited;       E
+LSIF event_time_pair.event = 'log buffer space' THEN         log
+_buffer_space_time := event_time_pair.time_waited;       ELSIF e
+vent_time_pair.event = 'log file switch (archiving needed)' THEN
+         log_file_switch_arch_time := event_time_pair.time_waite
+d;       ELSIF event_time_pair.event = 'log file switch (checkpo
+int incomplete)' THEN         log_file_switch_ckpt_time := event
+_time_pair.time_waited;       ELSIF event_time_pair.event = 'log
+ file switch completion' THEN         log_file_switch_complete_t
+ime := event_time_pair.time_waited;       ELSIF event_time_pair.
+event = 'log file sync' THEN         log_file_sync_time := event
+_time_pair.time_waited;       ELSIF event_time_pair.event = 'log
+ switch/archive' THEN         log_file_switch_arch_time := event
+_time_pair.time_waited;       ELSIF event_time_pair.event = 'pip
+e put' THEN         pipe_put_time := event_time_pair.time_waited
+;       ELSIF event_time_pair.event = 'row cache lock' THEN
+    row_cache_lock_time := event_time_pair.time_waited;       EL
+SIF event_time_pair.event = 'write complete waits' THEN
+write_complete_waits_time := event_time_pair.time_waited;
+END IF;        ----       -- add to the accumulated wait time
+    ----       user_wait_time := user_wait_time + event_time_pai
+r.time_waited;        -- compute the user io wait time       FOR
+ i IN userio.FIRST .. userio.LAST       LOOP         IF userio(i
+) = event_time_pair.event THEN           userio_time := userio_t
+ime + event_time_pair.time_waited;         END IF;       END LOO
+P;     END LOOP;      -- open the cursor to return     OPEN data
+_cursor FOR       SELECT local_write_wait_time,              net
+_reset_to_client_time,              net_reset_to_dblink_time,
+           enqueue_dml_time,              enqueue_row_lock_time,
+              enqueue_userdef_time,              log_file_sync_t
+ime,              buffer_busy_waits_time,              latch_cac
+he_buffer_chains_time,              latch_library_cache_time,
+           library_cache_load_lock_time,              library_ca
+che_lock_time,              library_cache_pin_time,
+ pipe_put_time,              row_cache_lock_time,              e
+nqueue_hw_time,              enqueue_st_time,              enque
+ue_alloc_itl_time,              free_buffer_waits_time,
+     latch_redo_copy_time,              latch_shared_pool_time,
+             log_buffer_space_time,              log_file_switch
+_arch_time,              log_file_switch_ckpt_time,
+ log_file_switch_complete_time,              log_switch_arch_tim
+e,              write_complete_waits_time,              net_msg_
+to_client_time,              net_msg_to_dblink_time,
+  net_more_from_client_time,              net_more_from_dblink_t
+ime,              net_more_to_client_time,              net_more
+_to_dblink_time,              db_file_scattered_read_time,
+        db_file_sequential_read_time,              db_file_singl
+e_write_time,              direct_path_read_time,              d
+irect_path_read_lob_time,              direct_path_write_time,
+            direct_path_write_lob_time,              latch_free_
+time,              enqueue_time,              user_wait_time,
+           user_cpu_time,              userio_time,
+ cpu_cnt          FROM dual;    ELSE      -- open the cursor to  from
+return     OPEN data_cursor FOR       SELECT local_write_wait_ti
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+me,              net_reset_to_client_time,              net_rese
+t_to_dblink_time,              enqueue_dml_time,              en
+queue_row_lock_time,              enqueue_userdef_time,
+     log_file_sync_time,              buffer_busy_waits_time,
+           latch_cache_buffer_chains_time,              latch_li
+brary_cache_time,              library_cache_load_lock_time,
+          library_cache_lock_time,              library_cache_pi
+n_time,              pipe_put_time,              row_cache_lock_
+time,              enqueue_hw_time,              enqueue_st_time
+,              enqueue_alloc_itl_time,              free_buffer_
+waits_time,              latch_redo_copy_time,              latc
+h_shared_pool_time,              log_buffer_space_time,
+     log_file_switch_arch_time,              log_file_switch_ckp
+t_time,              log_file_switch_complete_time,
+ log_switch_arch_time,              write_complete_waits_time,
+            net_msg_to_client_time,              net_msg_to_dbli
+nk_time,              net_more_from_client_time,              ne
+t_more_from_dblink_time,              net_more_to_client_time,
+            net_more_to_dblink_time,              db_file_scatte
+red_read_time,              db_file_sequential_read_time,
+       db_file_single_write_time,              direct_path_read_
+time,              direct_path_read_lob_time,              direc
+t_path_write_time,              direct_path_write_lob_time,
+         latch_free_time,              enqueue_time,
+  user_wait_time,              user_cpu_time,              useri
+o_time,              cpu_cnt          FROM dual        WHERE 0 = from
+ 1;    END IF;    :3 := data_cursor;  END;
+
+FIRST TIME = 2012-08-23 19:58
+MODULE     = emagent@rp5450-a (TNS V1-V3)
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      4       4        60              0            0        60 emagent@rp5450-a
+09/13 07    60      5       5        60              0            0        60 emagent@rp5450-a
+09/13 08    60      4       5        60              0            0        60 emagent@rp5450-a
+09/13 09    60      4       5        60              0            0        60 emagent@rp5450-a
+09/13 10    60      5       6        60              0            0        60 emagent@rp5450-a
+09/13 11    60      4       5        60              0            0        60 emagent@rp5450-a
+09/13 12    60      4       5        60              0            0        60 emagent@rp5450-a
+09/13 13    60      4       4        60              0            0        60 emagent@rp5450-a
+09/13 14    60      4       5        60              0            0        60 emagent@rp5450-a
+09/13 15    60      4       4        60              0            0        60 emagent@rp5450-a
+09/13 16    60      5       5        60              0            0        60 emagent@rp5450-a
+09/13 17    60      4       5        60              0            0        60 emagent@rp5450-a
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     51      58       720              0            0       720
+
+
+================================================================
+                            SQL 3880064830
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT USERID, DB_SEQNO FROM WEB_LOGGED_ON WHERE :B5 = :B4 + DB_ from
+SEQNO AND IP_ADDRESS = :B3 AND SYSTEM_NAME = :B2 AND :B1 <= LAST
+_REQUEST
+
+FIRST TIME = 2012-10-11 20:51
+MODULE     = Apache.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                 75
+INDEX                RANGE SCAN     WEB_LOGGED_ON_ALL_CO         75       75        1
+                                    LS
+
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      0       0         0              0            0         0 Apache.exe
+09/13 07    60      2       2        24          5,904            0        24 Apache.exe
+09/13 08    60      2       3        22          5,412            0        21 Apache.exe
+09/13 09    60      5       6        64         15,744            0        64 Apache.exe
+09/13 10    60      4       4        52         11,340            0        52 Apache.exe
+09/13 11    60      2       1        16          3,936            0        15 Apache.exe
+09/13 12    60      3       4        40          9,840            0        39 Apache.exe
+09/13 13    60      5       8        93         15,155            0        92 Apache.exe
+09/13 14    60      6       6        68         16,796            0        64 Apache.exe
+09/13 15    60      3       4        37          9,139            0        35 Apache.exe
+09/13 16    60      2       2        20          4,940            0        20 Apache.exe
+09/13 17    60      0       0         0              0            0         0 Apache.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     34      40       436         98,206            0       426
+
+
+================================================================
+                            SQL 4103152418
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT :B2 START_DATE, :B1 END_DATE, CASE_TBL.OWNER_ID, NVL((SEL
+ECT HRPR_TOT_VW.NAME FROM HRPR_TOT_VW WHERE HRPR_TOT_VW.OPRID =  from
+UPPER(CASE_TBL.OWNER_ID)), 'No User Name') CONTACT_PERSON, MEDIA
+TION_TBL.MEDIATION_TYPE_ID MEDIATION_TYPE_ID, ROUND(CASE_TBL.COM
+PLETE_DT - CASE_TBL.RCVD_DT, 2) TURN_ARND_DAYS_CNT FROM CASE_TBL from
+, MEDIATION_TBL, COMPLIANCE_REQ_TBL WHERE CASE_TBL.BCS_CASE = ME where
+DIATION_TBL.BCS_CASE AND CASE_TBL.BCS_CASE = COMPLIANCE_REQ_TBL.
+BCS_CASE(+) AND CASE_TBL.CASE_STATE_ID IN (500, 600, 700, 1400)
+AND MEDIATION_TBL.MEDIATION_TYPE_ID IN (100, 300, 400, 500) AND
+(CASE_TBL.COMPLETE_DT BETWEEN TO_DATE(:B2 , 'MM/DD/YYYY') AND (T
+O_DATE(:B1 , 'MM/DD/YYYY') +1 ) OR COMPLIANCE_REQ_TBL.COMPLETE_D
+T BETWEEN TO_DATE(:B2 , 'MM/DD/YYYY') AND (TO_DATE(:B1 , 'MM/DD/
+YYYY') +1 )) ORDER BY CONTACT_PERSON, MEDIATION_TYPE_ID
+
+MODULE     = w3wp.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      0       0         0              0            0         0 w3wp.exe
+09/13 07    60      0       0         0              0            0         0 w3wp.exe
+09/13 08    60      3       4         1         22,932       20,104         0 w3wp.exe
+09/13 09    60      4       8         1         23,259       18,091        15 w3wp.exe
+09/13 10    60      0       0         0              0            0         0 w3wp.exe
+09/13 11    60      0       0         0              0            0         0 w3wp.exe
+09/13 12    60      0       0         0              0            0         0 w3wp.exe
+09/13 13    60      0       0         0              0            0         0 w3wp.exe
+09/13 14    60      3       2         1         23,329       18,899        48 w3wp.exe
+09/13 15    60      0       0         0              0            0         0 w3wp.exe
+09/13 16    60      8       9         2         47,370       38,560       148 w3wp.exe
+09/13 17    60      0       0         0              0            0         0 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     18      23         5        116,890       95,654       211
+
+
+================================================================
+                            SQL 4121519815
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT CASE_TBL.BCS_CASE, CUSTOMER_TBL.KY_BA, CUSTOMER_TBL.FIRST
+_NAME || ' ' || CUSTOMER_TBL.LAST_NAME CUSTOMER_NAME, PKG_CASE.U
+DF_CALCULATE_DUE_DATE( CASE_TBL.CASE_TYPE_ID, MEDIATION_TBL.MEDI
+ATION_TYPE_ID, CASE_TBL.RCVD_DT) DUE_DT, CASE_TBL.LAST_UPDATE_DT
+, MEDIATION_TBL.MEDIATION_TYPE_ID, MEDIATION_TYPE_CD.MEDIATION_T
+YPE_DESC, NVL(HRPR_TOT_VW.NAME,CASE_TBL.OWNER_ID) OWNER_NAME FRO
+M CASE_TBL, CUSTOMER_TBL, MEDIATION_TBL, MEDIATION_TYPE_CD, HRPR
+_TOT_VW WHERE CASE_TBL.CASE_STATE_ID = 400 AND CASE_TBL.CASE_TYP where
+E_ID = 200 AND CASE_TBL.BCS_CASE = CUSTOMER_TBL.BCS_CASE AND CAS
+E_TBL.BCS_CASE = MEDIATION_TBL.BCS_CASE AND MEDIATION_TBL.MEDIAT
+ION_TYPE_ID = MEDIATION_TYPE_CD.MEDIATION_TYPE_ID AND CASE_TBL.O
+WNER_ID IS NOT NULL AND CASE_TBL.OWNER_ID = HRPR_TOT_VW.OPRID(+)
+
+
+MODULE     = w3wp.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      0       0         0              0            0         0 w3wp.exe
+09/13 07    60      0       0         0              0            0         0 w3wp.exe
+09/13 08    60      0       0         0              0            0         0 w3wp.exe
+09/13 09    60      2       9         1         28,202       21,911        10 w3wp.exe
+09/13 10    60      0       0         0              0            0         0 w3wp.exe
+09/13 11    60      5       6         2         56,414       45,822        12 w3wp.exe
+09/13 12    60      0       0         0              0            0         0 w3wp.exe
+09/13 13    60      4       3         2         56,414       46,101        10 w3wp.exe
+09/13 14    60      0       0         0              0            0         0 w3wp.exe
+09/13 15    60      0       0         0              0            0         0 w3wp.exe
+09/13 16    60      2       3         1         28,225       22,967         7 w3wp.exe
+09/13 17    60      0       0         0              0            0         0 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     13      21         6        169,255      136,801        39
+
+
+================================================================
+                            SQL 4137781555
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT CASE_TBL.BCS_CASE, CUSTOMER_TBL.KY_BA, CUSTOMER_TBL.FIRST
+_NAME || ' ' || CUSTOMER_TBL.LAST_NAME CUSTOMER_NAME, PKG_CASE.U
+DF_CALCULATE_DUE_DATE( CASE_TBL.CASE_TYPE_ID, NULL, CASE_TBL.RCV
+D_DT) DUE_DT, CASE_TBL.LAST_UPDATE_DT, NVL(HRPR_TOT_VW.NAME,CASE
+_TBL.OWNER_ID) OWNER_NAME FROM CASE_TBL, CUSTOMER_TBL, HRPR_TOT_ from
+VW WHERE CASE_TBL.CASE_STATE_ID = 400 AND CASE_TBL.CASE_TYPE_ID  where
+= 100 AND CASE_TBL.BCS_CASE = CUSTOMER_TBL.BCS_CASE AND CASE_TBL
+.OWNER_ID IS NOT NULL AND CASE_TBL.OWNER_ID = HRPR_TOT_VW.OPRID(
++)
+
+FIRST TIME = 2013-07-22 08:05
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                 26
+NESTED LOOPS                                                     26       26       13
+HASH JOIN            OUTER                                       13       13       13
+TABLE ACCESS         BY INDEX ROWID CASE_TBL                      3        3       13
+INDEX                RANGE SCAN     CASE_TYPE_STATE_OWNE          2        2       13
+                                    R
+
+TABLE ACCESS         FULL           HRPR_TOT_VW                   9        9     3918
+TABLE ACCESS         BY INDEX ROWID CUSTOMER_TBL                  1        1        1
+INDEX                UNIQUE SCAN    SYS_C004543                                     1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CASE_TBL               178761    365 09/14/13 11:03  100%      70      70      69   10   40
+CUSTOMER_TBL           178761    207 09/14/13 11:04  100%      40      40      39   10   40
+HRPR_TOT_VW              3918     86 05/29/12 11:52  100%       0       0       0   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CASE_TBL           CASE_TBL_CASE_TYPE_I            2   1 CASE_TYPE_ID              2     515
+                   D
+
+                                                       2 BCS_CASE             178761       0
+                   CASE_TBL_IDX1        UNIQ       2   1 CASE_STATE_ID            12       0
+                                                       2 OWNER_ID                127   55717
+                                                       3 CASE_TYPE_ID              2     515
+                                                       4 BCS_CASE             178761       0
+                   CASE_TBL_IDX2                   2   1 CASE_STATE_ID            12       0
+                                                       2 OWNER_ID                127   55717
+                                                       3 CASE_TYPE_ID              2     515
+                                                       4 JUSTIFICATION_STAT        3     102
+                                                         E_ID
+
+                   CASE_TBL_PK          UNIQ       3   1 BCS_CASE             178761       0
+                   CASE_TYPE_STATE_OWNE                1 CASE_STATE_ID            12       0
+                   R
+
+                                                       2 CASE_TYPE_ID              2     515
+                                                       3 OWNER_ID                127   55717
+                   STATE_ID_CASE_INDX                  1 CASE_STATE_ID            12       0
+                                                       2 BCS_CASE             178761       0
+CUSTOMER_TBL       SYS_C004543          UNIQ       1   1 BCS_CASE             178761       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+09/13 06    60      0       0         0              0            0         0 w3wp.exe
+09/13 07    60      0       0         0              0            0         0 w3wp.exe
+09/13 08    60      2       1         1         14,395       12,170       192 w3wp.exe
+09/13 09    60      1       2         1         14,395       10,086       191 w3wp.exe
+09/13 10    60      1       2         1         14,398       10,350       188 w3wp.exe
+09/13 11    60      5       5         4         57,592       42,028       753 w3wp.exe
+09/13 12    60      2       1         1         14,398       10,536       192 w3wp.exe
+09/13 13    60      5       7         4         57,592       42,304       768 w3wp.exe
+09/13 14    60      1       2         1         14,398       10,465       191 w3wp.exe
+09/13 15    60      5       5         4         57,592       41,668       760 w3wp.exe
+09/13 16    60      5       5         4         57,634       42,081       756 w3wp.exe
+09/13 17    60      0       0         0              0            0         0 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720     27      30        21        302,394      221,688      3991

@@ -1,0 +1,698 @@
+
+STARTING    MODULE                           SQLS    BUFFER_GETS   DISK_READS        PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------------------------------ ------ -------------- ------------ ---------------- ------ ------- --------
+10/24 00:00 oracle@rp4440-g (TNS V1-V3)       257      1,809,019      390,589          175,418     69     188     78.4
+            MSACCESS.EXE                      183        762,048      583,857               69     42     280     23.4
+            SQL*Plus                          169        164,175            3              175      1       0    100.0
+                                              112         25,350          207            4,292      4       4     99.2
+            w3wp.exe                           90        129,131          202           18,433     11      15     99.8
+            rman@rp4440-g (TNS V1-V3)          61            216            0            1,215      3       8    100.0
+            SQLNav5.exe                        49              0            0                0      0       0    100.0
+            emagent@rp4440-g (TNS V1-V3)       44         43,557            0            7,621      4       1    100.0
+            prcregin@rp4440-g (TNS V1-V3)      18              0            0                0      0       0    100.0
+            sqlplus@rp4440-g (TNS V1-V3)       16         45,691            2              331      0       0    100.0
+            ediregin@rp4440-g (TNS V1-V3)      13              0            0                0      0       0    100.0
+            formreg@rp4440-g (TNS V1-V3)       12              0            0                0      0       0    100.0
+            msaccess.exe                       10              0            0                0      0       0    100.0
+            Oracle Enterprise Manager.Metr     10          8,592            0            2,381      1       0    100.0
+            ic Engine
+
+            oracle@rp4440-h (TNS V1-V3)         8              0            0                0      0       0    100.0
+            01@<t/control/jobs/scripts/css      8              0            0                0      0       0    100.0
+            _ers_interface.sql
+
+            perl@rp4440-g (TNS V1-V3)           7             72            0               51      0       0    100.0
+            oracle@lnx-oss-11.ppl.com (TNS      6              0            0                0      0       0    100.0
+             V1-V3)
+
+            pmdtm@rp4440-e (TNS V1-V3)          4        722,000       93,789        8,072,251     87     154     87.0
+            writereg@rp4440-g (TNS V1-V3)       4              0            0                0      0       0    100.0
+            SQL Developer                       3              0            0                0      0       0    100.0
+               ?  @rp4440-g (TNS V1-V3)         3              0            0                0      0       0    100.0
+            backup archivelog: ch1              3             24            0               16      0       0    100.0
+            setproc@rp4440-g (TNS V1-V3)        2              0            0                0      0       0    100.0
+            01@<ost/control/jobs/scripts/e      2              0            0                0      0       0    100.0
+            r_css_reenroll.sql
+
+            EXCEL.EXE                           1              0            0                0      0       0    100.0
+***********                                       -------------- ------------ ---------------- ------ -------
+sum                                                    3,709,875    1,068,649        8,282,253    222     650
+
+STARTING    MODULE                           SQLS    BUFFER_GETS   DISK_READS        PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------------------------------ ------ -------------- ------------ ---------------- ------ ------- --------
+10/24 01:00 oracle@rp4440-g (TNS V1-V3)       257      1,442,564      317,962            1,976     69     562     78.0
+            MSACCESS.EXE                      183        774,964      586,220               72     44     301     24.4
+            SQL*Plus                          169        164,176            2              172      0       1    100.0
+                                              112         23,221          144            3,934      6       5     99.4
+            w3wp.exe                           90         89,448          135           13,822     10      82     99.8
+            rman@rp4440-g (TNS V1-V3)          61            216            0            1,205      3       2    100.0
+            SQLNav5.exe                        49              0            0                0      0       0    100.0
+            emagent@rp4440-g (TNS V1-V3)       44         43,465            0            7,626      2       2    100.0
+            prcregin@rp4440-g (TNS V1-V3)      18              0            0                0      0       0    100.0
+            sqlplus@rp4440-g (TNS V1-V3)       16            906            0              229      0       0    100.0
+            ediregin@rp4440-g (TNS V1-V3)      13              0            0                0      0       0    100.0
+            formreg@rp4440-g (TNS V1-V3)       12              0            0                0      0       0    100.0
+            msaccess.exe                       10              0            0                0      0       0    100.0
+            Oracle Enterprise Manager.Metr     10          8,227            0            2,029      1       0    100.0
+            ic Engine
+
+            oracle@rp4440-h (TNS V1-V3)         8        218,061       40,002        1,536,912     13      61     81.7
+            01@<t/control/jobs/scripts/css      8              0            0                0      0       0    100.0
+            _ers_interface.sql
+
+            perl@rp4440-g (TNS V1-V3)           7             72            0               51      0       0    100.0
+            oracle@lnx-oss-11.ppl.com (TNS      6              0            0                0      0       0    100.0
+             V1-V3)
+
+            pmdtm@rp4440-e (TNS V1-V3)          4              0            0                0      0       0    100.0
+            writereg@rp4440-g (TNS V1-V3)       4              0            0                0      0       0    100.0
+            SQL Developer                       3              0            0                0      0       0    100.0
+            backup archivelog: ch1              3             24            0               16      0       0    100.0
+               ?  @rp4440-g (TNS V1-V3)         3              0            0                0      0       0    100.0
+            setproc@rp4440-g (TNS V1-V3)        2              0            0                0      0       0    100.0
+            01@<ost/control/jobs/scripts/e      2              0            0                0      0       0    100.0
+            r_css_reenroll.sql
+
+            EXCEL.EXE                           1              0            0                0      0       0    100.0
+***********                                       -------------- ------------ ---------------- ------ -------
+sum                                                    2,765,344      944,465        1,568,044    148    1016
+
+STARTING    MODULE                           SQLS    BUFFER_GETS   DISK_READS        PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------------------------------ ------ -------------- ------------ ---------------- ------ ------- --------
+10/24 02:00 oracle@rp4440-g (TNS V1-V3)       257      1,701,549      370,770          185,434     94     690     78.2
+            MSACCESS.EXE                      183        774,964      569,280               70     44     269     26.5
+            SQL*Plus                          169        164,190            2              176      1       1    100.0
+                                              112         23,223          184            3,886      3       7     99.2
+            w3wp.exe                           90         53,121        1,875           11,263      5      25     96.5
+            rman@rp4440-g (TNS V1-V3)          61            216            0            1,209      5       8    100.0
+            SQLNav5.exe                        49              0            0                0      0       0    100.0
+            emagent@rp4440-g (TNS V1-V3)       44         43,384            0            7,629      0       0    100.0
+            prcregin@rp4440-g (TNS V1-V3)      18              0            0                0      0       0    100.0
+            sqlplus@rp4440-g (TNS V1-V3)       16          3,086            0              774      0       1    100.0
+            ediregin@rp4440-g (TNS V1-V3)      13              0            0                0      0       0    100.0
+            formreg@rp4440-g (TNS V1-V3)       12              0            0                0      0       0    100.0
+            msaccess.exe                       10              0            0                0      0       0    100.0
+            Oracle Enterprise Manager.Metr     10          8,225            0            2,029      0       0    100.0
+            ic Engine
+
+            oracle@rp4440-h (TNS V1-V3)         8              0            0                0      0       0    100.0
+            01@<t/control/jobs/scripts/css      8              0            0                0      0       0    100.0
+            _ers_interface.sql
+
+            perl@rp4440-g (TNS V1-V3)           7             72            0               51      0       0    100.0
+            oracle@lnx-oss-11.ppl.com (TNS      6              0            0                0      0       0    100.0
+             V1-V3)
+
+            pmdtm@rp4440-e (TNS V1-V3)          4              0            0                0      0       0    100.0
+            writereg@rp4440-g (TNS V1-V3)       4              0            0                0      0       0    100.0
+            SQL Developer                       3              0            0                0      0       0    100.0
+            backup archivelog: ch1              3             24            0               16      0       0    100.0
+               ?  @rp4440-g (TNS V1-V3)         3              0            0                0      0       0    100.0
+            setproc@rp4440-g (TNS V1-V3)        2              0            0                0      0       0    100.0
+            01@<ost/control/jobs/scripts/e      2              0            0                0      0       0    100.0
+            r_css_reenroll.sql
+
+            EXCEL.EXE                           1              0            0                0      0       0    100.0
+***********                                       -------------- ------------ ---------------- ------ -------
+sum                                                    2,772,054      942,111          212,537    152    1001
+
+STARTING    MODULE                           SQLS    BUFFER_GETS   DISK_READS        PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------------------------------ ------ -------------- ------------ ---------------- ------ ------- --------
+10/24 03:00 oracle@rp4440-g (TNS V1-V3)       257      2,067,716      507,561        1,556,762     97     799     75.5
+            MSACCESS.EXE                      183         12,936        9,252                6      0       5     28.5
+            SQL*Plus                          169        164,168            0              174      1       0    100.0
+                                              112        238,943      147,114           59,062     15      79     38.4
+            w3wp.exe                           90         27,233           46            4,913      1       3     99.8
+            rman@rp4440-g (TNS V1-V3)          61            216            0            1,206      3       7    100.0
+            SQLNav5.exe                        49              0            0                0      0       0    100.0
+            emagent@rp4440-g (TNS V1-V3)       44         43,296            0            7,628      3       7    100.0
+            prcregin@rp4440-g (TNS V1-V3)      18              0            0                0      0       0    100.0
+            sqlplus@rp4440-g (TNS V1-V3)       16         45,391            0              256      0       0    100.0
+            ediregin@rp4440-g (TNS V1-V3)      13              0            0                0      0       0    100.0
+            formreg@rp4440-g (TNS V1-V3)       12              0            0                0      0       0    100.0
+            msaccess.exe                       10              0            0                0      0       0    100.0
+            Oracle Enterprise Manager.Metr     10          8,597            0            2,381      0       1    100.0
+            ic Engine
+
+            oracle@rp4440-h (TNS V1-V3)         8              0            0                0      0       0    100.0
+            01@<t/control/jobs/scripts/css      8              0            0                0      0       0    100.0
+            _ers_interface.sql
+
+            perl@rp4440-g (TNS V1-V3)           7             72            0               51      0       0    100.0
+            oracle@lnx-oss-11.ppl.com (TNS      6        510,024       90,620           17,532      9      15     82.2
+             V1-V3)
+
+            pmdtm@rp4440-e (TNS V1-V3)          4              0            0                0      0       0    100.0
+            writereg@rp4440-g (TNS V1-V3)       4              0            0                0      0       0    100.0
+            SQL Developer                       3              0            0                0      0       0    100.0
+            backup archivelog: ch1              3             24            0               16      0       0    100.0
+               ?  @rp4440-g (TNS V1-V3)         3              0            0                0      0       0    100.0
+            setproc@rp4440-g (TNS V1-V3)        2              0            0                0      0       0    100.0
+            01@<ost/control/jobs/scripts/e      2              0            0                0      0       0    100.0
+            r_css_reenroll.sql
+
+            EXCEL.EXE                           1              0            0                0      0       0    100.0
+***********                                       -------------- ------------ ---------------- ------ -------
+sum                                                    3,118,616      754,593        1,649,987    129     916
+
+STARTING    MODULE                           SQLS    BUFFER_GETS   DISK_READS        PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------------------------------ ------ -------------- ------------ ---------------- ------ ------- --------
+10/24 04:00 oracle@rp4440-g (TNS V1-V3)       257      2,339,803      662,647          600,454    112    1019     71.7
+            MSACCESS.EXE                      183         12,920        9,260                3      1       7     28.3
+            SQL*Plus                          169        164,136            0              163      0       1    100.0
+                                              114         26,617          144            4,381      5       5     99.5
+            w3wp.exe                           90         43,640           24            2,999      9      10     99.9
+            rman@rp4440-g (TNS V1-V3)          61            216            0            1,222      4       8    100.0
+            SQLNav5.exe                        49              0            0                0      0       0    100.0
+            emagent@rp4440-g (TNS V1-V3)       44         43,289            0            7,631      0       1    100.0
+            prcregin@rp4440-g (TNS V1-V3)      18              0            0                0      0       0    100.0
+            sqlplus@rp4440-g (TNS V1-V3)       16            895            0              226      0       0    100.0
+            ediregin@rp4440-g (TNS V1-V3)      13              0            0                0      0       0    100.0
+            formreg@rp4440-g (TNS V1-V3)       12              0            0                0      0       0    100.0
+            msaccess.exe                       10              0            0                0      0       0    100.0
+            Oracle Enterprise Manager.Metr     10          8,225            0            2,029      0       0    100.0
+            ic Engine
+
+            oracle@rp4440-h (TNS V1-V3)         8              0            0                0      0       0    100.0
+            01@<t/control/jobs/scripts/css      8              0            0                0      0       0    100.0
+            _ers_interface.sql
+
+            oracle@lnx-oss-11.ppl.com (TNS      8              0            0                0      0       0    100.0
+             V1-V3)
+
+            perl@rp4440-g (TNS V1-V3)           7             72            0               51      0       0    100.0
+            pmdtm@rp4440-e (TNS V1-V3)          4              0            0                0      0       0    100.0
+            writereg@rp4440-g (TNS V1-V3)       4              0            0                0      0       0    100.0
+            SQL Developer                       3              0            0                0      0       0    100.0
+            backup archivelog: ch1              3             24            0               16      0       0    100.0
+               ?  @rp4440-g (TNS V1-V3)         3              0            0                0      0       0    100.0
+            setproc@rp4440-g (TNS V1-V3)        2              0            0                0      0       0    100.0
+            01@<ost/control/jobs/scripts/e      2              0            0                0      0       0    100.0
+            r_css_reenroll.sql
+
+            EXCEL.EXE                           1              0            0                0      0       0    100.0
+***********                                       -------------- ------------ ---------------- ------ -------
+sum                                                    2,639,837      672,075          619,175    131    1051
+
+STARTING    MODULE                           SQLS    BUFFER_GETS   DISK_READS        PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------------------------------ ------ -------------- ------------ ---------------- ------ ------- --------
+10/24 05:00 oracle@rp4440-g (TNS V1-V3)       257      3,164,449      859,353          682,275    145     321     72.8
+            MSACCESS.EXE                      184         12,948        9,267                8      1       9     28.4
+            SQL*Plus                          169      9,108,376    1,651,351          294,896    219     638     81.9
+                                              115         79,061          577           20,274      9      10     99.3
+            w3wp.exe                           90         33,147          659            2,769      6       6     98.0
+            rman@rp4440-g (TNS V1-V3)          61            216            1            1,360      5      11     99.5
+            SQLNav5.exe                        49              0            0                0      0       0    100.0
+            emagent@rp4440-g (TNS V1-V3)       44         43,274           19            7,658      3       2    100.0
+            prcregin@rp4440-g (TNS V1-V3)      18      8,552,217    5,027,598          271,703    522    3281     41.2
+            sqlplus@rp4440-g (TNS V1-V3)       16            987            1              273      0       0     99.9
+            ediregin@rp4440-g (TNS V1-V3)      13        570,967        4,034           34,578     11      41     99.3
+            formreg@rp4440-g (TNS V1-V3)       12              0            0                0      0       0    100.0
+            msaccess.exe                       10              0            0                0      0       0    100.0
+            Oracle Enterprise Manager.Metr     10          8,223            2            2,029      0       0    100.0
+            ic Engine
+
+            oracle@rp4440-h (TNS V1-V3)         8              0            0                0      0       0    100.0
+            01@<t/control/jobs/scripts/css      8              0            0                0      0       0    100.0
+            _ers_interface.sql
+
+            oracle@lnx-oss-11.ppl.com (TNS      8              0            0                0      0       0    100.0
+             V1-V3)
+
+            perl@rp4440-g (TNS V1-V3)           7             72            0               51      0       0    100.0
+            pmdtm@rp4440-e (TNS V1-V3)          4              0            0                0      0       0    100.0
+            writereg@rp4440-g (TNS V1-V3)       4              0            0                0      0       0    100.0
+            SQL Developer                       3              0            0                0      0       0    100.0
+            backup archivelog: ch1              3             24            0               16      0       0    100.0
+               ?  @rp4440-g (TNS V1-V3)         3        115,112          141           23,738      2       3     99.9
+            setproc@rp4440-g (TNS V1-V3)        2              0            0                0      0       0    100.0
+            01@<ost/control/jobs/scripts/e      2              0            0                0      0       0    100.0
+            r_css_reenroll.sql
+
+            EXCEL.EXE                           1              0            0                0      0       0    100.0
+***********                                       -------------- ------------ ---------------- ------ -------
+sum                                                   21,689,073    7,553,003        1,341,628    923    4322
+
+STARTING    MODULE                           SQLS    BUFFER_GETS   DISK_READS        PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------------------------------ ------ -------------- ------------ ---------------- ------ ------- --------
+10/24 06:00 oracle@rp4440-g (TNS V1-V3)       257        831,911      279,652          184,811     34     105     66.4
+            MSACCESS.EXE                      184             14            0                2      0       0    100.0
+            SQL*Plus                          169     55,602,852          650            6,578   1562    3453    100.0
+                                              115         23,109          644            4,232      2       5     97.2
+            w3wp.exe                           90         75,348          407            7,888     12      15     99.5
+            rman@rp4440-g (TNS V1-V3)          61            216            0            1,203      3       2    100.0
+            SQLNav5.exe                        49              0            0                0      0       0    100.0
+            emagent@rp4440-g (TNS V1-V3)       44         43,299            0            7,623      2       4    100.0
+            prcregin@rp4440-g (TNS V1-V3)      18              0            0                0      0       0    100.0
+            sqlplus@rp4440-g (TNS V1-V3)       16         44,616            0               64      0       1    100.0
+            ediregin@rp4440-g (TNS V1-V3)      13              0            0                0      0       0    100.0
+            formreg@rp4440-g (TNS V1-V3)       12              0            0                0      0       0    100.0
+            msaccess.exe                       10              0            0                0      0       0    100.0
+            Oracle Enterprise Manager.Metr     10          8,593            0            2,381      0       0    100.0
+            ic Engine
+
+            oracle@rp4440-h (TNS V1-V3)         8              0            0                0      0       0    100.0
+            01@<t/control/jobs/scripts/css      8              0            0                0      0       0    100.0
+            _ers_interface.sql
+
+            oracle@lnx-oss-11.ppl.com (TNS      8              0            0                0      0       0    100.0
+             V1-V3)
+
+            perl@rp4440-g (TNS V1-V3)           7             72            0               51      0       0    100.0
+            pmdtm@rp4440-e (TNS V1-V3)          4              0            0                0      0       0    100.0
+            writereg@rp4440-g (TNS V1-V3)       4              0            0                0      0       0    100.0
+            SQL Developer                       3              0            0                0      0       0    100.0
+            backup archivelog: ch1              3             24            0               16      0       0    100.0
+               ?  @rp4440-g (TNS V1-V3)         3              0            0                0      0       0    100.0
+            setproc@rp4440-g (TNS V1-V3)        2              0            0                0      0       0    100.0
+            01@<ost/control/jobs/scripts/e      2              0            0                0      0       0    100.0
+            r_css_reenroll.sql
+
+            EXCEL.EXE                           1              0            0                0      0       0    100.0
+***********                                       -------------- ------------ ---------------- ------ -------
+sum                                                   56,630,054      281,353          214,849   1615    3585
+
+STARTING    MODULE                           SQLS    BUFFER_GETS   DISK_READS        PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------------------------------ ------ -------------- ------------ ---------------- ------ ------- --------
+10/24 07:00 oracle@rp4440-g (TNS V1-V3)       258      1,504,356       79,624        9,994,544     76     196     94.7
+            MSACCESS.EXE                      184        361,913      145,330          427,654     23     137     59.8
+            SQL*Plus                          171      5,185,710      117,812            1,659     47     333     97.7
+                                              118         26,361          459            5,075      9       9     98.3
+            w3wp.exe                           90        127,010          668            9,255     27      31     99.5
+            rman@rp4440-g (TNS V1-V3)          61            216            1            1,206      5       6     99.5
+            SQLNav5.exe                        49              0            0                0      0       0    100.0
+            emagent@rp4440-g (TNS V1-V3)       44         43,324           16            7,638      3       6    100.0
+            prcregin@rp4440-g (TNS V1-V3)      18              0            0                0      0       0    100.0
+            sqlplus@rp4440-g (TNS V1-V3)       16          1,038            1              277      0       0     99.9
+            ediregin@rp4440-g (TNS V1-V3)      13              0            0                0      0       0    100.0
+            formreg@rp4440-g (TNS V1-V3)       12              0            0                0      0       0    100.0
+            msaccess.exe                       10              0            0                0      0       0    100.0
+            Oracle Enterprise Manager.Metr     10          8,226            0            2,029      1       1    100.0
+            ic Engine
+
+            oracle@rp4440-h (TNS V1-V3)         8              0            0                0      0       0    100.0
+            01@<t/control/jobs/scripts/css      8              0            0                0      0       0    100.0
+            _ers_interface.sql
+
+            oracle@lnx-oss-11.ppl.com (TNS      8              0            0                0      0       0    100.0
+             V1-V3)
+
+            perl@rp4440-g (TNS V1-V3)           7             72            0               51      0       0    100.0
+            pmdtm@rp4440-e (TNS V1-V3)          4        373,381      113,484        3,012,800     55     138     69.6
+            writereg@rp4440-g (TNS V1-V3)       4              0            0                0      0       0    100.0
+            SQL Developer                       3              0            0                0      0       0    100.0
+            backup archivelog: ch1              3             24            0               16      0       0    100.0
+               ?  @rp4440-g (TNS V1-V3)         3              0            0                0      0       0    100.0
+            setproc@rp4440-g (TNS V1-V3)        2              0            0                0      0       0    100.0
+            01@<ost/control/jobs/scripts/e      2              0            0                0      0       0    100.0
+            r_css_reenroll.sql
+
+            EXCEL.EXE                           1              0            0                0      0       0    100.0
+***********                                       -------------- ------------ ---------------- ------ -------
+sum                                                    7,631,631      457,395       13,462,204    246     857
+
+STARTING    MODULE                           SQLS    BUFFER_GETS   DISK_READS        PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------------------------------ ------ -------------- ------------ ---------------- ------ ------- --------
+10/24 08:00 oracle@rp4440-g (TNS V1-V3)       259     19,990,612    1,549,542       12,457,515    381    1407     92.2
+            MSACCESS.EXE                      185      1,409,570      152,912        3,664,578     30     113     89.2
+            SQL*Plus                          171        164,299           10              201      1       1    100.0
+                                              118         36,361          642            7,124      7       7     98.2
+            w3wp.exe                           90        450,697          366           16,670    106     110     99.9
+            rman@rp4440-g (TNS V1-V3)          61            216            0            1,207      3      10    100.0
+            SQLNav5.exe                        49              0            0                0      0       0    100.0
+            emagent@rp4440-g (TNS V1-V3)       44         43,474            0            7,665      0       4    100.0
+            prcregin@rp4440-g (TNS V1-V3)      18              0            0                0      0       0    100.0
+            sqlplus@rp4440-g (TNS V1-V3)       16            906            0              229      0       0    100.0
+            ediregin@rp4440-g (TNS V1-V3)      13              0            0                0      0       0    100.0
+            formreg@rp4440-g (TNS V1-V3)       12              0            0                0      0       0    100.0
+            msaccess.exe                       10              0            0                0      0       0    100.0
+            Oracle Enterprise Manager.Metr     10          8,227            0            2,029      0       0    100.0
+            ic Engine
+
+            oracle@rp4440-h (TNS V1-V3)         8              0            0                0      0       0    100.0
+            01@<t/control/jobs/scripts/css      8              0            0                0      0       0    100.0
+            _ers_interface.sql
+
+            oracle@lnx-oss-11.ppl.com (TNS      8              0            0                0      0       0    100.0
+             V1-V3)
+
+            perl@rp4440-g (TNS V1-V3)           7             72            0               51      0       0    100.0
+            pmdtm@rp4440-e (TNS V1-V3)          4              0            0                0      0       0    100.0
+            writereg@rp4440-g (TNS V1-V3)       4              0            0                0      0       0    100.0
+            SQL Developer                       3              0            0                0      0       0    100.0
+            backup archivelog: ch1              3             24            0               16      0       0    100.0
+               ?  @rp4440-g (TNS V1-V3)         3              0            0                0      0       0    100.0
+            setproc@rp4440-g (TNS V1-V3)        2              0            0                0      0       0    100.0
+            01@<ost/control/jobs/scripts/e      2              0            0                0      0       0    100.0
+            r_css_reenroll.sql
+
+            EXCEL.EXE                           1              0            0                0      0       0    100.0
+***********                                       -------------- ------------ ---------------- ------ -------
+sum                                                   22,104,458    1,703,472       16,157,285    528    1652
+
+STARTING    MODULE                           SQLS    BUFFER_GETS   DISK_READS        PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------------------------------ ------ -------------- ------------ ---------------- ------ ------- --------
+10/24 09:00 w3wp.exe                           65        978,490          882           30,837    223     230     99.9
+            oracle@rp4440-g (TNS V1-V3)        49      2,682,588      694,807        9,922,267    119     335     74.1
+                                               23        216,596          139          101,381      9       5     99.9
+            emagent@rp4440-g (TNS V1-V3)       11            901            1            3,629      1       1     99.9
+            SQL*Plus                            7         41,516           35            6,782      1       2     99.9
+            sqlplus@rp4440-g (TNS V1-V3)        6          1,113            0              218      0       0    100.0
+            MSACCESS.EXE                        4        183,960          427           43,320      4       4     99.8
+            msaccess.exe                        2          7,511          339            1,874      0       0     95.5
+            perl@rp4440-g (TNS V1-V3)           2             36            0               34      0       0    100.0
+            SQLNav5.exe                         1              0            0                0      0       0    100.0
+***********                                       -------------- ------------ ---------------- ------ -------
+sum                                                    4,112,711      696,630       10,110,342    357     577
+
+STARTING    MODULE                           SQLS    BUFFER_GETS   DISK_READS        PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------------------------------ ------ -------------- ------------ ---------------- ------ ------- --------
+10/24 10:00 w3wp.exe                           62      1,503,376        1,595           44,307    336     340     99.9
+            oracle@rp4440-g (TNS V1-V3)        49        137,383          812          255,640      6      19     99.4
+                                               24         43,422          205           13,320      7       7     99.5
+            SQL*Plus                            6         12,160           40            2,126      0       0     99.7
+            sqlplus@rp4440-g (TNS V1-V3)        6          1,221            0              255      0       0    100.0
+            SQLNav5.exe                         3              0            0                0      0       0    100.0
+            MSACCESS.EXE                        3        177,956            4           41,924      3       3    100.0
+            emagent@rp4440-g (TNS V1-V3)        3              0            0              244      0       1    100.0
+            msaccess.exe                        2            378            0               92      0       0    100.0
+            perl@rp4440-g (TNS V1-V3)           1              0            0               31      0       0    100.0
+***********                                       -------------- ------------ ---------------- ------ -------
+sum                                                    1,875,896        2,656          357,939    352     370
+
+STARTING    MODULE                           SQLS    BUFFER_GETS   DISK_READS        PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------------------------------ ------ -------------- ------------ ---------------- ------ ------- --------
+10/24 11:00 w3wp.exe                           62      1,205,397        1,152           53,067    243     255     99.9
+            oracle@rp4440-g (TNS V1-V3)        57     10,287,548    9,695,454          283,820    369     412      5.8
+                                               36         63,348       27,541            9,232      7      20     56.5
+            SQL*Plus                           20        183,609          585            3,348      2       2     99.7
+            MSACCESS.EXE                       17      1,453,496      821,157        2,003,245     53      75     43.5
+            formreg@rp4440-g (TNS V1-V3)        6        593,795      139,685              856     25      92     76.5
+            sqlplus@rp4440-g (TNS V1-V3)        6          1,078            0              216      0       1    100.0
+            msaccess.exe                        5            583            0              142      0       0    100.0
+            emagent@rp4440-g (TNS V1-V3)        4         41,706            1              351      2       1    100.0
+            writereg@rp4440-g (TNS V1-V3)       4         19,870       36,570              149     22      52    -84.0
+            SQLNav5.exe                         3              0            0                0      0       0    100.0
+            Oracle Enterprise Manager.Metr      2            432            0              636      0       0    100.0
+            ic Engine
+
+            perl@rp4440-g (TNS V1-V3)           1              0            0               31      0       0    100.0
+            setproc@rp4440-g (TNS V1-V3)        1          1,652            0               37      0       0    100.0
+            rman@rp4440-g (TNS V1-V3)           1              0            0              141      0       0    100.0
+***********                                       -------------- ------------ ---------------- ------ -------
+sum                                                   13,852,514   10,722,145        2,355,271    723     910
+
+STARTING    MODULE                           SQLS    BUFFER_GETS   DISK_READS        PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------------------------------ ------ -------------- ------------ ---------------- ------ ------- --------
+10/24 12:00 oracle@rp4440-g (TNS V1-V3)        87      1,116,504      552,827          256,895     41      96     50.5
+            w3wp.exe                           64        960,042        1,655           57,402    186     198     99.8
+                                               42         31,700          561            6,564      6       6     98.2
+            MSACCESS.EXE                       38      1,631,977      783,055          848,702     46      46     52.0
+            formreg@rp4440-g (TNS V1-V3)       25        619,574      123,458            2,416     27     112     80.1
+            SQL*Plus                           20        176,653           16            2,225      2       1    100.0
+            rman@rp4440-g (TNS V1-V3)           8            216            1              689      1       1     99.5
+            msaccess.exe                        6          1,215            0              372      0       0    100.0
+            sqlplus@rp4440-g (TNS V1-V3)        6          1,089            0              219      0       0    100.0
+            emagent@rp4440-g (TNS V1-V3)        4         41,706            1              345      0       0    100.0
+            writereg@rp4440-g (TNS V1-V3)       4         53,084       36,656            1,661     24      50     30.9
+            SQLNav5.exe                         3              0            0                0      0       0    100.0
+            Oracle Enterprise Manager.Metr      2            432            0              636      0       0    100.0
+            ic Engine
+
+            perl@rp4440-g (TNS V1-V3)           1              0            0               31      0       0    100.0
+            setproc@rp4440-g (TNS V1-V3)        1         18,131            0              415      0       0    100.0
+***********                                       -------------- ------------ ---------------- ------ -------
+sum                                                    4,652,323    1,498,230        1,178,572    333     510
+
+STARTING    MODULE                           SQLS    BUFFER_GETS   DISK_READS        PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------------------------------ ------ -------------- ------------ ---------------- ------ ------- --------
+10/24 13:00 oracle@rp4440-g (TNS V1-V3)        98      6,670,143      648,053        1,352,123     87     219     90.3
+            w3wp.exe                           66      1,387,707        3,084           67,328    263     271     99.8
+                                               50        100,877        1,399           24,383     10      10     98.6
+            MSACCESS.EXE                       46      1,540,441      995,372        1,861,046     58     166     35.4
+            formreg@rp4440-g (TNS V1-V3)       25        815,332      140,931           27,882     31     104     82.7
+            SQL*Plus                           20        923,043          635          125,981     13      14     99.9
+            rman@rp4440-g (TNS V1-V3)           9            216            1              738      0       0     99.5
+            sqlplus@rp4440-g (TNS V1-V3)        8          1,159            0              235      0       0    100.0
+            msaccess.exe                        6      1,052,874      523,081            3,298     43     165     50.3
+            emagent@rp4440-g (TNS V1-V3)        4         41,706            1              365      1       1    100.0
+            Oracle Enterprise Manager.Metr      4          7,320            0            1,272      1       1    100.0
+            ic Engine
+
+            writereg@rp4440-g (TNS V1-V3)       4         26,670       36,568              461     24      58    -37.1
+            SQLNav5.exe                         3              0            0                0      0       0    100.0
+            setproc@rp4440-g (TNS V1-V3)        2         10,109            0              116      0       0    100.0
+            perl@rp4440-g (TNS V1-V3)           1              0            0               31      0       0    100.0
+***********                                       -------------- ------------ ---------------- ------ -------
+sum                                                   12,577,597    2,349,125        3,465,259    531    1009
+
+STARTING    MODULE                           SQLS    BUFFER_GETS   DISK_READS        PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------------------------------ ------ -------------- ------------ ---------------- ------ ------- --------
+10/24 14:00 oracle@rp4440-g (TNS V1-V3)       110      1,534,306      106,980        3,163,677     38     139     93.0
+            SQL*Plus                           70      5,258,888      196,588            6,381     53     433     96.3
+            w3wp.exe                           67      1,519,986        3,397           77,060    304     318     99.8
+            MSACCESS.EXE                       58      3,140,603    1,090,319        4,794,878     94     253     65.3
+                                               52         32,135        1,435            6,026      4      11     95.5
+            formreg@rp4440-g (TNS V1-V3)       25        604,646      167,431            1,816     25     145     72.3
+            prcregin@rp4440-g (TNS V1-V3)      16              0            0                0      0       0    100.0
+            rman@rp4440-g (TNS V1-V3)           9            216            2              724      0       0     99.1
+            SQLNav5.exe                         8              0            0                0      0       0    100.0
+            sqlplus@rp4440-g (TNS V1-V3)        8          1,188            0              248      1       0    100.0
+            msaccess.exe                        6         13,972            0            4,628      0       0    100.0
+            emagent@rp4440-g (TNS V1-V3)        4         41,706            2              352      1       1    100.0
+            writereg@rp4440-g (TNS V1-V3)       4         24,360       36,590              353     22      46    -50.2
+            ediregin@rp4440-g (TNS V1-V3)       4              0            0                0      0       0    100.0
+            Oracle Enterprise Manager.Metr      4          7,321            0            1,272      0       0    100.0
+            ic Engine
+
+            pmdtm@rp4440-e (TNS V1-V3)          2              0            0                0      0       0    100.0
+            setproc@rp4440-g (TNS V1-V3)        2          7,853            8               89      0       0     99.9
+            perl@rp4440-g (TNS V1-V3)           1              0            0               31      0       0    100.0
+***********                                       -------------- ------------ ---------------- ------ -------
+sum                                                   12,187,180    1,602,752        8,057,535    542    1346
+
+STARTING    MODULE                           SQLS    BUFFER_GETS   DISK_READS        PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------------------------------ ------ -------------- ------------ ---------------- ------ ------- --------
+10/24 15:00 oracle@rp4440-g (TNS V1-V3)       155      5,307,835    4,126,536          381,074    180     256     22.3
+            MSACCESS.EXE                       84      3,929,553      910,213        3,144,602    106     154     76.8
+            SQL*Plus                           83        484,982      126,270           29,762     18     315     74.0
+            w3wp.exe                           67      1,017,296        1,618           84,791    176     185     99.8
+                                               52         84,088        1,608           12,883      8       9     98.1
+            formreg@rp4440-g (TNS V1-V3)       25        811,237      146,950           11,189     32     174     81.9
+            prcregin@rp4440-g (TNS V1-V3)      16              0            0                0      0       0    100.0
+            rman@rp4440-g (TNS V1-V3)          13            216            1              824      1       1     99.5
+            SQLNav5.exe                         8              0            0                0      0       0    100.0
+            sqlplus@rp4440-g (TNS V1-V3)        8         33,419           38              226      0       0     99.9
+            msaccess.exe                        6        142,216           26           46,783      1       1    100.0
+            emagent@rp4440-g (TNS V1-V3)        4         41,706            1              346      0       1    100.0
+            ediregin@rp4440-g (TNS V1-V3)       4        113,052        1,676            5,922      2      12     98.5
+            writereg@rp4440-g (TNS V1-V3)       4        135,634       36,724            5,413     26      46     72.9
+            Oracle Enterprise Manager.Metr      4          7,320            0            1,272      0       0    100.0
+            ic Engine
+
+            pmdtm@rp4440-e (TNS V1-V3)          2              0            0                0      0       0    100.0
+            setproc@rp4440-g (TNS V1-V3)        2        119,319            6            1,354      2       2    100.0
+            perl@rp4440-g (TNS V1-V3)           1              0            0               31      0       0    100.0
+***********                                       -------------- ------------ ---------------- ------ -------
+sum                                                   12,227,873    5,351,667        3,726,472    552    1156
+
+STARTING    MODULE                           SQLS    BUFFER_GETS   DISK_READS        PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------------------------------ ------ -------------- ------------ ---------------- ------ ------- --------
+10/24 16:00 oracle@rp4440-g (TNS V1-V3)       157      3,082,872    2,314,902          286,644    125     245     24.9
+            MSACCESS.EXE                       98      2,655,000      862,536        6,231,614     76     118     67.5
+            SQL*Plus                           83     12,610,921      980,979          186,327    205     894     92.2
+            w3wp.exe                           68      1,819,226        3,449           78,006    381     399     99.8
+                                               57         80,636        2,333           20,508      8      21     97.1
+            formreg@rp4440-g (TNS V1-V3)       25        720,837      200,591           11,965     33     218     72.2
+            rman@rp4440-g (TNS V1-V3)          16            216            1              888      0       0     99.5
+            prcregin@rp4440-g (TNS V1-V3)      16      8,250,012    5,033,943          251,950    380    2099     39.0
+            sqlplus@rp4440-g (TNS V1-V3)       10          1,254            0              264      0       0    100.0
+            SQLNav5.exe                         8              0            0                0      0       0    100.0
+            msaccess.exe                        7            164            0               40      0       0    100.0
+            emagent@rp4440-g (TNS V1-V3)        4         41,706            8              370      2       0    100.0
+            ediregin@rp4440-g (TNS V1-V3)       4              0            0                0      0       0    100.0
+            Oracle Enterprise Manager.Metr      4          7,320            0            1,272      0       0    100.0
+            ic Engine
+
+            writereg@rp4440-g (TNS V1-V3)       4         23,892       36,642              317     24      51    -53.4
+            pmdtm@rp4440-e (TNS V1-V3)          2        373,749       60,093        3,014,939     47      78     83.9
+            setproc@rp4440-g (TNS V1-V3)        2          7,073            0               80      0       0    100.0
+            perl@rp4440-g (TNS V1-V3)           1              0            0               31      0       0    100.0
+***********                                       -------------- ------------ ---------------- ------ -------
+sum                                                   29,674,878    9,495,477       10,085,215   1281    4123
+
+STARTING    MODULE                           SQLS    BUFFER_GETS   DISK_READS        PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------------------------------ ------ -------------- ------------ ---------------- ------ ------- --------
+10/24 17:00 oracle@rp4440-g (TNS V1-V3)       174        612,256       63,036          196,683     22      33     89.7
+            SQL*Plus                          112        168,521           11              880      1       1    100.0
+            MSACCESS.EXE                      103        991,685      804,584          661,871     38      36     18.9
+            w3wp.exe                           81      1,238,763        1,045           81,706    233     239     99.9
+                                               57         29,015        1,784            4,840      3      12     93.9
+            formreg@rp4440-g (TNS V1-V3)       25        586,288      131,181            1,206     25     123     77.6
+            rman@rp4440-g (TNS V1-V3)          17            216            0              885      1       1    100.0
+            prcregin@rp4440-g (TNS V1-V3)      16              0            0                0      0       0    100.0
+            sqlplus@rp4440-g (TNS V1-V3)       10          1,089            0              219      0       0    100.0
+            SQLNav5.exe                         9              0            0                0      0       0    100.0
+            msaccess.exe                        7              6            0                2      0       0    100.0
+            Oracle Enterprise Manager.Metr      5          7,918            0            1,844      0       0    100.0
+            ic Engine
+
+            emagent@rp4440-g (TNS V1-V3)        4         41,706            0              339      0       1    100.0
+            ediregin@rp4440-g (TNS V1-V3)       4              0            0                0      0       0    100.0
+            writereg@rp4440-g (TNS V1-V3)       4         18,094       20,320               61     21      31    -12.3
+            pmdtm@rp4440-e (TNS V1-V3)          2              0            0                0      0       0    100.0
+            setproc@rp4440-g (TNS V1-V3)        2          1,491            0               16      0       0    100.0
+            perl@rp4440-g (TNS V1-V3)           1              0            0               31      0       0    100.0
+***********                                       -------------- ------------ ---------------- ------ -------
+sum                                                    3,697,048    1,021,961          950,583    344     477
+
+STARTING    MODULE                           SQLS    BUFFER_GETS   DISK_READS        PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------------------------------ ------ -------------- ------------ ---------------- ------ ------- --------
+10/24 18:00 oracle@rp4440-g (TNS V1-V3)       178      2,790,979      178,957        1,685,302     81     111     93.6
+            SQL*Plus                          112        211,263           14            7,973      2       1    100.0
+            MSACCESS.EXE                      104      1,109,206      815,393          654,849     42      40     26.5
+            w3wp.exe                           81        642,871          821           53,066    111     116     99.9
+                                               58         49,140          230            8,422      4       4     99.5
+            formreg@rp4440-g (TNS V1-V3)       25         80,853           18            3,100      1       2    100.0
+            rman@rp4440-g (TNS V1-V3)          18            216            0              896      0       0    100.0
+            prcregin@rp4440-g (TNS V1-V3)      16              0            0                0      0       0    100.0
+            sqlplus@rp4440-g (TNS V1-V3)       10         44,256           18              225      2       1    100.0
+            SQLNav5.exe                         9              0            0                0      0       0    100.0
+            msaccess.exe                        7              0            0                0      0       0    100.0
+            Oracle Enterprise Manager.Metr      5          8,288            0            2,196      0       1    100.0
+            ic Engine
+
+            emagent@rp4440-g (TNS V1-V3)        4         41,706            1              340      1       1    100.0
+            ediregin@rp4440-g (TNS V1-V3)       4              0            0                0      0       0    100.0
+            writereg@rp4440-g (TNS V1-V3)       4              0            0                0      0       0    100.0
+            pmdtm@rp4440-e (TNS V1-V3)          2              0            0                0      0       0    100.0
+            setproc@rp4440-g (TNS V1-V3)        2              0            0                0      0       0    100.0
+            perl@rp4440-g (TNS V1-V3)           1              0            0               31      0       0    100.0
+***********                                       -------------- ------------ ---------------- ------ -------
+sum                                                    4,978,778      995,452        2,416,400    244     277
+
+STARTING    MODULE                           SQLS    BUFFER_GETS   DISK_READS        PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------------------------------ ------ -------------- ------------ ---------------- ------ ------- --------
+10/24 19:00 oracle@rp4440-g (TNS V1-V3)       184        878,196        9,080           48,739     24      62     99.0
+            SQL*Plus                          114        290,535          207           19,934      2       3     99.9
+            MSACCESS.EXE                      112        774,960      773,266               70     30      30      0.2
+            w3wp.exe                           82        516,950          702           68,401     68      77     99.9
+                                               59         75,439          731           10,782      5       7     99.0
+            rman@rp4440-g (TNS V1-V3)          25            216            1            1,315      0       1     99.5
+            formreg@rp4440-g (TNS V1-V3)       25         86,722           21            3,531      2       2    100.0
+            emagent@rp4440-g (TNS V1-V3)       22         43,184            4            7,348      1       0    100.0
+            prcregin@rp4440-g (TNS V1-V3)      16              0            0                0      0       0    100.0
+            sqlplus@rp4440-g (TNS V1-V3)       10            972            0              233      0       0    100.0
+            SQLNav5.exe                         9              0            0                0      0       0    100.0
+            Oracle Enterprise Manager.Metr      9          8,218            2            2,024      0       0    100.0
+            ic Engine
+
+            msaccess.exe                        7              0            0                0      0       0    100.0
+            01@<t/control/jobs/scripts/css      7              0            0                0      0       0    100.0
+            _ers_interface.sql
+
+            ediregin@rp4440-g (TNS V1-V3)       4              0            0                0      0       0    100.0
+            writereg@rp4440-g (TNS V1-V3)       4              0            0                0      0       0    100.0
+            perl@rp4440-g (TNS V1-V3)           3             72            0               31      0       0    100.0
+               ?  @rp4440-g (TNS V1-V3)         3          4,804            0            1,201      0       0    100.0
+            pmdtm@rp4440-e (TNS V1-V3)          2              0            0                0      0       0    100.0
+            setproc@rp4440-g (TNS V1-V3)        2              0            0                0      0       0    100.0
+***********                                       -------------- ------------ ---------------- ------ -------
+sum                                                    2,680,268      784,014          163,609    132     182
+
+STARTING    MODULE                           SQLS    BUFFER_GETS   DISK_READS        PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------------------------------ ------ -------------- ------------ ---------------- ------ ------- --------
+10/24 20:00 oracle@rp4440-g (TNS V1-V3)       186        622,372       18,846          197,761     23      35     97.0
+            SQL*Plus                          130        164,202            1              213      0       1    100.0
+            MSACCESS.EXE                      112        774,960      707,277               70     32      33      8.7
+            w3wp.exe                           83        614,074          836           80,765     77      86     99.9
+                                               61         26,139          622            4,133      3       6     97.6
+            rman@rp4440-g (TNS V1-V3)          26            216            0            6,419      4       5    100.0
+            formreg@rp4440-g (TNS V1-V3)       25              0            0                0      0       0    100.0
+            emagent@rp4440-g (TNS V1-V3)       22         43,205            0            7,360      2       3    100.0
+            prcregin@rp4440-g (TNS V1-V3)      16              0            0                0      0       0    100.0
+            sqlplus@rp4440-g (TNS V1-V3)       10            906            0              216      0       0    100.0
+            SQLNav5.exe                         9              0            0                0      0       0    100.0
+            Oracle Enterprise Manager.Metr      9          8,219            0            2,024      2       0    100.0
+            ic Engine
+
+            msaccess.exe                        7              0            0                0      0       0    100.0
+            01@<t/control/jobs/scripts/css      7              0            0                0      0       0    100.0
+            _ers_interface.sql
+
+            ediregin@rp4440-g (TNS V1-V3)       4              0            0                0      0       0    100.0
+            writereg@rp4440-g (TNS V1-V3)       4              0            0                0      0       0    100.0
+            perl@rp4440-g (TNS V1-V3)           3             72            0               31      0       0    100.0
+               ?  @rp4440-g (TNS V1-V3)         3              0            0                0      0       0    100.0
+            pmdtm@rp4440-e (TNS V1-V3)          2              0            0                0      0       0    100.0
+            01@<ost/control/jobs/scripts/e      2              0            0                0      0       0    100.0
+            r_css_reenroll.sql
+
+            setproc@rp4440-g (TNS V1-V3)        2              0            0                0      0       0    100.0
+***********                                       -------------- ------------ ---------------- ------ -------
+sum                                                    2,254,365      727,582          298,992    143     169
+
+STARTING    MODULE                           SQLS    BUFFER_GETS   DISK_READS        PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------------------------------ ------ -------------- ------------ ---------------- ------ ------- --------
+10/24 21:00 oracle@rp4440-g (TNS V1-V3)       186        723,037       25,416           22,678     26      85     96.5
+            SQL*Plus                          130        164,187            0              212      2       1    100.0
+            MSACCESS.EXE                      112        774,960      596,567               70     30      48     23.0
+            w3wp.exe                           85        531,506          640           67,671     61      77     99.9
+                                               61         20,995          150            3,285      4       4     99.3
+            rman@rp4440-g (TNS V1-V3)          32            216            0            1,027      1       1    100.0
+            formreg@rp4440-g (TNS V1-V3)       25              0            0                0      0       0    100.0
+            emagent@rp4440-g (TNS V1-V3)       22         43,170            0            7,346      2       1    100.0
+            prcregin@rp4440-g (TNS V1-V3)      16              0            0                0      0       0    100.0
+            sqlplus@rp4440-g (TNS V1-V3)       10         44,258            0              226      0       0    100.0
+            SQLNav5.exe                         9              0            0                0      0       0    100.0
+            Oracle Enterprise Manager.Metr      9          8,586            0            2,376      0       1    100.0
+            ic Engine
+
+            msaccess.exe                        7              0            0                0      0       0    100.0
+            01@<t/control/jobs/scripts/css      7              0            0                0      0       0    100.0
+            _ers_interface.sql
+
+            ediregin@rp4440-g (TNS V1-V3)       4              0            0                0      0       0    100.0
+            writereg@rp4440-g (TNS V1-V3)       4              0            0                0      0       0    100.0
+            perl@rp4440-g (TNS V1-V3)           3             72            0               32      0       0    100.0
+               ?  @rp4440-g (TNS V1-V3)         3              0            0                0      0       0    100.0
+            pmdtm@rp4440-e (TNS V1-V3)          2              0            0                0      0       0    100.0
+            setproc@rp4440-g (TNS V1-V3)        2              0            0                0      0       0    100.0
+            01@<ost/control/jobs/scripts/e      2              0            0                0      0       0    100.0
+            r_css_reenroll.sql
+
+***********                                       -------------- ------------ ---------------- ------ -------
+sum                                                    2,310,987      622,773          104,923    126     218
+
+STARTING    MODULE                           SQLS    BUFFER_GETS   DISK_READS        PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------------------------------ ------ -------------- ------------ ---------------- ------ ------- --------
+10/24 22:00 oracle@rp4440-g (TNS V1-V3)       187      1,070,073       31,508           82,464     39      74     97.1
+            SQL*Plus                          130        716,314            2           85,615     16      18    100.0
+            MSACCESS.EXE                      112        774,960      675,834               70     32      36     12.8
+            w3wp.exe                           85        305,578          451           43,880     34      44     99.9
+                                               61         23,258          201            4,410      4       2     99.1
+            rman@rp4440-g (TNS V1-V3)          36            216            0            1,126      3       3    100.0
+            formreg@rp4440-g (TNS V1-V3)       25              0            0                0      0       0    100.0
+            emagent@rp4440-g (TNS V1-V3)       22         43,150            0            7,351      2       1    100.0
+            prcregin@rp4440-g (TNS V1-V3)      16              0            0                0      0       0    100.0
+            sqlplus@rp4440-g (TNS V1-V3)       10          1,018            0              234      0       0    100.0
+            SQLNav5.exe                         9              0            0                0      0       0    100.0
+            Oracle Enterprise Manager.Metr      9          8,220            0            2,024      0       0    100.0
+            ic Engine
+
+            msaccess.exe                        7              0            0                0      0       0    100.0
+            01@<t/control/jobs/scripts/css      7              0            0                0      0       0    100.0
+            _ers_interface.sql
+
+            ediregin@rp4440-g (TNS V1-V3)       4              0            0                0      0       0    100.0
+            writereg@rp4440-g (TNS V1-V3)       4              0            0                0      0       0    100.0
+            perl@rp4440-g (TNS V1-V3)           3             72            0               31      0       0    100.0
+               ?  @rp4440-g (TNS V1-V3)         3        136,139        2,477           26,662      4      15     98.2
+            pmdtm@rp4440-e (TNS V1-V3)          2              0            0                0      0       0    100.0
+            setproc@rp4440-g (TNS V1-V3)        2              0            0                0      0       0    100.0
+            01@<ost/control/jobs/scripts/e      2              0            0                0      0       0    100.0
+            r_css_reenroll.sql
+
+            backup archivelog: ch1              1             24            0                8      0       0    100.0
+***********                                       -------------- ------------ ---------------- ------ -------
+sum                                                    3,079,022      710,473          253,875    134     193

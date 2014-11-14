@@ -1,0 +1,18 @@
+DELETE plan_table where statement_id = 'MTI'
+       *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+  INTO plan_table
+       *
+ERROR at line 3:
+ORA-02404: specified plan table not found
+
+
+from plan_table
+     *
+ERROR at line 23:
+ORA-00942: table or view does not exist
+
+

@@ -1,0 +1,809 @@
+
+NAME      REPORT          FIRST_SNAP  LAST_SNAP REPORT_TIME
+--------- --------------- ---------- ---------- ----------------
+ASPTIVR   10 LARGEST SQLS       6141       6151 2013-07-16 10:32
+
+VERSION           HOST_NAME    STARTUP
+----------------- ------------ ----------------
+9.2.0.8.0         l2000-y      2012-07-05 23:13
+
+2013-07-16 00:00 FIRST SNAPSHOT       6141
+2013-07-16 10:00  LAST SNAPSHOT       6151
+
+STARTING      SQLS    BUFFER_GETS   DISK_READS    PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------ -------------- ------------ ------------ ------ ------- --------
+07/16 00:00    335        189,511        2,204       12,057     14      31     98.8
+07/16 01:00    336        190,741        2,189       11,290     12      27     98.9
+07/16 02:00    336        239,455        2,199       13,642     17      27     99.1
+07/16 03:00    339        193,944        4,373       11,286     12      34     97.7
+07/16 04:00    341        183,266        2,072       12,342     16      40     98.9
+07/16 05:00    353        204,282        6,363       13,562     18      29     96.9
+07/16 06:00    355        202,954        6,972       13,566     12      45     96.6
+07/16 07:00    358        214,267        6,886       17,129     21      38     96.8
+07/16 08:00    337        320,168        1,078       40,954     28      69     99.7
+07/16 09:00    338        345,595        1,040       41,150     33      79     99.7
+                   -------------- ------------ ------------ ------ -------
+sum                     2,284,183       35,376      186,978    183     419
+
+Top SQLs by BUFFER GETS
+
+RANK    BUFFER_GETS  GETS/EXEC     EXECS   DISK_READS    PROCESSED    CPU ELAPSED HASH_VALUE
+---- -------------- ---------- --------- ------------ ------------ ------ ------- ----------
+   1      1,386,120      23102        60        8,881        1,080     29      36 3203046046
+   2        183,996          7     26442          347       26,442     30      89 3869783723
+   3         89,244        149       600        8,933          600      6      13 2847679569
+   4         87,312        107       816            0          816      4       5 1208793942
+   5         82,746          3     26864            0       26,864      8      24  832425525
+   6         64,908        108       600          171            9      3       5 1281656644
+   7         64,370        108       595          129          595      4       5  605247724
+   8         33,600         28      1200           16        1,200      5       6 3944096678
+   9         26,985          7      3855           15        3,855      2       2 2369771717
+  10         19,372       2422         8        4,391            8     13      57  333476733
+     --------------            --------- ------------ ------------ ------ -------
+sum       2,038,653                61040       22,883       61,469    104     242
+
+Top SQLs by DISK READS
+
+RANK   DISK_READS READS/EXEC     EXECS    BUFFER_GETS    PROCESSED    CPU ELAPSED HASH_VALUE
+---- ------------ ---------- --------- -------------- ------------ ------ ------- ----------
+   1        8,933         15       600         89,244          600      6      13 2847679569
+   2        8,881        148        60      1,386,120        1,080     29      36 3203046046
+   3        6,574       2191         3          6,638            3      1       4 1529946387
+   4        4,391        549         8         19,372            8     13      57  333476733
+   5        4,032        504         8          1,445        2,756      5      22 4043595143
+   6        1,714        214         8          3,296            0      0       1 4115672663
+   7          347          0     26442        183,996       26,442     30      89 3869783723
+   8          171          0       600         64,908            9      3       5 1281656644
+   9          129          0       595         64,370          595      4       5  605247724
+  10           36         18         2            166            2      0       0 2475841573
+     ------------            --------- -------------- ------------ ------ -------
+sum        35,208                28326      1,819,555       31,495     91     232
+
+Top SQLs by CPU
+
+RANK    CPU ELAPSED   DISK_READS READS/EXEC     EXECS    BUFFER_GETS    PROCESSED HASH_VALUE
+---- ------ ------- ------------ ---------- --------- -------------- ------------ ----------
+   1     30      89          347          0     26442        183,996       26,442 3869783723
+   2     29      36        8,881        148        60      1,386,120        1,080 3203046046
+   3     13      57        4,391        549         8         19,372            8  333476733
+   4     10      13            0          0        80              0            0 1325168825
+   5      9      22            0          0        68              0            0 1715138253
+   6      8      24            0          0     26864         82,746       26,864  832425525
+   7      8      31            0          0        30            152            0 1507578798
+   8      8       8            0          0       600              0           33 3495239768
+   9      6      13        8,933         15       600         89,244          600 2847679569
+  10      5       6           16          0      1200         33,600        1,200 3944096678
+     ------ ------- ------------            --------- -------------- ------------
+sum     126     299       22,568                55952      1,795,230       56,227
+
+
+================================================================
+                            SQL 333476733
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+DECLARE job BINARY_INTEGER := :job; next_date DATE := :mydate;
+broken BOOLEAN := FALSE; BEGIN statspack.snap; :mydate := next_d
+ate; IF broken THEN :b := 1; ELSE :b := 0; END IF; END;
+
+FIRST TIME = 2013-07-16 10:00
+MODULE     =
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+07/16 00    60      1       8         1          2,404          556         1
+07/16 01    60      2       5         1          2,308          547         1
+07/16 02    60      2       4         1          2,477          547         1
+07/16 03    60      1      11         1          2,316          543         1
+07/16 04    60      2      12         1          2,421          504         1
+07/16 05    60      2       5         1          2,389          476         1
+07/16 06    60      1       9         1          2,531          498         1
+07/16 07    60      2       3         1          2,526          720         1
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        480     13      57         8         19,372        4,391         8
+
+
+================================================================
+                            SQL 605247724
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT MAX(INSERT_SEQUENCE) FROM ROSTER_CALLS                    from
+
+FIRST TIME = 2013-06-20 15:31
+MODULE     = oracle@lnx-dbfm-g-003.ppl.com (TNS V1-V3
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                 12
+SORT                 AGGREGATE                                                      1
+TABLE ACCESS         FULL           ROSTER_CALLS                 12       12     3613
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+ROSTER_CALLS             3613     74 06/23/13 23:46  100%       1       1       0   10
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+07/16 00    60      1       0        59          6,313            0        59 oracle@lnx-dbfm-g
+07/16 01    60      0       1        60          6,420            0        60 oracle@lnx-dbfm-g
+07/16 02    60      1       0        59          6,313            0        59 oracle@lnx-dbfm-g
+07/16 03    60      0       0        60          6,420            0        60 oracle@lnx-dbfm-g
+07/16 04    60      0       1        59          6,313            0        59 oracle@lnx-dbfm-g
+07/16 05    60      1       1        60          6,420            0        60 oracle@lnx-dbfm-g
+07/16 06    60      0       0        59          7,018           31        59 oracle@lnx-dbfm-g
+07/16 07    60      1       1        60          6,420           98        60 oracle@lnx-dbfm-g
+07/16 08    60      0       0        59          6,313            0        59 oracle@lnx-dbfm-g
+07/16 09    60      0       1        60          6,420            0        60 oracle@lnx-dbfm-g
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        600      4       5       595         64,370          129       595
+
+
+================================================================
+                            SQL 832425525
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT CALLDETAILSEQ.NEXTVAL FROM DUAL                           from
+
+FIRST TIME = 2012-07-05 23:30
+MODULE     = DTExec.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT
+SEQUENCE
+TABLE ACCESS         FULL           DUAL
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+07/16 00    60      0       0       381          1,171            0       381 DTExec.exe
+07/16 01    60      0       0         0              0            0         0 DTExec.exe
+07/16 02    60      1       1       632          1,948            0       632 DTExec.exe
+07/16 03    60      0       0         0              0            0         0 DTExec.exe
+07/16 04    60      0       0         0              0            0         0 DTExec.exe
+07/16 05    60      0       0       766          2,359            0       766 DTExec.exe
+07/16 06    60      0       2      1140          3,512            0      1140 DTExec.exe
+07/16 07    60      1       1      1872          5,765            0      1872 DTExec.exe
+07/16 08    60      2      10     10278         31,660            0     10278 DTExec.exe
+07/16 09    60      4      10     11795         36,331            0     11795 DTExec.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        600      8      24     26864         82,746            0     26864
+
+
+================================================================
+                            SQL 1208793942
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT MAX(SCHEDULE_TIME) FROM ROSTER_CALLS WHERE AUTO_DETAIL_ID from
+ = :B1
+
+FIRST TIME = 2013-06-20 15:33
+MODULE     = oracle@lnx-dbfm-g-003.ppl.com (TNS V1-V3
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                 12
+SORT                 AGGREGATE                                                      1
+TABLE ACCESS         FULL           ROSTER_CALLS                 12       12        1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+ROSTER_CALLS             3613     74 06/23/13 23:46  100%       1       1       0   10
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+07/16 00    60      0       0        48          5,136            0        48 oracle@lnx-dbfm-g
+07/16 01    60      0       1        96         10,272            0        96 oracle@lnx-dbfm-g
+07/16 02    60      3       3       480         51,360            0       480 oracle@lnx-dbfm-g
+07/16 03    60      0       1        96         10,272            0        96 oracle@lnx-dbfm-g
+07/16 04    60      0       0         0              0            0         0 oracle@lnx-dbfm-g
+07/16 05    60      1       0        96         10,272            0        96 oracle@lnx-dbfm-g
+07/16 06    60      0       0         0              0            0         0 oracle@lnx-dbfm-g
+07/16 07    60      0       0         0              0            0         0 oracle@lnx-dbfm-g
+07/16 08    60      0       0         0              0            0         0 oracle@lnx-dbfm-g
+07/16 09    60      0       0         0              0            0         0 oracle@lnx-dbfm-g
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        600      4       5       816         87,312            0       816
+
+
+================================================================
+                            SQL 1281656644
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT TELEPHONE, EMP_ID, AUTO_DETAIL_ID, MSG_CODE, PAGER_TYPE F
+ROM ROSTER_CALLS WHERE SCHEDULE_TIME IS NULL ORDER BY INSERT_SEQ where
+UENCE
+
+FIRST TIME = 2012-07-06 06:30
+MODULE     = JDBC Thin Client
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                 14
+SORT                 ORDER BY                                    14       14        1
+TABLE ACCESS         FULL           ROSTER_CALLS                 12       12        1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+ROSTER_CALLS             3613     74 06/23/13 23:46  100%       1       1       0   10
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+07/16 00    60      0       0        60          6,420            0         1 JDBC Thin Client
+07/16 01    60      0       1        60          6,420            0         1 JDBC Thin Client
+07/16 02    60      1       0        60          6,420            0         5 JDBC Thin Client
+07/16 03    60      0       1        60          6,420            0         1 JDBC Thin Client
+07/16 04    60      0       0        60          6,420            0         0 JDBC Thin Client
+07/16 05    60      1       0        60          6,420            0         1 JDBC Thin Client
+07/16 06    60      0       2        60          7,128          171         0 JDBC Thin Client
+07/16 07    60      0       0        60          6,420            0         0 JDBC Thin Client
+07/16 08    60      1       1        61          6,527            0         0 JDBC Thin Client
+07/16 09    60      0       0        59          6,313            0         0 JDBC Thin Client
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        600      3       5       600         64,908          171         9
+
+
+================================================================
+                            SQL 1325168825
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+   SELECT 'LEH '||b.dir_num ||' Trunk ' ||a.trknum||         Dec
+ode(a.status,2, ' is Offline',0,' is Deactivated') as Status   F
+ROM acc.trkerr@ACD_lEHIGH.WORLD a, acc.trunk@ACD_LEHIGH.WORLD b
+  where a.trknum = b.trknum   and a.status <> 1   and B.CARD_NUM where
+ ||'_'|| B.SPAN_NUM IN ('13_1','14_1','15_1','15_2','34_1','36_1
+','36_2','42_2','57_1','58_1','58_2','59_2','61_1')
+
+FIRST TIME = 2013-07-15 10:42
+MODULE     = SQL*Plus
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+07/16 00    60      1       1         8              0            0         0 SQL*Plus
+07/16 01    60      1       1         8              0            0         0 SQL*Plus
+07/16 02    60      1       2         8              0            0         0 SQL*Plus
+07/16 03    60      1       1         8              0            0         0 SQL*Plus
+07/16 04    60      1       1         8              0            0         0 SQL*Plus
+07/16 05    60      1       2         8              0            0         0 SQL*Plus
+07/16 06    60      1       1         8              0            0         0 SQL*Plus
+07/16 07    60      1       1         8              0            0         0 SQL*Plus
+07/16 08    60      1       2         8              0            0         0 SQL*Plus
+07/16 09    60      1       1         8              0            0         0 SQL*Plus
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        600     10      13        80              0            0         0
+
+
+================================================================
+                            SQL 1507578798
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT 'SCRANTON '||'CARD '||a.card_num ||' '||'Port '|| port_nu
+m ||' '||     decode(status, '1', 'is online', '0', 'is offline'
+) AS "Status"     FROM acc.trunk@ACD_scranton.WORLD a,  acc.trke from
+rr@ACD_scranton.WORLD b    where a.trknum = b.trknum   and a.in_ where
+grp_num = 10   and b.status = 0        -- TO OMIT A CARD AND POR
+T ENTER CARD AND NUMBER IN THE NOT IN CLAUSE IN #_# FORMAT   AND
+ CARD_NUM||'_'||port_NUM NOT IN ('') -- AND CARD_NUM||'_'||port_
+NUM NOT IN ('58_1','58_2')
+
+FIRST TIME = 2013-03-20 12:49
+MODULE     = SQL*Plus
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+07/16 00    60      2       5         4             20            0         0 SQL*Plus
+07/16 01    60      0       3         2             11            0         0 SQL*Plus
+07/16 02    60      0       0         0              0            0         0 SQL*Plus
+07/16 03    60      1       3         4             21            0         0 SQL*Plus
+07/16 04    60      1       4         4             20            0         0 SQL*Plus
+07/16 05    60      1       3         4             20            0         0 SQL*Plus
+07/16 06    60      1       4         4             20            0         0 SQL*Plus
+07/16 07    60      0       0         0              0            0         0 SQL*Plus
+07/16 08    60      1       4         4             20            0         0 SQL*Plus
+07/16 09    60      1       5         4             20            0         0 SQL*Plus
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        600      8      31        30            152            0         0
+
+
+================================================================
+                            SQL 1529946387
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+UPDATE CALL_SCHEDULE SET SCHEDULE_TIME = :B3 , IVR = :B2 WHERE D where
+E_1 = :B1 AND CALL_TYPE = 1
+
+FIRST TIME = 2013-07-16 03:28
+MODULE     = JDBC Thin Client
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+UPDATE STATEMENT                                                213
+UPDATE
+TABLE ACCESS         FULL           CALL_SCHEDULE               213      213        1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CALL_SCHEDULE           14909     73 06/23/13 23:10  100%      17      17       1   10
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CALL_SCHEDULE      CALL_SCHEDULE_IDX               1   1 CALL_TYPE                 2       0
+                                                       2 SCHEDULE_TIME           296   13140
+                                                       3 REQUEST_TIME            273       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+07/16 04    60      0       0         0              0            0         0 JDBC Thin Client
+07/16 05    60      0       2         1          2,210        2,187         1 JDBC Thin Client
+07/16 06    60      1       0         1          2,217        2,193         1 JDBC Thin Client
+07/16 07    60      0       2         1          2,211        2,194         1 JDBC Thin Client
+07/16 08    60      0       0         0              0            0         0 JDBC Thin Client
+07/16 09    60      0       0         0              0            0         0 JDBC Thin Client
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        360      1       4         3          6,638        6,574         3
+
+
+================================================================
+                            SQL 1715138253
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT 'LEHIGH '||'CARD '||a.card_num ||' '||'Port '|| port_num
+||' '||     decode(status, '1', 'is online', '0', 'is offline')
+AS "Status"     FROM acc.trunk@ACD_Lehigh.WORLD a,  acc.trkerr@A from
+CD_Lehigh.WORLD b    where a.trknum = b.trknum   and a.in_grp_nu where
+m = 20   and b.status = 0         -- TO OMIT A CARD AND PORT ENT
+ER CARD AND NUMBER IN THE NOT IN CLAUSE IN #_# FORMAT  --AND CAR
+D_NUM||'_'||port_NUM NOT IN ('')
+
+FIRST TIME = 2013-01-26 17:50
+MODULE     = SQL*Plus
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+07/16 00    60      1       2         8              0            0         0 SQL*Plus
+07/16 01    60      0       2         4              0            0         0 SQL*Plus
+07/16 02    60      0       0         0              0            0         0 SQL*Plus
+07/16 03    60      1       2         8              0            0         0 SQL*Plus
+07/16 04    60      1       4         8              0            0         0 SQL*Plus
+07/16 05    60      1       2         8              0            0         0 SQL*Plus
+07/16 06    60      1       2         8              0            0         0 SQL*Plus
+07/16 07    60      1       3         8              0            0         0 SQL*Plus
+07/16 08    60      2       2         8              0            0         0 SQL*Plus
+07/16 09    60      1       3         8              0            0         0 SQL*Plus
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        600      9      22        68              0            0         0
+
+
+================================================================
+                            SQL 2369771717
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+  SELECT current_status      FROM storm_flag_status              from
+
+FIRST TIME = 2012-07-06 06:36
+MODULE     = JDBC Thin Client
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                  2
+TABLE ACCESS         FULL           STORM_FLAG_STATUS             2        2        1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+STORM_FLAG_STATUS           1      2 06/23/13 23:48  100%       0       0       0   10
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+07/16 00    60      0       0        38            266            0        38 JDBC Thin Client
+07/16 01    60      0       0        28            196            0        28 JDBC Thin Client
+07/16 02    60      0       0        22            154            0        22 JDBC Thin Client
+07/16 03    60      0       0        26            182            0        26 JDBC Thin Client
+07/16 04    60      0       0        15            105            0        15 JDBC Thin Client
+07/16 05    60      0       0        73            511            0        73 JDBC Thin Client
+07/16 06    60      1       0       135            945           10       135 JDBC Thin Client
+07/16 07    60      0       0       397          2,779            5       397 JDBC Thin Client
+07/16 08    60      0       1      1543         10,801            0      1543 JDBC Thin Client
+07/16 09    60      1       1      1578         11,046            0      1578 JDBC Thin Client
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        600      2       2      3855         26,985           15      3855
+
+
+================================================================
+                            SQL 2475841573
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT CASE  WHEN NCOALLOCATION = 0 THEN 2  WHEN INTERNAL_COUNTE
+R = 0 THEN 2  WHEN NCOALLOCATION = 100 THEN 1  WHEN (NCOALLOCATI
+ON-((NCO_COUNTER/(INTERNAL_COUNTER+NCO_COUNTER))*100)) > 0 THEN
+1  ELSE 2  END As NCOFlag FROM (SELECT COUNT(*) As NCO_COUNTER F from
+ROM NCO_CALL_ALLOCATION_DETAIL WHERE CALL_DIRECTION = 1 AND QUEU where
+E = 2) A  LEFT OUTER JOIN (SELECT COUNT(*) As INTERNAL_COUNTER F
+ROM NCO_CALL_ALLOCATION_DETAIL WHERE CALL_DIRECTION = 2 AND QUEU where
+E = 2) B ON 1=1  LEFT OUTER JOIN (SELECT NCOALLOCATION FROM NCO_ from
+CALL_ALLOCATION WHERE QUEUE = 2) C ON 1=1                        where
+
+FIRST TIME = 2012-07-30 08:03
+MODULE     = JDBC Thin Client
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                  6
+MERGE JOIN           OUTER                                        6        6        1
+MERGE JOIN           OUTER                                        4        4        1
+VIEW                                                              2                 1
+SORT                 AGGREGATE                                                      1
+TABLE ACCESS         FULL           NCO_CALL_ALLOCATION_          2        2        1
+                                    DETAIL
+
+VIEW                                                              2                 1
+VIEW                                                              2                 1
+FILTER
+SORT                 AGGREGATE                                                      1
+TABLE ACCESS         FULL           NCO_CALL_ALLOCATION_          2        2      185
+                                    DETAIL
+
+BUFFER               SORT                                         4        4        1
+VIEW                                                              2                 1
+TABLE ACCESS         FULL           NCO_CALL_ALLOCATION           2        2        1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+NCO_CALL_ALLOCATIO          2     14 06/23/13 23:11  100%       0       0       0   10
+N
+
+NCO_CALL_ALLOCATIO        185     32 06/23/13 23:11  100%       0       0       0   10
+N_DETAIL
+
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+07/16 00    60      0       0         0              0            0         0 JDBC Thin Client
+07/16 01    60      0       0         1             83            0         1 JDBC Thin Client
+07/16 02    60      0       0         0              0            0         0 JDBC Thin Client
+07/16 03    60      0       0         0              0            0         0 JDBC Thin Client
+07/16 04    60      0       0         0              0            0         0 JDBC Thin Client
+07/16 05    60      0       0         0              0            0         0 JDBC Thin Client
+07/16 06    60      0       0         1             83           36         1 JDBC Thin Client
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        420      0       0         2            166           36         2
+
+
+================================================================
+                            SQL 2847679569
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+ BEGIN SCHEDULE_CALLS(1); END;
+
+FIRST TIME = 2012-07-06 06:30
+MODULE     = JDBC Thin Client
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+07/16 00    60      0       1        60          7,963            0        60 JDBC Thin Client
+07/16 01    60      1       1        60          7,963            0        60 JDBC Thin Client
+07/16 02    60      0       1        60          8,425            0        60 JDBC Thin Client
+07/16 03    60      1       1        60         10,179        2,187        60 JDBC Thin Client
+07/16 04    60      1       1        60          7,848            0        60 JDBC Thin Client
+07/16 05    60      1       2        60         10,178        2,187        60 JDBC Thin Client
+07/16 06    60      0       2        60         10,777        2,365        60 JDBC Thin Client
+07/16 07    60      1       2        60         10,095        2,194        60 JDBC Thin Client
+07/16 08    60      1       1        60          7,908            0        60 JDBC Thin Client
+07/16 09    60      0       1        60          7,908            0        60 JDBC Thin Client
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        600      6      13       600         89,244        8,933       600
+
+
+================================================================
+                            SQL 3203046046
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+/* OracleOEM */   SELECT P.OBJECT_NAME,O.OBJECT_TYPE,P.OBJECT_OW
+NER,P.POLICY_NAME,P.POLICY_GROUP,P.ENABLE FROM DBA_POLICIES P, D from
+BA_OBJECTS O WHERE P.OBJECT_NAME=O.OBJECT_NAME                   where
+
+FIRST TIME = 2012-12-08 08:06
+MODULE     = emagent@l2000-y (TNS V1-V3)
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT
+MERGE JOIN
+SORT                 JOIN
+VIEW
+UNION-ALL
+FILTER
+TABLE ACCESS         BY INDEX ROWID OBJ$
+NESTED LOOPS
+TABLE ACCESS         FULL           USER$
+INDEX                RANGE SCAN     I_OBJ2
+TABLE ACCESS         BY INDEX ROWID IND$
+INDEX                UNIQUE SCAN    I_IND1
+NESTED LOOPS
+TABLE ACCESS         FULL           USER$
+INDEX                RANGE SCAN     I_LINK1
+SORT                 JOIN
+VIEW
+SORT                 UNIQUE
+UNION-ALL
+NESTED LOOPS
+NESTED LOOPS
+TABLE ACCESS         FULL           RLS$
+TABLE ACCESS         BY INDEX ROWID OBJ$
+INDEX                UNIQUE SCAN    I_OBJ1
+TABLE ACCESS         CLUSTER        USER$
+INDEX                UNIQUE SCAN    I_USER#
+NESTED LOOPS
+NESTED LOOPS
+TABLE ACCESS         FULL           RLS$
+TABLE ACCESS         BY INDEX ROWID OBJ$
+INDEX                UNIQUE SCAN    I_OBJ1
+TABLE ACCESS         CLUSTER        USER$
+INDEX                UNIQUE SCAN    I_USER#
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+07/16 00    60      3       3         6        138,612          888       108 emagent@l2000-y (
+07/16 01    60      3       3         6        138,612          888       108 emagent@l2000-y (
+07/16 02    60      2       4         6        138,612          888       108 emagent@l2000-y (
+07/16 03    60      3       4         6        138,612          888       108 emagent@l2000-y (
+07/16 04    60      3       4         6        138,612          888       108 emagent@l2000-y (
+07/16 05    60      3       4         6        138,612          888       108 emagent@l2000-y (
+07/16 06    60      3       3         6        138,612          889       108 emagent@l2000-y (
+07/16 07    60      3       4         6        138,612          888       108 emagent@l2000-y (
+07/16 08    60      3       3         6        138,612          888       108 emagent@l2000-y (
+07/16 09    60      3       4         6        138,612          888       108 emagent@l2000-y (
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        600     29      36        60      1,386,120        8,881      1080
+
+
+================================================================
+                            SQL 3495239768
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+/* OracleOEM */  SELECT event, count(1)   FROM v$session_wait  W from
+HERE wait_time = 0    AND event NOT IN       ('ARCH random i/o',
+        'ARCH sequential i/o',        'KXFX: execution message d
+equeue - Slaves',        'LGWR random i/o',        'LGWR sequent
+ial i/o',        'LGWR wait for redo copy',        'Null event',
+        'PL/SQL lock timer',        'PX Deq Credit: need buffer'
+,        'PX Deq: Execute Reply',        'PX Deq: Execution Msg'
+,        'PX Deq: Index Merge Close',        'PX Deq: Index Merg
+e Execute',        'PX Deq: Index Merge Reply',        'PX Deq:
+Join ACK',        'PX Deq: Msg Fragment',        'PX Deq: Par Re
+cov Change Vector',        'PX Deq: Par Recov Execute',        '
+PX Deq: Par Recov Reply',        'PX Deq: Parse Reply',        '
+PX Deq: Table Q Normal',        'PX Deq: Table Q Sample',
+ 'PX Deq: Txn Recovery Reply',        'PX Deq: Txn Recovery Star
+t',        'PX Deque wait',        'PX Idle Wait',        'Queue
+ Monitor Shutdown Wait',        'Queue Monitor Slave Wait',
+   'Queue Monitor Wait',        'RFS random i/o',        'RFS se
+quential i/o',        'RFS write',        'SQL*Net message from  from
+client',        'SQL*Net message from dblink',        'STREAMS a from
+pply coord waiting for slave message',        'STREAMS apply coo
+rd waiting for some work to finish',        'STREAMS apply slave
+ idle wait',        'STREAMS capture process filter callback wai
+t for ruleset',        'STREAMS fetch slave waiting for txns',
+      'WMON goes to sleep',        'async disk IO',        'clie
+nt message',        'control file parallel write',        'contr
+ol file sequential read',        'control file single write',
+     'db file single write',        'db file parallel write',
+     'dispatcher timer',        'gcs log flush sync',        'gc
+s remote message',        'ges reconfiguration to start',
+ 'ges remote message',        'io done',        'jobq slave wait
+',        'lock manager wait for remote message',        'log fi
+le parallel write',        'log file sequential read',        'l
+og file single write',        'parallel dequeue wait',        'p
+arallel recovery coordinator waits for cleanup of slaves',
+  'parallel query dequeue',        'parallel query idle wait - S
+laves',        'pipe get',        'pmon timer',        'queue me
+ssages',        'rdbms ipc message',        'recovery read',
+    'single-task message',        'slave wait',        'smon tim
+er',        'statement suspended, wait error to be cleared',
+    'unread message',        'virtual circuit',        'virtual
+circuit status',        'wait for activate message',        'wai
+t for transaction',        'wait for unread message on broadcast
+ channel',        'wait for unread message on multiple broadcast
+ channels',        'wakeup event for builder',        'wakeup ev
+ent for preparer',        'wakeup event for reader',        'wak
+eup time manager')  GROUP BY event
+
+FIRST TIME = 2012-07-05 23:31
+MODULE     = emagent@l2000-y (TNS V1-V3)
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT
+SORT                 GROUP BY
+MERGE JOIN
+FIXED TABLE          FULL           X$KSLED
+SORT                 JOIN
+FIXED TABLE          FULL           X$KSUSECST
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+07/16 00    60      1       1        60              0            0         1 emagent@l2000-y (
+07/16 01    60      1       0        60              0            0         0 emagent@l2000-y (
+07/16 02    60      1       1        60              0            0         0 emagent@l2000-y (
+07/16 03    60      0       1        60              0            0         0 emagent@l2000-y (
+07/16 04    60      1       1        60              0            0         1 emagent@l2000-y (
+07/16 05    60      1       1        60              0            0         3 emagent@l2000-y (
+07/16 06    60      0       1        60              0            0         0 emagent@l2000-y (
+07/16 07    60      1       1        60              0            0        23 emagent@l2000-y (
+07/16 08    60      1       0        60              0            0         3 emagent@l2000-y (
+07/16 09    60      1       1        60              0            0         2 emagent@l2000-y (
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        600      8       8       600              0            0        33
+
+
+================================================================
+                            SQL 3869783723
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+INSERT INTO "VOICETEK"."PPL_CALL_DETAIL" ("CALL_ID", "TRACK_NO",
+ "MILESTONE", "MILSTONE_STATUS", "GRAMMER_VALUE", "RETURNCODE",
+"RAWANSWER", "CONFIDENCE_SCORE", "FAILURE_REASON", "NO_INPUT_COU
+NT", "NO_MATCHES_COUNT", "TIMESTAMP") VALUES (:1, :2, :3, :4, :5
+, :6, :7, :8, :9, :10, :11, :12)
+
+FIRST TIME = 2012-12-08 08:00
+MODULE     = DTExec.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+07/16 00    60      1       2       381          2,550            5       381 DTExec.exe
+07/16 01    60      0       0         0              0            0         0 DTExec.exe
+07/16 02    60      1       2       632          4,201           10       632 DTExec.exe
+07/16 03    60      0       0         0              0            0         0 DTExec.exe
+07/16 04    60      0       0         0              0            0         0 DTExec.exe
+07/16 05    60      0       3       522          3,451            7       522 DTExec.exe
+07/16 06    60      2       6      1384          9,139           19      1384 DTExec.exe
+07/16 07    60      2       7      1872         12,384           24      1872 DTExec.exe
+07/16 08    60     11      31      9979         69,763          130      9979 DTExec.exe
+07/16 09    60     13      38     11672         82,508          152     11672 DTExec.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        600     30      89     26442        183,996          347     26442
+
+
+================================================================
+                            SQL 3944096678
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+ BEGIN SCHEDULE_CALLS(2); END;
+
+FIRST TIME = 2012-11-01 12:35
+MODULE     = JDBC Thin Client
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+07/16 00    60      1       1       120          3,360            0       120 JDBC Thin Client
+07/16 01    60      0       0       120          3,360            0       120 JDBC Thin Client
+07/16 02    60      1       1       121          3,388            0       121 JDBC Thin Client
+07/16 03    60      0       0       119          3,332            0       119 JDBC Thin Client
+07/16 04    60      1       1       120          3,360            0       120 JDBC Thin Client
+07/16 05    60      0       0       120          3,360            0       120 JDBC Thin Client
+07/16 06    60      0       1       120          3,360           11       120 JDBC Thin Client
+07/16 07    60      1       1       120          3,360            5       120 JDBC Thin Client
+07/16 08    60      0       0       120          3,360            0       120 JDBC Thin Client
+07/16 09    60      1       1       120          3,360            0       120 JDBC Thin Client
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        600      5       6      1200         33,600           16      1200
+
+
+================================================================
+                            SQL 4043595143
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+INSERT INTO STATS$SQL_SUMMARY ( SNAP_ID , DBID , INSTANCE_NUMBER
+ , TEXT_SUBSET , SHARABLE_MEM , SORTS , MODULE , LOADED_VERSIONS
+ , FETCHES , EXECUTIONS , LOADS , INVALIDATIONS , PARSE_CALLS ,
+DISK_READS , BUFFER_GETS , ROWS_PROCESSED , COMMAND_TYPE , ADDRE
+SS , HASH_VALUE , VERSION_COUNT , CPU_TIME , ELAPSED_TIME , OUTL
+INE_SID , OUTLINE_CATEGORY , CHILD_LATCH ) SELECT :B9 , :B8 , :B
+7 , SUBSTRB(SQL_TEXT,1,31) , SHARABLE_MEM , SORTS , MODULE , LOA
+DED_VERSIONS , FETCHES , EXECUTIONS , LOADS , INVALIDATIONS , PA
+RSE_CALLS , DISK_READS , BUFFER_GETS , ROWS_PROCESSED , COMMAND_
+TYPE , ADDRESS , HASH_VALUE , VERSION_COUNT , CPU_TIME , ELAPSED
+_TIME , OUTLINE_SID , OUTLINE_CATEGORY , CHILD_LATCH FROM STATS$ from
+V$SQLXS WHERE IS_OBSOLETE = 'N' AND ( BUFFER_GETS > :B6 OR DISK_ where
+READS > :B5 OR PARSE_CALLS > :B4 OR EXECUTIONS > :B3 OR SHARABLE
+_MEM > :B2 OR VERSION_COUNT > :B1 )
+
+FIRST TIME = 2013-07-16 10:00
+MODULE     =
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+INSERT STATEMENT
+VIEW
+FILTER
+SORT                 GROUP BY
+FIXED TABLE          FULL           X$KGLCURSOR
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+07/16 00    60      1       3         1            176          533       335
+07/16 01    60      0       3         1            162          532       336
+07/16 02    60      1       2         1            163          532       336
+07/16 03    60      1       1         1            170          533       339
+07/16 04    60      0       6         1            169          457       341
+07/16 05    60      1       1         1            208          459       353
+07/16 06    60      0       5         1            200          474       355
+07/16 07    60      1       1         1            197          512       361
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        480      5      22         8          1,445        4,032      2756
+
+
+================================================================
+                            SQL 4115672663
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+select u.name, o.name, t.spare1, t.pctfree$    from sys.obj$ o,  from
+sys.user$ u, sys.tab$ t    where  (bitand(t.trigflag, 1048576) = where
+ 1048576) and           o.obj#=t.obj# and o.owner# = u.user#
+
+MODULE     =
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+07/16 00    60      0       0         1            412          222         0
+07/16 01    60      0       0         1            412          222         0
+07/16 02    60      0       0         1            412          222         0
+07/16 03    60      0       0         1            412          222         0
+07/16 04    60      0       0         1            412          222         0
+07/16 05    60      0       0         1            412          156         0
+07/16 06    60      0       0         1            412          224         0
+07/16 07    60      0       1         1            412          224         0
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        480      0       1         8          3,296        1,714         0

@@ -1,0 +1,4 @@
+BEGIN
+   dbms_stats.gather_table_stats (ownname => 'CL2PRP', tabname => 'CUSTOMER', method_opt => 'FOR ALL INDEXED COLUMNS SIZE AUTO');
+END;
+/

@@ -1,0 +1,1396 @@
+
+NAME      REPORT          FIRST_SNAP  LAST_SNAP REPORT_TIME
+--------- --------------- ---------- ---------- ----------------
+EDOP      10 LARGEST SQLS       1479       1502 2013-06-26 16:26
+
+VERSION           HOST_NAME    STARTUP
+----------------- ------------ ----------------
+11.2.0.3.0        lnx-dbfm-p-0 2013-05-26 05:33
+                  01.ppl.com
+
+
+2013-06-25 00:00 FIRST SNAPSHOT       1479
+2013-06-25 23:00  LAST SNAPSHOT       1502
+
+STARTING      SQLS    BUFFER_GETS   DISK_READS    PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------ -------------- ------------ ------------ ------ ------- --------
+06/24 23:00     92         59,362          110       14,900      6      16     99.8
+06/25 00:00     96        302,366        4,752       66,315      8      22     98.4
+06/25 01:00     95        163,613        1,637       32,979     13      38     99.0
+06/25 02:00     90        956,034       12,004       14,413     15      58     98.7
+06/25 03:00     86      6,726,329       28,322    1,807,543     53     190     99.6
+06/25 04:00     90     16,045,901      192,826    1,534,040    165    1141     98.8
+06/25 05:00    103      5,727,313    5,434,646       23,386     62     190      5.1
+06/25 06:00     74      7,441,230    5,531,703      284,418     73     581     25.7
+06/25 07:00     95     20,670,990      641,936    5,400,952    257    1070     96.9
+06/25 08:00    113     31,581,888    1,184,919   10,860,295    311    3290     96.2
+06/25 09:00     99     72,354,282    4,679,112   15,205,367    805    2474     93.5
+06/25 10:00     97     13,986,040    3,772,373    6,155,106    387     864     73.0
+06/25 11:00    100     31,509,973      616,158   17,145,529    211    1282     98.0
+06/25 12:00     85     17,769,464      715,373   13,697,111    158     468     96.0
+06/25 13:00     95      2,877,301    2,046,252    2,448,333    170    1137     28.9
+06/25 14:00     97      8,266,661       99,073       87,297     65     444     98.8
+06/25 15:00     91      3,556,858      280,151       37,999     53     524     92.1
+06/25 16:00     98      5,582,394       90,075    1,230,310     99     583     98.4
+06/25 17:00    100      1,841,853    1,107,919       23,315     24     103     39.8
+06/25 18:00     96     27,284,029    3,346,019      119,552    619    1353     87.7
+06/25 19:00     90         57,341        2,029       14,349      6      18     96.5
+06/25 20:00     88     15,256,479       75,942      850,827     73     644     99.5
+06/25 21:00    105      4,092,580      162,990      360,241     68     636     96.0
+06/25 22:00    104     38,990,961   37,111,398       94,385    275    2250      4.8
+                   -------------- ------------ ------------ ------ -------
+sum                   333,101,242   67,137,719   77,508,962   3977   19378
+
+Top SQLs by BUFFER GETS
+
+RANK    BUFFER_GETS  GETS/EXEC     EXECS   DISK_READS    PROCESSED    CPU ELAPSED MODULE                    SQL_ID
+---- -------------- ---------- --------- ------------ ------------ ------ ------- ------------------------- -------------
+   1     47,943,360          4  11972260       63,249    1,698,844    414     545 oracle@lnx-dbfm-p-001.ppl a1fdhp0ajf4j9
+   2     33,335,508      50280       663        7,289          300    133     208 SQL*Plus                  cs8nnk59r0qr9
+   3     32,267,125    2688927        12   32,266,933            0    194    1154 oracle@lnx-dbfm-p-001.ppl bhq5hytg5kvbd
+   4     12,704,910    6352455         2      324,058   11,973,256     78     380 oracle@lnx-dbfm-p-001.ppl 8476xg3bt3fcf
+   5     12,237,765          7   1708918        2,726    1,708,918     83      92 SQL*Plus                  7vqhwpwx42wrn
+   6     11,420,276        892     12803            0       12,803     21      21 SQL*Plus                  7hbpzk8fc555b
+   7     11,305,779         14    822331       11,498      822,331    120     148 ctp_server@rp4440-g (TNS  5zf1svh3c4bbn
+   8     11,233,195          5   2235439            0    2,235,439     52      53 ctp_server@rp4440-g (TNS  15qu9nzcf4vhn
+   9     10,661,704        305     35003        2,918       15,004    402     408 oracle@lnx-dbfm-p-001.ppl cwr1jj60gzayt
+  10      9,563,347    1593891         6    4,105,123    4,341,342    394     613 MSACCESS.EXE              fmcyuzf5xw4z2
+     --------------            --------- ------------ ------------ ------ -------
+sum     192,672,969             16787437   36,783,794   22,808,237   1891    3622
+
+Top SQLs by DISK READS
+
+RANK   DISK_READS READS/EXEC     EXECS    BUFFER_GETS    PROCESSED    CPU ELAPSED MODULE                    SQL_ID
+---- ------------ ---------- --------- -------------- ------------ ------ ------- ------------------------- -------------
+   1   32,266,933    2688911        12     32,267,125            0    194    1154 oracle@lnx-dbfm-p-001.ppl bhq5hytg5kvbd
+   2    8,058,485    2686162         3      8,059,199       15,383     60     178 MSACCESS.EXE              70trg7y8sxfzb
+   3    4,568,093     913619         5      4,561,233        8,475     27     198 oracle@lnx-dbfm-p-001.ppl 7mrmsp0akcuqq
+   4    4,105,123     684187         6      9,563,347    4,341,342    394     613 MSACCESS.EXE              fmcyuzf5xw4z2
+   5    2,939,436     489906         6      8,065,765    4,496,880    218     315 MSACCESS.EXE              51vpx5ytzrykr
+   6    2,686,105    2686105         1      2,686,375           20     22      63 MSACCESS.EXE              5a9chwcuzwnrb
+   7    2,641,643    2641643         1      2,640,004           50     49      69 oracle@lnx-dbfm-b-001.ppl 589jkm18uh0nf
+   8    1,309,525     654763         2      1,309,805            4     78      86 MSACCESS.EXE              43d9733c8jckj
+   9      930,405     465203         2        944,388          355      7      51 SQL Developer             92ga1u50tbmjt
+  10      569,060     189687         3        775,981            3     43     531 SQL*Plus                  2axawf3nac1bk
+     ------------            --------- -------------- ------------ ------ -------
+sum    60,074,808                   41     70,873,222    8,862,512   1092    3257
+
+Top SQLs by CPU
+
+RANK    CPU ELAPSED   DISK_READS READS/EXEC     EXECS    BUFFER_GETS    PROCESSED MODULE                    SQL_ID
+---- ------ ------- ------------ ---------- --------- -------------- ------------ ------------------------- -------------
+   1    414     545       63,249          0  11972260     47,943,360    1,698,844 oracle@lnx-dbfm-p-001.ppl a1fdhp0ajf4j9
+   2    402     408        2,918          0     35003     10,661,704       15,004 oracle@lnx-dbfm-p-001.ppl cwr1jj60gzayt
+   3    394     613    4,105,123     684187         6      9,563,347    4,341,342 MSACCESS.EXE              fmcyuzf5xw4z2
+   4    218     315    2,939,436     489906         6      8,065,765    4,496,880 MSACCESS.EXE              51vpx5ytzrykr
+   5    194    1154   32,266,933    2688911        12     32,267,125            0 oracle@lnx-dbfm-p-001.ppl bhq5hytg5kvbd
+   6    133     208        7,289         11       663     33,335,508          300 SQL*Plus                  cs8nnk59r0qr9
+   7    120     148       11,498          0    822331     11,305,779      822,331 ctp_server@rp4440-g (TNS  5zf1svh3c4bbn
+   8     87     890      251,182          6     43522      1,290,488      176,949 oracle@lnx-dbfm-p-001.ppl cchp3887k73x4
+   9     86     118       11,026          0    583489      8,696,817      583,489 SQL*Plus                  44qjxf8fbva9m
+  10     83      92        2,726          0   1708918     12,237,765    1,708,918 SQL*Plus                  7vqhwpwx42wrn
+     ------ ------- ------------            --------- -------------- ------------
+sum    2130    4492   39,661,380             15166210    175,367,658   13,844,057
+
+Top SQLs by Cost
+
+RANK       COST    CPU ELAPSED   DISK_READS READS/EXEC     EXECS    BUFFER_GETS    PROCESSED MODULE                    SQL_ID
+---- ---------- ------ ------- ------------ ---------- --------- -------------- ------------ ------------------------- -------------
+   1     975015     78     380      324,058     162029         2     12,704,910   11,973,256 oracle@lnx-dbfm-p-001.ppl 8476xg3bt3fcf
+   2     765491      6      15      268,538     268538         1        268,157            0 oracle@lnx-dbfm-b-001.ppl 1t6x48w3jmynq
+   3     724473      5      14      148,466     148466         1        147,957            0 oracle@lnx-dbfm-b-001.ppl 2w9d5hwk630j6
+   4     722601     49      69    2,641,643    2641643         1      2,640,004           50 oracle@lnx-dbfm-b-001.ppl 589jkm18uh0nf
+   5     721231     60     178    8,058,485    2686162         3      8,059,199       15,383 MSACCESS.EXE              70trg7y8sxfzb
+   6     721174     22      63    2,686,105    2686105         1      2,686,375           20 MSACCESS.EXE              5a9chwcuzwnrb
+   7     719644    194    1154   32,266,933    2688911        12     32,267,125            0 oracle@lnx-dbfm-p-001.ppl bhq5hytg5kvbd
+   8     717982     27     198    4,568,093     913619         5      4,561,233        8,475 oracle@lnx-dbfm-p-001.ppl 7mrmsp0akcuqq
+   9     717533      1      13      171,738     171738         1        171,357            0 oracle@lnx-dbfm-b-001.ppl 6kdtv9qsf2bun
+  10     713100      0       0            0          0         0              0            0 SQL*Plus                  4x4z94z3kcngz
+                ------ ------- ------------            --------- -------------- ------------
+sum                444    2084   51,134,059                   27     63,506,317   11,997,184
+
+
+================================================================
+                            SQL 15qu9nzcf4vhn
+             hash: 3452762135
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+UPDATE CTP_FILE_IMAGE SET CD_ROW_TYPE = 'D', CD_ROW_STATUS='A' WHERE KY_ROW_SEQ=
+ :B1
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-26      3452762135          4 2013-05-26-13:00 2013-06-26-15:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+3452762135 UPDATE STATEMENT                                                  4              3
+           UPDATE                              CTP_FILE_IMAGE                               2
+           INDEX                UNIQUE SCAN    CTP_FILE_IMAGE_PK2            3        1     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+CTP_FILE_IMAGE      492738290    299 06/18/13 23:11  100%   170938  170938  156115   10
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 04      8       8    319346      1,604,177            0    319346
+06/25 07     11      11    458282      2,302,450            0    458282
+06/25 10     10       9    385657      1,938,451            0    385657
+06/25 12     24      24   1072154      5,388,117            0   1072154
+         ------ ------- --------- -------------- ------------ ---------
+sum          52      53   2235439     11,233,195            0   2235439
+
+
+================================================================
+                            SQL 1t6x48w3jmynq
+             hash: 1344435822
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "A1"."KY_ROW_SEQ_TRANS","A1"."KY_ROW_SEQ_PARENT","A1"."KY_FILE_ID","A1"."
+CD_IN_OUT_FLAG","A1"."ID_TRANS_REF_NUM","A1"."KY_TRANS_SET_ID","A1"."KY_TRANS_SU
+BTYPE","A1"."DT_TRANS_CREATED","A1"."DT_CTP_PROCESSED","A1"."CD_EDC_DUNS","A1"."
+CD_EDC_DUNS_QUAL","A1"."KY_EDC_NAME_PTR","A1"."CD_EGS_DUNS","A1"."CD_EGS_DUNS_QU
+AL","A1"."KY_EGS_NAME_PTR","A1"."ID_EDC_ACCT_NUM","A1"."TX_CUST_NAME","A1"."ID_C
+ROSS_REF_NUM","A1"."ID_OLD_EDC_ACCT_NUM","A1"."ID_ORIG_TRAN_REF_NUM","A1"."CD_PU
+RPOSE","A1"."ID_CSS_ACCT_NUM","A1"."ID_ER_ACCT_NUM","A1"."DT_SERVICE_PERIOD_BEGI
+N","A1"."DT_SERVICE_PERIOD_END","A1"."DT_EFFECTIVE_OR_DUE","A1"."CD_BILL_TYPE","
+A1"."CD_BILL_CALC_METHOD","A1"."TX_SERVICE","A1"."TX_DUNS_GROUP","A1"."VL_IMPORT
+ANT","A1"."TX_IMPORTANT_FORMAT","A1"."CD_TRANS_INFO","A1"."CD_ACCEPT_OR_REJECT",
+"A1"."CD_ACC_OR_REJ_REASON","A1"."CD_RECONCILE_STATUS","A1"."DT_RECONCILE_DATE",
+"A1"."YN_SENT_TO_EDC","A1"."YN_SENT_TO_CSS","A1"."ZID_ORIG_TRAN_REF_NUM" FROM "B
+T_COMMON_HEADER" "A1" WHERE TRIM("A1"."ID_EDC_ACCT_NUM")='3026351837' ORDER BY "
+A1"."KY_TRANS_SUBTYPE"
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-06-25      1344435822     765491 2013-06-25-18:00 2013-06-25-18:00 OLD
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+1344435822 SELECT STATEMENT                                             765491              3
+           SORT                 ORDER BY                                765491  1027923     2
+           TABLE ACCESS         FULL           BT_COMMON_HEADER         720171  1027923     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+BT_COMMON_HEADER    102792294    202 06/06/13 07:58  100%    20584   20584   19802    0
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 18      6      15         1        268,157      268,538         0
+         ------ ------- --------- -------------- ------------ ---------
+sum           6      15         1        268,157      268,538         0
+
+
+================================================================
+                            SQL 2axawf3nac1bk
+             hash: 2661068840
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT KY_ROW_SEQ_TRANS, KY_FILE_ID, ID_TRANS_REF_NUM, ID_CSS_ACCT_NUM, ID_EDC_A
+CCT_NUM, CD_EDC_DUNS, DT_CTP_PROCESSED FROM BT_COMMON_HEADER WHERE KY_TRANS_SET_
+ID = '814' AND KY_TRANS_SUBTYPE = '2' AND CD_IN_OUT_FLAG = 'O' AND RTRIM(CD_EDC_
+DUNS) IN ('006956551','006954317','006951552','006953848','006953665','006952626
+','007998644', '006971352') AND ((TRUNC(SYSDATE) - TRUNC(SYSDATE,'D') IN (1,2) A
+ND TRUNC(DT_CTP_PROCESSED) = TRUNC(SYSDATE) - 5) OR (TRUNC(SYSDATE) - TRUNC(SYSD
+ATE,'D') > 2 AND TRUNC(DT_CTP_PROCESSED) = TRUNC(SYSDATE) - 3)) ORDER BY ID_TRAN
+S_REF_NUM DESC
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-28      2661068840      59358 2013-05-28-11:00 2013-06-26-15:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+2661068840 SELECT STATEMENT                                              59358              4
+           SORT                 ORDER BY                                 59358       29     3
+           TABLE ACCESS         BY INDEX ROWID BT_COMMON_HEADER          59357       29     2
+           INDEX                RANGE SCAN     BTCOMMHDR_TRANTYPE         2250  1612674     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+BT_COMMON_HEADER    102792294    202 06/06/13 07:58  100%    20584   20584   19802    0
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 11     16     183         1        258,640      188,903         1
+06/25 13     13     182         1        258,658      192,270         1
+06/25 15     14     166         1        258,683      187,887         1
+         ------ ------- --------- -------------- ------------ ---------
+sum          43     531         3        775,981      569,060         3
+
+
+================================================================
+                            SQL 2w9d5hwk630j6
+             hash: 3907852446
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "A1"."KY_ROW_SEQ_TRANS","A1"."KY_ROW_SEQ_PARENT","A1"."KY_FILE_ID","A1"."
+CD_IN_OUT_FLAG","A1"."ID_TRANS_REF_NUM","A1"."KY_TRANS_SET_ID","A1"."KY_TRANS_SU
+BTYPE","A1"."DT_TRANS_CREATED","A1"."DT_CTP_PROCESSED","A1"."CD_EDC_DUNS","A1"."
+CD_EDC_DUNS_QUAL","A1"."KY_EDC_NAME_PTR","A1"."CD_EGS_DUNS","A1"."CD_EGS_DUNS_QU
+AL","A1"."KY_EGS_NAME_PTR","A1"."ID_EDC_ACCT_NUM","A1"."TX_CUST_NAME","A1"."ID_C
+ROSS_REF_NUM","A1"."ID_OLD_EDC_ACCT_NUM","A1"."ID_ORIG_TRAN_REF_NUM","A1"."CD_PU
+RPOSE","A1"."ID_CSS_ACCT_NUM","A1"."ID_ER_ACCT_NUM","A1"."DT_SERVICE_PERIOD_BEGI
+N","A1"."DT_SERVICE_PERIOD_END","A1"."DT_EFFECTIVE_OR_DUE","A1"."CD_BILL_TYPE","
+A1"."CD_BILL_CALC_METHOD","A1"."TX_SERVICE","A1"."TX_DUNS_GROUP","A1"."VL_IMPORT
+ANT","A1"."TX_IMPORTANT_FORMAT","A1"."CD_TRANS_INFO","A1"."CD_ACCEPT_OR_REJECT",
+"A1"."CD_ACC_OR_REJ_REASON","A1"."CD_RECONCILE_STATUS","A1"."DT_RECONCILE_DATE",
+"A1"."YN_SENT_TO_EDC","A1"."YN_SENT_TO_CSS","A1"."ZID_ORIG_TRAN_REF_NUM" FROM "B
+T_COMMON_HEADER" "A1" WHERE TRUNC("A1"."DT_CTP_PROCESSED")='06/12/2013'
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-06-25      3907852446     724473 2013-06-25-18:00 2013-06-25-18:00 OLD
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+3907852446 SELECT STATEMENT                                             724473              2
+           TABLE ACCESS         FULL           BT_COMMON_HEADER         724473  1027923     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+BT_COMMON_HEADER    102792294    202 06/06/13 07:58  100%    20584   20584   19802    0
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 18      5      14         1        147,957      148,466         0
+         ------ ------- --------- -------------- ------------ ---------
+sum           5      14         1        147,957      148,466         0
+
+
+================================================================
+                            SQL 43d9733c8jckj
+             hash: 2963744978
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "KY_LOOP_ID" ,"KY_ROW_SEQ_TRANS" ,"CD_LINE_CAT" ,"VL_LINE_AMT" ,"VL_LINE_
+RATE" ,"VL_LINE_QUANTITY" ,"TX_LINE_DESCRIPTION" FROM "EDOADMIN"."BT_810_DETAIL_
+LINES" WHERE ("KY_ROW_SEQ_TRANS" = :1 AND "KY_LOOP_ID" = :2)
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-28      2963744978     175144 2013-05-28-11:00 2013-06-25-13:00 OLD
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+2963744978 SELECT STATEMENT                                             175144              2
+           TABLE ACCESS         FULL           BT_810_DETAIL_LINES      175144        1     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+BT_810_DETAIL_LINE   54108058     84 05/26/13 04:42  100%     4991    4991    4816   10
+S
+
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 13     78      86         2      1,309,805    1,309,525         4
+         ------ ------- --------- -------------- ------------ ---------
+sum          78      86         2      1,309,805    1,309,525         4
+
+
+================================================================
+                            SQL 44qjxf8fbva9m
+             hash: 0
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+INSERT INTO CTP_FILE_IMAGE ( KY_FILE_ID, CD_ROW_TYPE, CD_ROW_STATUS, CT_ORIG_LEN
+GTH, TX_DATA_IMAGE ) VALUES ( :B5 , :B4 , :B3 , :B2 , :B1 )
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-28               0          1 2013-05-28-04:00 2013-06-26-12:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+         0 INSERT STATEMENT                                                  1              2
+           LOAD TABLE CONVENTIO                                                             1
+           NAL
+
+
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 04     12      15     72319      1,057,221          790     72319
+06/25 06      5       6     37340        551,720          308     37340
+06/25 07     67      94    451799      6,724,264        9,868    451799
+06/25 13      3       3     22031        363,612           60     22031
+         ------ ------- --------- -------------- ------------ ---------
+sum          86     118    583489      8,696,817       11,026    583489
+
+
+================================================================
+                            SQL 4x4z94z3kcngz
+             hash: 3907852446
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT /*+ FULL(P) +*/ * FROM "BT_COMMON_HEADER" P
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-26      3907852446     713100 2013-05-26-11:00 2013-06-25-21:00 OLD
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+3907852446 SELECT STATEMENT                                             713100              2
+           TABLE ACCESS         FULL           BT_COMMON_HEADER         713100 ########     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+BT_COMMON_HEADER    102792294    202 06/06/13 07:58  100%    20584   20584   19802    0
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 21      0       0         0              0            0         0
+         ------ ------- --------- -------------- ------------ ---------
+sum           0       0         0              0            0         0
+
+
+================================================================
+                            SQL 51vpx5ytzrykr
+             hash: 1645563321
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "EDOADMIN"."BT_H867_HEADER"."CD_LOAD_PROFILE" ,"EDOADMIN"."BT_H867_HEADER
+"."VL_CAP_OBLIG" ,"EDOADMIN"."BT_H867_HEADER"."VL_TRAN_OBLIG" ,"EDOADMIN"."BT_H8
+67_HEADER"."CD_BILLING_CYCLE" ,"EDOADMIN"."BT_COMMON_HEADER"."DT_CTP_PROCESSED"
+,"EDOADMIN"."BT_COMMON_HEADER"."ID_EDC_ACCT_NUM" ,"EDOADMIN"."BT_H867_LOOP"."DT_
+SERVICE_BEGIN_LOOP" ,"EDOADMIN"."BT_H867_LOOP"."DT_SERVICE_END_LOOP" ,"EDOADMIN"
+."BT_H867_LOOP"."ID_METER_NUM" ,"EDOADMIN"."BT_H867_LOOP"."CD_EDC_RATE" ,"EDOADM
+IN"."BT_H867_QTY"."VL_QUANTITY" ,"EDOADMIN"."BT_H867_QTY"."CD_QUANTITY_UOM" ,"ED
+OADMIN"."BT_H867_QTY"."CD_MEAS_SIGNIFICANCE" FROM "EDOADMIN"."BT_H867_HEADER","E
+DOADMIN"."BT_COMMON_HEADER","EDOADMIN"."BT_H867_LOOP","EDOADMIN"."BT_H867_QTY" W
+HERE (((("EDOADMIN"."BT_COMMON_HEADER"."KY_ROW_SEQ_TRANS" = "EDOADMIN"."BT_H867_
+HEADER"."KY_ROW_SEQ_TRANS" ) AND ("EDOADMIN"."BT_COMMON_HEADER"."KY_ROW_SEQ_TRAN
+S" = "EDOADMIN"."BT_H867_LOOP"."KY_ROW_SEQ_TRANS" ) ) AND (("EDOADMIN"."BT_H867_
+LOOP"."KY_ROW_SEQ_TRANS" = "EDOADMIN"."BT_H867_QTY"."KY_ROW_SEQ_TRANS" ) AND ("E
+DOADMIN"."BT_H867_LOOP"."KY_LOOP_ID" = "EDOADMIN"."BT_H867_QTY"."KY_LOOP_ID" ) )
+ ) AND ((((((((((("EDOADMIN"."BT_H867_QTY"."CD_QUANTITY_UOM" = 'K1' ) AND ("EDOA
+DMIN"."BT_COMMON_HEADER"."CD_EGS_DUNS" = '1768714812000' ) ) AND ("EDOADMIN"."BT
+_COMMON_HEADER"."CD_IN_OUT_FLAG" = 'I' ) ) AND ("EDOADMIN"."BT_COMMON_HEADER"."K
+Y_TRANS_SET_ID" = 'USG' ) ) AND ("EDOADMIN"."BT_COMMON_HEADER"."KY_TRANS_SUBTYPE
+" = '9' ) ) OR ((((("EDOADMIN"."BT_H867_QTY"."CD_QUANTITY_UOM" = 'K1' ) AND ("ED
+OADMIN"."BT_COMMON_HEADER"."CD_EGS_DUNS" = '1768714812100' ) ) AND ("EDOADMIN"."
+BT_COMMON_HEADER"."CD_IN_OUT_FLAG" = 'I' ) ) AND ("EDOADMIN"."BT_COMMON_HEADER".
+"KY_TRANS_SET_ID" = 'USG' ) ) AND ("EDOADMIN"."BT_COMMON_HEADER"."KY_TRANS_SUBTY
+PE" = '9' ) ) ) OR ((((("EDOADMIN"."BT_H867_QTY"."CD_QUANTITY_UOM" = 'K1' ) AND
+("EDOADMIN"."BT_COMMON_HEADER"."CD_EGS_DUNS" = '1768714812600' ) ) AND ("EDOADMI
+N"."BT_COMMON_HEADER"."CD_IN_OUT_FLAG" = 'I' ) ) AND ("EDOADMIN"."BT_COMMON_HEAD
+ER"."KY_TRANS_SET_ID" = 'USG' ) ) AND ("EDOADMIN"."BT_COMMON_HEADER"."KY_TRANS_S
+UBTYPE" = '9' ) ) ) OR ((((("EDOADMIN"."BT_H867_QTY"."CD_QUANTITY_UOM" = 'K1' )
+AND ("EDOADMIN"."BT_COMMON_HEADER"."CD_EGS_DUNS" = '1768714812500' ) ) AND ("EDO
+ADMIN"."BT_COMMON_HEADER"."CD_IN_OUT_FLAG" = 'I' ) ) AND ("EDOADMIN"."BT_COMMON_
+HEADER"."KY_TRANS_SET_ID" = 'USG' ) ) AND ("EDOADMIN"."BT_COMMON_HEADER"."KY_TRA
+NS_SUBTYPE" = '9' ) ) ) OR ((((("EDOADMIN"."BT_H867_QTY"."CD_QUANTITY_UOM" = 'K1
+' ) AND ("EDOADMIN"."BT_COMMON_HEADER"."CD_EGS_DUNS" = '1768714812700' ) ) AND (
+"EDOADMIN"."BT_COMMON_HEADER"."CD_IN_OUT_FLAG" = 'I' ) ) AND ("EDOADMIN"."BT_COM
+MON_HEADER"."KY_TRANS_SET_ID" = 'USG' ) ) AND ("EDOADMIN"."BT_COMMON_HEADER"."KY
+_TRANS_SUBTYPE" = '9' ) ) ) OR ((((("EDOADMIN"."BT_H867_QTY"."CD_QUANTITY_UOM" =
+ 'K1' ) AND ("EDOADMIN"."BT_COMMON_HEADER"."CD_EGS_DUNS" = '153409479IL00' ) ) A
+ND ("EDOADMIN"."BT_COMMON_HEADER"."CD_IN_OUT_FLAG" = 'I' ) ) AND ("EDOADMIN"."BT
+_COMMON_HEADER"."KY_TRANS_SET_ID" = 'USG' ) ) AND ("EDOADMIN"."BT_COMMON_HEADER"
+."KY_TRANS_SUBTYPE" = '9' ) ) ) OR ((((("EDOADMIN"."BT_H867_QTY"."CD_QUANTITY_UO
+M" = 'K1' ) AND ("EDOADMIN"."BT_COMMON_HEADER"."CD_EGS_DUNS" = '1768714813500' )
+ ) AND ("EDOADMIN"."BT_COMMON_HEADER"."CD_IN_OUT_FLAG" = 'I' ) ) AND ("EDOADMIN"
+."BT_COMMON_HEADER"."KY_TRANS_SET_ID" = 'USG' ) ) AND ("EDOADMIN"."BT_COMMON_HEA
+DER"."KY_TRANS_SUBTYPE" = '9' ) ) ) )
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-06-06      1645563321     349705 2013-06-06-14:00 2013-06-25-10:00 OLD
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+1645563321 SELECT STATEMENT                                             349705             10
+           NESTED LOOPS                                                                     9
+           NESTED LOOPS                                                 349705     1148     8
+           HASH JOIN                                                    348535     1148     7
+           TABLE ACCESS         BY INDEX ROWID BT_COMMON_HEADER            921      827     6
+           BITMAP CONVERSION    TO ROWIDS                                                   5
+           BITMAP OR                                                                        4
+           BITMAP AND                                                                       3
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_TRANTYPE           45              1
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_EGSDUNS            82              1
+           BITMAP AND                                                                       3
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_TRANTYPE           45              1
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_EGSDUNS            82              1
+           BITMAP AND                                                                       3
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_TRANTYPE           45              1
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_EGSDUNS            82              1
+           BITMAP AND                                                                       3
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_TRANTYPE           45              1
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_EGSDUNS            82              1
+           BITMAP AND                                                                       3
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_TRANTYPE           45              1
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_EGSDUNS            82              1
+           BITMAP AND                                                                       3
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_TRANTYPE           45              1
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_EGSDUNS            82              1
+           BITMAP AND                                                                       3
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_TRANTYPE           45              1
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_EGSDUNS            82              1
+           HASH JOIN                                                    187019 ########     6
+           TABLE ACCESS         FULL           BT_H867_QTY               68108  2712864     5
+           TABLE ACCESS         FULL           BT_H867_LOOP              56266 ########     5
+           INDEX                UNIQUE SCAN    BT_H867_HEADER_PK             1        1     7
+           TABLE ACCESS         BY INDEX ROWID BT_H867_HEADER                2        1     8
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+BT_COMMON_HEADER    102792294    202 06/06/13 07:58  100%    20584   20584   19802    0
+BT_H867_QTY          38243989     48 05/26/13 04:56  100%     1938    1938    1945   10
+BT_H867_LOOP         27229283     51 05/26/13 04:56  100%     1606    1606    1558   15
+BT_H867_HEADER        1898835     29 05/26/13 04:55  100%       52      52      58   10
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 09      5       5         1        264,436           28    749480
+06/25 09    109     159         3      4,023,990    1,471,311   2248440
+06/25 10    108     156         3      4,041,775    1,468,125   2248440
+06/25 10      0       0         0              0            0         0
+         ------ ------- --------- -------------- ------------ ---------
+sum         223     320         7      8,330,201    2,939,464   5246360
+
+
+================================================================
+                            SQL 589jkm18uh0nf
+             hash: 3907852446
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "A1"."KY_ROW_SEQ_TRANS","A1"."KY_ROW_SEQ_PARENT","A1"."KY_FILE_ID","A1"."
+CD_IN_OUT_FLAG","A1"."ID_TRANS_REF_NUM","A1"."KY_TRANS_SET_ID","A1"."KY_TRANS_SU
+BTYPE","A1"."DT_TRANS_CREATED","A1"."DT_CTP_PROCESSED","A1"."CD_EDC_DUNS","A1"."
+CD_EDC_DUNS_QUAL","A1"."KY_EDC_NAME_PTR","A1"."CD_EGS_DUNS","A1"."CD_EGS_DUNS_QU
+AL","A1"."KY_EGS_NAME_PTR","A1"."ID_EDC_ACCT_NUM","A1"."TX_CUST_NAME","A1"."ID_C
+ROSS_REF_NUM","A1"."ID_OLD_EDC_ACCT_NUM","A1"."ID_ORIG_TRAN_REF_NUM","A1"."CD_PU
+RPOSE","A1"."ID_CSS_ACCT_NUM","A1"."ID_ER_ACCT_NUM","A1"."DT_SERVICE_PERIOD_BEGI
+N","A1"."DT_SERVICE_PERIOD_END","A1"."DT_EFFECTIVE_OR_DUE","A1"."CD_BILL_TYPE","
+A1"."CD_BILL_CALC_METHOD","A1"."TX_SERVICE","A1"."TX_DUNS_GROUP","A1"."VL_IMPORT
+ANT","A1"."TX_IMPORTANT_FORMAT","A1"."CD_TRANS_INFO","A1"."CD_ACCEPT_OR_REJECT",
+"A1"."CD_ACC_OR_REJ_REASON","A1"."CD_RECONCILE_STATUS","A1"."DT_RECONCILE_DATE",
+"A1"."YN_SENT_TO_EDC","A1"."YN_SENT_TO_CSS","A1"."ZID_ORIG_TRAN_REF_NUM" FROM "B
+T_COMMON_HEADER" "A1" WHERE "A1"."CD_IN_OUT_FLAG"='I' AND "A1"."KY_TRANS_SET_ID"
+<>'814' AND TRUNC("A1"."DT_CTP_PROCESSED")='06/12/2013'
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-06-25      3907852446     722601 2013-06-25-18:00 2013-06-25-18:00 OLD
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+3907852446 SELECT STATEMENT                                             722601              2
+           TABLE ACCESS         FULL           BT_COMMON_HEADER         722601   527778     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+BT_COMMON_HEADER    102792294    202 06/06/13 07:58  100%    20584   20584   19802    0
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 18     49      69         1      2,640,004    2,641,643        50
+         ------ ------- --------- -------------- ------------ ---------
+sum          49      69         1      2,640,004    2,641,643        50
+
+
+================================================================
+                            SQL 5a9chwcuzwnrb
+             hash: 852947636
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "EDOADMIN"."BT_COMMON_HEADER"."KY_ROW_SEQ_PARENT" ,"EDOADMIN"."BT_COMMON_
+HEADER"."DT_CTP_PROCESSED" ,"EDOADMIN"."BT_COMMON_HEADER"."ID_EDC_ACCT_NUM" ,"ED
+OADMIN"."BT_COMMON_HEADER"."TX_CUST_NAME" ,"EDOADMIN"."BT_COMMON_HEADER"."ID_ORI
+G_TRAN_REF_NUM" ,"EDOADMIN"."BT_COMMON_HEADER"."ID_CSS_ACCT_NUM" ,"EDOADMIN"."BT
+_COMMON_HEADER"."CD_TRANS_INFO" ,"EDOADMIN"."BT_COMMON_HEADER"."YN_SENT_TO_CSS"
+,"EDOADMIN"."BT_824_REASON"."KY_REASON_ID" ,"EDOADMIN"."BT_824_REASON"."TX_REASO
+N_DESC" ,"EDOADMIN"."BT_824_REASON"."CD_RULE_NUMBER" ,"EDOADMIN"."BT_COMPANY_NAM
+E"."TX_COMPANY_NAME" ,"MS1"."TX_COMPANY_NAME" FROM "EDOADMIN"."BT_COMMON_HEADER"
+,"EDOADMIN"."BT_824_REASON","EDOADMIN"."BT_COMPANY_NAME","EDOADMIN"."BT_COMPANY_
+NAME" "MS1" WHERE ((((((((("EDOADMIN"."BT_COMMON_HEADER"."DT_CTP_PROCESSED" BETW
+EEN :1 AND :2 ) AND ("EDOADMIN"."BT_COMMON_HEADER"."CD_TRANS_INFO" = '820' ) ) A
+ND NOT(("EDOADMIN"."BT_COMMON_HEADER"."CD_TRANS_INFO" IN ('F67' ,'M67' ,'G67' )
+) ) ) AND ("EDOADMIN"."BT_COMMON_HEADER"."CD_IN_OUT_FLAG" = 'O' ) ) AND ("EDOADM
+IN"."BT_COMMON_HEADER"."KY_TRANS_SET_ID" = '824' ) ) AND ("EDOADMIN"."BT_COMMON_
+HEADER"."KY_ROW_SEQ_TRANS" = "EDOADMIN"."BT_824_REASON"."KY_ROW_SEQ_TRANS" ) ) A
+ND (((((((NOT(("EDOADMIN"."BT_824_REASON"."TX_REASON_DESC" = 'Other - Balance On
+ly 867' ) ) AND NOT(("EDOADMIN"."BT_824_REASON"."TX_REASON_DESC" = 'Other - Adju
+stment 820, not sent to CSS' ) ) ) AND NOT(("EDOADMIN"."BT_824_REASON"."TX_REASO
+N_DESC" = 'Drop ME accepted price/bill option change - -' ) ) ) AND NOT(("EDOADM
+IN"."BT_824_REASON"."TX_REASON_DESC" = 'Failed EDC Acct Check - Not valid in CSS
+ but found in ER as status FNLD.' ) ) ) AND NOT(("EDOADMIN"."BT_824_REASON"."TX_
+REASON_DESC" LIKE 'Negative 820%' ) ) ) AND NOT(("EDOADMIN"."BT_824_REASON"."TX_
+REASON_DESC" LIKE 'Late 810%' ) ) ) AND NOT(("EDOADMIN"."BT_824_REASON"."TX_REAS
+ON_DESC" LIKE 'Sum of charge Lines must equal TDS amt%' ) ) ) AND ("EDOADMIN"."B
+T_824_REASON"."KY_REASON_ID" = 1 ) ) ) AND ("EDOADMIN"."BT_COMMON_HEADER"."KY_ED
+C_NAME_PTR" = "EDOADMIN"."BT_COMPANY_NAME"."KY_COMPANY_NAME_PTR" ) ) AND ("EDOAD
+MIN"."BT_COMMON_HEADER"."KY_EGS_NAME_PTR" = "MS1"."KY_COMPANY_NAME_PTR" ) )
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-06-07       852947636     721174 2013-06-07-07:00 2013-06-26-07:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+ 852947636 SELECT STATEMENT                                             721174              7
+           FILTER                                                                           6
+           NESTED LOOPS                                                                     5
+           NESTED LOOPS                                                 721174       40     4
+           HASH JOIN                                                    721130       40     3
+           HASH JOIN                                                    721115       40     2
+           TABLE ACCESS         FULL           BT_COMMON_HEADER         721100       40     1
+           TABLE ACCESS         FULL           BT_COMPANY_NAME              14     9327     1
+           TABLE ACCESS         FULL           BT_COMPANY_NAME              14     9327     2
+           INDEX                UNIQUE SCAN    BT824REAS_PK                  1        1     3
+           TABLE ACCESS         BY INDEX ROWID BT_824_REASON                 2        1     4
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+BT_COMPANY_NAME         17365     29 06/20/13 22:02  100%        1       1       0    0
+BT_COMMON_HEADER    102792294    202 06/06/13 07:58  100%    20584   20584   19802    0
+BT_824_REASON        11870886     78 05/26/13 04:43  100%     1071    1071     981   10
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 05     22      63         1      2,686,375    2,686,105        20
+         ------ ------- --------- -------------- ------------ ---------
+sum          22      63         1      2,686,375    2,686,105        20
+
+
+================================================================
+                            SQL 5zf1svh3c4bbn
+             hash: 0
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+INSERT INTO CTP_FILE_IMAGE ( KY_FILE_ID, CD_ROW_TYPE, CD_ROW_STATUS, TX_DATA_IMA
+GE, CT_ORIG_LENGTH) VALUES ( :B3 , 'D', 'I', RTRIM(SUBSTR(:B2 ,1,:B1 )), :B1 )
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-26               0          1 2013-05-26-12:00 2013-06-26-15:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+         0 INSERT STATEMENT                                                  1              2
+           LOAD TABLE CONVENTIO                                                             1
+           NAL
+
+
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 04     48      57    319434      4,360,112        2,157    319434
+06/25 06      6       9     44599        629,419          437     44599
+06/25 07     66      83    458298      6,316,248        8,904    458298
+         ------ ------- --------- -------------- ------------ ---------
+sum         120     148    822331     11,305,779       11,498    822331
+
+
+================================================================
+                            SQL 6kdtv9qsf2bun
+             hash: 3907852446
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "A1"."KY_ROW_SEQ_TRANS","A1"."KY_ROW_SEQ_PARENT","A1"."KY_FILE_ID","A1"."
+CD_IN_OUT_FLAG","A1"."ID_TRANS_REF_NUM","A1"."KY_TRANS_SET_ID","A1"."KY_TRANS_SU
+BTYPE","A1"."DT_TRANS_CREATED","A1"."DT_CTP_PROCESSED","A1"."CD_EDC_DUNS","A1"."
+CD_EDC_DUNS_QUAL","A1"."KY_EDC_NAME_PTR","A1"."CD_EGS_DUNS","A1"."CD_EGS_DUNS_QU
+AL","A1"."KY_EGS_NAME_PTR","A1"."ID_EDC_ACCT_NUM","A1"."TX_CUST_NAME","A1"."ID_C
+ROSS_REF_NUM","A1"."ID_OLD_EDC_ACCT_NUM","A1"."ID_ORIG_TRAN_REF_NUM","A1"."CD_PU
+RPOSE","A1"."ID_CSS_ACCT_NUM","A1"."ID_ER_ACCT_NUM","A1"."DT_SERVICE_PERIOD_BEGI
+N","A1"."DT_SERVICE_PERIOD_END","A1"."DT_EFFECTIVE_OR_DUE","A1"."CD_BILL_TYPE","
+A1"."CD_BILL_CALC_METHOD","A1"."TX_SERVICE","A1"."TX_DUNS_GROUP","A1"."VL_IMPORT
+ANT","A1"."TX_IMPORTANT_FORMAT","A1"."CD_TRANS_INFO","A1"."CD_ACCEPT_OR_REJECT",
+"A1"."CD_ACC_OR_REJ_REASON","A1"."CD_RECONCILE_STATUS","A1"."DT_RECONCILE_DATE",
+"A1"."YN_SENT_TO_EDC","A1"."YN_SENT_TO_CSS","A1"."ZID_ORIG_TRAN_REF_NUM" FROM "B
+T_COMMON_HEADER" "A1" WHERE "A1"."CD_IN_OUT_FLAG"='I' AND "A1"."CD_EDC_DUNS"='17
+8077227' AND "A1"."KY_TRANS_SET_ID"<>'814' AND "A1"."KY_TRANS_SET_ID"<>'824' AND
+ TRUNC("A1"."DT_CTP_PROCESSED")='06/12/2013'
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-06-25      3907852446     717533 2013-06-25-18:00 2013-06-25-18:00 OLD
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+3907852446 SELECT STATEMENT                                             717533              2
+           TABLE ACCESS         FULL           BT_COMMON_HEADER         717533        6     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+BT_COMMON_HEADER    102792294    202 06/06/13 07:58  100%    20584   20584   19802    0
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 18      1      13         1        171,357      171,738         0
+         ------ ------- --------- -------------- ------------ ---------
+sum           1      13         1        171,357      171,738         0
+
+
+================================================================
+                            SQL 70trg7y8sxfzb
+             hash: 2919375725
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "EDOADMIN"."BT_COMMON_HEADER"."KY_ROW_SEQ_TRANS" ,"EDOADMIN"."BT_COMMON_H
+EADER"."KY_ROW_SEQ_PARENT" ,"EDOADMIN"."BT_COMMON_HEADER"."DT_CTP_PROCESSED" ,"E
+DOADMIN"."BT_COMMON_HEADER"."CD_EDC_DUNS" ,"EDOADMIN"."BT_COMMON_HEADER"."CD_EGS
+_DUNS" ,"EDOADMIN"."BT_COMMON_HEADER"."ID_EDC_ACCT_NUM" ,"EDOADMIN"."BT_COMMON_H
+EADER"."ID_ORIG_TRAN_REF_NUM" ,"EDOADMIN"."BT_COMMON_HEADER"."CD_TRANS_INFO" ,"E
+DOADMIN"."BT_824_REASON"."KY_REASON_ID" ,"EDOADMIN"."BT_824_REASON"."ID_REASON_C
+ODE" ,"EDOADMIN"."BT_824_REASON"."TX_REASON_DESC" ,"EDOADMIN"."BT_824_REASON"."T
+X_REJEC_LEVEL_IND" ,"EDOADMIN"."BT_824_REASON"."YN_SENT_TO_EDC" ,"EDOADMIN"."BT_
+824_REASON"."CD_RULE_NUMBER" FROM "EDOADMIN"."BT_COMMON_HEADER","EDOADMIN"."BT_8
+24_REASON" WHERE ((((("EDOADMIN"."BT_COMMON_HEADER"."DT_CTP_PROCESSED" BETWEEN :
+1 AND :2 ) AND ("EDOADMIN"."BT_COMMON_HEADER"."CD_TRANS_INFO" = '820' ) ) AND ("
+EDOADMIN"."BT_COMMON_HEADER"."CD_IN_OUT_FLAG" = 'O' ) ) AND ("EDOADMIN"."BT_COMM
+ON_HEADER"."KY_TRANS_SET_ID" = '824' ) ) AND ("EDOADMIN"."BT_COMMON_HEADER"."KY_
+ROW_SEQ_TRANS" = "EDOADMIN"."BT_824_REASON"."KY_ROW_SEQ_TRANS" ) ) ORDER BY "EDO
+ADMIN"."BT_COMMON_HEADER"."KY_ROW_SEQ_TRANS" ,"EDOADMIN"."BT_824_REASON"."ID_REA
+SON_CODE"
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-06-07      2919375725     721231 2013-06-07-07:00 2013-06-26-07:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+2919375725 SELECT STATEMENT                                             721231              6
+           SORT                 ORDER BY                                721231       62     5
+           FILTER                                                                           4
+           NESTED LOOPS                                                                     3
+           NESTED LOOPS                                                 721230       62     2
+           TABLE ACCESS         FULL           BT_COMMON_HEADER         721100       61     1
+           INDEX                RANGE SCAN     BT824REAS_PK                  2        1     1
+           TABLE ACCESS         BY INDEX ROWID BT_824_REASON                 3        1     2
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+BT_COMMON_HEADER    102792294    202 06/06/13 07:58  100%    20584   20584   19802    0
+BT_824_REASON        11870886     78 05/26/13 04:43  100%     1071    1071     981   10
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 05     22      74         1      2,686,172    2,686,095        36
+06/25 06     38     104         2      5,373,027    5,372,390     15347
+         ------ ------- --------- -------------- ------------ ---------
+sum          60     178         3      8,059,199    8,058,485     15383
+
+
+================================================================
+                            SQL 7hbpzk8fc555b
+             hash: 2797935988
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT COUNT(*) FROM CONTROL_810 WHERE ID_TRANS_REF_NUM = :B4 AND ID_BA_ESCO = :
+B3 AND BEG_DATE = :B2 AND END_DATE = :B1 AND STATUS <> '0824'
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-26      2797935988         80 2013-05-26-22:00 2013-06-25-20:00 OLD
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+2797935988 SELECT STATEMENT                                                 80              3
+           SORT                 AGGREGATE                                             1     2
+           TABLE ACCESS         FULL           CONTROL_810                  80        1     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+CONTROL_810             12803    186 06/25/13 22:00  100%        7       7       3   10
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 20     21      21     12803     11,420,276            0     12803
+         ------ ------- --------- -------------- ------------ ---------
+sum          21      21     12803     11,420,276            0     12803
+
+
+================================================================
+                            SQL 7mrmsp0akcuqq
+             hash: 3907852446
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT /*+ ALL_ROWS FULL ("CH") */ "KY_ROW_SEQ_TRANS","CD_IN_OUT_FLAG","KY_TRANS
+_SET_ID","KY_TRANS_SUBTYPE","CD_EDC_DUNS","CD_EGS_DUNS","ID_EDC_ACCT_NUM","DT_SE
+RVICE_PERIOD_BEGIN","DT_SERVICE_PERIOD_END" FROM "EDOADMIN"."BT_COMMON_HEADER" "
+CH" WHERE "CD_EGS_DUNS"='099668332' AND "KY_TRANS_SUBTYPE"='RR' AND "KY_TRANS_SE
+T_ID"='810' AND ("CD_EDC_DUNS"='006977763' OR "CD_EDC_DUNS"='006982359' OR "CD_E
+DC_DUNS"='006993406' OR "CD_EDC_DUNS"='006993695' OR "CD_EDC_DUNS"='006994735' O
+R "CD_EDC_DUNS"='160612110') AND "CD_IN_OUT_FLAG"='I'
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-06-12      3907852446     717982 2013-06-12-22:00 2013-06-25-22:00 OLD
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+3907852446 SELECT STATEMENT                                             717982              2
+           TABLE ACCESS         FULL           BT_COMMON_HEADER         717982    10047     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+BT_COMMON_HEADER    102792294    202 06/06/13 07:58  100%    20584   20584   19802    0
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 22     27     198         5      4,561,233    4,568,093      8475
+         ------ ------- --------- -------------- ------------ ---------
+sum          27     198         5      4,561,233    4,568,093      8475
+
+
+================================================================
+                            SQL 7vqhwpwx42wrn
+             hash: 0
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+INSERT INTO BT_867_INTERVAL ( KY_ROW_SEQ_TRANS, KY_LOOP_ID, CD_QUANTITY_UOM, KY_
+RECD_SEQ, CD_QUANTITY_QUALIFIER, VL_QUANTITY, TS_INTERVAL, CD_TIMEZONE) VALUES (
+ :B8 , :B7 , :B6 , :B5 , :B4 , :B3 , :B2 , :B1 )
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-28               0          1 2013-05-28-05:00 2013-06-26-07:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+         0 INSERT STATEMENT                                                  1              2
+           LOAD TABLE CONVENTIO                                                             1
+           NAL
+
+
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 04     13      15    256990      1,838,947          576    256990
+06/25 07     20      23    422664      3,038,900          663    422664
+06/25 12     49      53   1029264      7,359,918        1,487   1029264
+         ------ ------- --------- -------------- ------------ ---------
+sum          83      92   1708918     12,237,765        2,726   1708918
+
+
+================================================================
+                            SQL 8476xg3bt3fcf
+             hash: 278008606
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "A2"."KY_ROW_SEQ_TRANS_0","A2"."DT_TRANS_CREATED_3","A2"."DT_CTP_PROCESSE
+D_4","A2"."ID_EDC_ACCT_NUM_6","A2"."KY_ROW_SEQ_TRANS_9","A1"."CD_LOAD_PROFILE","
+A1"."CD_RATE_CLASS","A1"."CD_METER_CYCLE" FROM  (SELECT "A4"."KY_ROW_SEQ_TRANS"
+"KY_ROW_SEQ_TRANS_0","A4"."KY_TRANS_SET_ID" "KY_TRANS_SET_ID_1","A4"."KY_TRANS_S
+UBTYPE" "KY_TRANS_SUBTYPE_2","A4"."DT_TRANS_CREATED" "DT_TRANS_CREATED_3","A4"."
+DT_CTP_PROCESSED" "DT_CTP_PROCESSED_4","A4"."CD_EGS_DUNS" "CD_EGS_DUNS_5","A4"."
+ID_EDC_ACCT_NUM" "ID_EDC_ACCT_NUM_6","A4"."DT_SERVICE_PERIOD_BEGIN" "DT_SERVICE_
+PERIOD_BEGIN_7","A4"."CD_ACCEPT_OR_REJECT" "CD_ACCEPT_OR_REJECT_8","A3"."KY_ROW_
+SEQ_TRANS" "KY_ROW_SEQ_TRANS_9","A3"."CD_ADDR_TYPE" "CD_ADDR_TYPE_10" FROM "EDOA
+DMIN"."BT_COMMON_HEADER" "A4","BT_814_ADDRESS" "A3" WHERE "A4"."KY_ROW_SEQ_TRANS
+"="A3"."KY_ROW_SEQ_TRANS" AND "A3"."CD_ADDR_TYPE"='8R') "A2","EDOADMIN"."BT_814_
+METER" "A1" WHERE "A2"."KY_ROW_SEQ_TRANS_0"="A1"."KY_ROW_SEQ_TRANS"(+) AND NVL("
+A1"."CD_METER_CYCLE"(+),'0')<>'0'
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-06-06       278008606     975015 2013-06-06-08:00 2013-06-26-09:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+ 278008606 SELECT STATEMENT                                             975015              5
+           HASH JOIN            OUTER                                   975015   477328     4
+           NESTED LOOPS                                                                     3
+           NESTED LOOPS                                                 967224   477328     2
+           TABLE ACCESS         FULL           BT_814_ADDRESS            12026   477328     1
+           INDEX                UNIQUE SCAN    BTCOMMHDR_PK                  1        1     1
+           TABLE ACCESS         BY INDEX ROWID BT_COMMON_HEADER              2        1     2
+           TABLE ACCESS         FULL           BT_814_METER               4241  1479660     3
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+BT_COMMON_HEADER    102792294    202 06/06/13 07:58  100%    20584   20584   19802    0
+BT_814_METER          2745980     53 05/26/13 04:43  100%      119     119     139    0
+BT_814_ADDRESS        6682650     54 05/26/13 04:43  100%      340     340     344    0
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 08     37     177         1      6,349,283      183,783   3966979
+06/25 09     41     203         1      6,355,627      140,275   8006277
+         ------ ------- --------- -------------- ------------ ---------
+sum          78     380         2     12,704,910      324,058  11973256
+
+
+================================================================
+                            SQL 92ga1u50tbmjt
+             hash: 2452627033
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+select
+h.ky_row_seq_trans row_seq, h.date_created, h.cd_tran_set_id tran,
+h.run_ind, h.send824, d.send824, h.edc_ky_ba,
+h.tx_edc_duns,h.tx_egs_duns,d.*
+from b824hdr h, b824dtl d
+where (h.db_id = d.b824hdr_db_id)
+
+
+  AND (h.date_created > '25-JUN-2013')
+  AND decode(h.cd_tran_set_id,'810',decode(d.rule_no,22,99,d.rule_no),
+                              '814',decode(d.rule_no,18,99,19,99,d.rule_no),
+                              '867',decode(d.rule_no,69,99,71,99,77,99,83,99,85,
+99,d.rule_no),
+                              'E67',decode(d.rule_no,69,99,71,99,77,99,83,99,85,
+99,d.rule_no),
+                              'F67',decode(d.rule_no,69,99,71,99,77,99,83,99,85,
+99,d.rule_no),
+                              'M67',decode(d.rule_no,69,99,71,99,77,99,83,99,85,
+99,d.rule_no),
+                              'H67',decode(d.rule_no,69,99,71,99,77,99,83,99,85,
+99,d.rule_no),
+                              'B67',decode(d.rule_no,69,99,71,99,77,99,83,99,85,
+99,d.rule_no),
+                              'G67',decode(d.rule_no,69,99,71,99,77,99,83,99,85,
+99,d.rule_no),
+                              '820',decode(d.rule_no,10,99,d.rule_no),d.rule_no)
+
+                               not in (99)
+
+
+
+order by h.ky_row_seq_trans desc
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-06-25      2452627033     126634 2013-06-25-09:00 2013-06-25-17:00 OLD
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+2452627033 SELECT STATEMENT                                             126634              5
+           SORT                 ORDER BY                                126634        1     4
+           NESTED LOOPS                                                                     3
+           NESTED LOOPS                                                 126633        1     2
+           TABLE ACCESS         FULL           B824HDR                  126595       13     1
+           INDEX                RANGE SCAN     B824DTL_IN1                   2        1     1
+           TABLE ACCESS         BY INDEX ROWID B824DTL                       3        1     2
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+B824HDR              12143860    268 06/24/13 22:08  100%     3624    3624    3449   10
+B824DTL              11714474     77 05/26/13 04:41  100%     1051    1051     956   10
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 09      3      22         1        468,193      464,307       133
+06/25 17      4      29         1        476,195      466,098       222
+         ------ ------- --------- -------------- ------------ ---------
+sum           7      51         2        944,388      930,405       355
+
+
+================================================================
+                            SQL a1fdhp0ajf4j9
+             hash: 1940718848
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "KY_ROW_SEQ_TRANS","CD_ADDR_TYPE" FROM "BT_814_ADDRESS" "BA" WHERE "CD_AD
+DR_TYPE"='BT' AND "KY_ROW_SEQ_TRANS"=:1
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-28      1940718848          4 2013-05-28-12:00 2013-06-26-09:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+1940718848 SELECT STATEMENT                                                  4              3
+           TABLE ACCESS         BY INDEX ROWID BT_814_ADDRESS                4        1     2
+           INDEX                RANGE SCAN     BT814ADDR_PK                  3        1     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+BT_814_ADDRESS        6682650     54 05/26/13 04:43  100%      340     340     344    0
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 08    140     255   3965434     15,881,728       62,007    687940
+06/25 09    274     290   8006826     32,061,632        1,242   1010904
+         ------ ------- --------- -------------- ------------ ---------
+sum         414     545  11972260     47,943,360       63,249   1698844
+
+
+================================================================
+                            SQL bhq5hytg5kvbd
+             hash: 3907852446
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT /*+ ALL_ROWS USE_NL ("CH") FULL ("CH") */ "KY_ROW_SEQ_TRANS","CD_IN_OUT_F
+LAG","KY_TRANS_SET_ID","KY_TRANS_SUBTYPE","CD_EDC_DUNS","CD_EGS_DUNS","ID_EDC_AC
+CT_NUM","DT_SERVICE_PERIOD_BEGIN","DT_SERVICE_PERIOD_END" FROM "EDOADMIN"."BT_CO
+MMON_HEADER" "CH" WHERE "CD_EGS_DUNS"='099668332' AND "KY_TRANS_SUBTYPE"='RR' AN
+D "KY_TRANS_SET_ID"='810' AND ("CD_EDC_DUNS"='006977763' OR "CD_EDC_DUNS"='00698
+2359' OR "CD_EDC_DUNS"='006993406' OR "CD_EDC_DUNS"='006993695' OR "CD_EDC_DUNS"
+='006994735' OR "CD_EDC_DUNS"='160612110') AND "CD_IN_OUT_FLAG"='I' AND "ID_EDC_
+ACCT_NUM"=:1 AND "DT_SERVICE_PERIOD_BEGIN"=:2 AND "DT_SERVICE_PERIOD_END"=:3
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-06-13      3907852446     719644 2013-06-13-22:00 2013-06-25-22:00 OLD
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+3907852446 SELECT STATEMENT                                             719644              2
+           TABLE ACCESS         FULL           BT_COMMON_HEADER         719644        1     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+BT_COMMON_HEADER    102792294    202 06/06/13 07:58  100%    20584   20584   19802    0
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 22    194    1154        12     32,267,125   32,266,933         0
+         ------ ------- --------- -------------- ------------ ---------
+sum         194    1154        12     32,267,125   32,266,933         0
+
+
+================================================================
+                            SQL cchp3887k73x4
+             hash: 4179759865
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "A4"."CD_EDC_DUNS","A4"."TX_SERVICE","A3"."KY_LOOP_ID","A3"."DT_SERVICE_B
+EGIN_LOOP","A3"."DT_SERVICE_END_LOOP","A3"."CD_LOOP_TYPE","A3"."CD_METER_TYPE",D
+ECODE(LTRIM(RTRIM("A3"."ID_METER_NUM")),NULL,'_NoMeter',LTRIM(RTRIM("A3"."ID_MET
+ER_NUM"))),"A2"."VL_QUANTITY","A2"."KY_QTY_ID",RTRIM("A2"."CD_QUANTITY_UOM"),"A2
+"."CD_QUANTITY_QUALIFIER",RTRIM("A2"."CD_MEAS_SIGNIFICANCE"),DECODE(LTRIM(RTRIM(
+"A2"."CD_METER_ROLE")),NULL,'A',"A2"."CD_METER_ROLE"),DECODE(LTRIM(RTRIM("A2"."C
+D_METER_ROLE")),NULL,1,'A',1,'S',(-1),'I',0,1),"A1"."I_UOM","A1"."I_QTY","A1"."I
+_ROWS","A1"."MIN_TS","A1"."MAX_TS" FROM "EDOADMIN"."BT_COMMON_HEADER" "A4","EDOA
+DMIN"."BT_867_LOOP" "A3","EDOADMIN"."BT_867_QTY" "A2", (SELECT "A5"."KY_ROW_SEQ_
+TRANS" "KY_ROW_SEQ_TRANS","A5"."KY_LOOP_ID" "KY_LOOP_ID",RTRIM("A5"."CD_QUANTITY
+_UOM") "I_UOM",SUM("A5"."VL_QUANTITY") "I_QTY",MIN("A5"."TS_INTERVAL") "MIN_TS",
+MAX("A5"."TS_INTERVAL") "MAX_TS",COUNT("A5"."KY_LOOP_ID") "I_ROWS" FROM "EDOADMI
+N"."BT_867_INTERVAL" "A5" WHERE "A5"."KY_ROW_SEQ_TRANS"=:1 AND INSTR(:2,';'||"A5
+"."CD_QUANTITY_UOM"||';')<>0 AND INSTR("A5"."CD_QUANTITY_QUALIFIER",'87')=0 GROU
+P BY "A5"."KY_ROW_SEQ_TRANS","A5"."KY_LOOP_ID","A5"."CD_QUANTITY_UOM") "A1" WHER
+E "A4"."KY_ROW_SEQ_TRANS"=:3 AND "A3"."KY_ROW_SEQ_TRANS"=:4 AND "A2"."KY_ROW_SEQ
+_TRANS"(+)="A3"."KY_ROW_SEQ_TRANS" AND "A2"."KY_LOOP_ID"(+)="A3"."KY_LOOP_ID" AN
+D "A1"."KY_LOOP_ID"(+)="A3"."KY_LOOP_ID" AND "A2"."KY_ROW_SEQ_TRANS"(+)=:5 ORDER
+ BY LTRIM(RTRIM("A3"."ID_METER_NUM")),"A3"."KY_LOOP_ID","A2"."KY_QTY_ID","A2"."C
+D_QUANTITY_UOM","A2"."CD_MEAS_SIGNIFICANCE","A1"."I_UOM"
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-26      4179759865         22 2013-05-26-11:00 2013-06-26-15:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+4179759865 SELECT STATEMENT                                                 22              8
+           SORT                 ORDER BY                                    22        2     7
+           HASH JOIN            OUTER                                       21        2     6
+           NESTED LOOPS         OUTER                                       16        2     5
+           NESTED LOOPS                                                      6        2     4
+           TABLE ACCESS         BY INDEX ROWID BT_COMMON_HEADER              3        1     3
+           INDEX                UNIQUE SCAN    BTCOMMHDR_PK                  2        1     2
+           TABLE ACCESS         BY INDEX ROWID BT_867_LOOP                   3        2     3
+           INDEX                RANGE SCAN     BT867LOOP_PKC                 2        2     2
+           VIEW PUSHED PREDICAT                                              5        1     4
+           E
+
+           SORT                 GROUP BY                                     5        1     3
+           TABLE ACCESS         BY INDEX ROWID BT_867_INTERVAL               5        1     2
+           INDEX                RANGE SCAN     BT867INTERVAL_PKC             4        1     1
+           TABLE ACCESS         BY INDEX ROWID BT_867_QTY                    4        3     5
+           INDEX                RANGE SCAN     BT867QTY_PK                   3        1     4
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+BT_867_INTERVAL    2469248451     36 05/26/13 04:51  100%   108239  108239   94194   10
+BT_867_QTY           64885824     48 05/26/13 04:52  100%     3606    3606    3300   10
+BT_867_LOOP          50656633     63 05/26/13 04:52  100%     3993    3993    3804   20
+BT_COMMON_HEADER    102792294    202 06/06/13 07:58  100%    20584   20584   19802    0
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 07      2       8      5503        126,667        1,099     19149
+06/25 08      2       4      5462        113,043          115     12569
+06/25 09     19     137      1490        127,727       65,704     13302
+06/25 10      7     109      1652         65,781       24,051      8567
+06/25 11      5      63      8652        204,927        9,615     32763
+06/25 13      2       7      1633         48,753          377      7041
+06/25 16      3      55      4333         89,171        8,144      9771
+06/25 17      0       1       127          3,205           63       769
+06/25 20      4     103      1177         43,068       15,737      5993
+06/25 21     40     400     13421        466,364      126,015     66770
+06/25 22      0       3        72          1,782          262       255
+         ------ ------- --------- -------------- ------------ ---------
+sum          87     890     43522      1,290,488      251,182    176949
+
+
+================================================================
+                            SQL cs8nnk59r0qr9
+             hash: 1146300872
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT D.GEOCODE, D.TAXTYPE, D.TAXCAT, D.TAXRATE, D.INOUTCITY, D.INOUTLOCAL, D.L
+OCATION, D.DESCRPT FROM CPM.CCH_DETAIL D, CPM.CCH_EFFECTIVITY EE, CPM.CCH_TXMATR
+IX M, CPM.CCH_EFFECTIVITY E WHERE E.TABLE_NAME = 'TXMATRIX' AND :B2 BETWEEN E.EF
+F_FROM AND E.EFF_TO AND M.KY_MTX_SEQ BETWEEN E.MIN_SEQ AND E.MAX_SEQ AND M.GEOCO
+DE = :B7 AND M.GROUPCODE = :B6 AND M.ITEM IN ('   ', :B5 ) AND M.TAXABLE = 'Y' A
+ND M.PROVIDER IN ('  ', :B4 ) AND M.CUSTOMER = :B3 AND M.RECTYPE = 'R' AND EE.TA
+BLE_NAME = 'DETAIL' AND :B2 BETWEEN EE.EFF_FROM AND EE.EFF_TO AND D.KY_DTL_SEQ B
+ETWEEN EE.MIN_SEQ AND EE.MAX_SEQ AND D.GEOCODE = :B1 AND D.TAXTYPE = M.TAXTYPE A
+ND D.TAXCAT = M.TAXCAT AND D.INOUTCITY IN ('I',' ') AND D.INOUTLOCAL IN ('I',' '
+) ORDER BY D.GEOCODE, D.TAXTYPE, D.TAXCAT, D.LOCATION
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-26      1146300872         52 2013-05-26-22:00 2013-06-26-14:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+1146300872 SELECT STATEMENT                                                 52              9
+           SORT                 ORDER BY                                    52       56     8
+           MERGE JOIN                                                       51       56     7
+           SORT                 JOIN                                        48        8     6
+           NESTED LOOPS                                                     47        8     5
+           NESTED LOOPS                                                     45        1     4
+           INLIST ITERATOR                                                                  3
+           TABLE ACCESS         BY INDEX ROWID CCH_TXMATRIX                  7        1     2
+           INDEX                RANGE SCAN     CCH_TXMATRIX_AK3              6        1     1
+           TABLE ACCESS         BY INDEX ROWID CCH_DETAIL                   38        1     3
+           INDEX                RANGE SCAN     CCH_DETAIL_AK1                2      508     2
+           TABLE ACCESS         FULL           CCH_EFFECTIVITY               2       10     4
+           FILTER                                                                           6
+           SORT                 JOIN                                         3       43     5
+           TABLE ACCESS         FULL           CCH_EFFECTIVITY               2       43     4
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+CCH_TXMATRIX          3044292    121 05/24/13 22:06    0%      424     424     390   10
+CCH_EFFECTIVITY           182     49 01/24/12 13:43  100%        0       0       0   10
+CCH_DETAIL           10368280     98 04/03/13 15:45    5%     1154    1154    1077   10
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 05      1       3         3        212,382          120         2
+06/25 09     54      94       276     13,679,862        3,067       122
+06/25 11     65      85       315     16,172,768        2,563       147
+06/25 14     11      22        63      2,693,121        1,383        23
+06/25 17      2       4         6        577,375          156         6
+         ------ ------- --------- -------------- ------------ ---------
+sum         133     208       663     33,335,508        7,289       300
+
+
+================================================================
+                            SQL cwr1jj60gzayt
+             hash: 3544699424
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT M.* FROM CCH_TXMATRIX M, CCH_EFFECTIVITY E WHERE E.TABLE_NAME = 'TXMATRIX
+' AND :B3 BETWEEN E.EFF_FROM AND E.EFF_TO AND M.KY_MTX_SEQ BETWEEN E.MIN_SEQ AND
+ E.MAX_SEQ AND GEOCODE = :B2 AND TAXABLE = 'Y' AND RECTYPE = 'T' AND INSTR(:B1 ,
+ ';' || TAXTYPET || TAXCATT || ';') <> 0 AND INSTR(:B1 , ';' || TAXTYPE || TAXCA
+T || ';') <> 0 ORDER BY DECODE(INSTR(TAXTYPE || TAXCAT, TAXTYPET || TAXCATT), 1,
+ 0, 1), TAXTYPE || TAXCAT DESC, TAXTYPET || TAXCATT ASC
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-26      3544699424          7 2013-05-26-12:00 2013-06-25-18:00 OLD
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+3544699424 SELECT STATEMENT                                                  7              5
+           SORT                 ORDER BY                                     7        1     4
+           NESTED LOOPS                                                      6        1     3
+           TABLE ACCESS         BY INDEX ROWID CCH_TXMATRIX                  4        1     2
+           INDEX                RANGE SCAN     CCH_TXMATRIX_AK4              3       15     1
+           TABLE ACCESS         FULL           CCH_EFFECTIVITY               2        7     2
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+CCH_TXMATRIX          3044292    121 05/24/13 22:06    0%      424     424     390   10
+CCH_EFFECTIVITY           182     49 01/24/12 13:43  100%        0       0       0   10
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 18    402     408     35003     10,661,704        2,918     15004
+         ------ ------- --------- -------------- ------------ ---------
+sum         402     408     35003     10,661,704        2,918     15004
+
+
+================================================================
+                            SQL fmcyuzf5xw4z2
+             hash: 3718556423
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "EDOADMIN"."BT_H867_HEADER"."CD_LOAD_PROFILE" ,"EDOADMIN"."BT_H867_HEADER
+"."VL_CAP_OBLIG" ,"EDOADMIN"."BT_H867_HEADER"."VL_TRAN_OBLIG" ,"EDOADMIN"."BT_H8
+67_HEADER"."CD_BILLING_CYCLE" ,"EDOADMIN"."BT_COMMON_HEADER"."DT_CTP_PROCESSED"
+,"EDOADMIN"."BT_COMMON_HEADER"."ID_EDC_ACCT_NUM" ,"EDOADMIN"."BT_H867_LOOP"."DT_
+SERVICE_BEGIN_LOOP" ,"EDOADMIN"."BT_H867_LOOP"."DT_SERVICE_END_LOOP" ,"EDOADMIN"
+."BT_H867_LOOP"."ID_METER_NUM" ,"EDOADMIN"."BT_H867_LOOP"."CD_EDC_RATE" ,"EDOADM
+IN"."BT_H867_QTY"."VL_QUANTITY" ,"EDOADMIN"."BT_H867_QTY"."CD_QUANTITY_UOM" ,"ED
+OADMIN"."BT_H867_QTY"."CD_MEAS_SIGNIFICANCE" FROM "EDOADMIN"."BT_H867_HEADER","E
+DOADMIN"."BT_COMMON_HEADER","EDOADMIN"."BT_H867_LOOP","EDOADMIN"."BT_H867_QTY" W
+HERE (((("EDOADMIN"."BT_COMMON_HEADER"."KY_ROW_SEQ_TRANS" = "EDOADMIN"."BT_H867_
+HEADER"."KY_ROW_SEQ_TRANS" ) AND ("EDOADMIN"."BT_COMMON_HEADER"."KY_ROW_SEQ_TRAN
+S" = "EDOADMIN"."BT_H867_LOOP"."KY_ROW_SEQ_TRANS" ) ) AND (("EDOADMIN"."BT_H867_
+LOOP"."KY_LOOP_ID" = "EDOADMIN"."BT_H867_QTY"."KY_LOOP_ID" ) AND ("EDOADMIN"."BT
+_H867_LOOP"."KY_ROW_SEQ_TRANS" = "EDOADMIN"."BT_H867_QTY"."KY_ROW_SEQ_TRANS" ) )
+ ) AND (((((((((((("EDOADMIN"."BT_H867_QTY"."CD_QUANTITY_UOM" = 'KH' ) AND ("EDO
+ADMIN"."BT_COMMON_HEADER"."CD_EGS_DUNS" = '1768714812000' ) ) AND ("EDOADMIN"."B
+T_COMMON_HEADER"."CD_IN_OUT_FLAG" = 'I' ) ) AND ("EDOADMIN"."BT_COMMON_HEADER"."
+KY_TRANS_SET_ID" = 'USG' ) ) AND ("EDOADMIN"."BT_COMMON_HEADER"."KY_TRANS_SUBTYP
+E" = '9' ) ) OR ((((("EDOADMIN"."BT_H867_QTY"."CD_QUANTITY_UOM" = 'KH' ) AND ("E
+DOADMIN"."BT_COMMON_HEADER"."CD_EGS_DUNS" = '1768714812100' ) ) AND ("EDOADMIN".
+"BT_COMMON_HEADER"."CD_IN_OUT_FLAG" = 'I' ) ) AND ("EDOADMIN"."BT_COMMON_HEADER"
+."KY_TRANS_SET_ID" = 'USG' ) ) AND ("EDOADMIN"."BT_COMMON_HEADER"."KY_TRANS_SUBT
+YPE" = '9' ) ) ) OR ((((("EDOADMIN"."BT_H867_QTY"."CD_QUANTITY_UOM" = 'KH' ) AND
+ ("EDOADMIN"."BT_COMMON_HEADER"."CD_EGS_DUNS" = '1768714812600' ) ) AND ("EDOADM
+IN"."BT_COMMON_HEADER"."CD_IN_OUT_FLAG" = 'I' ) ) AND ("EDOADMIN"."BT_COMMON_HEA
+DER"."KY_TRANS_SET_ID" = 'USG' ) ) AND ("EDOADMIN"."BT_COMMON_HEADER"."KY_TRANS_
+SUBTYPE" = '9' ) ) ) OR ((((("EDOADMIN"."BT_H867_QTY"."CD_QUANTITY_UOM" = 'KH' )
+ AND ("EDOADMIN"."BT_COMMON_HEADER"."CD_EGS_DUNS" = '1768714812500' ) ) AND ("ED
+OADMIN"."BT_COMMON_HEADER"."CD_IN_OUT_FLAG" = 'I' ) ) AND ("EDOADMIN"."BT_COMMON
+_HEADER"."KY_TRANS_SET_ID" = 'USG' ) ) AND ("EDOADMIN"."BT_COMMON_HEADER"."KY_TR
+ANS_SUBTYPE" = '9' ) ) ) OR ((((("EDOADMIN"."BT_H867_QTY"."CD_QUANTITY_UOM" = 'K
+H' ) AND ("EDOADMIN"."BT_COMMON_HEADER"."CD_EGS_DUNS" = '1768714812700' ) ) AND
+("EDOADMIN"."BT_COMMON_HEADER"."CD_IN_OUT_FLAG" = 'I' ) ) AND ("EDOADMIN"."BT_CO
+MMON_HEADER"."KY_TRANS_SET_ID" = 'USG' ) ) AND ("EDOADMIN"."BT_COMMON_HEADER"."K
+Y_TRANS_SUBTYPE" = '9' ) ) ) OR ((((("EDOADMIN"."BT_H867_QTY"."CD_QUANTITY_UOM"
+= 'KH' ) AND ("EDOADMIN"."BT_COMMON_HEADER"."CD_EGS_DUNS" = '153409479IL00' ) )
+AND ("EDOADMIN"."BT_COMMON_HEADER"."CD_IN_OUT_FLAG" = 'I' ) ) AND ("EDOADMIN"."B
+T_COMMON_HEADER"."KY_TRANS_SET_ID" = 'USG' ) ) AND ("EDOADMIN"."BT_COMMON_HEADER
+"."KY_TRANS_SUBTYPE" = '9' ) ) ) OR ((((("EDOADMIN"."BT_H867_QTY"."CD_QUANTITY_U
+OM" = 'KH' ) AND ("EDOADMIN"."BT_COMMON_HEADER"."CD_EGS_DUNS" = '1768714813500'
+) ) AND ("EDOADMIN"."BT_COMMON_HEADER"."CD_IN_OUT_FLAG" = 'I' ) ) AND ("EDOADMIN
+"."BT_COMMON_HEADER"."KY_TRANS_SET_ID" = 'USG' ) ) AND ("EDOADMIN"."BT_COMMON_HE
+ADER"."KY_TRANS_SUBTYPE" = '9' ) ) ) OR ((((("EDOADMIN"."BT_H867_QTY"."CD_QUANTI
+TY_UOM" = 'KH' ) AND ("EDOADMIN"."BT_COMMON_HEADER"."CD_EGS_DUNS" = '17687148124
+00' ) ) AND ("EDOADMIN"."BT_COMMON_HEADER"."CD_IN_OUT_FLAG" = 'I' ) ) AND ("EDOA
+DMIN"."BT_COMMON_HEADER"."KY_TRANS_SET_ID" = 'USG' ) ) AND ("EDOADMIN"."BT_COMMO
+N_HEADER"."KY_TRANS_SUBTYPE" = '9' ) ) ) )
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-06-06      3718556423     265171 2013-06-06-14:00 2013-06-25-10:00 OLD
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+3718556423 SELECT STATEMENT                                             265171             10
+           NESTED LOOPS                                                                     9
+           NESTED LOOPS                                                 265171      625     8
+           HASH JOIN                                                    264534      625     7
+           TABLE ACCESS         BY INDEX ROWID BT_COMMON_HEADER           1053      450     6
+           BITMAP CONVERSION    TO ROWIDS                                                   5
+           BITMAP OR                                                                        4
+           BITMAP AND                                                                       3
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_TRANTYPE           45              1
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_EGSDUNS            82              1
+           BITMAP AND                                                                       3
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_TRANTYPE           45              1
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_EGSDUNS            82              1
+           BITMAP AND                                                                       3
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_TRANTYPE           45              1
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_EGSDUNS            82              1
+           BITMAP AND                                                                       3
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_TRANTYPE           45              1
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_EGSDUNS            82              1
+           BITMAP AND                                                                       3
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_TRANTYPE           45              1
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_EGSDUNS            82              1
+           BITMAP AND                                                                       3
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_TRANTYPE           45              1
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_EGSDUNS            82              1
+           BITMAP AND                                                                       3
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_TRANTYPE           45              1
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_EGSDUNS            82              1
+           BITMAP AND                                                                       3
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_TRANTYPE           45              1
+           BITMAP CONVERSION    FROM ROWIDS                                                 2
+           INDEX                RANGE SCAN     BTCOMMHDR_EGSDUNS            82              1
+           HASH JOIN                                                    187019 ########     6
+           TABLE ACCESS         FULL           BT_H867_QTY               68108  2712864     5
+           TABLE ACCESS         FULL           BT_H867_LOOP              56266 ########     5
+           INDEX                UNIQUE SCAN    BT_H867_HEADER_PK             1        1     7
+           TABLE ACCESS         BY INDEX ROWID BT_H867_HEADER                2        1     8
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+BT_COMMON_HEADER    102792294    202 06/06/13 07:58  100%    20584   20584   19802    0
+BT_H867_QTY          38243989     48 05/26/13 04:56  100%     1938    1938    1945   10
+BT_H867_LOOP         27229283     51 05/26/13 04:56  100%     1606    1606    1558   15
+BT_H867_HEADER        1898835     29 05/26/13 04:55  100%       52      52      58   10
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 09    192     302         3      4,702,513    2,053,681   2170671
+06/25 09     10     142         1        249,191       36,177    723557
+06/25 10      0       0         0              0            0         0
+06/25 10    202     311         3      4,860,834    2,051,442   2170671
+         ------ ------- --------- -------------- ------------ ---------
+sum         404     755         7      9,812,538    4,141,300   5064899

@@ -1,0 +1,25 @@
+
+Session altered.
+
+
+16 rows deleted.
+
+
+Explained.
+
+
+Plan Table                                                                                                                                                                                              
+-------------------------------------------------------------------------------------------                                                                                                             
+| Operation                        |  Name                         |  Rows | Bytes|  Cost |                                                                                                             
+-------------------------------------------------------------------------------------------                                                                                                             
+| SELECT STATEMENT                 |                              |    14K|    2M|   428 |                                                                                                              
+|  SORT GROUP BY                   |                              |    14K|    2M|   428 |                                                                                                              
+|   HASH JOIN                      |                              |    14K|    2M|    28 |                                                                                                              
+|    HASH JOIN                     |                              |   147 |   24K|    22 |                                                                                                              
+|     TABLE ACCESS FULL            |CODE                          |   218 |    7K|    16 |                                                                                                              
+|     TABLE ACCESS FULL            |GW_MASS_CHANGE_FILE           |   147 |   19K|     5 |                                                                                                              
+|    TABLE ACCESS FULL             |GOODWRENCH_TRANSACTIONS       |    14K|  145K|     5 |                                                                                                              
+--------------------------------------------------------------------------------                                                                                                                        
+
+10 rows selected.
+

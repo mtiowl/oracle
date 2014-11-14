@@ -1,0 +1,8 @@
+SELECT s.*, sysdate
+  FROM v$session s
+  WHERE username NOT IN ('SYS', 'SYSTEM')
+    --AND sid = (select sid FROM sys.v$mystat WHERE rownum = 1)
+    AND sid = SYS_CONTEXT('USERENV', 'SID')
+    --AND username = SYS_CONTEXT('USERENV', 'SESSION_USER')
+    AND username = ora_login_user
+/

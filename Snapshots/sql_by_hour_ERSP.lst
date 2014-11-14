@@ -1,0 +1,1221 @@
+
+NAME      REPORT          FIRST_SNAP  LAST_SNAP REPORT_TIME
+--------- --------------- ---------- ---------- ----------------
+ERSP      10 LARGEST SQLS       1516       1539 2013-06-27 15:27
+
+VERSION           HOST_NAME    STARTUP
+----------------- ------------ ----------------
+11.2.0.3.0        lnx-dbfm-p-0 2013-05-26 05:35
+                  01.ppl.com
+
+
+2013-06-26 00:00 FIRST SNAPSHOT       1516
+2013-06-26 23:00  LAST SNAPSHOT       1539
+
+STARTING      SQLS    BUFFER_GETS   DISK_READS    PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------ -------------- ------------ ------------ ------ ------- --------
+06/25 23:00     80      1,583,073    1,311,678       16,877     27     296     17.1
+06/26 00:00     81      2,316,564    1,530,324      446,567     37     141     33.9
+06/26 01:00     94      4,563,181    2,082,640    1,900,814     63     192     54.4
+06/26 02:00     82      2,092,722    1,959,871       35,181     38     103      6.3
+06/26 03:00     91      2,302,970    2,239,861       20,236     38     135      2.7
+06/26 04:00     76      2,524,047    2,328,897      739,870     46      92      7.7
+06/26 05:00     92      9,413,654    6,696,399    2,214,858    120     612     28.9
+06/26 06:00     94      1,498,826    1,093,644    2,629,915     35     138     27.0
+06/26 07:00     83      5,822,483    2,028,888   63,908,405    111     673     65.2
+06/26 08:00     98    129,480,155    3,748,601   47,390,705    496     816     97.1
+06/26 09:00     88    598,667,469    5,505,789    5,654,558   2582    3283     99.1
+06/26 10:00     92     27,512,489    4,685,558    7,199,788    212     517     83.0
+06/26 11:00     98     20,792,793    1,518,814  107,589,831    568     677     92.7
+06/26 12:00     96      3,582,456    1,268,022    8,054,508    178     231     64.6
+06/26 13:00     90     12,100,969    4,504,862    7,110,181    189     781     62.8
+06/26 14:00     85      1,917,211    1,071,646    2,768,215     29      93     44.1
+06/26 15:00     91      7,988,123    4,152,605    1,084,442     75     159     48.0
+06/26 16:00     94      9,361,175    4,774,162    8,867,475    835     998     49.0
+06/26 17:00     86      2,323,471    1,130,616      854,489    139     185     51.3
+06/26 18:00     83      8,097,739      271,997      434,814    332     740     96.6
+06/26 19:00     88      1,084,825      500,295       42,089     36     131     53.9
+06/26 20:00     71      1,022,467      654,216       31,907     17      63     36.0
+06/26 21:00     78      1,063,052      653,796       27,159     17      76     38.5
+06/26 22:00     92      4,359,099    2,465,047    1,167,627     61     850     43.5
+                   -------------- ------------ ------------ ------ -------
+sum                   861,471,013   58,178,228  270,190,511   6281   11982
+
+Top SQLs by BUFFER GETS
+
+RANK    BUFFER_GETS  GETS/EXEC     EXECS   DISK_READS    PROCESSED    CPU ELAPSED MODULE                    SQL_ID
+---- -------------- ---------- --------- ------------ ------------ ------ ------- ------------------------- -------------
+   1    627,742,258       1137    552104            0      551,840   1731    1735 oracle@lnx-dbfm-p-001.ppl gsg9qkw0aj56q
+   2     85,966,297       1137     75608            0       75,606    173     174 oracle@lnx-dbfm-p-001.ppl 3fht38j5rvv6r
+   3     20,152,354     219047        92   19,502,333        9,587    316    1474 oracle@lnx-dbfm-p-001.ppl dtvy0ajszvhqq
+   4     13,888,347          4   3588743            7      497,280    125     126 MSACCESS.EXE              50xd8fgu2y670
+   5     12,308,412    3077103         4   12,308,300      194,954     52     435 prcregin@rp4440-g (TNS V1 gp7mcd6cdgvhs
+   6     11,357,395      17473       650            0           65    131     131 oracle@lnx-dbfm-p-001.ppl 6mx3x75mzn43n
+   7      6,684,422          4   1670880       44,195    1,670,872     56     326 oracle@lnx-dbfm-p-001.ppl a15tmxc00jb33
+   8      5,530,221     614469         9    5,530,122        1,341     20     282 setproc@rp4440-g (TNS V1- fpusnqyf6f6m7
+   9      5,517,476     102175        54    3,499,990          503   1267    1333 MSACCESS.EXE              5husj6xw5dydh
+  10      3,634,158          3   1211386            0    1,211,386     35      35 oracle@lnx-dbfm-p-001.ppl 51a5wsc3ug7gn
+     --------------            --------- ------------ ------------ ------ -------
+sum     792,781,340              7099530   40,884,947    4,213,434   3906    6051
+
+Top SQLs by DISK READS
+
+RANK   DISK_READS READS/EXEC     EXECS    BUFFER_GETS    PROCESSED    CPU ELAPSED MODULE                    SQL_ID
+---- ------------ ---------- --------- -------------- ------------ ------ ------- ------------------------- -------------
+   1   19,502,333     211982        92     20,152,354        9,587    316    1474 oracle@lnx-dbfm-p-001.ppl dtvy0ajszvhqq
+   2   12,308,300    3077075         4     12,308,412      194,954     52     435 prcregin@rp4440-g (TNS V1 gp7mcd6cdgvhs
+   3    5,530,122     614458         9      5,530,221        1,341     20     282 setproc@rp4440-g (TNS V1- fpusnqyf6f6m7
+   4    3,499,990      64815        54      5,517,476          503   1267    1333 MSACCESS.EXE              5husj6xw5dydh
+   5    3,201,473     100046        32      3,201,401          262    675     733 MSACCESS.EXE              1jsa2jdv6cwy3
+   6    1,307,899     108992        12      2,622,947    8,803,604     26      64 MSACCESS.EXE              0ktuq96vxrwb2
+   7    1,304,142     163018         8      1,301,808    1,032,057     12     114 oracle@lnx-dbfm-p-001.ppl 95b2jxjs8jthp
+   8    1,225,992     102166        12      1,226,057          117    266     421 MSACCESS.EXE              146hpbygmmbpp
+   9      536,448      44704        12        536,520           12      7      22 SQL*Plus                  8gqdy86gcj66f
+  10      435,110     217555         2        435,233    3,740,472      7      18 oracle@lnx-dbfm-p-001.ppl 940q88ffrx1k5
+     ------------            --------- -------------- ------------ ------ -------
+sum    48,851,809                  237     52,832,429   13,782,909   2648    4895
+
+Top SQLs by CPU
+
+RANK    CPU ELAPSED   DISK_READS READS/EXEC     EXECS    BUFFER_GETS    PROCESSED MODULE                    SQL_ID
+---- ------ ------- ------------ ---------- --------- -------------- ------------ ------------------------- -------------
+   1   1731    1735            0          0    552104    627,742,258      551,840 oracle@lnx-dbfm-p-001.ppl gsg9qkw0aj56q
+   2   1267    1333    3,499,990      64815        54      5,517,476          503 MSACCESS.EXE              5husj6xw5dydh
+   3    675     733    3,201,473     100046        32      3,201,401          262 MSACCESS.EXE              1jsa2jdv6cwy3
+   4    316    1474   19,502,333     211982        92     20,152,354        9,587 oracle@lnx-dbfm-p-001.ppl dtvy0ajszvhqq
+   5    266     421    1,225,992     102166        12      1,226,057          117 MSACCESS.EXE              146hpbygmmbpp
+   6    173     174            0          0     75608     85,966,297       75,606 oracle@lnx-dbfm-p-001.ppl 3fht38j5rvv6r
+   7    140     332        2,694       2694         1          6,971           22 01@<t/control/jobs/script azxxpw20thnus
+   8    131     131            0          0       650     11,357,395           65 oracle@lnx-dbfm-p-001.ppl 6mx3x75mzn43n
+   9    125     126            7          0   3588743     13,888,347      497,280 MSACCESS.EXE              50xd8fgu2y670
+  10    117     186      429,769     107442         4      1,698,104    7,481,495 pmdtm@rp4440-e (TNS V1-V3 4p1ff4sxmv4tc
+     ------ ------- ------------            --------- -------------- ------------
+sum    4941    6645   27,862,258              4217300    770,756,660    8,616,777
+
+Top SQLs by Cost
+
+RANK       COST    CPU ELAPSED   DISK_READS READS/EXEC     EXECS    BUFFER_GETS    PROCESSED MODULE                    SQL_ID
+---- ---------- ------ ------- ------------ ---------- --------- -------------- ------------ ------------------------- -------------
+   1   14042996    140     332        2,694       2694         1          6,971           22 01@<t/control/jobs/script azxxpw20thnus
+   2    7881013     79     215            0          0         1          7,200          944 01@<t/control/jobs/script cr59rur6wa59t
+   3     842530     52     435   12,308,300    3077075         4     12,308,412      194,954 prcregin@rp4440-g (TNS V1 gp7mcd6cdgvhs
+   4     572692      1      12            0          0         1         21,080       38,400 DBMS_SCHEDULER            0f732d9pquw4v
+   5     542101     20     282    5,530,122     614458         9      5,530,221        1,341 setproc@rp4440-g (TNS V1- fpusnqyf6f6m7
+   6     406491      0       0            0          0         0              0            0 prcregin@rp4440-g (TNS V1 gp7mcd6cdgvhs
+   7     334775      6      33      217,555     217555         1        219,339          644 SQL*Plus                  7yxhwzhkk26a3
+   8     131282      3      10          182        182         1         15,188          990 01@<t/control/jobs/script 5asgk6vk87rw1
+   9     131282      3       9            0          0         1         12,646           67 01@<t/control/jobs/script czr03baqavwy7
+  10     129998      9      55      321,908     321908         1        330,946      351,408 oracle@lnx-dbfm-p-001.ppl 77rbbwf9tnb75
+                ------ ------- ------------            --------- -------------- ------------
+sum                312    1383   18,380,761                   20     18,452,003      588,770
+
+
+================================================================
+                            SQL 0f732d9pquw4v
+             hash: 1711853861
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+create table "ERADMIN".DBMS_TABCOMP_TEMP_CMP organization heap  tablespace "ERSP
+" compress for all operations nologging as select /*+ DYNAMIC_SAMPLING(0) */ * f
+rom "ERADMIN".DBMS_TABCOMP_TEMP_UNCMP mytab
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-04-28      1711853861     572692 2013-04-28-06:00 2013-06-26-22:00 OLD
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+1711853861 CREATE TABLE STATEME                                         572692              3
+           NT
+
+           LOAD AS SELECT                                                                   2
+           TABLE ACCESS         FULL           DBMS_TABCOMP_TEMP_UN        747   206242     1
+                                               CMP
+
+
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/26 22      1      12         1         21,080            0     38400
+         ------ ------- --------- -------------- ------------ ---------
+sum           1      12         1         21,080            0     38400
+
+
+================================================================
+                            SQL 0ktuq96vxrwb2
+             hash: 2844954298
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "CD_EDC_NM" ,"KY_EDC_ACCTNO" ,"KY_SUPPLIER_ID" ,"ERADMIN"."CUSTOMER"."KY_
+ER_REF_ID" FROM "ERADMIN"."CUSTOMER" WHERE (NOT(("CD_RGSTRTN_STATUS" = 'PFNL' )
+) AND NOT(("CD_RGSTRTN_STATUS" = 'FNLD' ) ) )
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-28      2844954298      58056 2013-05-28-13:00 2013-06-27-14:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+2844954298 SELECT STATEMENT                                              58056              2
+           TABLE ACCESS         FULL           CUSTOMER                  58056   738297     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+CUSTOMER              1862481    536 06/17/13 22:07  100%     1692    1692    1587   40
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/26 07      2       7         1        218,476      217,555    733259
+06/26 10      2       7         1        219,510      217,555    733291
+06/26 11      2       6         1        218,476      217,555    733424
+06/26 14      2       5         1        218,476      217,555    733562
+06/26 15      2       4         1        218,477      217,555    733567
+06/26 16     13      33         6      1,311,040      218,928   4402494
+06/26 17      2       3         1        218,492        1,196    734007
+         ------ ------- --------- -------------- ------------ ---------
+sum          26      64        12      2,622,947    1,307,899   8803604
+
+
+================================================================
+                            SQL 146hpbygmmbpp
+             hash: 2103014452
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "SUPPLIER_ID","ID_PROSPECT","CD_ENROLLMENT_TYPE" FROM "CPES"."CAS_PROSPEC
+T" WHERE "ID_PROSPECT" = :1 OR "ID_PROSPECT" = :2 OR "ID_PROSPECT" = :3 OR "ID_P
+ROSPECT" = :4 OR "ID_PROSPECT" = :5 OR "ID_PROSPECT" = :6 OR "ID_PROSPECT" = :7
+OR "ID_PROSPECT" = :8 OR "ID_PROSPECT" = :9 OR "ID_PROSPECT" = :10
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-06-26      2103014452      28580 2013-06-26-08:00 2013-06-26-09:00 OLD
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+2103014452 SELECT STATEMENT                                              28580              2
+           TABLE ACCESS         FULL           CAS_PROSPECT              28580       10     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+CAS_PROSPECT          4152026    204 05/29/13 14:53  100%      804     798     898   10
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/26 08     28      42         2        125,090      125,273        10
+06/26 09    238     380        10      1,100,967    1,100,719       107
+         ------ ------- --------- -------------- ------------ ---------
+sum         266     421        12      1,226,057    1,225,992       117
+
+
+================================================================
+                            SQL 1jsa2jdv6cwy3
+             hash: 2103014452
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "SUPPLIER_ID","ID_PROSPECT","STATUS","CD_ENROLLMENT_TYPE" FROM "CPES"."CA
+S_PROSPECT" WHERE "ID_PROSPECT" = :1 OR "ID_PROSPECT" = :2 OR "ID_PROSPECT" = :3
+ OR "ID_PROSPECT" = :4 OR "ID_PROSPECT" = :5 OR "ID_PROSPECT" = :6 OR "ID_PROSPE
+CT" = :7 OR "ID_PROSPECT" = :8 OR "ID_PROSPECT" = :9 OR "ID_PROSPECT" = :10
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-06-26      2103014452      28580 2013-06-26-09:00 2013-06-26-09:00 OLD
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+2103014452 SELECT STATEMENT                                              28580              2
+           TABLE ACCESS         FULL           CAS_PROSPECT              28580       10     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+CAS_PROSPECT          4152026    204 05/29/13 14:53  100%      804     798     898   10
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/26 09    675     733        32      3,201,401    3,201,473       262
+         ------ ------- --------- -------------- ------------ ---------
+sum         675     733        32      3,201,401    3,201,473       262
+
+
+================================================================
+                            SQL 3fht38j5rvv6r
+             hash: 2882489220
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "RATE_ID","SUPPLIER_ID","TERM_MONTHS" FROM "CPES"."CAS_SUPPLIER_RATE" "A"
+ WHERE "SUPPLIER_ID"='EPLUS' AND TO_CHAR("RATE_ID")=:1
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-28      2882489220        273 2013-05-28-13:00 2013-06-27-11:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+2882489220 SELECT STATEMENT                                                273              2
+           TABLE ACCESS         FULL           CAS_SUPPLIER_RATE           273        1     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+CAS_SUPPLIER_RATE       15738    512 05/29/13 14:53  100%        8       8       9   10
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/26 08     43      44     16647     18,926,503            0     16645
+06/26 09    130     131     58961     67,039,794            0     58961
+         ------ ------- --------- -------------- ------------ ---------
+sum         173     174     75608     85,966,297            0     75606
+
+
+================================================================
+                            SQL 4p1ff4sxmv4tc
+             hash: 2844954298
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT ERADMIN.CUSTOMER.KY_ER_REF_ID, ERADMIN.CUSTOMER.CD_EDC_NM, ERADMIN.CUSTOM
+ER.KY_EDC_ACCTNO, ERADMIN.CUSTOMER.CD_EDC_NM_SRCE, ERADMIN.CUSTOMER.CD_EDC_ACCTN
+O_SRCE, ERADMIN.CUSTOMER.KY_ACQUISITION_ID, ERADMIN.CUSTOMER.KY_MRKTING_ID, ERAD
+MIN.CUSTOMER.KY_CAMS_ID, ERADMIN.CUSTOMER.CD_ENROLL_STATUS, ERADMIN.CUSTOMER.CD_
+RGSTRTN_STATUS, ERADMIN.CUSTOMER.TS_KY, ERADMIN.CUSTOMER.FL_RLSE_PHN, ERADMIN.CU
+STOMER.FL_RLSE_INFO, ERADMIN.CUSTOMER.FL_RLSE_USAGE, ERADMIN.CUSTOMER.FL_DO_NOT_
+CALL, ERADMIN.CUSTOMER.FL_DO_NOT_MAIL, ERADMIN.CUSTOMER.NM_CUST_BUS, ERADMIN.CUS
+TOMER.NM_CUST_2, ERADMIN.CUSTOMER.NM_CUST_LST_1, ERADMIN.CUSTOMER.NM_CUST_1ST_1,
+ ERADMIN.CUSTOMER.NM_CUST_MID_1, ERADMIN.CUSTOMER.NM_CUST_SFIX_1, ERADMIN.CUSTOM
+ER.NM_CUST_TTL_1, ERADMIN.CUSTOMER.CD_JOB_TTL, ERADMIN.CUSTOMER.AD_SERV_LN_1, ER
+ADMIN.CUSTOMER.AD_SERV_LN_2, ERADMIN.CUSTOMER.AD_SERV_CITY, ERADMIN.CUSTOMER.AD_
+SERV_CNTY, ERADMIN.CUSTOMER.AD_SERV_ST, ERADMIN.CUSTOMER.AD_SERV_ZIP, ERADMIN.CU
+STOMER.AD_SERV_ZIP_FOUR, ERADMIN.CUSTOMER.AD_BILL_LN_1, ERADMIN.CUSTOMER.AD_BILL
+_LN_2, ERADMIN.CUSTOMER.AD_BILL_CITY, ERADMIN.CUSTOMER.AD_BILL_ST, ERADMIN.CUSTO
+MER.AD_BILL_ZIP, ERADMIN.CUSTOMER.AD_BILL_ZIP_FOUR, ERADMIN.CUSTOMER.CD_MRKT_SEG
+MENT, ERADMIN.CUSTOMER.CD_TAR_TYPE, ERADMIN.CUSTOMER.CD_CUST_TYPE, ERADMIN.CUSTO
+MER.FL_ELEC_HEAT, ERADMIN.CUSTOMER.AT_AVG_MO_BILL, ERADMIN.CUSTOMER.QY_AVG_MO_US
+AGE, ERADMIN.CUSTOMER.CD_SERV_SUPP, ERADMIN.CUSTOMER.CD_EDC_TAR_SCH, ERADMIN.CUS
+TOMER.CD_OFFER_ACCPT, ERADMIN.CUSTOMER.AT_OFFER, ERADMIN.CUSTOMER.CD_OFFER_GIVN,
+ ERADMIN.CUSTOMER.CD_BILL_OPTION, ERADMIN.CUSTOMER.FL_BB, ERADMIN.CUSTOMER.FL_EF
+T, ERADMIN.CUSTOMER.FL_SUM_BILL, ERADMIN.CUSTOMER.KY_LINK_NO, ERADMIN.CUSTOMER.F
+L_PRIMARY_RES, ERADMIN.CUSTOMER.FL_LNDLRD, ERADMIN.CUSTOMER.FL_TAX_EXEMPT, ERADM
+IN.CUSTOMER.PCT_SALES_TX, ERADMIN.CUSTOMER.FL_PILOT_PARTICPANT, ERADMIN.CUSTOMER
+.CD_CUST_PRSPCT, ERADMIN.CUSTOMER.FL_POINTS_PGM, ERADMIN.CUSTOMER.QY_POINTS, ERA
+DMIN.CUSTOMER.CD_SIC, ERADMIN.CUSTOMER.DT_CONTRACT_START, ERADMIN.CUSTOMER.QY_CO
+NTRACT_MO, ERADMIN.CUSTOMER.KY_SSN, ERADMIN.CUSTOMER.TX_DAY_PHN_ACD, ERADMIN.CUS
+TOMER.TX_DAY_PHN_NO, ERADMIN.CUSTOMER.TX_DAY_PHN_EXTN, ERADMIN.CUSTOMER.TX_EVENI
+NG_PHN_ACD, ERADMIN.CUSTOMER.TX_EVENING_PHN_NO, ERADMIN.CUSTOMER.TX_BUS_FAX_ACD,
+ ERADMIN.CUSTOMER.TX_BUS_FAX_NO, ERADMIN.CUSTOMER.TX_FAX_ACD, ERADMIN.CUSTOMER.T
+X_FAX_NO, ERADMIN.CUSTOMER.TX_EMAIL_AD, ERADMIN.CUSTOMER.NM_CNTC2_LST_1, ERADMIN
+.CUSTOMER.NM_CNTC2_1ST_1, ERADMIN.CUSTOMER.NM_CNTC2_MID_1, ERADMIN.CUSTOMER.NM_C
+NTC2_SFIX_1, ERADMIN.CUSTOMER.NM_CNTC2_TTL_1, ERADMIN.CUSTOMER.CD_CNTC2_JOB_TTL,
+ ERADMIN.CUSTOMER.TX_CNTC2_PHN_ACD, ERADMIN.CUSTOMER.TX_CNTC2_PHN_NO, ERADMIN.CU
+STOMER.TX_CNTC2_PHN_EXTN, ERADMIN.CUSTOMER.TX_CNTC2_FAX_ACD, ERADMIN.CUSTOMER.TX
+_CNTC2_FAX_NO, ERADMIN.CUSTOMER.TX_CNTC2_EMAIL_AD, ERADMIN.CUSTOMER.NM_CNTC3_LST
+_1, ERADMIN.CUSTOMER.NM_CNTC3_1ST_1, ERADMIN.CUSTOMER.NM_CNTC3_MID_1, ERADMIN.CU
+STOMER.NM_CNTC3_SFIX_1, ERADMIN.CUSTOMER.NM_CNTC3_TTL_1, ERADMIN.CUSTOMER.CD_CNT
+C3_JOB_TTL, ERADMIN.CUSTOMER.TX_CNTC3_PHN_ACD, ERADMIN.CUSTOMER.TX_CNTC3_PHN_NO,
+ ERADMIN.CUSTOMER.TX_CNTC3_PHN_EXTN, ERADMIN.CUSTOMER.TX_CNTC3_FAX_ACD, ERADMIN.
+CUSTOMER.TX_CNTC3_FAX_NO, ERADMIN.CUSTOMER.TX_CNTC3_EMAIL_AD, ERADMIN.CUSTOMER.C
+D_AFFINITY_GRP, ERADMIN.CUSTOMER.TX_AFFINITY_GRP_NO, ERADMIN.CUSTOMER.NM_LST_AFF
+INITY_GRP, ERADMIN.CUSTOMER.NM_1ST_AFFINITY_GRP, ERADMIN.CUSTOMER.FL_AFFINITY_GR
+P_MBR, ERADMIN.CUSTOMER.DT_SERVICE_START, ERADMIN.CUSTOMER.DT_SERVICE_END, ERADM
+IN.CUSTOMER.QY_LOAD_FACTOR, ERADMIN.CUSTOMER.DT_CNTC_ENROLL, ERADMIN.CUSTOMER.DT
+_CNTC_REGISTER, ERADMIN.CUSTOMER.PCT_ELIGIBLE_LOAD, ERADMIN.CUSTOMER.PCT_PARTICI
+PATING_INT, ERADMIN.CUSTOMER.NM_THIRDPARTY, ERADMIN.CUSTOMER.AD_THIRDPARTY_LN_1,
+ ERADMIN.CUSTOMER.AD_THIRDPARTY_LN_2, ERADMIN.CUSTOMER.AD_THIRDPARTY_CITY, ERADM
+IN.CUSTOMER.AD_THIRDPARTY_STATE, ERADMIN.CUSTOMER.AD_THIRDPARTY_ZIP, ERADMIN.CUS
+TOMER.AD_THIRDPARTY_ZIP_FOUR, ERADMIN.CUSTOMER.QY_TOTAL_KWH, ERADMIN.CUSTOMER.QY
+_MTHS_TOTAL_KWH, ERADMIN.CUSTOMER.QY_PEAK_DEMAND_KW, ERADMIN.CUSTOMER.KY_CAPACIT
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-26      2844954298      58439 2013-05-26-23:00 2013-06-27-13:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+2844954298 SELECT STATEMENT                                              58439              2
+           TABLE ACCESS         FULL           CUSTOMER                  58439  1836887     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+CUSTOMER              1862481    536 06/17/13 22:07  100%     1692    1692    1587   40
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/26 07     27      33         1        424,735      217,555   1870147
+06/26 10     31      52         1        424,565      100,066   1870300
+06/26 13     30      57         1        424,379       65,811   1870402
+06/26 16     30      44         1        424,425       46,337   1870646
+         ------ ------- --------- -------------- ------------ ---------
+sum         117     186         4      1,698,104      429,769   7481495
+
+
+================================================================
+                            SQL 50xd8fgu2y670
+             hash: 1088610163
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "KY_ER_REF_ID" ,"CD_EDC_NM" ,"KY_EDC_ACCTNO" ,"NM_CUST_BUS" ,"CD_BILL_OPT
+ION" ,"QY_TOTAL_KWH" ,"QY_MTHS_TOTAL_KWH" ,"KY_SUPPLIER_ID" ,"CD_DUNS_GRP" ,"DT_
+PPL_SUPPLY_START" FROM "ERADMIN"."CUSTOMER" WHERE (((("KY_SUPPLIER_ID" = 'EPLUS'
+ ) AND ("KY_ER_REF_ID" > 1999999 ) ) AND NOT(("KY_EDC_ACCTNO" LIKE 'SB%' ) ) ) A
+ND ("DT_PPL_SUPPLY_START" <  TO_DATE('2013-06-01','YYYY-MM-DD')  ) ) AND ("KY_ER
+_REF_ID" = :1)
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-06-01      1088610163          3 2013-06-01-11:00 2013-06-26-13:00 OLD
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+1088610163 SELECT STATEMENT                                                  3              4
+           FILTER                                                                           3
+           TABLE ACCESS         BY INDEX ROWID CUSTOMER                      3        1     2
+           INDEX                UNIQUE SCAN    PK_CUSTOMER                   2        1     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+CUSTOMER              1862481    536 06/17/13 22:07  100%     1692    1692    1587   40
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/26 10     22      22    646425      2,490,360            6     80476
+06/26 11     51      51   1458979      5,621,448            0    216021
+06/26 12      7       7    211135        805,144            0     39899
+06/26 13     44      45   1272204      4,971,395            1    160884
+         ------ ------- --------- -------------- ------------ ---------
+sum         125     126   3588743     13,888,347            7    497280
+
+
+================================================================
+                            SQL 51a5wsc3ug7gn
+             hash: 737423701
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "KY_ER_REF_ID" FROM "ERADMIN"."CUSTOMER" "CUST" WHERE :1="KY_ER_REF_ID"
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-28       737423701          2 2013-05-28-09:00 2013-06-26-11:00 OLD
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+ 737423701 SELECT STATEMENT                                                  2              2
+           INDEX                UNIQUE SCAN    PK_CUSTOMER                   2        1     1
+
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/26 07     31      30   1040216      3,120,648            0   1040216
+06/26 11      4       5    171170        513,510            0    171170
+         ------ ------- --------- -------------- ------------ ---------
+sum          35      35   1211386      3,634,158            0   1211386
+
+
+================================================================
+                            SQL 5asgk6vk87rw1
+             hash: 4260083224
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT C.KY_ER_REF_ID FROM CUSTOMER C WHERE C.CD_RGSTRTN_STATUS = 'PFNL' AND EXI
+STS (SELECT 1 FROM BILL_ACCT BA, SERV_ORD SO WHERE BA.KY_OLD_ACCTNO = RPAD(SUBST
+R(TO_CHAR(C.KY_ER_REF_ID, '0000000000'), 2, 10), 16, ' ') AND BA.KY_BA = SO.KY_B
+A AND BA.CD_BA_STAT IN ('09', '18') AND SO.CD_SO_STAT = '54' AND SO.CD_ORD_TYPE
+= '02' AND SO.CD_STAT = '2' AND SO.DT_STAT = (SELECT MAX(SO.DT_STAT) FROM SERV_O
+RD SO, BILL_ACCT BA WHERE BA.KY_OLD_ACCTNO = RPAD(SUBSTR(TO_CHAR(C.KY_ER_REF_ID,
+ '0000000000'), 2, 10), 16, ' ') AND BA.KY_BA = SO.KY_BA AND SO.CD_ORD_TYPE = '0
+2' AND SO.CD_STAT = '2'))
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-06-18      4260083224     131282 2013-06-18-18:00 2013-06-26-18:00 OLD
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+4260083224 SELECT STATEMENT                                             131282              5
+           FILTER                                                                           4
+           TABLE ACCESS         BY INDEX ROWID CUSTOMER                   3961    19152     3
+           INDEX                RANGE SCAN     I_CD_RGSTRTN_STATUS          62    19152     2
+           FILTER                                                                           3
+           REMOTE                                                            4        1     2
+           SORT                 AGGREGATE                                             1     2
+           REMOTE                                                            3        1     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+CUSTOMER              1862481    536 06/17/13 22:07  100%     1692    1692    1587   40
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/26 18      3      10         1         15,188          182       990
+         ------ ------- --------- -------------- ------------ ---------
+sum           3      10         1         15,188          182       990
+
+
+================================================================
+                            SQL 5husj6xw5dydh
+             hash: 2103014452
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "SUPPLIER_ID","FIRST_NAME","LAST_NAME","AD_BILL_LN_1","AD_BILL_LN_2","AD_
+BILL_CITY","AD_BILL_ST","AD_BILL_ZIP","TX_PHN_NO","TX_EMAIL_AD","UTIL_NO","AD_SE
+RV_LN_1","AD_SERV_LN_2","AD_SERV_CITY","AD_SERV_ST","AD_SERV_ZIP","RATE_ID","CON
+FIRM_NO","ID_PROSPECT","CUST_CODE","STATUS","SUBMITTED","PROMO_CODE_INPUT","RATE
+_CLASS","UTIL_CODE","REVIEWED_BY","REVIEWED_ON",'#S_C_H#' ,"ENROLL_ID","ENROLL_R
+EQUESTED_ON","FL_BB","STAGED_DATE","TX_CUSTOM_FIELD1","TX_CUSTOM_FIELD2","TX_CUS
+TOM_FIELD3","TX_CUSTOM_FIELD4","BUSINESS_NAME","DEPOSIT_AMOUNT","BROKER_CODE","A
+FFILIATE_COMPANY_NAME","METER_NUMBER","CD_LANGUAGE","CD_ENROLLMENT_TYPE","DT_MOV
+E_IN","KY_VALIDATION_TYPE","TX_VALIDATION_VALUE","FL_PRIORITY_MOVE_IN","DT_SWITC
+H","AD_SERV_ZIP4","AD_SERV_COUNTY","TAX_EXEMPT_PERCENT","CD_ENROLL_SOURCE","TX_S
+ITE_INFO" FROM "CPES"."CAS_PROSPECT" WHERE "ID_PROSPECT" = :1 OR "ID_PROSPECT" =
+ :2 OR "ID_PROSPECT" = :3 OR "ID_PROSPECT" = :4 OR "ID_PROSPECT" = :5 OR "ID_PRO
+SPECT" = :6 OR "ID_PROSPECT" = :7 OR "ID_PROSPECT" = :8 OR "ID_PROSPECT" = :9 OR
+ "ID_PROSPECT" = :10
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-26      2103014452      28579 2013-05-26-08:00 2013-06-27-14:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+2103014452 SELECT STATEMENT                                              28579              2
+           TABLE ACCESS         FULL           CAS_PROSPECT              28579       10     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+CAS_PROSPECT          4152026    204 05/29/13 14:53  100%      804     798     898   10
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/26 10      2       9         1          4,472          217         1
+06/26 11    340     380        15      1,630,458       26,121       159
+06/26 12     83      83         4        408,732            8        31
+06/26 16    725     740        29      2,962,959    2,962,814       270
+06/26 17    118     121         5        510,855      510,830        42
+         ------ ------- --------- -------------- ------------ ---------
+sum        1267    1333        54      5,517,476    3,499,990       503
+
+
+================================================================
+                            SQL 6mx3x75mzn43n
+             hash: 390029282
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "SUPPLIER_ID","RATE_ID","CONFIRM_NO" FROM "CPES"."CAS_PROSPECT" "CP" WHER
+E "SUPPLIER_ID"=:1 AND :2=TO_NUMBER("CONFIRM_NO")
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-28       390029282      16529 2013-05-28-09:00 2013-06-27-10:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+ 390029282 SELECT STATEMENT                                              16529              3
+           TABLE ACCESS         BY INDEX ROWID CAS_PROSPECT              16529        1     2
+           INDEX                RANGE SCAN     IDX_CAS_PROSPECT_SUP       1328   461069     1
+                                               P_ID
+
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+CAS_PROSPECT          4152026    204 05/29/13 14:53  100%      804     798     898   10
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/26 09     49      49       247      4,313,083            0         0
+06/26 10     15      15        70      1,222,390            0        25
+06/26 18     67      67       333      5,821,922            0        40
+         ------ ------- --------- -------------- ------------ ---------
+sum         131     131       650     11,357,395            0        65
+
+
+================================================================
+                            SQL 77rbbwf9tnb75
+             hash: 338469790
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "A2"."KY_SUPPLIER_ID","A2"."KY_ER_REF_ID","A1"."CD_RGSTRTN_STATUS",MAX("A
+1"."TS_KY") FROM "ERADMIN"."CUSTOMER" "A2","EVENT" "A1" WHERE "A1"."KY_ER_REF_ID
+"="A2"."KY_ER_REF_ID" AND "A2"."KY_SUPPLIER_ID"='XOOM' AND "A2"."CD_RGSTRTN_STAT
+US"="A1"."CD_RGSTRTN_STATUS" GROUP BY "A2"."KY_SUPPLIER_ID","A2"."KY_ER_REF_ID",
+"A1"."CD_RGSTRTN_STATUS"
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-06-10       338469790     129998 2013-06-10-12:00 2013-06-27-07:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+ 338469790 SELECT STATEMENT                                             129998              7
+           HASH                 GROUP BY                                129998   338849     6
+           HASH JOIN                                                    126777   338849     5
+           VIEW                                index$_join$_001          17659   338849     4
+           HASH JOIN                                                                        3
+           HASH JOIN                                                                        2
+           INDEX                RANGE SCAN     I_SUPPLIER_ID              1122   338849     1
+           INDEX                FAST FULL SCAN I_CD_RGSTRTN_STATUS        6675   338849     1
+           INDEX                FAST FULL SCAN PK_CUSTOMER                5097   338849     2
+           TABLE ACCESS         FULL           EVENT                     85363 ########     4
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+EVENT                15758778    146 05/26/13 04:44  100%     2451    2451    2310    5
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/26 06      1       4         1          5,638        2,191         0
+06/26 07      8      52         0        325,308      319,717    351408
+         ------ ------- --------- -------------- ------------ ---------
+sum           9      55         1        330,946      321,908    351408
+
+
+================================================================
+                            SQL 7yxhwzhkk26a3
+             hash: 3911051772
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT A.KY_ENROLL, A.KY_SUPPLIER, A.TX_CUSTOMER_NAME, NVL(SUBSTR(A.TX_CUSTOMER_
+NAME , 1, INSTR(A.TX_CUSTOMER_NAME,' ',1,1) - 1 ),SUBSTR(A.TX_CUSTOMER_NAME,1,30
+)) AS FIRSTNAME, SUBSTR(A.TX_CUSTOMER_NAME , INSTR(A.TX_CUSTOMER_NAME,' ',1,1) +
+ 1 , 30) AS LASTNAME, A.TX_MAIL_LINE_1, A.TX_MAIL_LINE_2, A.TX_MAIL_CITY, A.KY_M
+AIL_STATE, A.TX_MAIL_ZIP, REPLACE(A.TX_DAY_PHONE_AREA ||A.TX_DAY_PHONE,'-') AS P
+HNO, A.TX_EMAIL, A.TX_UTILITY_ACCOUNT, A.TX_SERVICE_LINE_1, A.TX_SERVICE_LINE_2,
+ A.TX_SERVICE_CITY, A.KY_SERVICE_STATE, A.TX_SERVICE_ZIP, A.KY_UTILITY_NAME FROM
+ ACCOUNT@CPES_CUSTPRO_USER A , BILL_ACCOUNT@CPES_CUSTPRO_USER B, ENROLL@CPES_CUS
+TPRO_USER C, CUSTOMER D WHERE A.KY_SUPPLIER = B.KY_SUPPLIER AND A.KY_ENROLL = B.
+KY_ENROLL AND B.KY_ENROLL = C.KY_ENROLL AND D.KY_ER_REF_ID = A.KY_ENROLL AND B.K
+Y_BILLING_STATUS = 02 AND C.KY_ENROLL_STATUS <> 'PFNL' AND C.KY_UTILITY_PROGRAM
+= 'WEB' AND TRUNC(SYSDATE) >= TRUNC( B.DT_CONTRACT_END - (SELECT A.RENEW_WINDW_D
+AYS FROM CAS_RENEWAL_AUTO A WHERE A.SUPPLIER_ID = A.KY_SUPPLIER AND A.UTIL_CODE
+= A.KY_UTILITY_NAME AND NVL(D.CD_TAR_TYPE,'RES') = NVL(A.CD_TAR_TYPE,'RES')) ) O
+RDER BY A.KY_SUPPLIER , A.KY_ENROLL , B.DT_CONTRACT_END
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-28      3911051772     334775 2013-05-28-17:00 2013-06-26-16:00 OLD
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+3911051772 SELECT STATEMENT                                             334775              5
+           SORT                 ORDER BY                                334775        1     4
+           FILTER                                                                           3
+           HASH JOIN                                                    110909   135913     2
+           TABLE ACCESS         FULL           CUSTOMER                  58003  1836887     1
+           REMOTE                                                        10039   158420     1
+           TABLE ACCESS         BY INDEX ROWID CAS_RENEWAL_AUTO              2        1     2
+           INDEX                RANGE SCAN     CAS_RENEWAL_AUTO_PK           1        1     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+CAS_RENEWAL_AUTO           95     48 06/11/13 22:01  100%        0       0       0   10
+CUSTOMER              1862481    536 06/17/13 22:07  100%     1692    1692    1587   40
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/26 16      6      33         1        219,339      217,555       644
+         ------ ------- --------- -------------- ------------ ---------
+sum           6      33         1        219,339      217,555       644
+
+
+================================================================
+                            SQL 8gqdy86gcj66f
+             hash: 2432397355
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT SUM((H.TOTAL_KWH_USED) / 1000) FROM PROSPECTS P, HISTORICAL_USAGE H WHERE
+ P.STATUS = :B2 AND P.ID_PROSPECT = H.ID_PROSPECT AND P.KY_SUPPLIER_ID = :B1
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-26      2432397355      13106 2013-05-26-12:00 2013-06-27-13:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+2432397355 SELECT STATEMENT                                              13106              4
+           SORT                 AGGREGATE                                             1     3
+           HASH JOIN                                                     13106    68585     2
+           TABLE ACCESS         FULL           PROSPECTS                  6623    68399     1
+           TABLE ACCESS         FULL           HISTORICAL_USAGE           5585   724372     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+PROSPECTS              724372    221 05/29/13 14:54  100%      190     190     170   10
+HISTORICAL_USAGE       724372    197 05/29/13 14:54  100%      160     160     151   10
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/26 05      0       0         4             79            0         4
+06/26 05      1       1         2         57,793       40,880         2
+06/26 05      2      10         3        134,130      134,112         3
+06/26 10      0       0         4             79            0         4
+06/26 10      2       3         3        134,130      134,112         3
+06/26 10      1       4         2         57,793       52,328         2
+06/26 13      2       3         3        134,130      134,112         3
+06/26 13      1       1         2         57,793       40,881         2
+06/26 13      0       0         4            139            1         4
+06/26 15      0       0         0              0            0         0
+06/26 15      0       0         1             70            0         1
+06/26 15      0       0         0              0            0         0
+06/26 16      0       0         3              9            0         3
+06/26 16      2       5         3        134,130      134,112         3
+06/26 16      0       1         2         57,793       40,880         2
+         ------ ------- --------- -------------- ------------ ---------
+sum          10      29        36        768,068      711,418        36
+
+
+================================================================
+                            SQL 940q88ffrx1k5
+             hash: 2844954298
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "KY_ER_REF_ID","KY_EDC_ACCTNO","CD_RGSTRTN_STATUS","DT_CONTRACT_END" FROM
+ "ERADMIN"."CUSTOMER" "ERC"
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-28      2844954298      58232 2013-05-28-08:00 2013-06-27-08:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+2844954298 SELECT STATEMENT                                              58232              2
+           TABLE ACCESS         FULL           CUSTOMER                  58232  1836887     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+CUSTOMER              1862481    536 06/17/13 22:07  100%     1692    1692    1587   40
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/26 08      7      18         2        435,233      435,110   3740472
+         ------ ------- --------- -------------- ------------ ---------
+sum           7      18         2        435,233      435,110   3740472
+
+
+================================================================
+                            SQL 95b2jxjs8jthp
+             hash: 2844954298
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT /*+ ALL_ROWS FULL ("C") */ "KY_ER_REF_ID","CD_EDC_NM","CD_RGSTRTN_STATUS"
+,"CD_TAR_TYPE","DT_CONTRACT_START","CD_AFFINITY_GRP","DT_SERVICE_START","DT_CNTC
+_ENROLL","DT_CNTC_REGISTER","KY_CAS_OFFER_ID","KY_SUPPLIER_ID","DT_CONTRACT_END"
+,"CD_SERVICE","CD_UTILITY_PROGRAM","CD_BROKER_CODE" FROM "ERADMIN"."CUSTOMER" "C
+" WHERE "CD_AFFINITY_GRP"=:1 AND "KY_SUPPLIER_ID"=:2
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-27      2844954298      58216 2013-05-27-22:00 2013-06-26-22:00 OLD
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+2844954298 SELECT STATEMENT                                              58216              2
+           TABLE ACCESS         FULL           CUSTOMER                  58216       30     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+CUSTOMER              1862481    536 06/17/13 22:07  100%     1692    1692    1587   40
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/26 22     12     114         8      1,301,808    1,304,142   1032057
+         ------ ------- --------- -------------- ------------ ---------
+sum          12     114         8      1,301,808    1,304,142   1032057
+
+
+================================================================
+                            SQL a15tmxc00jb33
+             hash: 1847106747
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "KY_ER_REF_ID","TS_KY","TX_COMMENTS" FROM "ERADMIN"."EVENT" "EVENT" WHERE
+ :1="KY_ER_REF_ID" AND :2="TS_KY"
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-28      1847106747          3 2013-05-28-11:00 2013-06-27-11:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+1847106747 SELECT STATEMENT                                                  3              3
+           TABLE ACCESS         BY INDEX ROWID EVENT                         3        1     2
+           INDEX                UNIQUE SCAN    PK_EVENT                      2        1     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+EVENT                15758778    146 05/26/13 04:44  100%     2451    2451    2310    5
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/26 08      3      40     72433        289,740        7,760     72433
+06/26 09     40     273   1247319      4,990,170       36,435   1247311
+06/26 10     13      13    351128      1,404,512            0    351128
+         ------ ------- --------- -------------- ------------ ---------
+sum          56     326   1670880      6,684,422       44,195   1670872
+
+
+================================================================
+                            SQL azxxpw20thnus
+             hash: 623602234
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT C.KY_ER_REF_ID FROM CUSTOMER C WHERE C.CD_RGSTRTN_STATUS = 'FNLD' AND EXI
+STS (SELECT 1 FROM BILL_ACCT BA, SERV_ORD SO WHERE BA.KY_OLD_ACCTNO = RPAD(SUBST
+R(TO_CHAR(C.KY_ER_REF_ID, '0000000000'), 2, 10), 16, ' ') AND BA.KY_BA = SO.KY_B
+A AND BA.CD_BA_STAT = '02' AND SO.CD_SO_STAT = '57' AND SO.CD_ORD_TYPE = '02' AN
+D SO.CD_STAT = '2' AND SO.DT_STAT = (SELECT MAX(SO.DT_STAT) FROM SERV_ORD SO, BI
+LL_ACCT BA WHERE BA.KY_OLD_ACCTNO = RPAD(SUBSTR(TO_CHAR(C.KY_ER_REF_ID, '0000000
+000'), 2, 10), 16, ' ') AND BA.KY_BA = SO.KY_BA AND SO.CD_ORD_TYPE = '02' AND SO
+.CD_STAT = '2'))
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-26       623602234   14042996 2013-05-26-07:00 2013-06-26-18:00 OLD
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+ 623602234 SELECT STATEMENT                                           14042996              5
+           FILTER                                                                           4
+           VIEW                                index$_join$_001          11158  1088266     3
+           HASH JOIN                                                                        2
+           INDEX                RANGE SCAN     I_CD_RGSTRTN_STATUS        3263  1088266     1
+           INDEX                FAST FULL SCAN PK_CUSTOMER                5062  1088266     1
+           FILTER                                                                           3
+           REMOTE                                                            4        1     2
+           SORT                 AGGREGATE                                             1     2
+           REMOTE                                                            3        1     1
+
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/26 18    140     332         1          6,971        2,694        22
+         ------ ------- --------- -------------- ------------ ---------
+sum         140     332         1          6,971        2,694        22
+
+
+================================================================
+                            SQL cr59rur6wa59t
+             hash: 623602234
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT C.KY_ER_REF_ID FROM CUSTOMER C WHERE C.CD_RGSTRTN_STATUS = 'CUST' AND EXI
+STS (SELECT 1 FROM BILL_ACCT BA, SERV_ORD SO WHERE BA.KY_OLD_ACCTNO = RPAD(SUBST
+R(TO_CHAR(C.KY_ER_REF_ID, '0000000000'), 2, 10), 16, ' ') AND BA.KY_BA = SO.KY_B
+A AND BA.CD_BA_STAT = '02' AND SO.CD_SO_STAT = '50' AND SO.CD_ORD_TYPE = '02' AN
+D SO.CD_STAT = '2' AND SO.DT_STAT = (SELECT MAX(SO.DT_STAT) FROM SERV_ORD SO, BI
+LL_ACCT BA WHERE BA.KY_OLD_ACCTNO = RPAD(SUBSTR(TO_CHAR(C.KY_ER_REF_ID, '0000000
+000'), 2, 10), 16, ' ') AND BA.KY_BA = SO.KY_BA AND SO.CD_ORD_TYPE = '02' AND SO
+.CD_STAT = '2'))
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-26       623602234    7881013 2013-05-26-07:00 2013-06-26-18:00 OLD
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+ 623602234 SELECT STATEMENT                                            7881013              5
+           FILTER                                                                           4
+           VIEW                                index$_join$_001           9134   614629     3
+           HASH JOIN                                                                        2
+           INDEX                RANGE SCAN     I_CD_RGSTRTN_STATUS        1844   614629     1
+           INDEX                FAST FULL SCAN PK_CUSTOMER                5062   614629     1
+           FILTER                                                                           3
+           REMOTE                                                            4        1     2
+           SORT                 AGGREGATE                                             1     2
+           REMOTE                                                            3        1     1
+
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/26 18     79     215         1          7,200            0       944
+         ------ ------- --------- -------------- ------------ ---------
+sum          79     215         1          7,200            0       944
+
+
+================================================================
+                            SQL czr03baqavwy7
+             hash: 4260083224
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT C.KY_ER_REF_ID FROM CUSTOMER C WHERE C.CD_RGSTRTN_STATUS = 'PFNL' AND EXI
+STS (SELECT 1 FROM BILL_ACCT BA, SERV_ORD SO WHERE BA.KY_OLD_ACCTNO = RPAD(SUBST
+R(TO_CHAR(C.KY_ER_REF_ID, '0000000000'), 2, 10), 16, ' ') AND BA.KY_BA = SO.KY_B
+A AND BA.CD_BA_STAT = '02' AND SO.CD_SO_STAT = '57' AND SO.CD_ORD_TYPE = '02' AN
+D SO.CD_STAT = '2' AND SO.DT_STAT = (SELECT MAX(SO.DT_STAT) FROM SERV_ORD SO, BI
+LL_ACCT BA WHERE BA.KY_OLD_ACCTNO = RPAD(SUBSTR(TO_CHAR(C.KY_ER_REF_ID, '0000000
+000'), 2, 10), 16, ' ') AND BA.KY_BA = SO.KY_BA AND SO.CD_ORD_TYPE = '02' AND SO
+.CD_STAT = '2'))
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-06-18      4260083224     131282 2013-06-18-18:00 2013-06-26-18:00 OLD
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+4260083224 SELECT STATEMENT                                             131282              5
+           FILTER                                                                           4
+           TABLE ACCESS         BY INDEX ROWID CUSTOMER                   3961    19152     3
+           INDEX                RANGE SCAN     I_CD_RGSTRTN_STATUS          62    19152     2
+           FILTER                                                                           3
+           REMOTE                                                            4        1     2
+           SORT                 AGGREGATE                                             1     2
+           REMOTE                                                            3        1     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+CUSTOMER              1862481    536 06/17/13 22:07  100%     1692    1692    1587   40
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/26 18      3       9         1         12,646            0        67
+         ------ ------- --------- -------------- ------------ ---------
+sum           3       9         1         12,646            0        67
+
+
+================================================================
+                            SQL dtvy0ajszvhqq
+             hash: 3481805491
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "A1"."KY_SUPPLIER_ID","A1"."CD_EDC_NM","A1"."CD_RGSTRTN_STATUS",COUNT(*)
+FROM "ERADMIN"."CUSTOMER" "A1" WHERE TRUNC("A1"."TS_KY")=TRUNC(:1) AND ("A1"."CD
+_RGSTRTN_STATUS"='CUST' OR "A1"."CD_RGSTRTN_STATUS"='PTBC' OR "A1"."CD_RGSTRTN_S
+TATUS"='TBC' OR "A1"."CD_RGSTRTN_STATUS"='TBR' OR "A1"."CD_RGSTRTN_STATUS"='RREQ
+' OR "A1"."CD_RGSTRTN_STATUS"='PFNL') AND "A1"."CD_EDC_NM"<>'GENERIC' AND "A1"."
+KY_SUPPLIER_ID"<>'DEMO' GROUP BY "A1"."KY_SUPPLIER_ID","A1"."CD_EDC_NM","A1"."CD
+_RGSTRTN_STATUS" ORDER BY "A1"."KY_SUPPLIER_ID","A1"."CD_EDC_NM","A1"."CD_RGSTRT
+N_STATUS"
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-28      3481805491      58294 2013-05-28-07:00 2013-06-27-14:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+3481805491 SELECT STATEMENT                                              58294              3
+           SORT                 GROUP BY                                 58294       90     2
+           TABLE ACCESS         FULL           CUSTOMER                  58293     6203     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+CUSTOMER              1862481    536 06/17/13 22:07  100%     1692    1692    1587   40
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/25 23     19     217         6      1,310,892    1,311,070      2220
+06/26 00     23     112         7      1,529,473    1,529,270         0
+06/26 01     41     133         8      1,864,611    1,864,115         0
+06/26 02     31      87         9      1,958,103    1,957,995         0
+06/26 03     32      95        10      2,175,670    2,175,550         0
+06/26 04     35      79        10      2,175,670    2,175,550         0
+06/26 05     40     233        12      2,610,865    2,610,660       238
+06/26 06     12      87         4        870,268      870,220       140
+06/26 07      3      10         1        217,567      217,555        71
+06/26 08      3      11         1        217,567      217,555        72
+06/26 09      4      12         1        217,567      217,555       125
+06/26 10      3       9         1        217,567      217,555       137
+06/26 11      3       7         1        217,567      217,555       179
+06/26 12      4       7         1        217,567      217,555       179
+06/26 13      3       9         1        217,567      217,555       192
+06/26 14      3       8         1        217,567      217,555       221
+06/26 15      3       8         1        217,567      217,555       215
+06/26 16      3       3         1        217,597          283       238
+06/26 17      2       3         1        217,582        1,316       251
+06/26 18      6      24         2        435,149      220,094       598
+06/26 19      6      37         2        435,134      435,110       694
+06/26 20      9      51         3        652,701      652,665      1041
+06/26 21      9      61         3        652,701      652,665      1041
+06/26 22     16     171         5      1,087,835    1,087,775      1735
+         ------ ------- --------- -------------- ------------ ---------
+sum         316    1474        92     20,152,354   19,502,333      9587
+
+
+================================================================
+                            SQL fpusnqyf6f6m7
+             hash: 2242516167
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT EDI_DATA, KY_EDI_SEQ FROM EDI_REG_OUTBOUND_814 WHERE FL_PROCESSED = 'P' O
+RDER BY KY_EDI_SEQ
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-26      2242516167     542101 2013-05-26-10:00 2013-06-27-14:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+2242516167 SELECT STATEMENT                                             542101              3
+           SORT                 ORDER BY                                542101  1640996     2
+           TABLE ACCESS         FULL           EDI_REG_OUTBOUND_814     162849  1640996     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+EDI_REG_OUTBOUND_8    3281991   1199 05/26/13 04:44  100%     4744    4689    4170   10
+14
+
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/26 09      2      88         1        614,469      614,458       774
+06/26 10      3      52         1        614,469      614,458        11
+06/26 11      2      33         1        614,469      614,458        25
+06/26 12      2      30         1        614,469      614,458        72
+06/26 13      2      20         1        614,469      614,458        69
+06/26 14      2      15         1        614,469      614,458       140
+06/26 15      2      15         1        614,469      614,458         6
+06/26 16      2      15         1        614,469      614,458       133
+06/26 17      2      14         1        614,469      614,458       111
+         ------ ------- --------- -------------- ------------ ---------
+sum          20     282         9      5,530,221    5,530,122      1341
+
+
+================================================================
+                            SQL gp7mcd6cdgvhs
+             hash: 2187958237
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT DISTINCT KY_REG_REF_NO, CD_TRANS_TYPE, CD_ORIG_TRANS_TYPE, KY_EDC_ACCTNO,
+ EDI_DATA, KY_TRANS_GRP_ID, CD_SERVICE FROM EDI_REG_INBOUND_814 WHERE RECORD_TYP
+E = :B2 AND FL_PROCESSED <> 'Y' AND CD_BUS_APP = :B1 ORDER BY KY_REG_REF_NO, KY_
+TRANS_GRP_ID, SUBSTR(EDI_DATA, 640, 1) DESC
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-06-25      2187958237     842530 2013-06-25-15:00 2013-06-27-13:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+2187958237 SELECT STATEMENT                                             842530              4
+           SORT                 ORDER BY                                842530    17051     3
+           HASH                 UNIQUE                                  838709    17051     2
+           TABLE ACCESS         FULL           EDI_REG_INBOUND_814      834888    17051     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+EDI_REG_INBOUND_81   18442041   1129 06/25/13 05:35  100%    24031   24031   22063   10
+4
+
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/26 05     14     182         1      3,076,207    3,076,178     48832
+06/26 05      0       0         0              0            0         0
+06/26 10     13      76         1      3,076,975    3,076,946     49063
+06/26 10      0       0         0              0            0         0
+06/26 13      0       0         0              0            0         0
+06/26 13     12     122         1      3,077,231    3,077,209     48328
+06/26 15      0       0         0              0            0         0
+06/26 15     13      55         1      3,077,999    3,077,967     48731
+         ------ ------- --------- -------------- ------------ ---------
+sum          52     435         4     12,308,412   12,308,300    194954
+
+
+================================================================
+                            SQL gp7mcd6cdgvhs
+             hash: 2504463894
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT DISTINCT KY_REG_REF_NO, CD_TRANS_TYPE, CD_ORIG_TRANS_TYPE, KY_EDC_ACCTNO,
+ EDI_DATA, KY_TRANS_GRP_ID, CD_SERVICE FROM EDI_REG_INBOUND_814 WHERE RECORD_TYP
+E = :B2 AND FL_PROCESSED <> 'Y' AND CD_BUS_APP = :B1 ORDER BY KY_REG_REF_NO, KY_
+TRANS_GRP_ID, SUBSTR(EDI_DATA, 640, 1) DESC
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-26      2504463894     406491 2013-05-26-12:00 2013-06-27-13:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+2504463894 SELECT STATEMENT                                             406491              5
+           SORT                 ORDER BY                                406491   291967     4
+           HASH                 UNIQUE                                  341109   291967     3
+           TABLE ACCESS         BY INDEX ROWID EDI_REG_INBOUND_814      275727   291967     2
+           INDEX                SKIP SCAN      I_REG_INBOUND2            80411   597004     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+EDI_REG_INBOUND_81   18442041   1129 06/25/13 05:35  100%    24031   24031   22063   10
+4
+
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/26 05     14     182         1      3,076,207    3,076,178     48832
+06/26 05      0       0         0              0            0         0
+06/26 10     13      76         1      3,076,975    3,076,946     49063
+06/26 10      0       0         0              0            0         0
+06/26 13      0       0         0              0            0         0
+06/26 13     12     122         1      3,077,231    3,077,209     48328
+06/26 15      0       0         0              0            0         0
+06/26 15     13      55         1      3,077,999    3,077,967     48731
+         ------ ------- --------- -------------- ------------ ---------
+sum          52     435         4     12,308,412   12,308,300    194954
+
+
+================================================================
+                            SQL gsg9qkw0aj56q
+             hash: 2882489220
+================================================================
+
+
+SQL_TEXT
+--------------------------------------------------------------------------------
+SELECT "RATE_ID","SUPPLIER_ID","TERM_MONTHS" FROM "CPES"."CAS_SUPPLIER_RATE" "A"
+ WHERE "SUPPLIER_ID"='XOOM' AND TO_CHAR("RATE_ID")=:1
+
+
+
+TIMESTAMP  PLAN_HASH_VALUE       COST BEGIN_SNAP       END_SNAP         STATUS
+---------- --------------- ---------- ---------------- ---------------- ------
+2013-05-28      2882489220        273 2013-05-28-11:00 2013-06-27-08:00 RECENT
+
+ PLAN_HASH EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST     ROWS ORDER
+---------- -------------------- -------------- -------------------- ---------- -------- -----
+2882489220 SELECT STATEMENT                                                273              2
+           TABLE ACCESS         FULL           CAS_SUPPLIER_RATE           273        1     1
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPLE      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ------ ------- ------- ------- ---- ----
+CAS_SUPPLIER_RATE       15738    512 05/29/13 14:53  100%        8       8       9   10
+
+STARTING    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED
+-------- ------ ------- --------- -------------- ------------ ---------
+06/26 08    297     298     87467     99,448,851            0     87433
+06/26 09   1388    1392    451448    513,296,377            0    451217
+06/26 10     45      45     13189     14,997,030            0     13190
+         ------ ------- --------- -------------- ------------ ---------
+sum        1731    1735    552104    627,742,258            0    551840

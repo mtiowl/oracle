@@ -1,0 +1,5 @@
+select blocks, bytes/1024/1024 MB
+from dba_free_space
+where tablespace_name = 'EDI_DATA'
+order by blocks
+/

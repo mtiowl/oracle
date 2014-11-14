@@ -1,0 +1,814 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0102)http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+
+<!-- ssi_pre_title.html stops here -->
+	<meta name="keywords" content="Wordpress, blog, weblog, oracle">
+	<meta name="generator" content="WordPress 2.9.2"> <!-- leave this for stats -->
+
+	<!-- <style type="text/css" media="screen">
+           @import url( http://www.adellera.it/blog/wp-content/themes/adellera.it/style.css );
+	</style> -->
+
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.adellera.it/blog/feed/">
+	<link rel="alternate" type="text/xml" title="RSS .92" href="http://www.adellera.it/blog/feed/rss/">
+	<link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="http://www.adellera.it/blog/feed/atom/">
+	
+	<link rel="pingback" href="http://www.adellera.it/blog/xmlrpc.php">
+        
+	        <link rel="alternate" type="application/rss+xml" title="Alberto Dell&#39;Era&#39;s Oracle blog » fast refresh of join-only materialized views – algorithm summary Comments Feed" href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/feed/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.adellera.it/blog/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.adellera.it/blog/wp-includes/wlwmanifest.xml"> 
+<link rel="index" title="Alberto Dell&#39;Era&#39;s Oracle blog" href="http://www.adellera.it/blog">
+<link rel="start" title="Why blogging ?" href="http://www.adellera.it/blog/2009/05/24/why-blogging/">
+<link rel="prev" title="Bind Variables Checker for Oracle – now install-free" href="http://www.adellera.it/blog/2009/07/23/bind-variables-checker-for-oracle-now-install-free/">
+<link rel="next" title="Xplan 2.0" href="http://www.adellera.it/blog/2009/08/07/xplan-20/">
+<meta name="generator" content="WordPress 2.9.2, fitted with the WordPress Mobile Pack 1.2.5">
+
+<!-- All in One SEO Pack 1.6.10.2 by Michael Torbert of Semper Fi Web Design[,] -->
+<meta name="description" content="This post investigates how Oracle fast refreshes materialized views containing only joins of master tables: The fast refresh algorithm is simple and very">
+<meta name="keywords" content="materialized views">
+<link rel="canonical" href="./How to_fast refresh of complex materialized views _files/How to_fast refresh of complex materialized views .htm">
+<!-- /all in one seo pack -->
+<link rel="stylesheet" type="text/css" href="./How to_fast refresh of complex materialized views _files/shCore.css"><link rel="stylesheet" type="text/css" href="./How to_fast refresh of complex materialized views _files/shThemeRDark.css"><style type="text/css" id="syntaxhighlighteranchor"></style>
+
+        <title> Alberto Dell’Era’s Oracle blog » fast refresh of join-only materialized views – algorithm summary </title>
+
+
+<!-- ssi_post_title.html starts here -->
+
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" type="text/css" href="./How to_fast refresh of complex materialized views _files/style.css">
+<style>[touch-action="none"]{ -ms-touch-action: none; touch-action: none; }[touch-action="pan-x"]{ -ms-touch-action: pan-x; touch-action: pan-x; }[touch-action="pan-y"]{ -ms-touch-action: pan-y; touch-action: pan-y; }[touch-action="scroll"],[touch-action="pan-x pan-y"],[touch-action="pan-y pan-x"]{ -ms-touch-action: pan-x pan-y; touch-action: pan-x pan-y; }</style><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -90px !important;
+    width: 180px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head>
+<body>
+
+<!-- check if this visit is excluded from Google Analytics -->
+<script type="text/javascript">
+  function getCookie(w) {
+    cName = "";
+    pCOOKIES = new Array();
+    pCOOKIES = document.cookie.split('; ');
+    for(bb = 0; bb < pCOOKIES.length; bb++){
+      NmeVal  = new Array();
+      NmeVal  = pCOOKIES[bb].split('=');
+      if(NmeVal[0] == w){
+        cName = unescape(NmeVal[1]);
+      }
+    }
+    return cName;
+  }
+  
+  var cookieValue = getCookie('__utmv');
+  if ( cookieValue.indexOf('exclude_me_from_adellera_it') > 0 ) {
+    document.write('<b style="background-color:yellow;">-->   this visit of this page is excluded from Google Analytics '
+      + '(according to cookie __utmv = "'+cookieValue+'" ) <--</b>');
+  }
+</script>
+<!-- / check if this visit is excluded from Google Analytics -->
+
+<div id="header">
+
+	<div id="header_inner" class="fixed">
+
+		<div id="logo">
+			<h1><a href="http://www.adellera.it/index.html" class="home_anchor"><span>Alberto Dell'Era</span></a></h1>
+                        <h2><b style="color: white;">Milano, Italia</b></h2>
+		</div>
+		
+		<div id="menu">
+			<ul>
+                                <li><a href="http://www.adellera.it/blog" class="active">blog</a></li>
+                                <li><a href="http://www.adellera.it/xtrace/index.html" class="active">xtrace</a></li>
+				<li><a href="http://www.adellera.it/investigations/index.html" class="active">investigations</a></li>
+				<li><a href="http://www.adellera.it/scripts_etcetera/index.html" class="active">scripts</a></li>
+				<li><a href="http://www.adellera.it/personal/index.html" class="active">personal</a></li>
+				<li><a href="http://www.adellera.it/about/index.html" class="active">about</a></li>
+			</ul>
+		</div> 
+		
+	</div>
+</div>
+
+<div id="main">
+
+	<div id="main_inner" class="fixed">
+
+		<div id="primaryContent_2columns">
+
+			<div id="columnA_2columns">
+<!-- ssi_post_title.html stops here -->
+				
+
+ 
+
+<br class="clear">
+
+<!-- the loop in index.php -->
+
+
+<div class="post-275 post hentry category-materialized-views" id="post-275">
+    <!-- post permalink -->
+    <h3>
+      <a href="./How to_fast refresh of complex materialized views _files/How to_fast refresh of complex materialized views .htm" rel="bookmark" title="Permanent Link to &#39;fast refresh of join-only materialized views – algorithm summary&#39;">
+      fast refresh of join-only materialized views – algorithm summary</a> 
+    </h3> 
+    <!-- post text -->
+    <p>This post investigates how Oracle fast refreshes materialized views containing only joins of master tables:</p>
+<div><div id="highlighter_755681" class="syntaxhighlighter  sql"><div class="toolbar"><span><a href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">01</div><div class="line number2 index1 alt1">02</div><div class="line number3 index2 alt2">03</div><div class="line number4 index3 alt1">04</div><div class="line number5 index4 alt2">05</div><div class="line number6 index5 alt1">06</div><div class="line number7 index6 alt2">07</div><div class="line number8 index7 alt1">08</div><div class="line number9 index8 alt2">09</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="sql keyword">create</code> <code class="sql plain">materialized </code><code class="sql keyword">view</code> <code class="sql plain">test_mv</code></div><div class="line number2 index1 alt1"><code class="sql plain">build immediate</code></div><div class="line number3 index2 alt2"><code class="sql plain">refresh fast </code><code class="sql keyword">on</code> <code class="sql plain">demand</code></div><div class="line number4 index3 alt1"><code class="sql keyword">as</code></div><div class="line number5 index4 alt2"><code class="sql keyword">select</code> <code class="sql plain">test_t1.*, test_t1.rowid </code><code class="sql keyword">as</code> <code class="sql plain">test_t1_rowid,</code></div><div class="line number6 index5 alt1"><code class="sql spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="sql plain">test_t2.*, test_t2.rowid </code><code class="sql keyword">as</code> <code class="sql plain">test_t2_rowid,</code></div><div class="line number7 index6 alt2"><code class="sql spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="sql plain">test_t3.*, test_t3.rowid </code><code class="sql keyword">as</code> <code class="sql plain">test_t3_rowid</code></div><div class="line number8 index7 alt1"><code class="sql spaces">&nbsp;&nbsp;</code><code class="sql keyword">from</code> <code class="sql plain">test_t1, test_t2, test_t3</code></div><div class="line number9 index8 alt2"><code class="sql spaces">&nbsp;</code><code class="sql keyword">where</code> <code class="sql plain">test_t1.j1_2 = test_t2.j2_1</code></div><div class="line number10 index9 alt1"><code class="sql spaces">&nbsp;&nbsp;&nbsp;</code><code class="sql color1">and</code> <code class="sql plain">test_t2.j2_3 = test_t3.j3_2</code></div><div class="line number11 index10 alt2"><code class="sql plain">;</code></div></div></td></tr></tbody></table></div></div>
+<p>The fast refresh algorithm is simple and very easy to understand - so trivial in fact that once examined and understood, the possible tuning techniques follow naturally.  </p>
+<p>The <a href="http://www.adellera.it/blog/wp-content/uploads/2009/08/post_0030_join_mv.zip">test case</a> traces the fast refresh of the above materialized view (MV) using the 10046 event (aka "sql trace"). The test case has been run on 9.2.0.8, 10.2.0.4 and 11.1.0.7 (the latest versions of 9i, 10g and 11g available as of today), and on all of these versions the algorithm used by the refreshing engine (run by invoking dbms_mview.refresh) appears to be the same, with only a few implementation differences.</p>
+<p>The test case explores the most general case: it performs inserts, updates and deletes on all the three master tables (the inserts being conventional; I will explore direct-path inserts another time). </p>
+<p><b>Materialized view logs configuration</b></p>
+<p>In the test case, I have configured the materialized view logs to "log everything", in order to check whether more information in the logs could trigger some special kernel code designed to take advantage of it:</p>
+<div><div id="highlighter_711437" class="syntaxhighlighter  sql"><div class="toolbar"><span><a href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="sql keyword">create</code> <code class="sql plain">materialized </code><code class="sql keyword">view</code> <code class="sql plain">log </code><code class="sql keyword">on</code> <code class="sql plain">test_t1</code></div><div class="line number2 index1 alt1"><code class="sql keyword">with</code> <code class="sql keyword">sequence</code><code class="sql plain">, rowid, </code><code class="sql keyword">primary</code> <code class="sql keyword">key</code> <code class="sql plain">(j1_2, x1)</code></div><div class="line number3 index2 alt2"><code class="sql plain">including new </code><code class="sql keyword">values</code><code class="sql plain">;</code></div></div></td></tr></tbody></table></div></div>
+<p>but the engine uses only the rowid information even in 11.1.0.7, so you are better off logging only the rowid if the master table feeds join-only materialized views exclusively:</p>
+<div><div id="highlighter_93994" class="syntaxhighlighter  sql"><div class="toolbar"><span><a href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="sql keyword">create</code> <code class="sql plain">materialized </code><code class="sql keyword">view</code> <code class="sql plain">log </code><code class="sql keyword">on</code> <code class="sql plain">test_t1 </code><code class="sql keyword">with</code> <code class="sql plain">rowid;</code></div></div></td></tr></tbody></table></div></div>
+<p>Minimal logging obviously improves the performance of DML against the master tables, but it also optimizes the fast refresh, since the latter, as we are going to see in a moment, reads each log twice, and of course the less you log, the more compact the logs will be.</p>
+<p><b>Log snapshots</b></p>
+<p>After some preliminary visits to the data dictionary, the first operation performed by the fast refresh engine is to "mark" the modifications (recorded in the materialized view logs) to be propagated to the MV. Only the marked log rows are then fed by the fast refresh engine as input to the next steps.</p>
+<p>The "flag" used to mark the rows is the column snaptime$$. When the refresh starts, the engine performs a "snapshot" of the materialized view logs by setting the snaptime$$ of all the new rows (those with snaptime$$ = '01/01/4000') of each log in turn to the current time (SYSDATE).</p>
+<p>In detail, the snapshot is performed by issuing this SQL statement (slightly edited for readability) in 9.2.0.8 and 10.2.0.4:</p>
+<div><div id="highlighter_753307" class="syntaxhighlighter  sql"><div class="toolbar"><span><a href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="sql keyword">update</code> <code class="sql plain">MLOG$_TEST_T1</code></div><div class="line number2 index1 alt1"><code class="sql spaces">&nbsp;&nbsp;&nbsp;</code><code class="sql keyword">set</code> <code class="sql plain">snaptime$$ = :1</code></div><div class="line number3 index2 alt2"><code class="sql spaces">&nbsp;</code><code class="sql keyword">where</code> <code class="sql plain">snaptime$$ &gt; to_date(</code><code class="sql string">'2100-01-01:00:00:00'</code><code class="sql plain">,</code><code class="sql string">'YYYY-MM-DD:HH24:MI:SS'</code><code class="sql plain">)</code></div></div></td></tr></tbody></table></div></div>
+<p>The bind variable :1 is a DATE whose value is equal to SYSDATE. </p>
+<p>Note: In 11.1.0.7, the statement is slightly different but makes the same thing, probably in a more scalable way concurrency-wise (check the script spools if you're interested).</p>
+<p>You might have noticed the where condition on snaptime$$; that is necessary since the logs might be used by more than one materialized view. When a refresh ends, in fact, the engine checks whether other MVs might need each log row, and deletes only the log rows that have been processed by all dependant MVs; the other ones are left unchanged (and hence keep the snaptime$$ that was set when the fast refresh started). The where condition is needed to avoid overwriting the snaptime$$, and mark with the current time only the brand new rows (those with snaptime$$ = '01/01/4000').</p>
+<p>So, at the end of the snapshot, the log rows that must be examined by the refresh engine will be the ones that are marked by having their snaptime$$ between the date of the last refresh (excluded) and :1 (included). All the other log rows must be ignored.</p>
+<p>Side note: marking data at a certain point in time and then replicating the marked data is the only replication strategy that can work when you cannot "freeze" the master tables, as this is definitely our case. This is a general topic worth blogging about in the future.</p>
+<p>The marked log rows are then inspected to count the number and type of the logged modifications. This is to check whether any of the replication steps (i.e. the DEL and INS steps that we are going to discuss in a moment) could be skipped. Also, the number of modifications is used (in some versions) to inject some hints in the SQL statements of the replication steps, a topic that falls out of the scope of this post.</p>
+<p><b>Core algorithm: the INS and DEL steps</b></p>
+<p>Then, the core replication starts. The replication considers each master table in turn, and for each table, propagates the modifications to the MV. So we have essentially one single algorithm that propagates from a single master table, just repeated once for each master table.</p>
+<p>The propagation for each master table is made of two simple steps, steps that I'm going to name after the comments of the SQL as a DEL (DELETE) step followed by an INS (INSERT) step. </p>
+<p>The DEL step is (editing for readability: removing hints, unnecessary aliases, etc):</p>
+<div><div id="highlighter_2164" class="syntaxhighlighter  sql"><div class="toolbar"><span><a href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">01</div><div class="line number2 index1 alt1">02</div><div class="line number3 index2 alt2">03</div><div class="line number4 index3 alt1">04</div><div class="line number5 index4 alt2">05</div><div class="line number6 index5 alt1">06</div><div class="line number7 index6 alt2">07</div><div class="line number8 index7 alt1">08</div><div class="line number9 index8 alt2">09</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="sql plain">/* MV_REFRESH (DEL) */</code></div><div class="line number2 index1 alt1"><code class="sql keyword">delete</code> <code class="sql keyword">from</code> <code class="sql plain">test_mv</code></div><div class="line number3 index2 alt2"><code class="sql spaces">&nbsp;</code><code class="sql keyword">where</code> <code class="sql plain">test_t1_rowid </code><code class="sql color1">in</code></div><div class="line number4 index3 alt1"><code class="sql spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="sql plain">(</code></div><div class="line number5 index4 alt2"><code class="sql keyword">select</code> <code class="sql plain">* </code><code class="sql keyword">from</code></div><div class="line number6 index5 alt1"><code class="sql spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="sql plain">(</code></div><div class="line number7 index6 alt2"><code class="sql keyword">select</code> <code class="sql plain">chartorowid (m_row$$)</code></div><div class="line number8 index7 alt1"><code class="sql spaces">&nbsp;&nbsp;</code><code class="sql keyword">from</code> <code class="sql plain">mlog$_test_t1</code></div><div class="line number9 index8 alt2"><code class="sql spaces">&nbsp;</code><code class="sql keyword">where</code> <code class="sql plain">snaptime$$ &gt; :1</code></div><div class="line number10 index9 alt1"><code class="sql spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="sql plain">) </code><code class="sql keyword">as</code> <code class="sql keyword">of</code> <code class="sql plain">snapshot (:2)</code></div><div class="line number11 index10 alt2"><code class="sql spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="sql plain">)</code></div></div></td></tr></tbody></table></div></div>
+<p>The subquery simply fetches the rowid of all marked rows, since :1 is the date of the previous refresh of the materialized view, and :2 is the SCN (coded as a RAW variable) of the time when the snapshot was performed. So, this step deletes from the MV all the rows that record the result of the MV-defining join of any of the marked rows (of the current master table) with the other master tables.</p>
+<p>This is the step that can benefit from the index on the column that stores the master table rowid (here, test_t1_rowid) that the <a href="http://download.oracle.com/docs/cd/B28359_01/server.111/b28313/refresh.htm#sthref463">documentation suggests</a> to create. Note that in order to optimize this step, you need three separate single-column indexes (here, on test_t1_rowid, test_t2_rowid, test_t3_rowid), not a single composite index spanning the (here, three) columns, as it is sometimes wrongly stated.</p>
+<p>The INS step is (again editing for readability):</p>
+<div><div id="highlighter_524213" class="syntaxhighlighter  sql"><div class="toolbar"><span><a href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">01</div><div class="line number2 index1 alt1">02</div><div class="line number3 index2 alt2">03</div><div class="line number4 index3 alt1">04</div><div class="line number5 index4 alt2">05</div><div class="line number6 index5 alt1">06</div><div class="line number7 index6 alt2">07</div><div class="line number8 index7 alt1">08</div><div class="line number9 index8 alt2">09</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="sql plain">/* MV_REFRESH (INS) */</code></div><div class="line number2 index1 alt1"><code class="sql keyword">insert</code> <code class="sql keyword">into</code> <code class="sql plain">test_mv</code></div><div class="line number3 index2 alt2"><code class="sql keyword">select</code> <code class="sql plain">jv.j1_2, jv.x1, jv.pk1, jv.rid$,</code></div><div class="line number4 index3 alt1"><code class="sql spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="sql plain">mas2.j2_1, mas2.j2_3, mas2.x2, mas2.pk2, mas2.rowid,</code></div><div class="line number5 index4 alt2"><code class="sql spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="sql plain">mas3.j3_2, mas3.x3, mas3.pk3, mas3.rowid</code></div><div class="line number6 index5 alt1"><code class="sql spaces">&nbsp;&nbsp;</code><code class="sql keyword">from</code> <code class="sql plain">(</code></div><div class="line number7 index6 alt2"><code class="sql keyword">select</code> <code class="sql plain">log.rowid rid$, log.*</code></div><div class="line number8 index7 alt1"><code class="sql spaces">&nbsp;&nbsp;</code><code class="sql keyword">from</code> <code class="sql plain">test_t1 log</code></div><div class="line number9 index8 alt2"><code class="sql spaces">&nbsp;</code><code class="sql keyword">where</code> <code class="sql plain">rowid </code><code class="sql color1">in</code></div><div class="line number10 index9 alt1"><code class="sql spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="sql plain">(</code></div><div class="line number11 index10 alt2"><code class="sql keyword">select</code> <code class="sql plain">chartorowid(log.m_row$$)</code></div><div class="line number12 index11 alt1"><code class="sql spaces">&nbsp;&nbsp;</code><code class="sql keyword">from</code> <code class="sql plain">mlog$_test_t1</code></div><div class="line number13 index12 alt2"><code class="sql spaces">&nbsp;</code><code class="sql keyword">where</code> <code class="sql plain">snaptime$$ &gt; :1</code></div><div class="line number14 index13 alt1"><code class="sql spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="sql plain">)</code></div><div class="line number15 index14 alt2"><code class="sql spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="sql plain">) </code><code class="sql keyword">as</code> <code class="sql keyword">of</code> <code class="sql plain">snapshot (:2) jv,</code></div><div class="line number16 index15 alt1"><code class="sql spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="sql plain">test_t2 </code><code class="sql keyword">as</code> <code class="sql keyword">of</code> <code class="sql plain">snapshot (:2)&nbsp; mas2,</code></div><div class="line number17 index16 alt2"><code class="sql spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="sql plain">test_t3 </code><code class="sql keyword">as</code> <code class="sql keyword">of</code> <code class="sql plain">snapshot (:2)&nbsp; mas3</code></div><div class="line number18 index17 alt1"><code class="sql spaces">&nbsp;</code><code class="sql keyword">where</code>&nbsp;&nbsp; <code class="sql plain">jv.j1_2 = mas2.j2_1</code></div><div class="line number19 index18 alt2"><code class="sql spaces">&nbsp;&nbsp;&nbsp;</code><code class="sql color1">and</code> <code class="sql plain">mas2.j2_3 = mas3.j3_2</code></div></div></td></tr></tbody></table></div></div>
+<p>The subquery is the same as the DEL step and serves the very same function. So, this statement replays the SQL statement of the MV definition, but limited to the marked rows only. Note that all tables are read at the same point in time in the past, the time when the snapshot of the log was performed, thanks to the argument of the "as of snapshot" clause being the same.</p>
+<p>In order to speed up the INS step, indexes on the joined columns can be created on the master tables (not on the MV!). This is because, special cases aside, it is well known that the "fast refresh" (the name itself is quite horrible, many people prefer the adjective "incremental") can be actually "fast" only if a small fraction of the master tables is modified (otherwise, a complete refresh is better); in this scenario, almost certainly the optimal plan is a series of NESTED LOOPs that has the current table (test_t1 in this case) as the most outer table, series that can usually benefit a lot by an index on the inner tables join columns. Of course, you must remember that every table, in turn, acts as the most outer table, hence you should index every possible join permutation.</p>
+<p>So here what the algorithm is all about: the DEL and INS steps, together, simply delete and recreate the "slice" of the MV that is referenced by the marked rows, whatever the modification type. The algorithm is as simple (and brutal) as it seems. </p>
+<p><b>Algorithm optimizations</b></p>
+<p>The only optimizations performed are the skipping of some steps when they are obviously unnecessary. For every master table, the DEL step is skipped when only INSERTs are marked in the logs; the INS is skipped when only DELETEs are marked, and of course both are skipped if no row is marked. I have not been able to spot any other optimization.</p>
+<p>Note that this means that UPDATEs always turn into a delete+insert of the entire "slice".  For example, consider the typical case of a parent table (say, CUSTOMER), with a child (say, ORDER) and a grandchild (say, ORDER_LINE); if you update a column of a row of the parent (say, ORDERS_TOTAL_AMOUNT), the parent row and its whole progeny (the "slice") will be deleted and then recreated. This was a quite surprising discovery for me - a fact that I have now committed to memory.</p>
+    <!-- post info -->
+    <ul class="post_info">
+    <li class="date">Tuesday, August 4, 2009 <a href="http://www.adellera.it/blog/category/materialized-views/" title="View all posts in materialized views" rel="category tag">materialized views</a></li>
+      <li class="comments">
+        <a href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#comments_ad">jump to comments</a>      </li>
+    </ul>
+    <!-- end of post -->
+</div> 
+
+<a name="comments_ad"></a> <!-- AD -->
+<div class="commentsblock">
+  
+<!-- You can start editing here. -->
+
+<br>
+	<!-- <h4 id="comments">Comments to this post.</h4> --> 
+        <a name="comments"></a>
+	<ol class="commentlist">
+
+	        
+                                
+		<li class="odd_comment" id="comment-96">
+                        <!-- <hr/> -->
+			<h4 class="h4_in_comments"> <a href="http://cristiancudizio.wordpress.com/" rel="external nofollow" class="url">Cristian</a> </h4>
+                        <div class="commentdate">Friday, August 7, 2009 </div>
+                        
+						
+			<small class="commentmetadata">
+                        <a href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#comment-96" title="">
+                        </a> 
+                        
+                        </small>
+
+                        <img alt="" src="./How to_fast refresh of complex materialized views _files/40031feec2e87b8b7eac8cd6eae97bc0" class="avatar avatar-48 photo" height="48" width="48"> 
+                                               
+			<p>Very interesting post.  I’ve read it and re-read and i’ve made same tests by myself. I’ve a question: why in your opinion whith simple mv’s (on a single table, without joins) Oracle does not use the same algorithm but makes updates as updates? (i’ve made a test on 10.2.0.4)</p>
+                        
+                        		</li>
+
+	        
+                                
+		<li class="author_comment" id="comment-97">
+                        <!-- <hr/> -->
+			<h4 class="h4_in_comments"> <a href="http://www.adellera.it/" rel="external nofollow" class="url">Alberto Dell'Era</a> </h4>
+                        <div class="commentdate">Friday, August 7, 2009 </div>
+                        
+						
+			<small class="commentmetadata">
+                        <a href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#comment-97" title="">
+                        </a> 
+                        
+                        </small>
+
+                        <img alt="" src="./How to_fast refresh of complex materialized views _files/9f6a50a98ee00ef6f8b67fc5db8c3603" class="avatar avatar-48 photo" height="48" width="48"> 
+                                               
+			<p>@Cristian</p>
+<p>what do you mean by “simple MV”, with or without aggregates ?</p>
+<p>You might want to post the defining SQL statement of the MV …</p>
+                        
+                        		</li>
+
+	        
+                                
+		<li class="odd_comment" id="comment-98">
+                        <!-- <hr/> -->
+			<h4 class="h4_in_comments"> <a href="http://cristiancudizio.wordpress.com/" rel="external nofollow" class="url">Cristian</a> </h4>
+                        <div class="commentdate">Friday, August 7, 2009 </div>
+                        
+						
+			<small class="commentmetadata">
+                        <a href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#comment-98" title="">
+                        </a> 
+                        
+                        </small>
+
+                        <img alt="" src="./How to_fast refresh of complex materialized views _files/40031feec2e87b8b7eac8cd6eae97bc0" class="avatar avatar-48 photo" height="48" width="48"> 
+                                               
+			<p>I meant without aggregates:</p>
+<div><div id="highlighter_715240" class="syntaxhighlighter  sql"><div class="toolbar"><span><a href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="sql keyword">update</code> <code class="sql plain">testmv1 </code><code class="sql keyword">set</code> <code class="sql plain">fld1=</code><code class="sql string">'a2'</code> <code class="sql keyword">where</code> <code class="sql plain">pk1=1;</code></div><div class="line number2 index1 alt1"><code class="sql keyword">commit</code><code class="sql plain">;</code></div><div class="line number3 index2 alt2"><code class="sql keyword">EXEC</code> <code class="sql plain">DBMS_MVIEW.REFRESH(</code><code class="sql string">'TEST_MV1'</code><code class="sql plain">);</code></div><div class="line number4 index3 alt1"><code class="sql keyword">SELECT</code> <code class="sql plain">* </code><code class="sql keyword">FROM</code> <code class="sql plain">TESTMV1_LOG;</code></div></div></td></tr></tbody></table></div></div>
+<p>This because we sometimes use MV’s as data replication tool.</p>
+                        
+                        		</li>
+
+	        
+                                
+		<li class="author_comment" id="comment-99">
+                        <!-- <hr/> -->
+			<h4 class="h4_in_comments"> <a href="http://www.adellera.it/" rel="external nofollow" class="url">Alberto Dell'Era</a> </h4>
+                        <div class="commentdate">Friday, August 7, 2009 </div>
+                        
+						
+			<small class="commentmetadata">
+                        <a href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#comment-99" title="">
+                        </a> 
+                        
+                        </small>
+
+                        <img alt="" src="./How to_fast refresh of complex materialized views _files/9f6a50a98ee00ef6f8b67fc5db8c3603" class="avatar avatar-48 photo" height="48" width="48"> 
+                                               
+			<p>Ok, but what is the defining SQL statement of the MV TEST_MV1 ?</p>
+                        
+                        		</li>
+
+	        
+                                
+		<li class="odd_comment" id="comment-100">
+                        <!-- <hr/> -->
+			<h4 class="h4_in_comments"> <a href="http://cristiancudizio.wordpress.com/" rel="external nofollow" class="url">Cristian</a> </h4>
+                        <div class="commentdate">Friday, August 7, 2009 </div>
+                        
+						
+			<small class="commentmetadata">
+                        <a href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#comment-100" title="">
+                        </a> 
+                        
+                        </small>
+
+                        <img alt="" src="./How to_fast refresh of complex materialized views _files/40031feec2e87b8b7eac8cd6eae97bc0" class="avatar avatar-48 photo" height="48" width="48"> 
+                                               
+			<p>Sorry, the sun on my head :)</p>
+<div><div id="highlighter_456601" class="syntaxhighlighter  sql"><div class="toolbar"><span><a href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">01</div><div class="line number2 index1 alt1">02</div><div class="line number3 index2 alt2">03</div><div class="line number4 index3 alt1">04</div><div class="line number5 index4 alt2">05</div><div class="line number6 index5 alt1">06</div><div class="line number7 index6 alt2">07</div><div class="line number8 index7 alt1">08</div><div class="line number9 index8 alt2">09</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="sql keyword">create</code> <code class="sql keyword">table</code> <code class="sql plain">testmv1 (pk1 number,fld1 varchar2(10));</code></div><div class="line number2 index1 alt1"><code class="sql keyword">create</code> <code class="sql plain">materialized </code><code class="sql keyword">view</code> <code class="sql plain">log </code><code class="sql keyword">on</code> <code class="sql plain">testmv1 </code><code class="sql keyword">with</code> <code class="sql plain">rowid;</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="sql keyword">create</code> <code class="sql plain">materialized </code><code class="sql keyword">view</code> <code class="sql plain">test_mv1</code></div><div class="line number5 index4 alt2"><code class="sql plain">build immediate</code></div><div class="line number6 index5 alt1"><code class="sql plain">refresh fast </code><code class="sql keyword">with</code> <code class="sql plain">rowid</code></div><div class="line number7 index6 alt2"><code class="sql keyword">on</code> <code class="sql plain">demand</code></div><div class="line number8 index7 alt1"><code class="sql keyword">as</code></div><div class="line number9 index8 alt2"><code class="sql spaces">&nbsp;</code><code class="sql keyword">select</code></div><div class="line number10 index9 alt1"><code class="sql spaces">&nbsp;&nbsp;</code><code class="sql plain">testmv1.*</code></div><div class="line number11 index10 alt2"><code class="sql spaces">&nbsp;</code><code class="sql keyword">from</code> <code class="sql plain">testmv1;</code></div></div></td></tr></tbody></table></div></div>
+<p>I’ve not tried with primary key based refresh.</p>
+                        
+                        		</li>
+
+	        
+                                
+		<li class="author_comment" id="comment-101">
+                        <!-- <hr/> -->
+			<h4 class="h4_in_comments"> <a href="http://www.adellera.it/" rel="external nofollow" class="url">Alberto Dell'Era</a> </h4>
+                        <div class="commentdate">Friday, August 7, 2009 </div>
+                        
+						
+			<small class="commentmetadata">
+                        <a href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#comment-101" title="">
+                        </a> 
+                        
+                        </small>
+
+                        <img alt="" src="./How to_fast refresh of complex materialized views _files/9f6a50a98ee00ef6f8b67fc5db8c3603" class="avatar avatar-48 photo" height="48" width="48"> 
+                                               
+			<p>I know a “rowid MV”, as your one is, cannot contain neither joins neither aggregates and must be based on a single table, so they probably use a different algorithm than the one examined in this post (which is for join-only MVs). They are in fact MVs used for replication almost exclusively, usually from a remote database to a local one through a dblink – the old name was “snapshots”, a technology “now merged” with the “materialized view” one. So it is outside the scope of this post, albeit I’ve added an investigation about this on my to-do list. It makes sense, anyway, that on a scenario as simple as this one, they have tried to optimize the propagation (hence using UPDATEs) as much as possible (especially to minimize the traffic over the dblink).</p>
+                        
+                        		</li>
+
+	        
+                                
+		<li class="odd_comment" id="comment-114">
+                        <!-- <hr/> -->
+			<h4 class="h4_in_comments"> <a href="http://www.adellera.it/blog/2009/08/11/fast-refresh-of-single-table-materialized-views-algorithm-summary/" rel="external nofollow" class="url">Alberto Dell’Era’s Oracle blog » fast refresh of single-table materialized views - algorithm summary</a> </h4>
+                        <div class="commentdate">Tuesday, August 11, 2009 </div>
+                        
+						
+			<small class="commentmetadata">
+                        <a href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#comment-114" title="">
+                        </a> 
+                        
+                        </small>
+
+                         
+                                               
+			<p>[...] might be considered a degenerate case of a join-only MV, a topic that we investigated in an earlier post, and one could expect the same algorithm. But that is not the case: the test case shows that the [...]</p>
+                        
+                        		</li>
+
+	        
+                                
+		<li class="author_comment" id="comment-115">
+                        <!-- <hr/> -->
+			<h4 class="h4_in_comments"> <a href="http://www.adellera.it/" rel="external nofollow" class="url">Alberto Dell'Era</a> </h4>
+                        <div class="commentdate">Tuesday, August 11, 2009 </div>
+                        
+						
+			<small class="commentmetadata">
+                        <a href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#comment-115" title="">
+                        </a> 
+                        
+                        </small>
+
+                        <img alt="" src="./How to_fast refresh of complex materialized views _files/9f6a50a98ee00ef6f8b67fc5db8c3603" class="avatar avatar-48 photo" height="48" width="48"> 
+                                               
+			<p>@Cristian</p>
+<p>I have posted an <a href="http://www.adellera.it/blog/2009/08/11/fast-refresh-of-single-table-materialized-views-algorithm-summary/" rel="nofollow">investigation</a> about your scenario.</p>
+                        
+                        		</li>
+
+	        
+                                
+		<li class="odd_comment" id="comment-116">
+                        <!-- <hr/> -->
+			<h4 class="h4_in_comments"> <a href="http://coskan.wordpress.com/2009/08/12/521/" rel="external nofollow" class="url">Blogroll Report 31/07/2009 – 07/08/2009 « Coskan’s Approach to Oracle</a> </h4>
+                        <div class="commentdate">Wednesday, August 12, 2009 </div>
+                        
+						
+			<small class="commentmetadata">
+                        <a href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#comment-116" title="">
+                        </a> 
+                        
+                        </small>
+
+                         
+                                               
+			<p>[...] Alberto Dell’Era- fast refresh of join-only materialized views -algorithm summary [...]</p>
+                        
+                        		</li>
+
+	        
+                                
+		<li class="" id="comment-228">
+                        <!-- <hr/> -->
+			<h4 class="h4_in_comments"> <a href="http://www.adellera.it/blog/2009/11/03/11gr2-materialized-view-logs-changes/" rel="external nofollow" class="url">Alberto Dell’Era’s Oracle blog » 11gR2: materialized view logs changes</a> </h4>
+                        <div class="commentdate">Tuesday, November 3, 2009 </div>
+                        
+						
+			<small class="commentmetadata">
+                        <a href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#comment-228" title="">
+                        </a> 
+                        
+                        </small>
+
+                         
+                                               
+			<p>[...] the refresh is performed by using a “mark-and-propagate” algorithm, which is essentially (check this post for some additional details): 1) new log rows are inserted with snaptime$$=4000 A.D; 2) at refresh [...]</p>
+                        
+                        		</li>
+
+	        
+                                
+		<li class="odd_comment" id="comment-337">
+                        <!-- <hr/> -->
+			<h4 class="h4_in_comments"> <a href="http://www.adellera.it/blog/2010/03/11/fast-refresh-of-join-only-mvs-_mv_refresh_use_stats-and-locking-log-stats/" rel="external nofollow" class="url">Alberto Dell’Era’s Oracle blog » fast refresh of join-only MVs: _mv_refresh_use_stats and locking log stats</a> </h4>
+                        <div class="commentdate">Thursday, March 11, 2010 </div>
+                        
+						
+			<small class="commentmetadata">
+                        <a href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#comment-337" title="">
+                        </a> 
+                        
+                        </small>
+
+                         
+                                               
+			<p>[...] understand the importance of points 5 and 6, please check this post of mine; note how those indexes are a necessary prerequisite for the sanity of the DEL and INS steps of the [...]</p>
+                        
+                        		</li>
+
+	        
+                                
+		<li class="" id="comment-489">
+                        <!-- <hr/> -->
+			<h4 class="h4_in_comments"> Shuai </h4>
+                        <div class="commentdate">Tuesday, November 1, 2011 </div>
+                        
+						
+			<small class="commentmetadata">
+                        <a href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#comment-489" title="">
+                        </a> 
+                        
+                        </small>
+
+                        <img alt="" src="./How to_fast refresh of complex materialized views _files/d5e7785e550a57c79c468a236e09edea" class="avatar avatar-48 photo" height="48" width="48"> 
+                                               
+			<p>I’m very glad to read your article about the algorithm of join-only MV fast refresh. It’s very useful. I just want to know more about this: how about a joined MV with aggregation such as sum or count? I found it’s very difficult to explain the aggregation MV’s behavior while doing fast refresh because there is no rowid column. Do you have any idea? Many thanks!</p>
+                        
+                        		</li>
+
+	        
+                                
+		<li class="author_comment" id="comment-490">
+                        <!-- <hr/> -->
+			<h4 class="h4_in_comments"> <a href="http://www.adellera.it/" rel="external nofollow" class="url">Alberto Dell'Era</a> </h4>
+                        <div class="commentdate">Tuesday, November 1, 2011 </div>
+                        
+						
+			<small class="commentmetadata">
+                        <a href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#comment-490" title="">
+                        </a> 
+                        
+                        </small>
+
+                        <img alt="" src="./How to_fast refresh of complex materialized views _files/9f6a50a98ee00ef6f8b67fc5db8c3603" class="avatar avatar-48 photo" height="48" width="48"> 
+                                               
+			<p>Hi Shuai, </p>
+<p>I have never investigated that scenario – but you can do it yourself by modifying one of my test cases … just try to see the SQL statements that the refresh produces, that’s all it takes to get a rough model of the process ;)</p>
+                        
+                        		</li>
+
+	        
+                                
+		<li class="" id="comment-666">
+                        <!-- <hr/> -->
+			<h4 class="h4_in_comments"> <a href="http://www.adellera.it/blog/2013/04/22/fast-refresh-of-outer-join-only-materialized-views-algorithm-part-1/" rel="external nofollow" class="url">Alberto Dell’Era’s Oracle blog » fast refresh of outer-join-only materialized views – algorithm, part 1</a> </h4>
+                        <div class="commentdate">Monday, April 22, 2013 </div>
+                        
+						
+			<small class="commentmetadata">
+                        <a href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#comment-666" title="">
+                        </a> 
+                        
+                        </small>
+
+                         
+                                               
+			<p>[...] only 11.2.0.3. We will use the very same scenario (MV log configuration, DML type, etc) as in the inner join case, "just" turning the inner join into an outer [...]</p>
+                        
+                        		</li>
+
+	        
+                                
+		<li class="odd_comment" id="comment-1397">
+                        <!-- <hr/> -->
+			<h4 class="h4_in_comments"> <a href="http://www.adellera.it/blog/2013/08/05/fast-refresh-of-aggregate-only-materialized-views-introduction/" rel="external nofollow" class="url">Alberto Dell’Era’s Oracle blog » Fast refresh of aggregate-only materialized views – introduction</a> </h4>
+                        <div class="commentdate">Monday, August 5, 2013 </div>
+                        
+						
+			<small class="commentmetadata">
+                        <a href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#comment-1397" title="">
+                        </a> 
+                        
+                        </small>
+
+                         
+                                               
+			<p>[...] to the MV by setting snaptime$$ equal to the current time – check the description contained in this post for details (note also another possible variant with "commit-scn mv logs"). MV log purging (at the [...]</p>
+                        
+                        		</li>
+
+	
+	</ol>
+
+ 
+
+
+<h4 id="respond">Leave a Comment</h4>
+
+
+
+<form action="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/#comment-3000" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1">
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2">
+<label for="email"><small>Mail (will not be published) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3">
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: &lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </small></p>-->
+<div><b>Please enclose SQL code inside the tag pair [sql] ... [/sql]</b></div>
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+
+	<p style="clear: both;" class="subscribe-to-comments">
+	<input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;">
+	<label for="subscribe">Notify me of followup comments via e-mail</label>
+	</p>
+
+
+<p><input id="preview" type="submit" name="preview" tabindex="5" value="Preview"><input id="submit" type="submit" name="submit" tabindex="6" style="font-weight: bold" value="Post"></p>
+<p><input type="hidden" name="comment_post_ID" value="275"></p>
+<p></p>
+
+</form>
+
+
+
+	<form action="" method="post">
+	<input type="hidden" name="solo-comment-subscribe" value="solo-comment-subscribe">
+	<input type="hidden" name="postid" value="275">
+	<input type="hidden" name="ref" value="http%3A%2F%2Fwww.adellera.it%2Fblog%2F2009%2F08%2F04%2Ffast-refresh-of-join-only-materialized-views-algorithm-summary%2F">
+
+	<p class="solo-subscribe-to-comments">
+	Subscribe without commenting	<br>
+	<label for="solo-subscribe-email">E-Mail:	<input type="text" name="email" id="solo-subscribe-email" size="22" value=""></label>
+	<input type="submit" name="submit" value="Subscribe">
+	</p>
+	</form>
+
+
+
+
+  
+</div> <!-- commentsblock -->
+
+
+<!-- end loop -->
+
+                      
+                   </div> <!-- columnA_2columns -->
+	
+		</div> <!-- primaryContent_2columns -->
+		
+		<div id="secondaryContent_2columns">
+		
+			<div id="columnC_2columns">
+                        
+                        <div id="sidebar">
+
+<!-- widgets sidebar -->
+<!--
+  <ul>      
+  </ul>
+-->
+
+<div style="text-align: right">
+  
+  
+    
+  <b>RSS</b>:<a href="http://www.adellera.it/blog/feed/">
+    <img src="./How to_fast refresh of complex materialized views _files/feed-icon-28x28.png" alt="RSS feed" title="RSS feed">
+  </a>
+</div>
+  
+<h4>blog <span>search</span></h4>
+  
+  <form method="get" id="sform" action="http://www.adellera.it/blog/">
+    <div id="search"> 
+      <input type="text" id="q" value="" name="s" size="40"> 
+      <input class="button" value="Go" type="submit"> 
+    </div>
+  </form>
+  
+<h4>recent <span>comments</span></h4>  
+<ul class="links">
+  <li>Alberto Dell’Era on <a href="http://www.adellera.it/blog/2009/08/07/xplan-20/comment-page-1/#comment-2178">Xplan 2.0</a></li>
+<li>Daya on <a href="http://www.adellera.it/blog/2009/08/07/xplan-20/comment-page-1/#comment-2176">Xplan 2.0</a></li>
+<li>Iudith Mentzel on <a href="http://www.adellera.it/blog/2009/08/11/fast-refresh-of-single-table-materialized-views-algorithm-summary/comment-page-1/#comment-2171">fast refresh of single-table materialized views – algorithm summary</a></li>
+<li>Alex on <a href="http://www.adellera.it/blog/2012/08/27/xplan-now-with-self-measures-for-row-source-operations/comment-page-1/#comment-2169">Xplan: now with “self” measures for row source operations</a></li>
+<li>Alberto Dell’Era on <a href="http://www.adellera.it/blog/2012/08/27/xplan-now-with-self-measures-for-row-source-operations/comment-page-1/#comment-2168">Xplan: now with “self” measures for row source operations</a></li>
+</ul>
+  
+<h4>recent <span>posts</span></h4>
+  <ul class="links">
+                  <li><a href="http://www.adellera.it/blog/2013/08/23/fast-refresh-of-aggregate-only-materialized-views-with-max-algorithm/">Fast refresh of aggregate-only materialized views with MAX – algorithm</a> 
+              </li>
+                  <li><a href="http://www.adellera.it/blog/2013/08/19/fast-refresh-of-aggregate-only-materialized-views-with-sum-algorithm/">Fast refresh of aggregate-only materialized views with SUM – algorithm</a> 
+              </li>
+                  <li><a href="http://www.adellera.it/blog/2013/08/05/fast-refresh-of-aggregate-only-materialized-views-introduction/">Fast refresh of aggregate-only materialized views – introduction</a> 
+              </li>
+                  <li><a href="http://www.adellera.it/blog/2013/05/17/alter-session-force-parallel-query-and-indexes/">“alter session force parallel query”, and indexes</a> 
+              </li>
+                  <li><a href="http://www.adellera.it/blog/2013/04/29/fast-refresh-of-outer-join-only-materialized-views-algorithm-part-2/">fast refresh of outer-join-only materialized views – algorithm, part 2</a> 
+              </li>
+                  <li><a href="http://www.adellera.it/blog/2013/04/22/fast-refresh-of-outer-join-only-materialized-views-algorithm-part-1/">fast refresh of outer-join-only materialized views – algorithm, part 1</a> 
+              </li>
+                  <li><a href="http://www.adellera.it/blog/2013/04/07/oltp-compression-migrated-rows-are-compressed/">OLTP compression: migrated rows are compressed</a> 
+              </li>
+                  <li><a href="http://www.adellera.it/blog/2012/10/01/overlapping-ranges-with-priority/">overlapping ranges with priority</a> 
+              </li>
+                  <li><a href="http://www.adellera.it/blog/2012/09/16/refresh-fast-of-materialized-views-optimized-by-oracle-as-complete/">refresh “fast” of materialized views optimized by Oracle as “complete”</a> 
+              </li>
+                  <li><a href="http://www.adellera.it/blog/2012/08/27/xplan-now-with-self-measures-for-row-source-operations/">Xplan: now with “self” measures for row source operations</a> 
+              </li>
+      </ul>
+    
+<h4>monthly <span>archives</span></h4>
+  <ul class="links">
+    	<li><a href="http://www.adellera.it/blog/2013/08/" title="August 2013">August 2013</a></li>
+	<li><a href="http://www.adellera.it/blog/2013/05/" title="May 2013">May 2013</a></li>
+	<li><a href="http://www.adellera.it/blog/2013/04/" title="April 2013">April 2013</a></li>
+	<li><a href="http://www.adellera.it/blog/2012/10/" title="October 2012">October 2012</a></li>
+	<li><a href="http://www.adellera.it/blog/2012/09/" title="September 2012">September 2012</a></li>
+	<li><a href="http://www.adellera.it/blog/2012/08/" title="August 2012">August 2012</a></li>
+	<li><a href="http://www.adellera.it/blog/2012/05/" title="May 2012">May 2012</a></li>
+	<li><a href="http://www.adellera.it/blog/2011/05/" title="May 2011">May 2011</a></li>
+	<li><a href="http://www.adellera.it/blog/2010/05/" title="May 2010">May 2010</a></li>
+	<li><a href="http://www.adellera.it/blog/2010/04/" title="April 2010">April 2010</a></li>
+	<li><a href="http://www.adellera.it/blog/2010/03/" title="March 2010">March 2010</a></li>
+	<li><a href="http://www.adellera.it/blog/2010/02/" title="February 2010">February 2010</a></li>
+	<li><a href="http://www.adellera.it/blog/2010/01/" title="January 2010">January 2010</a></li>
+	<li><a href="http://www.adellera.it/blog/2009/11/" title="November 2009">November 2009</a></li>
+	<li><a href="http://www.adellera.it/blog/2009/10/" title="October 2009">October 2009</a></li>
+	<li><a href="http://www.adellera.it/blog/2009/09/" title="September 2009">September 2009</a></li>
+	<li><a href="http://www.adellera.it/blog/2009/08/" title="August 2009">August 2009</a></li>
+	<li><a href="http://www.adellera.it/blog/2009/07/" title="July 2009">July 2009</a></li>
+	<li><a href="http://www.adellera.it/blog/2009/06/" title="June 2009">June 2009</a></li>
+	<li><a href="http://www.adellera.it/blog/2009/05/" title="May 2009">May 2009</a></li>
+  </ul>
+
+<h4>post <span>categories</span></h4>
+  <ul class="links">
+    <li class="categories">Categories<ul>	<li class="cat-item cat-item-13"><a href="http://www.adellera.it/blog/category/case-studies/" title="View all posts filed under case studies">case studies</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="http://www.adellera.it/blog/category/cbo/" title="View all posts filed under CBO">CBO</a>
+</li>
+	<li class="cat-item cat-item-14"><a href="http://www.adellera.it/blog/category/compression/" title="View all posts filed under compression">compression</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://www.adellera.it/blog/category/indexes/" title="View all posts filed under Indexes">Indexes</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://www.adellera.it/blog/category/materialized-views/" title="View all posts filed under materialized views">materialized views</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://www.adellera.it/blog/category/performance-tuning/" title="View all posts filed under performance tuning">performance tuning</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="http://www.adellera.it/blog/category/siebel/" title="View all posts filed under siebel">siebel</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="http://www.adellera.it/blog/category/social-events/" title="View all posts filed under Social Events">Social Events</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="http://www.adellera.it/blog/category/technical-meetings/" title="View all posts filed under Technical Meetings">Technical Meetings</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://www.adellera.it/blog/category/tools/" title="View all posts filed under tools">tools</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://www.adellera.it/blog/category/uncategorized/" title="View all posts filed under Uncategorized">Uncategorized</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="http://www.adellera.it/blog/category/xplan/" title="View all posts filed under xplan">xplan</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="http://www.adellera.it/blog/category/xtrace/" title="View all posts filed under xtrace">xtrace</a>
+</li>
+</ul></li>  </ul>
+
+</div> <!-- sidebar -->
+
+
+
+
+	
+                        <!-- ssi_right_menu.html starts here -->                                
+                                
+                                <h4><span>Links</span> (alphabetical order)</h4>
+				<ul class="links">
+                                <li><a href="http://www.trivadis.ch/">Christian Antognini</a></li>
+                                <li><a href="http://www.oracledba.co.uk/">Connor McDonald</a></li>
+				                        <li><a href="http://www.jlcomp.demon.co.uk/">Jonathan Lewis</a></li>
+                                <li><a href="http://www.juliandyke.com/">Julian Dyke</a></li>
+                                <li><a href="http://www.oaktable.net/"><b>Oak Table</b></a></li>
+                                <li><a href="http://www.ixora.com.au/">Steve Adams</a></li>
+                                <li><a href="http://asktom.oracle.com/">Tom Kyte</a></li>
+                                <li><a href="http://www.centrexcc.com/">Wolfgang Breitling</a></li>
+				</ul>
+	
+				<h4><span>Blogroll</span> (alphabetical order)</h4>
+				<ul class="links">
+                                <li><a href="http://www.oracle-developer.net/">Adrian Billington</a></li>
+                                <li><a href="http://blogs.oracle.com/optimizer/">CBO Development Group</a></li>
+                                <li><a href="http://prodlife.wordpress.com/">Chen Shapira</a></li>
+                                <li><a href="http://antognini.ch/blog/">Christian Antognini</a></li>
+                                <li><a href="http://coskan.wordpress.com/">Coskan Gundogar</a></li>
+                                <li><a href="http://oracledoug.com/serendipity/">Doug Burns</a></li>
+                                <li><a href="http://structureddata.org/">Greg Rahn</a></li>
+                                <li><a href="http://iggyfernandez.wordpress.com/">Iggy Fernandez</a></li>
+                                <li><a href="http://jamesmorle.wordpress.com/">James Morle</a></li>
+				                        <li><a href="http://jonathanlewis.wordpress.com/all-postings/">Jonathan Lewis</a></li>
+                                <li><a href="http://kevinclosson.wordpress.com/">Kevin Closson</a></li>
+				                        <li><a href="http://richardfoote.wordpress.com/about/">Richard Foote</a></li>
+                                <li><a href="http://orainternals.wordpress.com/">Riyaj Shamsudeen</a></li>
+                                <li><a href="http://blog.tanelpoder.com/">Tanel Poder</a></li>
+                                <li><a href="http://tkyte.blogspot.com/">Tom Kyte</a></li>
+                                <li><a href="http://thehelsinkideclaration.blogspot.com/">Toon Koppelaars</a></li>
+				</ul>
+
+                                
+                                <h4><span>Blog Aggregators</span> (alphabetical order)</h4>
+				<ul class="links">
+                                <li><a href="http://coskan.wordpress.com/">Coskan Gundogar's</a></li>
+                                <li><a href="http://www.ora600.be/aggregator/">Kurt Van Meerbeeck's</a></li>
+                 		</ul>
+
+<!-- ssi_right_menu.html ends here -->
+
+			</div>  <!-- columnC_2columns -->
+
+		</div> <!-- secondaryContent_2columns -->
+
+		<br class="clear">
+
+	</div> <!-- main_inner -->
+
+</div> <!-- main -->
+
+<!-- begin footer -->
+
+<!-- Do not deleting the credits, 
+this theme is released for free under the GNU General Public License (GPL) requiring that the credits will stay intact.
+I'd appreciate the credit being left in unmodified, thanks in advance -->
+
+<p><a onclick="document.cookie=&quot;wpmp_switcher=mobile;path=/;expires=Tue, 01-01-2030 00:00:00 GMT&quot;;" href="http://www.adellera.it/blog/2009/08/04/fast-refresh-of-join-only-materialized-views-algorithm-summary/?wpmp_switcher=mobile">Switch to our mobile site</a></p><script type="text/javascript" src="./How to_fast refresh of complex materialized views _files/shCore.js"></script>
+<script type="text/javascript" src="./How to_fast refresh of complex materialized views _files/shBrushSql.js"></script>
+<script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://www.adellera.it/blog/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.83c";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://www.adellera.it/blog/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeRDark.css?ver=3.0.83c";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = true;
+	SyntaxHighlighter.all();
+</script>
+
+<!-- End Footer -->
+
+
+<!-- ssi_bottom_footer_only.html starts here -->		
+			
+<div id="footer" class="fixed">
+	Copyright © Alberto Dell'Era. All rights reserved. 
+        Original Layout Copyright © 2006 Alberto Dell’Era’s Oracle blog | 
+        <a href="http://www.headsetoptions.org/">Nonzero</a><sup>1.0</sup> 
+        by <a href="http://www.nodethirtythree.com/">NodeThirtyThree Design</a> 
+        Ported to WordPress by <a href="http://www.headsetoptions.org/">Headsetoptions</a> 
+</div>
+
+<!-- ssi_bottom_footer_only.html ends here -->
+
+<!-- google analytics -->
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./How to_fast refresh of complex materialized views _files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-8603870-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+<!-- /google analytics -->
+
+
+
+
+</body></html>

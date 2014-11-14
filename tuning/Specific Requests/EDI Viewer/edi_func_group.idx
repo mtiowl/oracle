@@ -1,0 +1,2 @@
+create index edi_func_grp_id_header on edi_func_group(id_edi_header)
+/

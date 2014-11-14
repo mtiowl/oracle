@@ -1,0 +1,5 @@
+
+Oracle9i - process name include "cjq" 
+           example:  ora_cjq0_PSOLD
+
+Oracle8i - 

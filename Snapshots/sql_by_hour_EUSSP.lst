@@ -1,0 +1,2126 @@
+
+NAME      REPORT          FIRST_SNAP  LAST_SNAP REPORT_TIME
+--------- --------------- ---------- ---------- ----------------
+EUSSP     20 LARGEST SQLS      35494      35517 2013-10-30 07:40
+
+VERSION           HOST_NAME    STARTUP
+----------------- ------------ ----------------
+9.2.0.8.0         rp3440-x     2012-11-15 23:57
+
+2013-10-29 00:00 FIRST SNAPSHOT      35494
+2013-10-29 23:00  LAST SNAPSHOT      35517
+
+STARTING      SQLS    BUFFER_GETS   DISK_READS    PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------ -------------- ------------ ------------ ------ ------- --------
+10/29 00:00    745      7,113,901    4,792,658      136,565    295     860     32.6
+10/29 01:00    747        238,996       28,881       46,042     25     110     87.9
+10/29 02:00    747      2,783,216      121,370      233,722    244    1552     95.6
+10/29 03:00    752      5,375,577      202,913      409,841    462    2717     96.2
+10/29 04:00    752      4,902,757      190,086      379,303    458    2729     96.1
+10/29 05:00    752      5,582,504      249,622      450,432    523    2716     95.5
+10/29 06:00    753        417,432       31,871       61,814     40     119     92.4
+10/29 07:00    758        603,832       34,750       78,413     52     178     94.2
+10/29 08:00    761        796,920      176,192       86,090     63     341     77.9
+10/29 09:00    769      1,530,813      367,298      433,818    122     545     76.0
+10/29 10:00    778      1,083,964      129,493      209,527     86     374     88.1
+10/29 11:00    775        526,840       40,473       79,959     56     228     92.3
+10/29 12:00    575     25,560,558      414,315    1,860,485   1109   55061     98.4
+10/29 13:00    583        601,368       63,104       78,641     53     252     89.5
+10/29 14:00    586        965,141       31,957      115,093     88     275     96.7
+10/29 15:00    592        719,550       31,748       90,710     65     286     95.6
+10/29 16:00    592        683,864       87,371       81,978     60     243     87.2
+10/29 17:00    594        551,818      163,049       63,768     44     172     70.5
+10/29 18:00    595        399,957       33,268       62,012     38     203     91.7
+10/29 19:00    595        407,942       32,557       62,901     37     171     92.0
+10/29 20:00    595        484,357       33,807       84,080     39     184     93.0
+10/29 21:00    596        416,142       32,183       67,392     59     203     92.3
+10/29 22:00    596        332,900       30,222       54,456     37     153     90.9
+                   -------------- ------------ ------------ ------ -------
+sum                    62,080,349    7,319,188    5,227,042   4055   69672
+
+Top SQLs by BUFFER GETS
+
+RANK    BUFFER_GETS  GETS/EXEC     EXECS   DISK_READS    PROCESSED    CPU ELAPSED HASH_VALUE
+---- -------------- ---------- --------- ------------ ------------ ------ ------- ----------
+   1     26,224,344         15   1774164      412,383    1,774,157   1108   30072 3279831044
+   2     10,278,790         34    300391      565,177      403,923    952    9186 2908714458
+   3      4,443,153         11    403923          884      403,923    504     780 3315776556
+   4      3,067,893    3067893         1    2,273,841            1    128     353 3393362902
+   5      3,040,189    3040189         1    2,247,264       84,708    126     337 1236042107
+   6      2,687,887          7    403923      137,236      403,923     59     267 3520778653
+   7      2,267,267          8    300391       15,520       12,872     31     160 1387998731
+   8      1,408,906         15     94796       25,385       94,785     91   25437  249387059
+   9        909,257     303086         3      311,448      444,735     69     287 3472799032
+  10        901,173          3    300391            0            0     26      44 4115986599
+  11        712,012      15479        46      199,859           46     20     107 2978648090
+  12        712,012      15479        46      199,859            0     19     107 2998120748
+  13        644,618      14013        46       56,632           46      9      13 2109232932
+  14        533,390      11595        46       56,625          598      8      12  283364978
+  15        457,924      26937        17      449,420           12     33     255 4065022241
+  16        300,391          1    300391            0            0     27      41 1129106335
+  17        288,366          3     94785          351       94,785     14      16  196573112
+  18        235,813         10     24418       10,553       10,745     19     208 3490750399
+  19        111,228        186       598            7          598      1       1  932215987
+  20        107,790          6     17965          250       17,965     10      11  828956512
+     --------------            --------- ------------ ------------ ------ -------
+sum      59,332,403              4016342    6,962,694    3,747,822   3254   67694
+
+Top SQLs by DISK READS
+
+RANK   DISK_READS READS/EXEC     EXECS    BUFFER_GETS    PROCESSED    CPU ELAPSED HASH_VALUE
+---- ------------ ---------- --------- -------------- ------------ ------ ------- ----------
+   1    2,273,841    2273841         1      3,067,893            1    128     353 3393362902
+   2    2,247,264    2247264         1      3,040,189       84,708    126     337 1236042107
+   3      565,177          2    300391     10,278,790      403,923    952    9186 2908714458
+   4      449,420      26436        17        457,924           12     33     255 4065022241
+   5      412,383          0   1774164     26,224,344    1,774,157   1108   30072 3279831044
+   6      311,448     103816         3        909,257      444,735     69     287 3472799032
+   7      199,859       4345        46        712,012           46     20     107 2978648090
+   8      199,859       4345        46        712,012            0     19     107 2998120748
+   9      137,236          0    403923      2,687,887      403,923     59     267 3520778653
+  10      101,005     101005         1        105,035          557      4      36 2388905698
+  11      101,005     101005         1        105,038            1      5      36 2404283328
+  12       56,632       1231        46        644,618           46      9      13 2109232932
+  13       56,625       1231        46        533,390          598      8      12  283364978
+  14       26,577      26577         1         27,701          716      1      16 2573348506
+  15       25,385          0     94796      1,408,906       94,785     91   25437  249387059
+  16       23,170       1007        23         73,590           23     19     107  333476733
+  17       17,430      17430         1         13,535            1      6      17 3181382251
+  18       15,520          0    300391      2,267,267       12,872     31     160 1387998731
+  19       10,553          0     24418        235,813       10,745     19     208 3490750399
+  20        9,745       9745         1          6,931           19      5      10 2372645254
+     ------------            --------- -------------- ------------ ------ -------
+sum     7,240,134              2898317     53,512,132    3,231,868   2712   67023
+
+Top SQLs by CPU
+
+RANK    CPU ELAPSED   DISK_READS READS/EXEC     EXECS    BUFFER_GETS    PROCESSED HASH_VALUE
+---- ------ ------- ------------ ---------- --------- -------------- ------------ ----------
+   1   1108   30072      412,383          0   1774164     26,224,344    1,774,157 3279831044
+   2    952    9186      565,177          2    300391     10,278,790      403,923 2908714458
+   3    504     780          884          0    403923      4,443,153      403,923 3315776556
+   4    267     519          109          0    300391         24,209      300,391 3063741409
+   5    128     353    2,273,841    2273841         1      3,067,893            1 3393362902
+   6    126     337    2,247,264    2247264         1      3,040,189       84,708 1236042107
+   7     91   25437       25,385          0     94796      1,408,906       94,785  249387059
+   8     78      99            0          0        47              0          102  939670446
+   9     69     287      311,448     103816         3        909,257      444,735 3472799032
+  10     59     267      137,236          0    403923      2,687,887      403,923 3520778653
+  11     34      41            0          0       144              0          256 1311426575
+  12     33     255      449,420      26436        17        457,924           12 4065022241
+  13     31     160       15,520          0    300391      2,267,267       12,872 1387998731
+  14     27      41            0          0    300391        300,391            0 1129106335
+  15     27      35            0          0       542              0          102 3446994129
+  16     26      44            0          0    300391        901,173            0 4115986599
+  17     22      12          288          0      3781         37,846        3,781 3271223548
+  18     21     415        3,577       3577         1         21,940       21,694 2134561383
+  19     20      69           86          0     24418         23,609       24,418 2398767578
+  20     20     107      199,859       4345        46        712,012           46 2978648090
+     ------ ------- ------------            --------- -------------- ------------
+sum    3643   68516    6,642,477              4207762     56,806,790    3,973,829
+
+
+================================================================
+                            SQL 196573112
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT SYSDATE, SS_EVENT_SEQ.NEXTVAL FROM DUAL                   from
+
+FIRST TIME = 2012-11-15 23:57
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT
+SEQUENCE
+TABLE ACCESS         FULL           DUAL
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      1       0      1779          5,412            5      1779 w3wp.exe
+10/29 01    60      0       0       807          2,454            2       807 w3wp.exe
+10/29 02    60      0       0       409          1,243           19       409 w3wp.exe
+10/29 03    60      0       0       529          1,607           38       529 w3wp.exe
+10/29 04    60      0       1      1100          3,346           50      1100 w3wp.exe
+10/29 05    60      0       0      2076          6,314           52      2076 w3wp.exe
+10/29 06    60      1       0      2412          7,337            2      2412 w3wp.exe
+10/29 07    60      0       1      3911         11,902            3      3911 w3wp.exe
+10/29 08    60      1       1      5841         17,773           53      5841 w3wp.exe
+10/29 09    60      1       1      7341         22,328           42      7341 w3wp.exe
+10/29 10    60      1       2      7332         22,302           10      7332 w3wp.exe
+10/29 11    60      1       1      6502         19,780           36      6502 w3wp.exe
+10/29 12    60      1       1      6056         18,427            5      6056 w3wp.exe
+10/29 13    60      0       1      5326         16,200            5      5326 w3wp.exe
+10/29 14    60      1       0      4932         15,003            4      4932 w3wp.exe
+10/29 15    60      1       1      5105         15,529            3      5105 w3wp.exe
+10/29 16    60      0       1      5124         15,593            3      5124 w3wp.exe
+10/29 17    60      1       0      4758         14,475            5      4758 w3wp.exe
+10/29 18    60      1       2      4511         13,730            3      4511 w3wp.exe
+10/29 19    60      1       0      4882         14,857            3      4882 w3wp.exe
+10/29 20    60      0       1      5593         17,022            2      5593 w3wp.exe
+10/29 21    60      1       1      5040         15,332            3      5040 w3wp.exe
+10/29 22    60      1       1      3419         10,400            3      3419 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380     14      16     94785        288,366          351     94785
+
+
+================================================================
+                            SQL 249387059
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+begin P_SS_COMMON_WS.log_event(P_EVENT_TYPE=>:P_EVENT_TYPE, P_SE
+SSION_ID=>:P_SESSION_ID, P_USER_ID=>:P_USER_ID, P_FREEFORM_FIELD
+1=>:P_FREEFORM_FIELD1, P_FREEFORM_FIELD2=>:P_FREEFORM_FIELD2, P_
+FREEFORM_FIELD3=>:P_FREEFORM_FIELD3, P_KYBA=>:P_KYBA, P_KYBA_RAT
+E=>:P_KYBA_RATE); end;
+
+FIRST TIME = 2012-11-15 23:57
+MODULE     = w3wp.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      2       5      1779         26,078          265      1779 w3wp.exe
+10/29 01    60      1       4       807         11,863          202       807 w3wp.exe
+10/29 02    60      0       2       409          5,993          152       409 w3wp.exe
+10/29 03    60      1       3       529          7,837          238       529 w3wp.exe
+10/29 04    60      1       8      1100         16,081          545      1100 w3wp.exe
+10/29 05    60      2       9      2076         30,235          760      2076 w3wp.exe
+10/29 06    60      3      14      2412         35,562          872      2412 w3wp.exe
+10/29 07    60      4      18      3911         57,710        1,181      3911 w3wp.exe
+10/29 08    60      5      24      5841         86,625        1,831      5841 w3wp.exe
+10/29 09    60      7      25      7341        108,564        2,046      7341 w3wp.exe
+10/29 10    60      6      26      7332        108,259        1,902      7332 w3wp.exe
+10/29 11    60      6      25      6502         96,405        1,857      6502 w3wp.exe
+10/29 12    60      7   25087      6067         97,659        1,723      6056 w3wp.exe
+10/29 13    60      4      19      5326         81,066        1,306      5326 w3wp.exe
+10/29 14    60      5      18      4932         73,772        1,328      4932 w3wp.exe
+10/29 15    60      5      20      5104         75,729        1,405      5104 w3wp.exe
+10/29 16    60      4      18      5125         75,677        1,302      5125 w3wp.exe
+10/29 17    60      4      17      4758         69,899        1,145      4758 w3wp.exe
+10/29 18    60      6      25      4511         66,329        1,221      4511 w3wp.exe
+10/29 19    60      4      18      4882         71,711        1,124      4882 w3wp.exe
+10/29 20    60      5      20      5593         81,705        1,162      5593 w3wp.exe
+10/29 21    60      5      18      5040         73,931        1,103      5040 w3wp.exe
+10/29 22    60      4      14      3419         50,216          715      3419 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380     91   25437     94796      1,408,906       25,385     94785
+
+
+================================================================
+                            SQL 283364978
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT A.TABLESPACE_NAME TBS_NAME, A."MB used", B."MB free", C."
+MB free" "MB free largest tablespace", A."MB used" + B."MB free"
+ "Total MB", ROUND(A."MB used" / (A."MB used" + B."MB free") * 1
+00, 2) "% Full", NVL(ROUND(A."MB used" / (A."MB used" + C."MB fr
+ee") * 100, 2),ROUND(A."MB used" / (A."MB used" + B."MB free") *
+ 100, 2)) PCT_FREE FROM (SELECT TABLESPACE_NAME, SUM(BYTES/10485 from
+76) "MB used" FROM DBA_DATA_FILES GROUP BY TABLESPACE_NAME) A, ( from
+SELECT TABLESPACE_NAME, SUM(BYTES)/1048576 "MB free" FROM DBA_FR from
+EE_SPACE GROUP BY TABLESPACE_NAME) B, (SELECT DFS.TABLESPACE_NAM
+E, SUM(BYTES)/1048576 "MB free" FROM DBA_FREE_SPACE DFS, (SELECT from
+ TABLESPACE_NAME, MAX(NEXT_EXTENT) NEXT_EXTENT FROM (SELECT TABL from
+ESPACE_NAME, NEXT_EXTENT FROM ALL_INDEXES UNION ALL SELECT TABLE from
+SPACE_NAME, NEXT_EXTENT FROM ALL_TABLES) GROUP BY TABLESPACE_NAM from
+E) NE WHERE DFS.TABLESPACE_NAME = NE.TABLESPACE_NAME AND BYTES > where
+= NE.NEXT_EXTENT GROUP BY DFS.TABLESPACE_NAME) C WHERE A.TABLESP where
+ACE_NAME=B.TABLESPACE_NAME AND B.TABLESPACE_NAME=C.TABLESPACE_NA
+ME (+) AND A.TABLESPACE_NAME NOT LIKE '%UNDO%'
+
+FIRST TIME = 2012-11-16 00:14
+MODULE     = sqlplus@rp3440-x (TNS V1-V3)
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                246
+HASH JOIN            OUTER                                      246      246        1
+HASH JOIN                                                        77       77        1
+VIEW                                                             40                 2
+SORT                 GROUP BY                                    40       40        2
+VIEW                                                             37                 2
+UNION-ALL
+NESTED LOOPS                                                     13       13        1
+NESTED LOOPS                                                     12       12        1
+FIXED TABLE          FULL           X$KCCFN                      11                 1
+TABLE ACCESS         BY INDEX ROWID FILE$                         1        1        4
+INDEX                UNIQUE SCAN    I_FILE1                                         1
+TABLE ACCESS         CLUSTER        TS$                           1        1        1
+INDEX                UNIQUE SCAN    I_TS#                                           1
+NESTED LOOPS                                                     24       24        1
+NESTED LOOPS                                                     23       23        1
+NESTED LOOPS                                                     12       12        1
+FIXED TABLE          FULL           X$KCCFN                      11                 1
+TABLE ACCESS         BY INDEX ROWID FILE$                         1        1        4
+INDEX                UNIQUE SCAN    I_FILE1                                         1
+FIXED TABLE          FIXED INDEX    X$KTFBHC (ind:1)             11                 1
+TABLE ACCESS         CLUSTER        TS$                           1        1        4
+INDEX                UNIQUE SCAN    I_TS#                                           1
+VIEW                                                             37                 2
+SORT                 GROUP BY                                    37       37        2
+VIEW                                                             34                 2
+UNION-ALL
+NESTED LOOPS                                                     12       12        1
+NESTED LOOPS                                                     11       11        1
+TABLE ACCESS         FULL           FET$                         11       11     8168
+INDEX                UNIQUE SCAN    I_FILE2                                         1
+TABLE ACCESS         CLUSTER        TS$                           1        1        1
+NESTED LOOPS                                                     22       22        1
+NESTED LOOPS                                                     22       22        1
+TABLE ACCESS         FULL           TS$                          11       11        1
+FIXED TABLE          FIXED INDEX    X$KTFBFE (ind:1)             11                 1
+INDEX                UNIQUE SCAN    I_FILE2                                         1
+VIEW                                                            168                 6
+SORT                 GROUP BY                                   168      168        6
+HASH JOIN                                                       166      166        6
+VIEW                                                              2                 2
+UNION-ALL
+NESTED LOOPS                                                     12       12        1
+NESTED LOOPS                                                     11       11        1
+TABLE ACCESS         FULL           FET$                         11       11     8168
+INDEX                UNIQUE SCAN    I_FILE2                                         1
+TABLE ACCESS         CLUSTER        TS$                           1        1        1
+NESTED LOOPS                                                     22       22        1
+NESTED LOOPS                                                     22       22        1
+TABLE ACCESS         FULL           TS$                          11       11        1
+FIXED TABLE          FIXED INDEX    X$KTFBFE (ind:1)             11                 1
+INDEX                UNIQUE SCAN    I_FILE2                                         1
+VIEW                                                            163              5564
+SORT                 GROUP BY                                   163      163     5564
+VIEW                                                            144              5564
+UNION-ALL
+FILTER
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+HASH JOIN                                                        53       53       91
+TABLE ACCESS         FULL           USER$                        11       11       65
+NESTED LOOPS                                                     41       41       91
+NESTED LOOPS         OUTER                                       38       38        3
+NESTED LOOPS         OUTER                                       35       35        3
+NESTED LOOPS                                                     32       32        3
+NESTED LOOPS         OUTER                                       29       29        3
+NESTED LOOPS         OUTER                                       26       26        3
+HASH JOIN                                                        23       23        3
+TABLE ACCESS         FULL           OBJ$                         11       11       66
+TABLE ACCESS         FULL           IND$                         11       11      659
+TABLE ACCESS         CLUSTER        TS$                           1        1        1
+INDEX                UNIQUE SCAN    I_TS#                                           1
+TABLE ACCESS         CLUSTER        SEG$                          1        1        1
+INDEX                UNIQUE SCAN    I_FILE#_BLOCK#                                  1
+TABLE ACCESS         CLUSTER        USER$                         1        1        1
+INDEX                UNIQUE SCAN    I_USER#                                         1
+TABLE ACCESS         BY INDEX ROWID OBJ$                          1        1        1
+INDEX                UNIQUE SCAN    I_OBJ1                                          1
+TABLE ACCESS         CLUSTER        USER$                         1        1        1
+INDEX                UNIQUE SCAN    I_USER#                                         1
+TABLE ACCESS         BY INDEX ROWID OBJ$                          1        1       31
+INDEX                UNIQUE SCAN    I_OBJ1                                          1
+NESTED LOOPS                                                    111      111       82
+FIXED TABLE          FULL           X$KZSRO                      11               100
+INDEX                RANGE SCAN     I_OBJAUTH2                    1        1        1
+FIXED TABLE          FULL           X$KZSPR                      11                 1
+FILTER
+HASH JOIN                                                        91       91     5473
+TABLE ACCESS         FULL           USER$                        11       11       65
+HASH JOIN                                                        79       79     5473
+HASH JOIN            OUTER                                       65       65      672
+HASH JOIN            OUTER                                       51       51      672
+NESTED LOOPS         OUTER                                       36       36      672
+HASH JOIN            OUTER                                       36       36      672
+HASH JOIN                                                        23       23      672
+TABLE ACCESS         FULL           TS$                          11       11       18
+TABLE ACCESS         FULL           TAB$                         11       11      672
+TABLE ACCESS         FULL           SEG$                         11       11     1835
+INDEX                UNIQUE SCAN    I_OBJ1                                          1
+TABLE ACCESS         FULL           OBJ$                         11       11    20758
+TABLE ACCESS         FULL           USER$                        11       11       65
+TABLE ACCESS         FULL           OBJ$                         11       11     5465
+NESTED LOOPS                                                    111      111       82
+FIXED TABLE          FULL           X$KZSRO                      11               100
+INDEX                RANGE SCAN     I_OBJAUTH2                    1        1        1
+FIXED TABLE          FULL           X$KZSPR                      11                 1
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      0       0         2         23,188        3,089        26 sqlplus@rp3440-x
+10/29 01    60      1       1         2         23,188        2,278        26 sqlplus@rp3440-x
+10/29 02    60      0       1         2         23,188        2,553        26 sqlplus@rp3440-x
+10/29 03    60      0       1         2         23,188        2,779        26 sqlplus@rp3440-x
+10/29 04    60      1       1         2         23,188        2,333        26 sqlplus@rp3440-x
+10/29 05    60      0       1         2         23,188        2,491        26 sqlplus@rp3440-x
+10/29 06    60      1       0         2         23,188        3,101        26 sqlplus@rp3440-x
+10/29 07    60      0       1         2         23,188        3,028        26 sqlplus@rp3440-x
+10/29 08    60      0       0         2         23,188        3,087        26 sqlplus@rp3440-x
+10/29 09    60      0       0         2         23,188        2,126        26 sqlplus@rp3440-x
+10/29 10    60      1       1         2         23,188          931        26 sqlplus@rp3440-x
+10/29 11    60      0       0         2         23,188        3,095        26 sqlplus@rp3440-x
+10/29 12    60      0       0         2         23,194           78        26 sqlplus@rp3440-x
+10/29 13    60      1       1         2         23,194        2,480        26 sqlplus@rp3440-x
+10/29 14    60      0       0         2         23,194        1,154        26 sqlplus@rp3440-x
+10/29 15    60      0       1         2         23,194        1,891        26 sqlplus@rp3440-x
+10/29 16    60      1       0         2         23,194        2,380        26 sqlplus@rp3440-x
+10/29 17    60      0       0         2         23,194        2,829        26 sqlplus@rp3440-x
+10/29 18    60      0       1         2         23,194        3,096        26 sqlplus@rp3440-x
+10/29 19    60      1       1         2         23,194        2,922        26 sqlplus@rp3440-x
+10/29 20    60      0       0         2         23,194        2,961        26 sqlplus@rp3440-x
+10/29 21    60      0       1         2         23,194        2,839        26 sqlplus@rp3440-x
+10/29 22    60      1       0         2         23,194        3,104        26 sqlplus@rp3440-x
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380      8      12        46        533,390       56,625       598
+
+
+================================================================
+                            SQL 333476733
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+DECLARE job BINARY_INTEGER := :job; next_date DATE := :mydate;
+broken BOOLEAN := FALSE; BEGIN statspack.snap; :mydate := next_d
+ate; IF broken THEN :b := 1; ELSE :b := 0; END IF; END;
+
+FIRST TIME = 2012-11-16 00:00
+MODULE     =
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      1       4         1          3,386        1,311         1
+10/29 01    60      1       4         1          3,276        1,295         1
+10/29 02    60      1       5         1          3,304        1,298         1
+10/29 03    60      1       4         1          3,316        1,301         1
+10/29 04    60      1       7         1          3,458        1,312         1
+10/29 05    60      1       5         1          3,306        1,303         1
+10/29 06    60      0       5         1          3,355        1,308         1
+10/29 07    60      1       5         1          3,435        1,318         1
+10/29 08    60      1       4         1          3,470        1,307         1
+10/29 09    60      1       4         1          3,315        1,300         1
+10/29 10    60      1       6         1          3,544        1,327         1
+10/29 11    60      1       7         1          3,440        1,321         1
+10/29 12    60      1       6         1          3,534        1,335         1
+10/29 13    60      1       4         1          2,934          610         1
+10/29 14    60      0       3         1          3,397          618         1
+10/29 15    60      1       4         1          2,973          620         1
+10/29 16    60      1       3         1          2,970          617         1
+10/29 17    60      0       3         1          2,794          608         1
+10/29 18    60      1       5         1          2,974          623         1
+10/29 19    60      1       3         1          2,748          601         1
+10/29 20    60      0       4         1          2,979          620         1
+10/29 21    60      1       5         1          2,719          603         1
+10/29 22    60      1       7         1          2,963          614         1
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380     19     107        23         73,590       23,170        23
+
+
+================================================================
+                            SQL 828956512
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT SUM (qy_function_id)   FROM ss_system_function  WHERE ky_ from
+ss_system_function IN       (SELECT  distinct  ssf.ky_ss_system_
+function          FROM ss_system_function ssf,               ss_ from
+system_role_function ssrf         WHERE ssf.ky_ss_system_functio where
+n = ssrf.ky_ss_system_function           AND ssrf.ky_system_role
+ IN ('END_USER'))
+
+FIRST TIME = 2012-11-15 23:58
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                  4
+SORT                 AGGREGATE                                                      1
+HASH JOIN            SEMI                                         4        4        4
+TABLE ACCESS         FULL           SS_SYSTEM_FUNCTION            2        2       15
+VIEW                                                              1                 4
+NESTED LOOPS                                                      1        1        4
+INDEX                RANGE SCAN     SS_SYSTEM_ROLE_FUNCT          1        1        6
+                                    ION_UK
+
+INDEX                UNIQUE SCAN    SS_SYSTEM_FUNCTION_P                            1
+                                    K
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+SS_SYSTEM_FUNCTION         15     71 10/27/13 03:21  100%       0       0       0   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+SS_SYSTEM_FUNCTION SS_SYSTEM_FUNCTION_P UNIQ       0   1 KY_SS_SYSTEM_FUNCT       15       0
+                   K                                     ION
+
+                   SS_SYSTEM_FUNCTION_U UNIQ       0   1 QY_FUNCTION_ID           15       0
+                   K
+
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      0       0       235          1,410            6       235 w3wp.exe
+10/29 01    60      0       0       209          1,254            2       209 w3wp.exe
+10/29 02    60      0       0         9             54            1         9 w3wp.exe
+10/29 03    60      0       0         2             12            8         2 w3wp.exe
+10/29 04    60      1       0       229          1,374           39       229 w3wp.exe
+10/29 05    60      0       0       331          1,986           42       331 w3wp.exe
+10/29 06    60      0       1       574          3,444            3       574 w3wp.exe
+10/29 07    60      1       0       903          5,418            2       903 w3wp.exe
+10/29 08    60      0       1      1125          6,750           41      1125 w3wp.exe
+10/29 09    60      1       1      1356          8,136           30      1356 w3wp.exe
+10/29 10    60      1       1      1367          8,202            9      1367 w3wp.exe
+10/29 11    60      0       1      1280          7,680           27      1280 w3wp.exe
+10/29 12    60      1       1      1260          7,560            5      1260 w3wp.exe
+10/29 13    60      0       0      1068          6,408            4      1068 w3wp.exe
+10/29 14    60      1       1       975          5,850            4       975 w3wp.exe
+10/29 15    60      0       0      1031          6,186            4      1031 w3wp.exe
+10/29 16    60      1       1       942          5,652            4       942 w3wp.exe
+10/29 17    60      0       0       898          5,388            6       898 w3wp.exe
+10/29 18    60      1       1       877          5,262            3       877 w3wp.exe
+10/29 19    60      1       1       899          5,394            3       899 w3wp.exe
+10/29 20    60      0       0       959          5,754            2       959 w3wp.exe
+10/29 21    60      0       1       864          5,184            3       864 w3wp.exe
+10/29 22    60      1       0       572          3,432            2       572 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380     10      11     17965        107,790          250     17965
+
+
+================================================================
+                            SQL 932215987
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT COUNT(*) FROM DBA_DATA_FILES WHERE TABLESPACE_NAME=:B1 AN from
+D AUTOEXTENSIBLE='YES'
+
+FIRST TIME = 2012-11-16 00:14
+MODULE     = sqlplus@rp3440-x (TNS V1-V3)
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT
+SORT                 AGGREGATE
+VIEW
+UNION-ALL
+NESTED LOOPS
+NESTED LOOPS
+TABLE ACCESS         BY INDEX ROWID TS$
+INDEX                UNIQUE SCAN    I_TS1
+FIXED TABLE          FULL           X$KCCFN
+TABLE ACCESS         BY INDEX ROWID FILE$
+INDEX                UNIQUE SCAN    I_FILE1
+NESTED LOOPS
+MERGE JOIN
+SORT                 JOIN
+MERGE JOIN
+TABLE ACCESS         BY INDEX ROWID TS$
+INDEX                UNIQUE SCAN    I_TS1
+FILTER
+FIXED TABLE          FULL           X$KTFBHC
+SORT                 JOIN
+FIXED TABLE          FULL           X$KCCFN
+TABLE ACCESS         BY INDEX ROWID FILE$
+INDEX                UNIQUE SCAN    I_FILE1
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      0       0        26          4,836            0        26 sqlplus@rp3440-x
+10/29 01    60      0       0        26          4,836            0        26 sqlplus@rp3440-x
+10/29 02    60      0       0        26          4,836            1        26 sqlplus@rp3440-x
+10/29 03    60      0       0        26          4,836            2        26 sqlplus@rp3440-x
+10/29 04    60      1       0        26          4,836            2        26 sqlplus@rp3440-x
+10/29 05    60      0       0        26          4,836            2        26 sqlplus@rp3440-x
+10/29 06    60      0       0        26          4,836            0        26 sqlplus@rp3440-x
+10/29 07    60      0       0        26          4,836            0        26 sqlplus@rp3440-x
+10/29 08    60      0       0        26          4,836            0        26 sqlplus@rp3440-x
+10/29 09    60      0       0        26          4,836            0        26 sqlplus@rp3440-x
+10/29 10    60      0       0        26          4,836            0        26 sqlplus@rp3440-x
+10/29 11    60      0       0        26          4,836            0        26 sqlplus@rp3440-x
+10/29 12    60      0       0        26          4,836            0        26 sqlplus@rp3440-x
+10/29 13    60      0       0        26          4,836            0        26 sqlplus@rp3440-x
+10/29 14    60      0       0        26          4,836            0        26 sqlplus@rp3440-x
+10/29 15    60      0       1        26          4,836            0        26 sqlplus@rp3440-x
+10/29 16    60      0       0        26          4,836            0        26 sqlplus@rp3440-x
+10/29 17    60      0       0        26          4,836            0        26 sqlplus@rp3440-x
+10/29 18    60      0       0        26          4,836            0        26 sqlplus@rp3440-x
+10/29 19    60      0       0        26          4,836            0        26 sqlplus@rp3440-x
+10/29 20    60      0       0        26          4,836            0        26 sqlplus@rp3440-x
+10/29 21    60      0       0        26          4,836            0        26 sqlplus@rp3440-x
+10/29 22    60      0       0        26          4,836            0        26 sqlplus@rp3440-x
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380      1       1       598        111,228            7       598
+
+
+================================================================
+                            SQL 939670446
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT RECID,STAMP,SET_STAMP,SET_COUNT,THREAD#,SEQUENCE#,RESETLO
+GS_CHANGE#,RESETLOGS_TIME,FIRST_CHANGE#,FIRST_TIME,NEXT_CHANGE#,
+NEXT_TIME,BLOCKS,BLOCK_SIZE   FROM V$BACKUP_REDOLOG  WHERE RECID from
+ BETWEEN :b1 AND :b2  AND (STAMP >= :b3  OR RECID = :b2 )ORDER B
+Y RECID
+
+FIRST TIME = 2012-11-16 00:10
+MODULE     = rman@rp3440-x (TNS V1-V3)
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT
+SORT                 ORDER BY
+FIXED TABLE          FULL           X$KCCBL
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      3       4         2              0            0         5 rman@rp3440-x (TN
+10/29 01    60      4       4         2              0            0         4 rman@rp3440-x (TN
+10/29 02    60      3       3         2              0            0         4 rman@rp3440-x (TN
+10/29 03    60      3       4         2              0            0         6 rman@rp3440-x (TN
+10/29 04    60      4      14         2              0            0         6 rman@rp3440-x (TN
+10/29 05    60      3       3         2              0            0         7 rman@rp3440-x (TN
+10/29 06    60      3       4         2              0            0         4 rman@rp3440-x (TN
+10/29 07    60      3       3         2              0            0         4 rman@rp3440-x (TN
+10/29 08    60      4       5         2              0            0         4 rman@rp3440-x (TN
+10/29 09    60      3       6         2              0            0         4 rman@rp3440-x (TN
+10/29 10    60      3       4         2              0            0         4 rman@rp3440-x (TN
+10/29 11    60      4       4         2              0            0         4 rman@rp3440-x (TN
+10/29 12    60      3       5         2              0            0         4 rman@rp3440-x (TN
+10/29 13    60      3       3         2              0            0         4 rman@rp3440-x (TN
+10/29 14    60      4       3         2              0            0         4 rman@rp3440-x (TN
+10/29 15    60      3       4         2              0            0         4 rman@rp3440-x (TN
+10/29 16    60      3       3         2              0            0         4 rman@rp3440-x (TN
+10/29 17    60      4       3         2              0            0         4 rman@rp3440-x (TN
+10/29 18    60      3       5         2              0            0         4 rman@rp3440-x (TN
+10/29 19    60      3       4         2              0            0         4 rman@rp3440-x (TN
+10/29 20    60      4       3         2              0            0         4 rman@rp3440-x (TN
+10/29 21    60      5       5         3              0            0         6 rman@rp3440-x (TN
+10/29 22    60      3       3         2              0            0         4 rman@rp3440-x (TN
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380     78      99        47              0            0       102
+
+
+================================================================
+                            SQL 1129106335
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT * FROM SS_GROUP WHERE TX_OWNER_USER_ID = :B1              from
+
+FIRST TIME = 2012-11-15 23:57
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                  1
+TABLE ACCESS         BY INDEX ROWID SS_GROUP                      1        1        1
+INDEX                SKIP SCAN      SS_GROUP_PK                                     1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+SS_GROUP                    0      0 10/27/13 03:21    0%       0       0       0   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+SS_GROUP           SS_GROUP_PK          UNIQ       0   1 KY_SS_GROUP               0       0
+                                                       2 TX_OWNER_USER_ID          0       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      0       0       235            235            0         0 w3wp.exe
+10/29 01    60      0       0       209            209            0         0 w3wp.exe
+10/29 02    60      3       3     40930         40,930            0         0 w3wp.exe
+10/29 03    60      7       8     82838         82,837            0         0 w3wp.exe
+10/29 04    60      8      16     75318         75,318            0         0 w3wp.exe
+10/29 05    60      7      12     83852         83,853            0         0 w3wp.exe
+10/29 06    60      0       0       574            574            0         0 w3wp.exe
+10/29 07    60      0       0       903            903            0         0 w3wp.exe
+10/29 08    60      0       0      1128          1,128            0         0 w3wp.exe
+10/29 09    60      0       0      1366          1,366            0         0 w3wp.exe
+10/29 10    60      0       0      1378          1,378            0         0 w3wp.exe
+10/29 11    60      0       1      1284          1,284            0         0 w3wp.exe
+10/29 12    60      0       0      1267          1,267            0         0 w3wp.exe
+10/29 13    60      1       0      1074          1,074            0         0 w3wp.exe
+10/29 14    60      0       0       983            983            0         0 w3wp.exe
+10/29 15    60      0       0      1037          1,037            0         0 w3wp.exe
+10/29 16    60      0       0       946            946            0         0 w3wp.exe
+10/29 17    60      0       0       898            898            0         0 w3wp.exe
+10/29 18    60      0       1       877            877            0         0 w3wp.exe
+10/29 19    60      0       0       899            899            0         0 w3wp.exe
+10/29 20    60      0       0       959            959            0         0 w3wp.exe
+10/29 21    60      1       0       864            864            0         0 w3wp.exe
+10/29 22    60      0       0       572            572            0         0 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380     27      41    300391        300,391            0         0
+
+
+================================================================
+                            SQL 1236042107
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+DELETE FROM SS_EVENT WHERE TS_CREATE < :B1 AND KY_SS_EVENT_TYPE  from
+NOT IN (41, 128, 136, 148, 152, 155, 156)
+
+FIRST TIME = 2013-10-30 00:01
+MODULE     = cscript.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+DELETE STATEMENT                                             214636
+DELETE
+TABLE ACCESS         FULL           SS_EVENT                 214636   214636  5502045
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+SS_EVENT             72750100    211 10/27/13 03:30    2%   17435   17435   16266   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+SS_EVENT           SS_EVENT_TS_CREATE_I         5480   1 TS_CREATE           #######       0
+                   DX
+
+                   SS_EVENT_USER_ID_IDX         2871   1 TX_USER_ID           336881 #######
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60    126     337         1      3,040,189    2,247,264     84708 cscript.exe
+10/29 01    60      0       0         0              0            0         0 cscript.exe
+10/29 02    60      0       0         0              0            0         0 cscript.exe
+10/29 03    60      0       0         0              0            0         0 cscript.exe
+10/29 04    60      0       0         0              0            0         0 cscript.exe
+10/29 05    60      0       0         0              0            0         0 cscript.exe
+10/29 06    60      0       0         0              0            0         0 cscript.exe
+10/29 07    60      0       0         0              0            0         0 cscript.exe
+10/29 08    60      0       0         0              0            0         0 cscript.exe
+10/29 09    60      0       0         0              0            0         0 cscript.exe
+10/29 10    60      0       0         0              0            0         0 cscript.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        660    126     337         1      3,040,189    2,247,264     84708
+
+
+================================================================
+                            SQL 1311426575
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT RECID,STAMP,TYPE OBJECT_TYPE,OBJECT_RECID,OBJECT_STAMP,OB
+JECT_DATA   FROM V$DELETED_OBJECT  WHERE RECID BETWEEN :b1 AND : from
+b2  AND (STAMP >= :b3  OR RECID = :b2 )ORDER BY RECID
+
+FIRST TIME = 2012-11-16 00:00
+MODULE     = rman@rp3440-x (TNS V1-V3)
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT
+SORT                 ORDER BY
+FIXED TABLE          FULL           X$KCCDL
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      1       1         4              0            0         8 rman@rp3440-x (TN
+10/29 01    60      1       1         4              0            0         8 rman@rp3440-x (TN
+10/29 02    60      1       1         4              0            0        12 rman@rp3440-x (TN
+10/29 03    60      1       2         4              0            0         8 rman@rp3440-x (TN
+10/29 04    60      1       2         4              0            0        10 rman@rp3440-x (TN
+10/29 05    60      1       1         4              0            0         8 rman@rp3440-x (TN
+10/29 06    60      1       1         4              0            0         8 rman@rp3440-x (TN
+10/29 07    60      1       1         4              0            0        12 rman@rp3440-x (TN
+10/29 08    60      1       1         4              0            0        12 rman@rp3440-x (TN
+10/29 09    60      0       1         4              0            0        12 rman@rp3440-x (TN
+10/29 10    60      1       2         4              0            0        10 rman@rp3440-x (TN
+10/29 11    60      1       1         4              0            0         8 rman@rp3440-x (TN
+10/29 12    60      1       1         4              0            0         8 rman@rp3440-x (TN
+10/29 13    60      1       1         4              0            0         8 rman@rp3440-x (TN
+10/29 14    60      1       1         4              0            0         8 rman@rp3440-x (TN
+10/29 15    60      1       2         4              0            0         8 rman@rp3440-x (TN
+10/29 16    60      1       1         4              0            0         8 rman@rp3440-x (TN
+10/29 17    60      1       1         4              0            0         8 rman@rp3440-x (TN
+10/29 18    60      1       1         4              0            0         8 rman@rp3440-x (TN
+10/29 19    60      1       1         4              0            0         8 rman@rp3440-x (TN
+10/29 20    60      1       1         4              0            0         8 rman@rp3440-x (TN
+10/29 21    60     13      15        56              0            0        60 rman@rp3440-x (TN
+10/29 22    60      1       1         4              0            0         8 rman@rp3440-x (TN
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380     34      41       144              0            0       256
+
+
+================================================================
+                            SQL 1387998731
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT A.TX_OWNER_USER_ID AS ID, A.KY_BA, UAA.TX_USER_ID_GRANTED
+_ACCESS FROM SS_ACCOUNT A, SS_USER_ACCOUNT_ACCESS UAA WHERE A.KY from
+_BA = UAA.KY_BA AND A.TX_OWNER_USER_ID = :B1 AND UAA.TX_USER_ID_
+GRANTED_ACCESS <> :B1
+
+FIRST TIME = 2012-11-15 23:57
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                 29
+NESTED LOOPS                                                     29       29        9
+TABLE ACCESS         BY INDEX ROWID SS_ACCOUNT                   11       11        9
+INDEX                RANGE SCAN     SS_ACCOUNT_IDX1               3        3        9
+INDEX                RANGE SCAN     SS_USER_ACCOUNT_ACCE          2        2        1
+                                    SS_PK
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+SS_ACCOUNT             732262     49 10/27/13 03:22  100%      48      48      38   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+SS_ACCOUNT         SS_ACCOUNT_IDX1                22   1 TX_OWNER_USER_ID     622334       0
+                   SS_ACCOUNT_PK        UNIQ      16   1 KY_BA                732262       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      0       2       235          1,804          191         4 w3wp.exe
+10/29 01    60      0       1       209          1,557          157         0 w3wp.exe
+10/29 02    60      3       9     40931        302,550          475       870 w3wp.exe
+10/29 03    60      9      18     82838        613,169          831      3159 w3wp.exe
+10/29 04    60      8      22     75317        557,026          951      2223 w3wp.exe
+10/29 05    60      8      23     83852        623,308        1,148      2058 w3wp.exe
+10/29 06    60      0       4       574          4,243          426        24 w3wp.exe
+10/29 07    60      0       5       903          7,939          629        51 w3wp.exe
+10/29 08    60      0       5      1128         11,721          874      1078 w3wp.exe
+10/29 09    60      1       6      1366         12,801        1,000       226 w3wp.exe
+10/29 10    60      0       5      1378         17,590          976       748 w3wp.exe
+10/29 11    60      0       5      1284         11,210          886       290 w3wp.exe
+10/29 12    60      0       5      1267          9,716          822       196 w3wp.exe
+10/29 13    60      1       4      1074         10,432          713       121 w3wp.exe
+10/29 14    60      0       4       983         17,681          677       778 w3wp.exe
+10/29 15    60      0       5      1037         12,596          700       403 w3wp.exe
+10/29 16    60      0       4       946         13,594          659       591 w3wp.exe
+10/29 17    60      0       4       898          6,708          625         2 w3wp.exe
+10/29 18    60      1       6       877          6,437          600         1 w3wp.exe
+10/29 19    60      0       6       899          6,709          601        41 w3wp.exe
+10/29 20    60      0       7       959          7,481          645         4 w3wp.exe
+10/29 21    60      0       5       864          6,733          556         3 w3wp.exe
+10/29 22    60      0       5       572          4,262          378         1 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380     31     160    300391      2,267,267       15,520     12872
+
+
+================================================================
+                            SQL 2109232932
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+DECLARE    vTbs                      dba_data_files.tablespace_n
+ame%TYPE;    vTbs_Sz                   dba_data_files.bytes%TYPE
+;    vTbs_Used                 dba_data_files.bytes%TYPE;    vPc
+t_Used                 NUMBER(10,0)  := 0;    vPct_Threshold_war
+n       NUMBER(10,0)  := 95;    vPct_Threshold_crit       NUMBER
+(10,0)  := 98;    vDb_Name                  v$database.name%TYPE
+;    v_check                   NUMBER(10,0);     CURSOR cTbs_Sz
+IS    select a.tablespace_name tbs_name, a."MB used", b."MB free
+", c."MB free" "MB free largest tablespace",        a."MB used"
++ b."MB free" "Total MB", round(a."MB used" / (a."MB used" + b."
+MB free") * 100, 2) "% Full",        nvl(round(a."MB used" / (a.
+"MB used" + c."MB free") * 100, 2),round(a."MB used" / (a."MB us
+ed" + b."MB free") * 100, 2)) Pct_Free    from    (select tables from
+pace_name, sum(bytes/1048576) "MB used" from dba_data_files grou from
+p by tablespace_name) a,    (select tablespace_name, sum(bytes)/
+1048576 "MB free" from dba_free_space group by tablespace_name)  from
+b,    (select DFS.tablespace_name, sum(bytes)/1048576 "MB free"
+   from dba_free_space DFS,       (SELECT tablespace_name, max(n from
+ext_extent) next_extent from               (SELECT tablespace_na from
+me, next_extent FROM all_indexes                union all        from
+         SELECT tablespace_name, next_extent FROM all_tables)    from
+  GROUP BY tablespace_name) NE        WHERE DFS.tablespace_name  where
+= NE.tablespace_name and     bytes >= NE.next_extent group by DF
+S.tablespace_name) c     where a.tablespace_name=b.tablespace_na where
+me and b.tablespace_name=c.tablespace_name (+)     and a.tablesp
+ace_name not like '%UNDO%';      vErrCode     NUMBER;     vErrMs
+g      VARCHAR2(2000);  BEGIN    SELECT name INTO vDb_Name FROM  from
+v$database;     for v_c_Tbs_Sz in cTbs_Sz loop    EXIT WHEN cTbs
+_Sz%NOTFOUND;         vPct_Used := v_c_Tbs_Sz.Pct_Free;        s
+elect count(*) into v_check from dba_data_files        where tab from
+lespace_name=v_c_Tbs_Sz.tbs_name and autoextensible='YES';
+  IF v_check = 0 THEN        IF trunc(vPct_Used) > vPct_Threshol
+d_warn AND trunc(vPct_Used) < vPct_Threshold_crit        THEN
+       DBMS_OUTPUT.PUT_LINE('WARNME:'||vDb_Name||':rp3440-x:Tabl
+espace '||v_c_Tbs_Sz.tbs_name||' Usage='||vPct_Used||'%');
+  ELSIF trunc(vPct_Used) >= vPct_Threshold_crit THEN          DB
+MS_OUTPUT.PUT_LINE('CRITME:'||vDb_Name||':rp3440-x:Tablespace '|
+|v_c_Tbs_Sz.tbs_name||' Usage='||vPct_Used||'%');        END IF;
+        END IF;     END LOOP;  EXCEPTION    WHEN others THEN
+DBMS_OUTPUT.PUT_LINE('WARNME:'||vDb_Name||':rp3440-x:Failure to
+complete Tablespace check'); END;
+
+FIRST TIME = 2012-11-16 00:14
+MODULE     = sqlplus@rp3440-x (TNS V1-V3)
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      1       0         2         28,024        3,089         2 sqlplus@rp3440-x
+10/29 01    60      0       1         2         28,024        2,278         2 sqlplus@rp3440-x
+10/29 02    60      0       1         2         28,024        2,554         2 sqlplus@rp3440-x
+10/29 03    60      1       1         2         28,024        2,781         2 sqlplus@rp3440-x
+10/29 04    60      0       1         2         28,024        2,335         2 sqlplus@rp3440-x
+10/29 05    60      1       1         2         28,024        2,493         2 sqlplus@rp3440-x
+10/29 06    60      0       0         2         28,024        3,101         2 sqlplus@rp3440-x
+10/29 07    60      1       1         2         28,024        3,028         2 sqlplus@rp3440-x
+10/29 08    60      0       0         2         28,024        3,087         2 sqlplus@rp3440-x
+10/29 09    60      0       1         2         28,024        2,126         2 sqlplus@rp3440-x
+10/29 10    60      1       0         2         28,024          931         2 sqlplus@rp3440-x
+10/29 11    60      0       1         2         28,024        3,095         2 sqlplus@rp3440-x
+10/29 12    60      0       0         2         28,030           78         2 sqlplus@rp3440-x
+10/29 13    60      1       0         2         28,030        2,480         2 sqlplus@rp3440-x
+10/29 14    60      0       1         2         28,030        1,154         2 sqlplus@rp3440-x
+10/29 15    60      0       0         2         28,030        1,891         2 sqlplus@rp3440-x
+10/29 16    60      1       1         2         28,030        2,380         2 sqlplus@rp3440-x
+10/29 17    60      0       0         2         28,030        2,829         2 sqlplus@rp3440-x
+10/29 18    60      1       1         2         28,030        3,096         2 sqlplus@rp3440-x
+10/29 19    60      0       0         2         28,030        2,922         2 sqlplus@rp3440-x
+10/29 20    60      0       1         2         28,030        2,961         2 sqlplus@rp3440-x
+10/29 21    60      1       1         2         28,030        2,839         2 sqlplus@rp3440-x
+10/29 22    60      0       0         2         28,030        3,104         2 sqlplus@rp3440-x
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380      9      13        46        644,618       56,632        46
+
+
+================================================================
+                            SQL 2134561383
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT 'D' AS "Record Type", 'Web' AS "Survey Type", ET.TX_DESCR
+IPTION AS "Contact Class", '1' AS "Contact Action", TO_CHAR(E.TS
+_CREATE, 'mm/dd/yyyy') AS "Contact Date", TO_CHAR(E.TS_CREATE,'h
+h:mi:ss') AS "Contact Time", TRIM((SELECT C.NM_CUST_1 FROM CUSTO from
+MER@CL2PRA.WORLD C, BILL_ACCT@CL2PRA.WORLD B WHERE C.KY_CUST_NO  where
+= B.KY_CUST_NO AND B.KY_BA= E.KY_BA)) AS "Name", TRIM((SELECT C.
+TX_EMAIL FROM CUST_DEMO@CL2PRA.WORLD C, BILL_ACCT@CL2PRA.WORLD B from
+ WHERE C.KY_CUST_NO = B.KY_CUST_NO AND B.KY_BA= E.KY_BA)) AS "Em where
+ail Address", DECODE(E.KY_BA, 0, NULL, TO_CHAR(E.KY_BA)) AS "Acc
+ount Number", (SELECT C.TX_HOME_ACD || REPLACE(C.TX_HOME_PHN_NO,
+'-','') FROM CUSTOMER@CL2PRA.WORLD C, BILL_ACCT@CL2PRA.WORLD B W from
+HERE C.KY_CUST_NO = B.KY_CUST_NO AND B.KY_BA= E.KY_BA) AS "Phone
+ Number", TRIM((SELECT AD_COMPRESSED FROM SAD WHERE CD_SAD_STAT= from
+'03' AND CD_CUST_RESPNSBL = '01' AND KY_BA=E.KY_BA)) AS "Address
+", '' AS "CSR Number", '' AS "Call Center", '' AS "Call Duration
+" FROM SS_EVENT E , SS_EVENT_TYPE ET, SS_SURVEY_EVENT SE WHERE E from
+.KY_SS_EVENT_TYPE = ET.KY_SS_EVENT_TYPE AND E.KY_SS_EVENT_TYPE =
+ SE.KY_SS_EVENT_TYPE AND E.TS_CREATE BETWEEN TRUNC(TO_DATE(:B1 )
+-1 ,'dd') AND TRUNC(TO_DATE(:B1 ),'dd')
+
+FIRST TIME = 2013-09-14 05:44
+MODULE     = JDBC Thin Client
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                              51308
+NESTED LOOPS                                                      5        5        1
+REMOTE                                                            3                 1
+REMOTE                                                            2                 1
+FILTER
+HASH JOIN                                                     51308    51308    77030
+TABLE ACCESS         FULL           SS_EVENT_TYPE                 2        2      510
+HASH JOIN                                                     51303    51303    77030
+TABLE ACCESS         FULL           SS_SURVEY_EVENT               2        2       72
+TABLE ACCESS         BY INDEX ROWID SS_EVENT                  51297    51297   181875
+INDEX                RANGE SCAN     SS_EVENT_TS_CREATE_I       3160     3160   327375
+                                    DX
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+SS_EVENT             72750100    211 10/27/13 03:30    2%   17435   17435   16266   10   40
+SS_EVENT_TYPE             510     43 10/27/13 03:21  100%       0       0       0   10   40
+SS_SURVEY_EVENT            72     11 10/27/13 03:21  100%       0       0       0   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+SS_EVENT           SS_EVENT_TS_CREATE_I         5480   1 TS_CREATE           #######       0
+                   DX
+
+                   SS_EVENT_USER_ID_IDX         2871   1 TX_USER_ID           336881 #######
+SS_EVENT_TYPE      SS_EVENT_TYPE_PK     UNIQ       0   1 KY_SS_EVENT_TYPE        510       0
+SS_SURVEY_EVENT    SS_SURVEY_EVENT_PK   UNIQ       0   1 KY_SS_SURVEY_EVENT       72       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      0       0         0              0            0         0 JDBC Thin Client
+10/29 01    60      0       0         0              0            0         0 JDBC Thin Client
+10/29 02    60      0       0         0              0            0         0 JDBC Thin Client
+10/29 03    60      0       0         0              0            0         0 JDBC Thin Client
+10/29 04    60      0       0         0              0            0         0 JDBC Thin Client
+10/29 05    60     21     415         1         21,940        3,577     21694 JDBC Thin Client
+10/29 06    60      0       0         0              0            0         0 JDBC Thin Client
+10/29 07    60      0       0         0              0            0         0 JDBC Thin Client
+10/29 08    60      0       0         0              0            0         0 JDBC Thin Client
+10/29 09    60      0       0         0              0            0         0 JDBC Thin Client
+10/29 10    60      0       0         0              0            0         0 JDBC Thin Client
+10/29 11    60      0       0         0              0            0         0 JDBC Thin Client
+10/29 12    60      0       0         0              0            0         0 JDBC Thin Client
+10/29 13    60      0       0         0              0            0         0 JDBC Thin Client
+10/29 14    60      0       0         0              0            0         0 JDBC Thin Client
+10/29 15    60      0       0         0              0            0         0 JDBC Thin Client
+10/29 16    60      0       0         0              0            0         0 JDBC Thin Client
+10/29 17    60      0       0         0              0            0         0 JDBC Thin Client
+10/29 18    60      0       0         0              0            0         0 JDBC Thin Client
+10/29 19    60      0       0         0              0            0         0 JDBC Thin Client
+10/29 20    60      0       0         0              0            0         0 JDBC Thin Client
+10/29 21    60      0       0         0              0            0         0 JDBC Thin Client
+10/29 22    60      0       0         0              0            0         0 JDBC Thin Client
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380     21     415         1         21,940        3,577     21694
+
+
+================================================================
+                            SQL 2372645254
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+DELETE FROM SS_USER_ACCOUNT_ACCESS WHERE KY_BA IN ( SELECT KY_BA from
+ FROM BILL_ACCT WHERE CD_BA_STAT='07' )                          from
+
+FIRST TIME = 2013-07-26 10:19
+MODULE     = PPL.EUSS.BatchUserProcessing.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+DELETE STATEMENT                                              14025
+DELETE STATEMENT                                              14105
+DELETE
+MERGE JOIN                                                    14025    14025   753886
+MERGE JOIN                                                    14105    14105   753916
+SORT                 JOIN                                      5365     5365   753908
+TABLE ACCESS         FULL           SS_USER_ACCOUNT_ACCE        628      628   753908
+                                    SS
+
+SORT                 JOIN                                      8660     8660  1123077
+SORT                 JOIN                                      8740     8740  1122759
+REMOTE                                                         2264           1123077
+REMOTE                                                         2345           1122759
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+SS_USER_ACCOUNT_AC     753908     49 10/27/13 03:23  100%      51      51      39   10   40
+CESS
+
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+SS_USER_ACCOUNT_AC SS_USER_ACCOUNT_ACCE           23   1 TX_USER_ID_GRANTED   623660       0
+CESS               SS_IDX1                               _ACCESS
+
+                   SS_USER_ACCOUNT_ACCE UNIQ      31   1 KY_BA                732260       0
+                   SS_PK
+
+                                                       2 TX_USER_ID_GRANTED   623660       0
+                                                         _ACCESS
+
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 01    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 02    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 03    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 04    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 05    60      5      10         1          6,931        9,745        19 PPL.EUSS.BatchUse
+10/29 06    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 07    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 08    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 09    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 10    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 11    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 12    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 13    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 14    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 15    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 16    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 17    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 18    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 19    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 20    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 21    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 22    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380      5      10         1          6,931        9,745        19
+
+
+================================================================
+                            SQL 2388905698
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+DELETE FROM SS_ERROR_LOG WHERE TS_LOGGED < :B1                   from
+
+FIRST TIME = 2013-10-30 00:09
+MODULE     = cscript.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+DELETE STATEMENT                                               9714
+DELETE
+TABLE ACCESS         FULL           SS_ERROR_LOG               9714     9714   145636
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+SS_ERROR_LOG           399255     91 10/27/13 03:27  100%     789     789      38   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+SS_ERROR_LOG       SS_ERROR_LOG_PK      UNIQ      12   1 KY_SS_ERROR_LOG      399255       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      4      36         1        105,035      101,005       557 cscript.exe
+10/29 01    60      0       0         0              0            0         0 cscript.exe
+10/29 02    60      0       0         0              0            0         0 cscript.exe
+10/29 03    60      0       0         0              0            0         0 cscript.exe
+10/29 04    60      0       0         0              0            0         0 cscript.exe
+10/29 05    60      0       0         0              0            0         0 cscript.exe
+10/29 06    60      0       0         0              0            0         0 cscript.exe
+10/29 07    60      0       0         0              0            0         0 cscript.exe
+10/29 08    60      0       0         0              0            0         0 cscript.exe
+10/29 09    60      0       0         0              0            0         0 cscript.exe
+10/29 10    60      0       0         0              0            0         0 cscript.exe
+10/29 11    60      0       0         0              0            0         0 cscript.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720      4      36         1        105,035      101,005       557
+
+
+================================================================
+                            SQL 2398767578
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+begin P_SS_USERINFO_WS.get_users_by_kyba(P_KY_BA=>:P_KY_BA, P_US
+ERS_FOUND=>:P_USERS_FOUND); end;
+
+FIRST TIME = 2012-11-16 03:56
+MODULE     = w3wp.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      0       0         0              0            0         0 w3wp.exe
+10/29 01    60      0       1      1300              2            0      1300 w3wp.exe
+10/29 02    60      1       2      1774              6            1      1774 w3wp.exe
+10/29 03    60      0       0         0              0            0         0 w3wp.exe
+10/29 04    60      0       0         0              0            0         0 w3wp.exe
+10/29 05    60      0       0         0              0            0         0 w3wp.exe
+10/29 06    60      0       0         0              0            0         0 w3wp.exe
+10/29 07    60      0       0         3              4            0         3 w3wp.exe
+10/29 08    60      2       6      1988          2,171           17      1988 w3wp.exe
+10/29 09    60      2       6      2589          2,788           12      2589 w3wp.exe
+10/29 10    60      2       6      2568          2,804            4      2568 w3wp.exe
+10/29 11    60      2       6      2242          2,391           30      2242 w3wp.exe
+10/29 12    60      3      19      2195          2,857            5      2195 w3wp.exe
+10/29 13    60      2       6      2341          2,805            5      2341 w3wp.exe
+10/29 14    60      2       4      2250          2,391            7      2250 w3wp.exe
+10/29 15    60      1       6      2378          2,395            3      2378 w3wp.exe
+10/29 16    60      2       4      2193          2,290            2      2193 w3wp.exe
+10/29 17    60      0       1       330            373            0       330 w3wp.exe
+10/29 18    60      0       2       249            307            0       249 w3wp.exe
+10/29 19    60      1       0        17             24            0        17 w3wp.exe
+10/29 20    60      0       0         0              0            0         0 w3wp.exe
+10/29 21    60      0       0         1              1            0         1 w3wp.exe
+10/29 22    60      0       0         0              0            0         0 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380     20      69     24418         23,609           86     24418
+
+
+================================================================
+                            SQL 2404283328
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+BEGIN P_SS_PURGE_ARCHIVE.PurgeOldErrors(:1); END;
+
+FIRST TIME = 2013-10-30 00:09
+MODULE     = cscript.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      5      36         1        105,038      101,005         1 cscript.exe
+10/29 01    60      0       0         0              0            0         0 cscript.exe
+10/29 02    60      0       0         0              0            0         0 cscript.exe
+10/29 03    60      0       0         0              0            0         0 cscript.exe
+10/29 04    60      0       0         0              0            0         0 cscript.exe
+10/29 05    60      0       0         0              0            0         0 cscript.exe
+10/29 06    60      0       0         0              0            0         0 cscript.exe
+10/29 07    60      0       0         0              0            0         0 cscript.exe
+10/29 08    60      0       0         0              0            0         0 cscript.exe
+10/29 09    60      0       0         0              0            0         0 cscript.exe
+10/29 10    60      0       0         0              0            0         0 cscript.exe
+10/29 11    60      0       0         0              0            0         0 cscript.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720      5      36         1        105,038      101,005         1
+
+
+================================================================
+                            SQL 2573348506
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+DELETE FROM SS_ADMIN_EVENTS WHERE TS_CREATE < :B1 AND KY_ADMIN_E from
+VENT_TYPE NOT IN (1, 2)
+
+FIRST TIME = 2013-10-30 00:09
+MODULE     = cscript.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+DELETE STATEMENT                                               2550
+DELETE
+TABLE ACCESS         FULL           SS_ADMIN_EVENTS            2550     2550   797559
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+SS_ADMIN_EVENTS       1146821    161 10/27/13 03:24  100%     207     207     196   10   40
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      1      16         1         27,701       26,577       716 cscript.exe
+10/29 01    60      0       0         0              0            0         0 cscript.exe
+10/29 02    60      0       0         0              0            0         0 cscript.exe
+10/29 03    60      0       0         0              0            0         0 cscript.exe
+10/29 04    60      0       0         0              0            0         0 cscript.exe
+10/29 05    60      0       0         0              0            0         0 cscript.exe
+10/29 06    60      0       0         0              0            0         0 cscript.exe
+10/29 07    60      0       0         0              0            0         0 cscript.exe
+10/29 08    60      0       0         0              0            0         0 cscript.exe
+10/29 09    60      0       0         0              0            0         0 cscript.exe
+10/29 10    60      0       0         0              0            0         0 cscript.exe
+10/29 11    60      0       0         0              0            0         0 cscript.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720      1      16         1         27,701       26,577       716
+
+
+================================================================
+                            SQL 2908714458
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT A.KY_BA, :B2 AS ID, A.TX_OWNER_USER_ID, SAD.NM_COMPRESSED
+ AS TX_CUSTOMER_NAME, SAD.AD_COMPRESSED AS TX_SERVICE_ADDRESS, U
+AA.FL_DEFAULT, DECODE(A.TX_OWNER_USER_ID, :B2 , 'Y', 'N') AS FL_
+OWNER, P_SS_SECURITY.GET_ACCT_SECURITY_SUM(A.KY_BA) AS QY_SECURI
+TY_SUM, API_SS_USER_ACCOUNT_ACCESS.IS_ACCOUNT_SHARED(:B2 ,A.KY_B
+A) AS FLSHARED FROM SS_ACCOUNT A, SS_USER_ACCOUNT_ACCESS UAA, SA from
+D WHERE A.KY_BA = UAA.KY_BA AND UAA.TX_USER_ID_GRANTED_ACCESS =  where
+:B2 AND (A.KY_BA = :B1 OR :B1 IS NULL) AND A.KY_BA = SAD.KY_BA A
+ND SAD.CD_CUST_RESPNSBL = '01' AND SAD.CD_SAD_STAT NOT IN ('12',
+'21','24','27')
+
+FIRST TIME = 2012-11-15 23:57
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                169
+NESTED LOOPS                                                    169      169       29
+NESTED LOOPS                                                     85       85       28
+TABLE ACCESS         BY INDEX ROWID SS_USER_ACCOUNT_ACCE         29       29       28
+                                    SS
+
+INDEX                RANGE SCAN     SS_USER_ACCOUNT_ACCE          3        3       28
+                                    SS_IDX1
+
+TABLE ACCESS         BY INDEX ROWID SS_ACCOUNT                    2        2        1
+INDEX                UNIQUE SCAN    SS_ACCOUNT_PK                 1        1        1
+REMOTE                                                            3                 1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+SS_ACCOUNT             732262     49 10/27/13 03:22  100%      48      48      38   10   40
+SS_USER_ACCOUNT_AC     753908     49 10/27/13 03:23  100%      51      51      39   10   40
+CESS
+
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+SS_ACCOUNT         SS_ACCOUNT_IDX1                22   1 TX_OWNER_USER_ID     622334       0
+                   SS_ACCOUNT_PK        UNIQ      16   1 KY_BA                732262       0
+SS_USER_ACCOUNT_AC SS_USER_ACCOUNT_ACCE           23   1 TX_USER_ID_GRANTED   623660       0
+CESS               SS_IDX1                               _ACCESS
+
+                   SS_USER_ACCOUNT_ACCE UNIQ      31   1 KY_BA                732260       0
+                   SS_PK
+
+                                                       2 TX_USER_ID_GRANTED   623660       0
+                                                         _ACCESS
+
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      1      19       235          7,741        1,003       282 w3wp.exe
+10/29 01    60      1      18       209          6,638          805       237 w3wp.exe
+10/29 02    60    111    1261     40932      1,230,973       74,038     46555 w3wp.exe
+10/29 03    60    223    2342     82838      2,516,477      137,844     95491 w3wp.exe
+10/29 04    60    221    2116     75316      2,274,345      128,438     86108 w3wp.exe
+10/29 05    60    230    1836     83852      2,567,291      143,728     97545 w3wp.exe
+10/29 06    60      7      40       574         80,570        1,814      3992 w3wp.exe
+10/29 07    60     15      82       903        150,500        3,728      7479 w3wp.exe
+10/29 08    60     12     130      1128        123,295        7,602      5774 w3wp.exe
+10/29 09    60     11     127      1366        105,312        7,994      4735 w3wp.exe
+10/29 10    60     20     141      1378        227,358        6,501     10966 w3wp.exe
+10/29 11    60     10     111      1284         88,759        6,890      3947 w3wp.exe
+10/29 12    60      5      62      1267         43,421        4,233      1592 w3wp.exe
+10/29 13    60      9     108      1074         84,480        6,435      3763 w3wp.exe
+10/29 14    60     27     158       983        306,031        5,820     15194 w3wp.exe
+10/29 15    60     16     164      1037        170,275        3,800      8252 w3wp.exe
+10/29 16    60     11     108       946        120,767        5,328      5508 w3wp.exe
+10/29 17    60      3      46       898         28,468        2,888      1027 w3wp.exe
+10/29 18    60      4      59       877         27,605        3,301       997 w3wp.exe
+10/29 19    60      4      64       899         28,944        3,381      1049 w3wp.exe
+10/29 20    60      5      81       959         41,940        4,216      1695 w3wp.exe
+10/29 21    60      3      70       864         29,660        3,291      1091 w3wp.exe
+10/29 22    60      3      43       572         17,940        2,099       644 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380    952    9186    300391     10,278,790      565,177    403923
+
+
+================================================================
+                            SQL 2978648090
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+DECLARE    vThreshold_crit       NUMBER(10,0)  := 5;    vDb_Name
+                  v$database.name%TYPE;     CURSOR cMaxExtentsCr
+it is    select tablespace_name, count(*) thetotal    from dba_s from
+egments    where max_extents - 5 < extents    and max_extents != where
+ 0 and extents <> 14660200000000    and tablespace_name not like
+ 'UNDO%' and tablespace_name not like 'RBS%'    group by tablesp
+ace_name    having count(*) > 0;     vErrCode     NUMBER;    vEr
+rMsg      VARCHAR2(2000);  BEGIN    SELECT name INTO vDb_Name FR
+OM v$database;     for vMaxExtentsCrit in cMaxExtentsCrit loop
+  EXIT WHEN cMaxExtentsCrit%NOTFOUND;       DBMS_OUTPUT.PUT_LINE
+('CRITME:'||vDb_Name||':rp3440-x:Tablespace '||vMaxExtentsCrit.t
+ablespace_name||' has '||vMaxExtentsCrit.thetotal||' segments wi
+thin 5 of max extents');     END LOOP;  EXCEPTION     WHEN no_da
+ta_found THEN    null;     WHEN others THEN    DBMS_OUTPUT.PUT_L
+INE('WARNME:'||vDb_Name||':rp3440-x:Failure to complete Max Exte
+nts check'); END;
+
+FIRST TIME = 2012-11-16 00:13
+MODULE     = sqlplus@rp3440-x (TNS V1-V3)
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      1       3         2         30,952        8,947         2 sqlplus@rp3440-x
+10/29 01    60      1       3         2         30,952        8,855         2 sqlplus@rp3440-x
+10/29 02    60      1       4         2         30,952        8,390         2 sqlplus@rp3440-x
+10/29 03    60      1      12         2         30,952        8,841         2 sqlplus@rp3440-x
+10/29 04    60      1       6         2         30,952        8,230         2 sqlplus@rp3440-x
+10/29 05    60      1       2         2         30,952        8,982         2 sqlplus@rp3440-x
+10/29 06    60      0       2         2         30,952        9,117         2 sqlplus@rp3440-x
+10/29 07    60      1       2         2         30,952        8,980         2 sqlplus@rp3440-x
+10/29 08    60      1       2         2         30,952        8,992         2 sqlplus@rp3440-x
+10/29 09    60      1       2         2         30,952        9,006         2 sqlplus@rp3440-x
+10/29 10    60      1       2         2         30,952        8,950         2 sqlplus@rp3440-x
+10/29 11    60      1       2         2         30,952        9,005         2 sqlplus@rp3440-x
+10/29 12    60      0       2         2         30,962        5,679         2 sqlplus@rp3440-x
+10/29 13    60      1       2         2         30,962        8,488         2 sqlplus@rp3440-x
+10/29 14    60      1       2         2         30,962        8,516         2 sqlplus@rp3440-x
+10/29 15    60      1       3         2         30,968        8,563         2 sqlplus@rp3440-x
+10/29 16    60      0       1         2         30,962        8,679         2 sqlplus@rp3440-x
+10/29 17    60      1       3         2         30,962        8,755         2 sqlplus@rp3440-x
+10/29 18    60      1      12         2         30,962        8,976         2 sqlplus@rp3440-x
+10/29 19    60      1      10         2         30,962        8,984         2 sqlplus@rp3440-x
+10/29 20    60      1       3         2         30,962        8,984         2 sqlplus@rp3440-x
+10/29 21    60      1      10         2         30,962        8,976         2 sqlplus@rp3440-x
+10/29 22    60      1      17         2         30,962        8,964         2 sqlplus@rp3440-x
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380     20     107        46        712,012      199,859        46
+
+
+================================================================
+                            SQL 2998120748
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT TABLESPACE_NAME, COUNT(*) THETOTAL FROM DBA_SEGMENTS WHER from
+E MAX_EXTENTS - 5 < EXTENTS AND MAX_EXTENTS != 0 AND EXTENTS <>
+14660200000000 AND TABLESPACE_NAME NOT LIKE 'UNDO%' AND TABLESPA
+CE_NAME NOT LIKE 'RBS%' GROUP BY TABLESPACE_NAME HAVING COUNT(*)
+ > 0
+
+FIRST TIME = 2012-11-16 00:13
+MODULE     = sqlplus@rp3440-x (TNS V1-V3)
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT
+FILTER
+SORT                 GROUP BY
+VIEW
+UNION-ALL
+NESTED LOOPS         OUTER
+NESTED LOOPS
+NESTED LOOPS
+NESTED LOOPS
+NESTED LOOPS
+VIEW
+UNION-ALL
+TABLE ACCESS         FULL           TAB$
+TABLE ACCESS         FULL           TABPART$
+TABLE ACCESS         FULL           CLU$
+TABLE ACCESS         FULL           IND$
+TABLE ACCESS         FULL           INDPART$
+TABLE ACCESS         FULL           LOB$
+TABLE ACCESS         FULL           TABSUBPART$
+TABLE ACCESS         FULL           INDSUBPART$
+TABLE ACCESS         FULL           LOBFRAG$
+TABLE ACCESS         BY INDEX ROWID OBJ$
+INDEX                UNIQUE SCAN    I_OBJ1
+TABLE ACCESS         CLUSTER        SEG$
+INDEX                UNIQUE SCAN    I_FILE#_BLOCK#
+INDEX                UNIQUE SCAN    I_FILE2
+TABLE ACCESS         CLUSTER        TS$
+INDEX                UNIQUE SCAN    I_TS#
+TABLE ACCESS         CLUSTER        USER$
+INDEX                UNIQUE SCAN    I_USER#
+NESTED LOOPS         OUTER
+NESTED LOOPS
+NESTED LOOPS
+NESTED LOOPS
+TABLE ACCESS         FULL           UNDO$
+INDEX                UNIQUE SCAN    I_FILE2
+TABLE ACCESS         CLUSTER        SEG$
+INDEX                UNIQUE SCAN    I_FILE#_BLOCK#
+TABLE ACCESS         CLUSTER        TS$
+INDEX                UNIQUE SCAN    I_TS#
+TABLE ACCESS         CLUSTER        USER$
+INDEX                UNIQUE SCAN    I_USER#
+NESTED LOOPS         OUTER
+NESTED LOOPS
+NESTED LOOPS
+TABLE ACCESS         FULL           FILE$
+TABLE ACCESS         CLUSTER        SEG$
+INDEX                RANGE SCAN     I_FILE#_BLOCK#
+TABLE ACCESS         CLUSTER        TS$
+INDEX                UNIQUE SCAN    I_TS#
+TABLE ACCESS         CLUSTER        USER$
+INDEX                UNIQUE SCAN    I_USER#
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      0       3         2         30,952        8,947         0 sqlplus@rp3440-x
+10/29 01    60      1       4         2         30,952        8,855         0 sqlplus@rp3440-x
+10/29 02    60      1       3         2         30,952        8,390         0 sqlplus@rp3440-x
+10/29 03    60      1      12         2         30,952        8,841         0 sqlplus@rp3440-x
+10/29 04    60      1       6         2         30,952        8,230         0 sqlplus@rp3440-x
+10/29 05    60      1       2         2         30,952        8,982         0 sqlplus@rp3440-x
+10/29 06    60      1       2         2         30,952        9,117         0 sqlplus@rp3440-x
+10/29 07    60      0       2         2         30,952        8,980         0 sqlplus@rp3440-x
+10/29 08    60      1       2         2         30,952        8,992         0 sqlplus@rp3440-x
+10/29 09    60      1       2         2         30,952        9,006         0 sqlplus@rp3440-x
+10/29 10    60      1       2         2         30,952        8,950         0 sqlplus@rp3440-x
+10/29 11    60      1       2         2         30,952        9,005         0 sqlplus@rp3440-x
+10/29 12    60      0       2         2         30,962        5,679         0 sqlplus@rp3440-x
+10/29 13    60      1       2         2         30,962        8,488         0 sqlplus@rp3440-x
+10/29 14    60      1       2         2         30,962        8,516         0 sqlplus@rp3440-x
+10/29 15    60      1       3         2         30,968        8,563         0 sqlplus@rp3440-x
+10/29 16    60      1       1         2         30,962        8,679         0 sqlplus@rp3440-x
+10/29 17    60      0       3         2         30,962        8,755         0 sqlplus@rp3440-x
+10/29 18    60      2      12         2         30,962        8,976         0 sqlplus@rp3440-x
+10/29 19    60      0      10         2         30,962        8,984         0 sqlplus@rp3440-x
+10/29 20    60      1       3         2         30,962        8,984         0 sqlplus@rp3440-x
+10/29 21    60      1      10         2         30,962        8,976         0 sqlplus@rp3440-x
+10/29 22    60      1      17         2         30,962        8,964         0 sqlplus@rp3440-x
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380     19     107        46        712,012      199,859         0
+
+
+================================================================
+                            SQL 3063741409
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+begin P_SS_USERINFO_WS.get_acct_list(P_USER_ID=>:P_USER_ID, P_AC
+COUNT_LIST_REFCUR=>:P_ACCOUNT_LIST_REFCUR, P_SS_GROUP_REFCUR=>:P
+_SS_GROUP_REFCUR, P_SS_GROUP_MEM_REFCUR=>:P_SS_GROUP_MEM_REFCUR,
+ P_SHARED_ACCOUNT_LIST_REFCUR=>:P_SHARED_ACCOUNT_LIST_REFCUR); e
+nd;
+
+FIRST TIME = 2012-11-15 23:57
+MODULE     = w3wp.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      1       2       235            306            1       235 w3wp.exe
+10/29 01    60      0       3       209            310            1       209 w3wp.exe
+10/29 02    60     34      44     40931            247            2     40931 w3wp.exe
+10/29 03    60     68      86     82837            427            6     82837 w3wp.exe
+10/29 04    60     67     171     75318            633           19     75318 w3wp.exe
+10/29 05    60     71     112     83852            786           14     83852 w3wp.exe
+10/29 06    60      1       3       574            812            2       574 w3wp.exe
+10/29 07    60      1       6       903          1,261            2       903 w3wp.exe
+10/29 08    60      2       5      1128          1,327            9      1128 w3wp.exe
+10/29 09    60      2       5      1366          1,570           11      1366 w3wp.exe
+10/29 10    60      2       6      1378          1,581            3      1378 w3wp.exe
+10/29 11    60      2       6      1284          1,550           16      1284 w3wp.exe
+10/29 12    60      2      13      1267          1,799            2      1267 w3wp.exe
+10/29 13    60      2       6      1074          1,426            3      1074 w3wp.exe
+10/29 14    60      1       4       983          1,185            1       983 w3wp.exe
+10/29 15    60      1       4      1037          1,184            2      1037 w3wp.exe
+10/29 16    60      2       5       946          1,069            1       946 w3wp.exe
+10/29 17    60      1       5       898          1,182            3       898 w3wp.exe
+10/29 18    60      2       9       877          1,180            3       877 w3wp.exe
+10/29 19    60      1       8       899          1,204            2       899 w3wp.exe
+10/29 20    60      2       6       959          1,282            2       959 w3wp.exe
+10/29 21    60      1       6       864          1,128            2       864 w3wp.exe
+10/29 22    60      1       4       572            760            2       572 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380    267     519    300391         24,209          109    300391
+
+
+================================================================
+                            SQL 3181382251
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+begin P_SS_USERINFO_WS.delete_voided_connects(p_rows_deleted=>:p
+_rows_deleted); end;
+
+FIRST TIME = 2013-07-26 10:19
+MODULE     = PPL.EUSS.BatchUserProcessing.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 01    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 02    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 03    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 04    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 05    60      6      17         1         13,535       17,430         1 PPL.EUSS.BatchUse
+10/29 06    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 07    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 08    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 09    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 10    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 11    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 12    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 13    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 14    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 15    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 16    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 17    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 18    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 19    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 20    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 21    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+10/29 22    60      0       0         0              0            0         0 PPL.EUSS.BatchUse
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380      6      17         1         13,535       17,430         1
+
+
+================================================================
+                            SQL 3271223548
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+DECLARE    v_osuser    session_tracker.osuser%TYPE;    v_machine
+   session_tracker.machine%TYPE;    v_termin    session_tracker.
+terminal%TYPE;    v_prog      session_tracker.program%TYPE;    v
+_logon     session_tracker.logon_time%TYPE; BEGIN    SELECT   os
+user, machine, terminal, program, logon_time        INTO v_osuse
+r, v_machine, v_termin, v_prog, v_logon        FROM v$session    from
+    WHERE audsid = SYS_CONTEXT ('USERENV', 'SESSIONID')          where
+AND TYPE = 'USER'         AND ROWNUM < 2    ORDER BY logon_time
+DESC;     INSERT INTO session_tracker                (username,
+osuser, machine, terminal, program, logon_time)         VALUES (
+RTRIM (USER), v_osuser, v_machine, v_termin, v_prog, v_logon);
+   IF (v_osuser IS NOT NULL OR v_machine IS NOT NULL OR v_prog I
+S NOT NULL)    THEN       audit_session;    END IF; EXCEPTION
+ WHEN OTHERS    THEN       BEGIN          INSERT INTO session_tr
+acker                      (username, machine, logon_time)
+         VALUES ('BAD_LOGIN', 'UserName is ' || USER, SYSDATE);
+      EXCEPTION          WHEN OTHERS          THEN             N
+ULL;       END; END;
+
+FIRST TIME = 2012-11-15 23:57
+MODULE     = w3wp.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      1       1       162          1,622            9       162 w3wp.exe
+10/29 01    60      1       0       144          1,508           10       144 w3wp.exe
+10/29 02    60      1       1       160          1,619           19       160 w3wp.exe
+10/29 03    60      1       0       158          1,532           43       158 w3wp.exe
+10/29 04    60      0       1       153          1,487           46       153 w3wp.exe
+10/29 05    60      1       0       149          1,474           41       149 w3wp.exe
+10/29 06    60      1       1       146          1,459            4       146 w3wp.exe
+10/29 07    60      1       0       154          1,552            2       154 w3wp.exe
+10/29 08    60      1       1       169          1,749           19       169 w3wp.exe
+10/29 09    60      1       0       174          1,729           16       174 w3wp.exe
+10/29 10    60      1       1       164          1,605            6       164 w3wp.exe
+10/29 11    60      1       0       166          1,639            5       166 w3wp.exe
+10/29 12    60      2       1       335          3,236           11       335 w3wp.exe
+10/29 13    60      1       1       153          1,619            3       153 w3wp.exe
+10/29 14    60      1       0       153          1,517            5       153 w3wp.exe
+10/29 15    60      1       1       157          1,586           13       157 w3wp.exe
+10/29 16    60      1       0       153          1,504            2       153 w3wp.exe
+10/29 17    60      1       0       156          1,541            3       156 w3wp.exe
+10/29 18    60      1       1       158          1,612           10       158 w3wp.exe
+10/29 19    60      1       1       156          1,536            3       156 w3wp.exe
+10/29 20    60      1       0       154          1,543            8       154 w3wp.exe
+10/29 21    60      1       1       162          1,694            5       162 w3wp.exe
+10/29 22    60      0       0       145          1,483            5       145 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380     22      12      3781         37,846          288      3781
+
+
+================================================================
+                            SQL 3279831044
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+INSERT INTO SS_EVENT( KY_SS_EVENT, KY_SS_EVENT_TYPE, TX_SESSION_
+ID, TX_USER_ID, TX_FREEFORM_FIELD1, TX_FREEFORM_FIELD2, TX_FREEF
+ORM_FIELD3, KY_BA, TS_CREATE, TX_KYBA_RATE) VALUES( :B10 , :B9 ,
+ :B8 , :B7 , :B6 , :B5 , :B4 , :B3 , :B2 , :B1 ) RETURNING KY_SS
+_EVENT INTO :B0
+
+FIRST TIME = 2012-11-15 23:57
+MODULE     = w3wp.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      2       5      1779         26,078          265      1779 w3wp.exe
+10/29 01    60      0       3       807         11,863          202       807 w3wp.exe
+10/29 02    60      0       2       409          5,993          152       409 w3wp.exe
+10/29 03    60      1       3       529          7,837          238       529 w3wp.exe
+10/29 04    60      1       6      1100         16,081          545      1100 w3wp.exe
+10/29 05    60      1       9      2075         30,221          760      2075 w3wp.exe
+10/29 06    60      2      12      2413         35,576          872      2413 w3wp.exe
+10/29 07    60      3      17      3911         57,710        1,181      3911 w3wp.exe
+10/29 08    60      3      21      5841         86,625        1,831      5841 w3wp.exe
+10/29 09    60      4      23      7339        108,535        2,046      7339 w3wp.exe
+10/29 10    60      4      23      7331        108,246        1,902      7331 w3wp.exe
+10/29 11    60      0       0         0              0            0         0 w3wp.exe
+10/29 12    60   1056   29782   1691940     25,009,544      390,578   1691933 w3wp.exe
+10/29 13    60      3      17      5326         81,066        1,306      5326 w3wp.exe
+10/29 14    60      3      17      4932         73,772        1,328      4932 w3wp.exe
+10/29 15    60      4      17      5104         75,729        1,405      5104 w3wp.exe
+10/29 16    60      3      16      5124         75,661        1,300      5124 w3wp.exe
+10/29 17    60      2      16      4758         69,899        1,146      4758 w3wp.exe
+10/29 18    60      4      21      4512         66,345        1,222      4512 w3wp.exe
+10/29 19    60      3      16      4882         71,711        1,124      4882 w3wp.exe
+10/29 20    60      3      18      5593         81,705        1,162      5593 w3wp.exe
+10/29 21    60      4      16      5040         73,931        1,103      5040 w3wp.exe
+10/29 22    60      2      12      3419         50,216          715      3419 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380   1108   30072   1774164     26,224,344      412,383   1774157
+
+
+================================================================
+                            SQL 3315776556
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT SUM(QY_FUNCTION_ID) FROM SS_FUNCTION WHERE KY_SS_FUNCTION from
+ IN (SELECT SF.KY_SS_FUNCTION FROM SS_FUNCTION SF, SS_ROLE_FUNCT from
+ION SRF, SS_ROLE SR, SS_ACCOUNT_ROLE SAR WHERE SAR.KY_BA = :B1 A where
+ND SAR.KY_SS_ROLE = SR.KY_SS_ROLE AND SR.KY_SS_ROLE = SRF.KY_SS_
+ROLE AND SRF.KY_SS_FUNCTION = SF.KY_SS_FUNCTION)
+
+FIRST TIME = 2012-11-15 23:58
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                  5
+SORT                 AGGREGATE                                                      1
+HASH JOIN            SEMI                                         5        5        1
+TABLE ACCESS         FULL           SS_FUNCTION                   2        2       34
+VIEW                                                              2                 1
+NESTED LOOPS                                                      2        2        1
+NESTED LOOPS                                                      2        2        1
+NESTED LOOPS                                                      2        2      154
+TABLE ACCESS         FULL           SS_ROLE_FUNCTION              2        2      154
+INDEX                UNIQUE SCAN    SS_ROLE_PK                                      1
+TABLE ACCESS         BY INDEX ROWID SS_ACCOUNT_ROLE                                 1
+INDEX                RANGE SCAN     SS_ACCOUNT_ROLE_IDX2                            1
+INDEX                UNIQUE SCAN    SS_FUNCTION_PK                                  1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+SS_ACCOUNT_ROLE             0      0 10/27/13 03:21    0%       0       0       0   10   40
+SS_FUNCTION                34     66 10/27/13 03:21  100%       0       0       0   10   40
+SS_ROLE_FUNCTION          154     57 10/27/13 03:21  100%       0       0       0   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+SS_ACCOUNT_ROLE    SS_ACCOUNT_ROLE_IDX2            0   1 KY_SS_ROLE                0       0
+                   SS_ACCOUNT_ROLE_PK   UNIQ       0   1 KY_SS_ACCOUNT_ROLE        0       0
+SS_FUNCTION        SS_FUNCTION_PK       UNIQ       0   1 KY_SS_FUNCTION           34       0
+                   SS_FUNCTION_UK       UNIQ       0   1 QY_FUNCTION_ID           34       0
+SS_ROLE_FUNCTION   SS_ROLE_FUNCTION_PK  UNIQ       0   1 KY_SS_ROLE_FUNCTIO      154       0
+                                                         N
+
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      1       1       282          3,102           17       282 w3wp.exe
+10/29 01    60      0       0       237          2,607            5       237 w3wp.exe
+10/29 02    60     58      74     46554        512,094           66     46554 w3wp.exe
+10/29 03    60    116     148     95490      1,050,390          124     95490 w3wp.exe
+10/29 04    60    111     264     86111        947,210          107     86110 w3wp.exe
+10/29 05    60    123     186     97544      1,072,995          127     97545 w3wp.exe
+10/29 06    60      4       5      3992         43,912            9      3992 w3wp.exe
+10/29 07    60      9      10      7479         82,269            6      7479 w3wp.exe
+10/29 08    60      8       9      5774         63,514          119      5774 w3wp.exe
+10/29 09    60      6       6      4735         52,085           89      4735 w3wp.exe
+10/29 10    60     12      15     10966        120,626           27     10966 w3wp.exe
+10/29 11    60      5       6      3947         43,417           78      3947 w3wp.exe
+10/29 12    60      3       2      1592         17,512           11      1592 w3wp.exe
+10/29 13    60      4       6      3763         41,393           15      3763 w3wp.exe
+10/29 14    60     18      19     15194        167,134           11     15194 w3wp.exe
+10/29 15    60     10      11      8252         90,772           12      8252 w3wp.exe
+10/29 16    60      6       8      5508         60,588           10      5508 w3wp.exe
+10/29 17    60      2       1      1027         11,297           13      1027 w3wp.exe
+10/29 18    60      2       3       997         10,967            9       997 w3wp.exe
+10/29 19    60      1       1      1049         11,539            9      1049 w3wp.exe
+10/29 20    60      2       2      1695         18,645            6      1695 w3wp.exe
+10/29 21    60      2       2      1091         12,001            8      1091 w3wp.exe
+10/29 22    60      1       1       644          7,084            6       644 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380    504     780    403923      4,443,153          884    403923
+
+
+================================================================
+                            SQL 3393362902
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+BEGIN P_SS_PURGE_ARCHIVE.PurgeOldEvents(:1); END;
+
+FIRST TIME = 2013-10-30 00:01
+MODULE     = cscript.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60    128     353         1      3,067,893    2,273,841         1 cscript.exe
+10/29 01    60      0       0         0              0            0         0 cscript.exe
+10/29 02    60      0       0         0              0            0         0 cscript.exe
+10/29 03    60      0       0         0              0            0         0 cscript.exe
+10/29 04    60      0       0         0              0            0         0 cscript.exe
+10/29 05    60      0       0         0              0            0         0 cscript.exe
+10/29 06    60      0       0         0              0            0         0 cscript.exe
+10/29 07    60      0       0         0              0            0         0 cscript.exe
+10/29 08    60      0       0         0              0            0         0 cscript.exe
+10/29 09    60      0       0         0              0            0         0 cscript.exe
+10/29 10    60      0       0         0              0            0         0 cscript.exe
+10/29 11    60      0       0         0              0            0         0 cscript.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        720    128     353         1      3,067,893    2,273,841         1
+
+
+================================================================
+                            SQL 3446994129
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT RECID,STAMP,NAME,THREAD#,SEQUENCE#,RESETLOGS_CHANGE#,RESE
+TLOGS_TIME,FIRST_CHANGE#,FIRST_TIME,NEXT_CHANGE#,NEXT_TIME,BLOCK
+S,BLOCK_SIZE,DECODE(ARCHIVED,'YES','Y','NO','N','UNKNOWN') ARCHI
+VED,STATUS,COMPLETION_TIME,DECODE(:b1,'STANDBY','Y','N') IS_STAN
+DBY,DICTIONARY_BEGIN,DICTIONARY_END   FROM V$ARCHIVED_LOG  WHERE from
+ RECID BETWEEN :b2 AND :b3  AND (STAMP >= :b4  OR RECID = :b3 )
+AND STANDBY_DEST = 'NO' ORDER BY RECID
+
+FIRST TIME = 2012-11-16 00:00
+MODULE     = rman@rp3440-x (TNS V1-V3)
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT
+SORT                 ORDER BY
+FIXED TABLE          FULL           X$KCCAL
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      1       1        21              0            0         5 rman@rp3440-x (TN
+10/29 01    60      1       1        20              0            0         4 rman@rp3440-x (TN
+10/29 02    60      1       2        21              0            0         4 rman@rp3440-x (TN
+10/29 03    60      1       1        22              0            0         6 rman@rp3440-x (TN
+10/29 04    60      1       3        22              0            0         6 rman@rp3440-x (TN
+10/29 05    60      1       1        22              0            0         7 rman@rp3440-x (TN
+10/29 06    60      1       1        20              0            0         4 rman@rp3440-x (TN
+10/29 07    60      1       2        21              0            0         4 rman@rp3440-x (TN
+10/29 08    60      1       1        22              0            0         4 rman@rp3440-x (TN
+10/29 09    60      2       2        21              0            0         4 rman@rp3440-x (TN
+10/29 10    60      1       1        20              0            0         4 rman@rp3440-x (TN
+10/29 11    60      1       1        22              0            0         4 rman@rp3440-x (TN
+10/29 12    60      1       2        21              0            0         4 rman@rp3440-x (TN
+10/29 13    60      1       1        22              0            0         4 rman@rp3440-x (TN
+10/29 14    60      1       1        22              0            0         4 rman@rp3440-x (TN
+10/29 15    60      1       2        22              0            0         4 rman@rp3440-x (TN
+10/29 16    60      1       1        20              0            0         4 rman@rp3440-x (TN
+10/29 17    60      1       1        21              0            0         4 rman@rp3440-x (TN
+10/29 18    60      1       2        20              0            0         4 rman@rp3440-x (TN
+10/29 19    60      1       1        20              0            0         4 rman@rp3440-x (TN
+10/29 20    60      1       1        21              0            0         4 rman@rp3440-x (TN
+10/29 21    60      4       5        79              0            0         6 rman@rp3440-x (TN
+10/29 22    60      1       1        20              0            0         4 rman@rp3440-x (TN
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380     27      35       542              0            0       102
+
+
+================================================================
+                            SQL 3472799032
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT E.KY_SS_EVENT, E.KY_SS_EVENT_TYPE, ET.TX_DESCRIPTION "Eve
+ntTypeLookup", E.TX_SESSION_ID, E.TX_USER_ID, E.TX_FREEFORM_FIEL
+D1, E.TX_FREEFORM_FIELD2, E.TX_FREEFORM_FIELD3, E.KY_BA, E.TS_CR
+EATE, E.TX_KYBA_RATE FROM SS_EVENT E, SS_EVENT_TYPE ET WHERE (E. from
+TS_CREATE >= TRUNC(:B2 ) ) AND (E.TS_CREATE <= TRUNC(:B1 ) ) AND
+ E.KY_SS_EVENT_TYPE = ET.KY_SS_EVENT_TYPE ORDER BY E.KY_SS_EVENT
+ DESC
+
+FIRST TIME = 2013-07-26 14:43
+MODULE     = w3wp.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 09    60     56     222         3        764,181      245,204    344106 w3wp.exe
+10/29 10    60     13      65         0        145,076       66,244    100629 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        120     69     287         3        909,257      311,448    444735
+
+
+================================================================
+                            SQL 3490750399
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT A.KY_BA, C.NM_COMPRESSED AS TX_CUSTOMER_NAME, C.AD_COMPRE
+SSED AS TX_SERVICE_ADDRESS, A.TX_USER_ID_GRANTED_ACCESS AS USER_
+ID, B.TX_OWNER_USER_ID AS OWNER, 'N' AS FL_OWNER FROM SS_USER_AC from
+COUNT_ACCESS A, SS_ACCOUNT B, SAD C WHERE A.KY_BA = :B1 AND A.KY where
+_BA = B.KY_BA(+) AND C.KY_BA = A.KY_BA AND C.CD_CUST_RESPNSBL =
+'01' AND A.TX_USER_ID_GRANTED_ACCESS <> B.TX_OWNER_USER_ID UNION
+ SELECT A.KY_BA, C.NM_COMPRESSED AS TX_CUSTOMER_NAME, C.AD_COMPR
+ESSED AS TX_SERVICE_ADDRESS, A.TX_OWNER_USER_ID AS USER_ID, A.TX
+_OWNER_USER_ID AS OWNER, 'Y' AS FL_OWNER FROM SS_ACCOUNT A, SAD  from
+C WHERE A.KY_BA = :B1 AND C.KY_BA = A.KY_BA AND C.CD_CUST_RESPNS where
+BL = '01'
+
+FIRST TIME = 2012-11-16 03:56
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                 20
+SORT                 UNIQUE                                      20       11        2
+UNION-ALL
+MERGE JOIN           CARTESIAN                                    8        8        1
+NESTED LOOPS                                                      5        5        1
+TABLE ACCESS         BY INDEX ROWID SS_ACCOUNT                    3        3        1
+INDEX                UNIQUE SCAN    SS_ACCOUNT_PK                 2        2        1
+INDEX                RANGE SCAN     SS_USER_ACCOUNT_ACCE          2        2        1
+                                    SS_PK
+
+BUFFER               SORT                                         6        6        1
+REMOTE                                                            3                 1
+NESTED LOOPS                                                      6        6        1
+TABLE ACCESS         BY INDEX ROWID SS_ACCOUNT                    3        3        1
+INDEX                UNIQUE SCAN    SS_ACCOUNT_PK                 2        2        1
+REMOTE                                                            3                 1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+SS_ACCOUNT             732262     49 10/27/13 03:22  100%      48      48      38   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+SS_ACCOUNT         SS_ACCOUNT_IDX1                22   1 TX_OWNER_USER_ID     622334       0
+                   SS_ACCOUNT_PK        UNIQ      16   1 KY_BA                732262       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      0       0         0              0            0         0 w3wp.exe
+10/29 01    60      1      33      1300         15,685        1,933      1317 w3wp.exe
+10/29 02    60      2      63      1774         21,421        2,365      1820 w3wp.exe
+10/29 03    60      0       0         0              0            0         0 w3wp.exe
+10/29 04    60      0       0         0              0            0         0 w3wp.exe
+10/29 05    60      0       0         0              0            0         0 w3wp.exe
+10/29 06    60      0       0         0              0            0         0 w3wp.exe
+10/29 07    60      0       0         3             28            4         1 w3wp.exe
+10/29 08    60      1      11      1988         18,420          777       700 w3wp.exe
+10/29 09    60      2      12      2589         24,173          916       962 w3wp.exe
+10/29 10    60      2      10      2568         23,533          653       861 w3wp.exe
+10/29 11    60      2      10      2242         20,619          729       780 w3wp.exe
+10/29 12    60      2      23      2195         20,796          708       762 w3wp.exe
+10/29 13    60      1      12      2341         22,477          677       889 w3wp.exe
+10/29 14    60      2       9      2250         20,517          526       748 w3wp.exe
+10/29 15    60      2      11      2378         21,999          493       872 w3wp.exe
+10/29 16    60      1       8      2193         20,424          540       799 w3wp.exe
+10/29 17    60      1       2       330          3,245          102       144 w3wp.exe
+10/29 18    60      0       3       249          2,263          119        77 w3wp.exe
+10/29 19    60      0       1        17            206           10        13 w3wp.exe
+10/29 20    60      0       0         0              0            0         0 w3wp.exe
+10/29 21    60      0       0         1              7            1         0 w3wp.exe
+10/29 22    60      0       0         0              0            0         0 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380     19     208     24418        235,813       10,553     10745
+
+
+================================================================
+                            SQL 3520778653
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT COUNT(*) FROM SS_ACCOUNT A, SS_USER_ACCOUNT_ACCESS UAA WH from
+ERE A.KY_BA = UAA.KY_BA AND A.KY_BA = :B2 AND A.TX_OWNER_USER_ID
+ = :B1 AND UAA.TX_USER_ID_GRANTED_ACCESS <> :B1
+
+FIRST TIME = 2012-11-15 23:58
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                  5
+SORT                 AGGREGATE                                                      1
+NESTED LOOPS                                                      5        5        1
+TABLE ACCESS         BY INDEX ROWID SS_ACCOUNT                    3        3        1
+INDEX                UNIQUE SCAN    SS_ACCOUNT_PK                 2        2        1
+INDEX                RANGE SCAN     SS_USER_ACCOUNT_ACCE          2        2        1
+                                    SS_PK
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+SS_ACCOUNT             732262     49 10/27/13 03:22  100%      48      48      38   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+SS_ACCOUNT         SS_ACCOUNT_IDX1                22   1 TX_OWNER_USER_ID     622334       0
+                   SS_ACCOUNT_PK        UNIQ      16   1 KY_BA                732262       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      0       2       282          1,975          196       282 w3wp.exe
+10/29 01    60      0       2       237          1,657          161       237 w3wp.exe
+10/29 02    60      7      42     46554        324,106       18,520     46554 w3wp.exe
+10/29 03    60     14      43     95490        662,866       34,246     95490 w3wp.exe
+10/29 04    60     14      34     86110        598,830       31,883     86110 w3wp.exe
+10/29 05    60     14      34     97545        677,592       35,414     97545 w3wp.exe
+10/29 06    60      1       2      3992         17,896          321      3992 w3wp.exe
+10/29 07    60      1       5      7479         34,624          836      7479 w3wp.exe
+10/29 08    60      0       8      5774         31,150        1,808      5774 w3wp.exe
+10/29 09    60      1       7      4735         26,936        1,686      4735 w3wp.exe
+10/29 10    60      1       7     10966         57,708        1,310     10966 w3wp.exe
+10/29 11    60      1       6      3947         22,169        1,383      3947 w3wp.exe
+10/29 12    60      0       4      1592         11,088          964      1592 w3wp.exe
+10/29 13    60      1       6      3763         21,815        1,480      3763 w3wp.exe
+10/29 14    60      1       7     15194         76,829          926     15194 w3wp.exe
+10/29 15    60      1       5      8252         42,557          799      8252 w3wp.exe
+10/29 16    60      1       8      5508         34,034        1,282      5508 w3wp.exe
+10/29 17    60      0       4      1027          7,195          585      1027 w3wp.exe
+10/29 18    60      0       5       997          6,900          689       997 w3wp.exe
+10/29 19    60      0       7      1049          7,297          720      1049 w3wp.exe
+10/29 20    60      1      10      1695         10,522          884      1695 w3wp.exe
+10/29 21    60      0      13      1091          7,630          703      1091 w3wp.exe
+10/29 22    60      0       6       644          4,511          440       644 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380     59     267    403923      2,687,887      137,236    403923
+
+
+================================================================
+                            SQL 4065022241
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT E.KY_ADMIN_EVENT, E.KY_ADMIN_EVENT_TYPE, ET.TX_DESCRIPTIO
+N "EventTypeLookup", E.TX_SESSION_ID, E.TX_ADMIN_USER_ID, E.TX_U
+SER_ID, E.TX_ACTION, E.TX_COMMENT, E.KY_BA, E.TS_CREATE FROM SS_ from
+ADMIN_EVENTS E, SS_ADMIN_EVENT_TYPE ET WHERE (UPPER(E.TX_USER_ID where
+) = UPPER(:B6 ) OR :B6 IS NULL) AND (E.TX_ADMIN_USER_ID = :B5 OR
+ :B5 IS NULL) AND (E.KY_BA = :B4 OR :B4 IS NULL) AND (E.KY_ADMIN
+_EVENT_TYPE = :B3 OR :B3 IS NULL) AND (E.TS_CREATE >= TRUNC(:B2
+) OR :B2 IS NULL) AND (E.TS_CREATE <= TRUNC(:B1 + 1) OR :B1 IS N
+ULL) AND E.KY_ADMIN_EVENT_TYPE = ET.KY_ADMIN_EVENT_TYPE(+) ORDER
+ BY E.TS_CREATE DESC
+
+FIRST TIME = 2012-11-16 11:06
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                               2554
+SORT                 ORDER BY                                  2554     2554        1
+NESTED LOOPS         OUTER                                     2551     2551        1
+TABLE ACCESS         FULL           SS_ADMIN_EVENTS            2550     2550        1
+TABLE ACCESS         BY INDEX ROWID SS_ADMIN_EVENT_TYPE           1        1        1
+INDEX                UNIQUE SCAN    SS_ADMIN_EVENT_TYPE_                            1
+                                    PK
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+SS_ADMIN_EVENTS       1146821    161 10/27/13 03:24  100%     207     207     196   10   40
+SS_ADMIN_EVENT_TYP         31     28 10/27/13 03:21  100%       0       0       0   10   40
+E
+
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+SS_ADMIN_EVENT_TYP SS_ADMIN_EVENT_TYPE_ UNIQ       0   1 KY_ADMIN_EVENT_TYP       31       0
+E                  PK                                    E
+
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      0       0         0              0            0         0 w3wp.exe
+10/29 01    60      0       0         0              0            0         0 w3wp.exe
+10/29 02    60      0       0         0              0            0         0 w3wp.exe
+10/29 03    60      0       0         0              0            0         0 w3wp.exe
+10/29 04    60      0       0         0              0            0         0 w3wp.exe
+10/29 05    60      0       0         0              0            0         0 w3wp.exe
+10/29 06    60      0       0         0              0            0         0 w3wp.exe
+10/29 07    60      0       0         0              0            0         0 w3wp.exe
+10/29 08    60     10      76         5        134,630      132,508         4 w3wp.exe
+10/29 09    60      6      53         3         80,778       79,748         0 w3wp.exe
+10/29 10    60      2      26         1         26,939       26,593         6 w3wp.exe
+10/29 11    60      0       0         0              0            0         0 w3wp.exe
+10/29 12    60      0       0         0              0            0         0 w3wp.exe
+10/29 13    60      2      29         1         26,944       26,599         0 w3wp.exe
+10/29 14    60      0       0         0              0            0         0 w3wp.exe
+10/29 15    60      0       0         0              0            0         0 w3wp.exe
+10/29 16    60      4      33         2         53,898       52,481         2 w3wp.exe
+10/29 17    60      9      38         5        134,735      131,491         0 w3wp.exe
+10/29 18    60      0       0         0              0            0         0 w3wp.exe
+10/29 19    60      0       0         0              0            0         0 w3wp.exe
+10/29 20    60      0       0         0              0            0         0 w3wp.exe
+10/29 21    60      0       0         0              0            0         0 w3wp.exe
+10/29 22    60      0       0         0              0            0         0 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380     33     255        17        457,924      449,420        12
+
+
+================================================================
+                            SQL 4115986599
+================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT * FROM SS_GROUP_MEMBER WHERE TX_OWNER_USER_ID = :B1 ORDER from
+ BY KY_SS_GROUP
+
+FIRST TIME = 2012-11-15 23:57
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                  5
+SORT                 ORDER BY                                     5        5        1
+TABLE ACCESS         FULL           SS_GROUP_MEMBER               2        2        1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+SS_GROUP_MEMBER             0      0 10/27/13 03:21    0%       0       0       0   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+SS_GROUP_MEMBER    SS_GROUP_MEMBER_PK   UNIQ       0   1 KY_SS_GROUP_MEMBER        0       0
+                   SS_GROUP_MEMBER_UK   UNIQ       0   1 KY_BA                     0       0
+                                                       2 KY_SS_GROUP               0       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+10/29 00    60      0       0       235            705            0         0 w3wp.exe
+10/29 01    60      0       0       209            627            0         0 w3wp.exe
+10/29 02    60      3       4     40931        122,790            0         0 w3wp.exe
+10/29 03    60      7       8     82837        248,514            0         0 w3wp.exe
+10/29 04    60      7      20     75318        225,951            0         0 w3wp.exe
+10/29 05    60      8      10     83852        251,559            0         0 w3wp.exe
+10/29 06    60      0       0       574          1,722            0         0 w3wp.exe
+10/29 07    60      0       0       903          2,709            0         0 w3wp.exe
+10/29 08    60      0       0      1128          3,384            0         0 w3wp.exe
+10/29 09    60      0       0      1366          4,098            0         0 w3wp.exe
+10/29 10    60      0       0      1378          4,134            0         0 w3wp.exe
+10/29 11    60      0       0      1284          3,852            0         0 w3wp.exe
+10/29 12    60      0       1      1267          3,801            0         0 w3wp.exe
+10/29 13    60      1       0      1074          3,222            0         0 w3wp.exe
+10/29 14    60      0       0       983          2,949            0         0 w3wp.exe
+10/29 15    60      0       0      1037          3,111            0         0 w3wp.exe
+10/29 16    60      0       0       946          2,838            0         0 w3wp.exe
+10/29 17    60      0       0       898          2,694            0         0 w3wp.exe
+10/29 18    60      0       0       877          2,631            0         0 w3wp.exe
+10/29 19    60      0       0       899          2,697            0         0 w3wp.exe
+10/29 20    60      0       0       959          2,877            0         0 w3wp.exe
+10/29 21    60      0       1       864          2,592            0         0 w3wp.exe
+10/29 22    60      0       0       572          1,716            0         0 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum       1380     26      44    300391        901,173            0         0

@@ -1,0 +1,5 @@
+select ky_pnd_seq_trans, cd_settle_type, ts_updated
+  from cpm_pnd_settlement_supp
+  where tx_settle_yyyymm = '201109'
+    AND dt_all_subs_billed is not null
+/

@@ -1,0 +1,4 @@
+select KY_SUPPLIER_ID ,TX_SERVICE
+from SUPPLIER_ACCOUNT
+where KY_BA=1
+/

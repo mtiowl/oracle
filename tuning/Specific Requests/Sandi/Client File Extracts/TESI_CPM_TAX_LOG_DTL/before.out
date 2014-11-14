@@ -1,0 +1,31 @@
+
+Session altered.
+
+
+26 rows deleted.
+
+
+Explained.
+
+
+Plan Table                                                                                                                                                                                                                                                                                                  
+-------------------------------------------------------------------------------------------                                                                                                                                                                                                                 
+| Operation                        |  Name                         |  Rows | Bytes|  Cost |                                                                                                                                                                                                                 
+-------------------------------------------------------------------------------------------                                                                                                                                                                                                                 
+| SELECT STATEMENT                 |                              |   625 |   63K| 46654 |                                                                                                                                                                                                                  
+|  TABLE ACCESS BY INDEX ROWID     |CPM_TAX_LOG_DTL               |     2 |   46 |     3 |                                                                                                                                                                                                                  
+|   NESTED LOOPS                   |                              |   625 |   63K| 46654 |                                                                                                                                                                                                                  
+|    NESTED LOOPS                  |                              |   379 |   29K| 45517 |                                                                                                                                                                                                                  
+|     HASH JOIN                    |                              |   379 |   24K| 44380 |                                                                                                                                                                                                                  
+|      TABLE ACCESS BY INDEX ROWID |BILL_HDR                      |   549K|   15M|    34 |                                                                                                                                                                                                                  
+|       INDEX RANGE SCAN           |BILL_HDR_IDX4                 |   130 |      |     2 |                                                                                                                                                                                                                  
+|      HASH JOIN                   |                              |     6M|  203M| 31791 |                                                                                                                                                                                                                  
+|       TABLE ACCESS FULL          |CPM_CD_PURPOSE                |     3 |   18 |     2 |                                                                                                                                                                                                                  
+|       TABLE ACCESS FULL          |CPM_PND_TRAN_HDR              |    12M|  338M| 31709 |                                                                                                                                                                                                                  
+|     TABLE ACCESS BY INDEX ROWID  |CPM_TAX_LOG_HDR               |     1 |   16 |     3 |                                                                                                                                                                                                                  
+|      INDEX RANGE SCAN            |CPM_TAX_LOG_HDR_IX4           |     1 |      |     2 |                                                                                                                                                                                                                  
+|    INDEX RANGE SCAN              |CPM_TAX_LOG_DTL_AK1           |     2 |      |     2 |                                                                                                                                                                                                                  
+--------------------------------------------------------------------------------                                                                                                                                                                                                                            
+
+16 rows selected.
+

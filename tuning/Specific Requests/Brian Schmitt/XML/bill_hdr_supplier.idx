@@ -1,0 +1,5 @@
+
+
+CREATE INDEX BILL_HDR_SUPPLIER_IDX ON bill_hdr (ky_supplier);
+
+analyze table BILL_HDR compute statistics;

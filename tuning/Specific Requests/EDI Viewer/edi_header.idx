@@ -1,0 +1,2 @@
+create index edi_header_id_file_hdr ON edi_header(id_edi_file_header)
+/

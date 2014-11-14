@@ -1,0 +1,2 @@
+CREATE INDEX poweron.mti_test3_idx ON poweron.po_call (predict, nvl(incident_id, 0) ) tablespace po_index
+/

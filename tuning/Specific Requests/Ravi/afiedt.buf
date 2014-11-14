@@ -1,0 +1,9 @@
+select j.job_name, je.start_datetime
+  from jsc_jobs j
+      ,job_executions je
+      ,calendar c
+  where j.id = je.job_id
+    and je.batch_date_id = c.id
+    and j.job_name = 'DVIEWAD'
+    and trunc(c.day) BETWEEN trunc(to_date('20-JUN-2012')) AND trunc(to_date('22-JUN-2012'))
+/

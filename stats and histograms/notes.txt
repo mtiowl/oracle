@@ -1,0 +1,7 @@
+
+Automated Maitnence of Stats
+
+  1. When 10% of the table has changed
+  2. To change percent change of a table, DBMS_STATS.SET_TABLE_PREFS
+
+See 

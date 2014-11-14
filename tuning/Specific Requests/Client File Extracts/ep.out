@@ -1,0 +1,30 @@
+
+Session altered.
+
+
+4 rows deleted.
+
+
+Explained.
+
+
+Plan Table                                                                                          
+-------------------------------------------------------------------------------------------         
+| Operation                        |  Name                         |  Rows | Bytes|  Cost |         
+-------------------------------------------------------------------------------------------         
+| SELECT STATEMENT                 |                              |     1 |   95 | 30051 |          
+|  NESTED LOOPS                    |                              |     1 |   95 | 30051 |          
+|   NESTED LOOPS                   |                              |     1 |   90 | 30049 |          
+|    HASH JOIN                     |                              |    21 |    1K| 29986 |          
+|     HASH JOIN                    |                              |   331K|   12M| 24855 |          
+|      TABLE ACCESS FULL           |CPM_CD_PURPOSE                |     3 |   18 |     2 |          
+|      TABLE ACCESS BY INDEX ROWID |CPM_PND_TRAN_HDR              |   662K|   21M| 24848 |          
+|       INDEX RANGE SCAN           |CPM_PND_TRAN_HDR_IX11         |   662K|      |  1476 |          
+|     INDEX RANGE SCAN             |BILL_HDR_IDX2                 |   599K|   17M|  3415 |          
+|    TABLE ACCESS BY INDEX ROWID   |CPM_TAX_LOG_HDR               |     1 |   20 |     3 |          
+|     INDEX RANGE SCAN             |CPM_TAX_LOG_HDR_IX4           |     1 |      |     2 |          
+|   INDEX RANGE SCAN               |CPM_TAX_LOG_DTL_AK1           |     2 |   10 |     2 |          
+--------------------------------------------------------------------------------                    
+
+15 rows selected.
+

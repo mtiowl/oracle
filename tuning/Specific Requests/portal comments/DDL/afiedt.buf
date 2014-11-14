@@ -1,0 +1,6 @@
+DECLARE
+  l_comments  sys_refcursor;
+BEING
+  p_cis_call_log.get_headers(1566339,l_comments, l_error, l_error_msg);
+END;
+/

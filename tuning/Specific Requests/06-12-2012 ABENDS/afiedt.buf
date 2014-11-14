@@ -1,0 +1,4 @@
+select job, start_date, end_date
+  from jsc_temp2
+ where job = 'DVIEWAD'
+/

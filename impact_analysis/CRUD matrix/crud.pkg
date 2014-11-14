@@ -1,0 +1,345 @@
+CREATE OR REPLACE PROCEDURE crud ( pa_refresh IN VARCHAR2 DEFAULT 'N')
+    AUTHID CURRENT_USER AS
+--------------------------------------------------------------------------------
+--  Description :
+--  Procedure to reverse-engineer a CRUD Matrix for all of the application
+--  tables in the database.
+--
+-- Parameter :
+--      pa_refresh - 'Y' refresh all of the data in the table
+--                   'N' just look at program units changes since the last
+--                       run of this procedure
+-- Functionality :
+--  1) Identify all of the non-oracle user owned tables
+--  2) For each table, get a list of dependent objects
+--     include objects that are dependent on synonyms rather than the tables
+--     directly
+--     If pa_refresh set to N, just look for objects that have been changed
+--     or created since the last run.
+--  3) Get the source code for each object
+--  4) Work out the relationship
+--  5) Dump the results into the db_crud table
+--  6) Update the crud_run_log with the timestamp for this run                                                                                          --
+--------------------------------------------------------------------------------
+    l_last_run DATE;
+
+    CURSOR c_last_run IS
+        SELECT last_run_date
+        FROM crud_run_log;
+
+    TYPE rec_tabs IS RECORD (
+        table_owner dba_tables.owner%TYPE,
+        table_name dba_tables.table_name%TYPE);
+
+    TYPE typ_tabs IS TABLE OF rec_tabs INDEX BY PLS_INTEGER;
+    tbl_tabs typ_tabs;
+
+    TYPE rec_dep_objs IS RECORD (
+        dep_owner dba_dependencies.owner%TYPE,
+        dep_name dba_dependencies.name%TYPE,
+        dep_type dba_dependencies.type%TYPE,
+        syn_name dba_synonyms.synonym_name%TYPE);
+
+    TYPE typ_dep_objs IS TABLE OF rec_dep_objs INDEX BY PLS_INTEGER;
+    tbl_dep_objs typ_dep_objs;
+
+    l_clob CLOB;
+
+    l_create VARCHAR2(1);
+    l_read VARCHAR2(1);
+    l_update VARCHAR2(1);
+    l_delete VARCHAR2(1);
+
+    CURSOR c_delta( cp_owner VARCHAR2, cp_name VARCHAR2, cp_last_run DATE) IS
+        SELECT dep.owner, dep.name, REPLACE( dep.type, ' ', '_'),
+            NULL
+        FROM dba_dependencies dep, dba_objects obj
+        WHERE dep.owner = obj.owner
+        AND dep.name = obj.object_name
+        AND dep.type = obj.object_type
+        AND dep.type IN ('FUNCTION', 'PROCEDURE', 'PACKAGE BODY', 'TRIGGER',
+           'VIEW', 'MATERIALIZED VIEW')
+        AND dep.referenced_owner = cp_owner
+        AND dep.referenced_name = cp_name
+        AND obj.last_ddl_time > cp_last_run
+        UNION
+        SELECT dep.owner, dep.name, REPLACE( dep.type, ' ', '_'),
+            syn.synonym_name
+        FROM dba_dependencies dep, dba_objects obj, dba_synonyms syn
+        WHERE dep.owner = obj.owner
+        AND dep.name = obj.object_name
+        AND dep.type = obj.object_type
+        AND dep.referenced_owner = syn.owner
+        AND dep.referenced_name = syn.synonym_name
+        AND dep.referenced_type = 'SYNONYM'
+        AND syn.table_owner = cp_owner
+        AND syn.table_name = cp_name
+        AND obj.last_ddl_time > cp_last_run;
+
+    CURSOR c_full( cp_owner VARCHAR2, cp_name VARCHAR2) IS
+        SELECT dep.owner, dep.name, REPLACE( dep.type, ' ', '_'),
+            NULL
+        FROM dba_dependencies dep
+        WHERE dep.type IN ('FUNCTION', 'PROCEDURE', 'PACKAGE BODY', 'TRIGGER',
+            'VIEW', 'MATERIALIZED VIEW')
+        AND dep.referenced_owner = cp_owner
+        AND dep.referenced_name = cp_name
+        UNION
+        SELECT dep.owner, dep.name, REPLACE( dep.type, ' ', '_'),
+            syn.synonym_name
+        FROM dba_dependencies dep, dba_synonyms syn
+        WHERE dep.referenced_owner = syn.owner
+        AND dep.referenced_name = syn.synonym_name
+        AND dep.referenced_type = 'SYNONYM'
+        AND syn.table_owner = cp_owner
+        AND syn.table_name = cp_name;
+
+    e_first_run EXCEPTION;
+
+    l_dummy PLS_INTEGER := 0;
+    --
+    -- Variables for debug timing info
+    --
+    l_start PLS_INTEGER := 0;
+    l_end PLS_INTEGER := 0;
+    l_elapsed PLS_INTEGER := 0;
+    --
+    -- Variables for message to return in the event
+    -- of an EXCEPTION being raised
+    --
+    l_owner dba_dependencies.owner%TYPE;
+    l_name dba_dependencies.name%TYPE;
+    l_type dba_dependencies.type%TYPE;
+    l_loc VARCHAR2(3) := '010';
+
+BEGIN
+    --
+    -- Set the Module and Action values to allow runtime monitoring in
+    -- V$SESSION
+    --
+    DBMS_APPLICATION_INFO.SET_MODULE('CRUD', 'Start');
+    --
+    -- First, check to see if we're doing a full refresh or just looking
+    -- for changes since the last run
+    --
+    IF pa_refresh = 'N' THEN
+        l_loc := '015';
+        OPEN c_last_run;
+        FETCH c_last_run INTO l_last_run;
+        IF c_last_run%NOTFOUND THEN
+            CLOSE c_last_run;
+            RAISE e_first_run;
+        END IF;
+        CLOSE c_last_run;
+    ELSE
+        --
+        -- Cleardown the table for a complete refresh
+        --
+        l_loc := '020';
+        EXECUTE IMMEDIATE 'TRUNCATE TABLE db_crud';
+    END IF;
+    --
+    -- Get a list of all the tables not owned by Oracle supplied users
+    --
+    l_loc := '030';
+    SELECT owner, table_name BULK COLLECT INTO tbl_tabs
+    FROM dba_tables
+    WHERE owner NOT IN( 'ANONYMOUS', 'CTXSYS', 'DBSNMP', 'DIP', 'FLOWS_020100',
+      'FLOWS_FILES', 'MDSYS', 'OUTLN', 'SYS', 'SYSTEM', 'TSMSYS', 'XDB',
+      'EXFSYS', 'PERFSTAT', 'WMSYS');
+    --
+    -- Conditional compilation needs to be enabled with
+    -- ALTER SESSION SET PLSQL_CCFLAGS = 'debug:TRUE' at COMPILE time
+    --
+    $IF $$debug $THEN
+        DBMS_OUTPUT.PUT_LINE('Tables found = '||tbl_tabs.COUNT);
+    $END
+    --
+    -- Now loop through the list of tables. This is the outer loop that we
+    -- use to pick up all of the dependent objects for the table
+    --
+    DBMS_APPLICATION_INFO.SET_ACTION('Processing '||tbl_tabs.COUNT||' tables.');
+    l_loc := '040';
+    FOR i IN 1..tbl_tabs.COUNT LOOP
+        IF pa_refresh = 'N' THEN
+            l_loc := '045';
+            OPEN c_delta( tbl_tabs(i).table_owner, tbl_tabs(i).table_name,
+                l_last_run);
+            FETCH c_delta BULK COLLECT INTO tbl_dep_objs;
+            CLOSE c_delta;
+        ELSE
+            l_loc := '050';
+            OPEN c_full( tbl_tabs(i).table_owner, tbl_tabs(i).table_name);
+            FETCH c_full BULK COLLECT INTO tbl_dep_objs;
+            CLOSE c_full;
+        END IF;
+        --
+        -- Inner loop - go through the source of the dependent object
+        --
+        $IF $$debug $THEN
+            DBMS_OUTPUT.PUT_LINE('dependent_objs count for '
+                ||tbl_tabs(i).table_owner||'.'||tbl_tabs(i).table_name
+                ||' = '||tbl_dep_objs.COUNT);
+            l_start := DBMS_UTILITY.GET_TIME;
+        $END
+        IF tbl_dep_objs.COUNT > 0 THEN
+            l_loc := '060';
+            FOR j IN 1..tbl_dep_objs.COUNT LOOP
+                --
+                -- Record the owner, name and type for the message to
+                -- output in the event of an EXCEPTION
+                --
+                l_owner := tbl_dep_objs(j).dep_owner;
+                l_name := tbl_dep_objs(j).dep_name;
+                l_type := tbl_dep_objs(j).dep_type;
+                --
+                -- Start by re-setting the CRUD flags
+                --
+                l_create := 'N';
+                l_read := 'N';
+                l_update := 'N';
+                l_delete := 'N';
+                --
+                -- Work out the type of object. If it's a VIEW or
+                -- MATERIALIZED VIEW we'll assume it's just a READ.
+                -- Otherwise, we'll look through the source code.
+                --
+                IF tbl_dep_objs(j).dep_type IN ('VIEW', 'MATERIALIZED VIEW')
+                THEN
+                    l_read := 'Y';
+                ELSE
+                    l_loc := '065';
+                    --
+                    -- Get the sourcecode - after some experimentation
+                    -- stripping spaces makes searching much faster although
+                    -- it does not get rid of space characters such as tabs.
+                    -- REGEXP_REPLACE(.....'[[:space:]]') would do this but
+                    -- it increased runtime by a factor of about 5.
+                    --
+                    l_clob := REPLACE(DBMS_METADATA.GET_DDL(
+                        tbl_dep_objs(j).dep_type, tbl_dep_objs(j).dep_name,
+                        tbl_dep_objs(j).dep_owner),' ');
+                    l_loc := '070';
+                    l_dummy := REGEXP_INSTR(l_clob,
+                        'INSERT[^;]*INTO[^;]*'
+                        ||NVL( tbl_dep_objs(j).syn_name,
+                            tbl_tabs(i).table_name),1,1,0,'i');
+                    IF l_dummy > 0 THEN
+                        l_create := 'Y';
+                    ELSE
+                        l_loc := '075';
+                        l_dummy := REGEXP_INSTR( l_clob,
+                            'MERGE[^;]*INTO[^;]*'
+                            ||NVL( tbl_dep_objs(j).syn_name,
+                                tbl_tabs(i).table_name),1,1,0,'i');
+                        IF l_dummy > 0 THEN
+                            l_create := 'Y';
+                        END IF;
+                    END IF;
+                    l_loc := '080';
+                    l_dummy := REGEXP_INSTR( l_clob, 'SELECT[^;]*FROM[^;]*'
+                        ||NVL( tbl_dep_objs(j).syn_name,
+                            tbl_tabs(i).table_name),1,1,0,'i');
+                    IF l_dummy > 0 THEN
+                        l_read := 'Y';
+                    END IF;
+                    l_loc := '090';
+                    l_dummy := REGEXP_INSTR(l_clob,
+                        'UPDATE[^;]*'
+                        ||NVL( tbl_dep_objs(j).syn_name,
+                            tbl_tabs(i).table_name),1,1,0,'i');
+                    IF l_dummy > 0 THEN
+                        l_update := 'Y';
+                    ELSE
+                        l_loc := '095';
+                        l_dummy := REGEXP_INSTR( l_clob,
+                            'MERGEINTO[^;]*'
+                            ||NVL( tbl_dep_objs(j).syn_name,
+                                tbl_tabs(i).table_name),1,1,0,'i');
+                        IF l_dummy > 0 THEN
+                            l_update := 'Y';
+                        END IF;
+                    END IF;
+                    l_loc := '100';
+                    l_dummy := REGEXP_INSTR(l_clob,
+                        'DELETE[^;]*'
+                        ||NVL( tbl_dep_objs(j).syn_name,
+                            tbl_tabs(i).table_name),1,1,0,'i');
+                    IF l_dummy > 0 THEN
+                        l_delete := 'Y';
+                    END IF;
+                    --
+                    -- Finally, if we haven't found a CRUD, the fact there is a
+                    -- dependency means it's going to be a read ( even if it's
+                    -- just a %type reference to one of the tables columns).
+                    --
+                    l_loc := '110';
+                    IF l_create = 'N' AND l_read = 'N' AND l_update = 'N'
+                        AND l_delete = 'N'
+                    THEN
+                        l_read := 'Y';
+                    END IF;
+                END IF;
+                l_loc := '120';
+                --
+                -- Now add the result to the table / update the record in the
+                -- table as appropriate
+                --
+                MERGE INTO db_crud
+                USING dual
+                ON (
+                    table_owner = tbl_tabs(i).table_owner
+                    AND table_name = tbl_tabs(i).table_name
+                    AND object_owner = tbl_dep_objs(j).dep_owner
+                    AND object_name = tbl_dep_objs(j).dep_name
+                    AND object_type = tbl_dep_objs(j).dep_type)
+                WHEN MATCHED THEN
+                    UPDATE
+                        SET create_flag = l_create,
+                            read_flag = l_read,
+                            update_flag = l_update,
+                            delete_flag = l_delete
+                WHEN NOT MATCHED THEN
+                    INSERT (table_owner, table_name, object_owner,
+                        object_name, object_type, create_flag,
+                        read_flag, update_flag, delete_flag)
+                    VALUES( tbl_tabs(i).table_owner, tbl_tabs(i).table_name,
+                        tbl_dep_objs(j).dep_owner, tbl_dep_objs(j).dep_name,
+                        tbl_dep_objs(j).dep_type, l_create, l_read, l_update,
+                        l_delete);
+            END LOOP; -- dependent objects loop
+        END IF; -- count of dependent objects
+        $IF $$debug $THEN
+            l_end := DBMS_UTILITY.GET_TIME;
+            l_elapsed := (l_end - l_start) /100;
+            DBMS_OUTPUT.PUT_LINE('Total time for table '
+                ||tbl_tabs(i).table_owner||'.'||tbl_tabs(i).table_name
+                ||' - '||l_elapsed||' seconds.');
+        $END
+        l_loc := '130';
+        IF MOD( i, 10) = 0 THEN
+            DBMS_APPLICATION_INFO.SET_ACTION(i||' tables of '||tbl_tabs.COUNT
+                ||' processed.');
+        END IF;
+    END LOOP; -- tables loop
+    --
+    -- Finally, update the crud_run_log table and the ACTION value
+    -- to show that the procedure has completed
+    --
+    l_loc := '140';
+    UPDATE crud_run_log
+    SET last_run_date = SYSDATE;
+    IF SQL%ROWCOUNT = 0 THEN
+        INSERT INTO crud_run_log VALUES( SYSDATE);
+    END IF;
+    COMMIT;
+    DBMS_APPLICATION_INFO.SET_ACTION('Completed');
+EXCEPTION WHEN e_first_run THEN
+    RAISE_APPLICATION_ERROR(-20001,
+        'No last run information for CRUD. Run with pa_refresh set to Y.');
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Error at location '||l_loc);
+        DBMS_OUTPUT.PUT_LINE('Object is '||l_owner||'.'||l_name||' type - '||l_type);
+        DBMS_OUTPUT.PUT_LINE(SQLERRM);
+END;
+/

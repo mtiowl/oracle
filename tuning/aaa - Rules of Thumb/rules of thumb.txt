@@ -1,0 +1,13 @@
+Use NOT EXISTS instead of NOT IN 
+
+Use NOT EXISTS or NOT IN with hints instead of MINUS 
+
+Use TRUNC differently to enable indexes 
+
+Use operators differently to enable indexes 
+
+Do not use columns on both sides of operator 
+
+Use WHERE in place of HAVING 
+
+Use UNION ALL instead of UNION 

@@ -1,0 +1,2 @@
+create database link psolp connect to custpro identified by fullt3st using 'PSOLPT'
+/

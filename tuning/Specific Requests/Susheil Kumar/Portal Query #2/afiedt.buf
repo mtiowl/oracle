@@ -1,0 +1,4 @@
+select lower(user) user_name,
+   ltrim(rtrim(lower(global_name))) db_name
+from global_name
+/

@@ -1,0 +1,73 @@
+Running an incremental update
+If you want to just capture any changes since the last run, without doing the whole lot again…simply pass the refresh parameter a value of ‘N’ and the procedure will just look for stuff with a LAST_DDL_TIME greater than the last timestamp in crud_run_log.
+For example, let’s now create a new function in the HR schema :
+
+view sourceprint?
+
+CREATE OR REPLACE FUNCTION get_dname( p_dept_id IN NUMBER)  
+    RETURN VARCHAR2 IS 
+    l_return departments.department_name%TYPE;  
+
+ BEGIN 
+    SELECT department_name  
+    INTO l_return  
+    FROM departments  
+    WHERE department_id = p_dept_id;  
+    RETURN l_return;  
+END;  
+/ 
+
+If we now check, we can see that a dependency has been created since the last time we ran the crud procedure :
+
+
+SELECT dep.owner, dep.name, dep.type  
+ FROM dba_dependencies dep, dba_objects obj  
+ WHERE dep.owner = obj.owner  
+ AND dep.name = obj.object_name  
+ AND dep.type = obj.object_type  
+ AND dep.type IN ('FUNCTION', 'PROCEDURE', 'PACKAGE BODY', 'TRIGGER', 'VIEW', 'MATERIALIZED VIEW')  
+ AND dep.referenced_owner = 'HR'  
+ AND dep.referenced_name = 'DEPARTMENTS'  
+ AND obj.last_ddl_time > ( select last_run_date from crud_owner.crud_run_log)  
+/  
+
+OWNER      NAME         TYPE  
+---------- -------------------- --------------------  
+HR     GET_DNAME        FUNCTION 
+
+
+At this point in time, we can see that this dependency has not been captured in our crud matrix :
+
+select object_owner, object_name, object_type  
+from crud_owner.db_crud  
+where table_owner = 'HR'  
+and table_name = 'DEPARTMENTS'  
+/  
+
+OBJECT_OWN OBJECT_NAME      OBJECT_TYP  
+---------- -------------------- ----------  
+HR          EMP_DETAILS_VIEW      VIEW  
+
+
+Now, if we run the crud matrix again ( remember, the refresh parameter is set to ‘N’ by default)…
+
+BEGIN  
+   crud;  
+END;  
+/  
+
+PL/SQL procedure successfully completed. 
+
+
+And now check the crud matrix…
+
+select object_owner, object_name, object_type  
+ from crud_owner.db_crud  
+ where table_owner = 'HR'  
+ and table_name = 'DEPARTMENTS'  
+/  
+
+OBJECT_OWN OBJECT_NAME      OBJECT_TYP  
+---------- -------------------- ----------  
+HR            EMP_DETAILS_VIEW     VIEW  
+HR            GET_DNAME          FUNCTION  

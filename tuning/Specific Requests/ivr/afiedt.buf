@@ -1,0 +1,8 @@
+SELECT count(*), cd_tran_status, STATUS
+  FROM cpm_pnd_tran_hdr h1
+      --,control_867@css_custpro_batch_user h2
+      ,control_867_hist@css_custpro_batch_user h2
+  WHERE TRUNC(DT_BILLED_BY_CSS) = trunc(to_date('26-OCT-2012'))
+    AND h1.ky_ba = h2.ky_ba
+  GROUP BY cd_tran_status, STATUS
+/

@@ -1,0 +1,2590 @@
+
+NAME      REPORT          FIRST_SNAP  LAST_SNAP REPORT_TIME
+--------- --------------- ---------- ---------- ----------------
+PSOLP     20 LARGEST SQLS      48695      48701 2012-11-09 09:22
+
+VERSION           HOST_NAME    STARTUP
+----------------- ------------ ----------------
+9.2.0.8.0         rp4440-g     2012-11-04 13:16
+
+2012-11-09 06:00 FIRST SNAPSHOT      48695
+2012-11-09 09:00  LAST SNAPSHOT      48701
+
+STARTING      SQLS    BUFFER_GETS   DISK_READS        PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------ -------------- ------------ ---------------- ------ ------- --------
+11/09 06:00    106      1,036,156       96,248          155,324     40     163     90.7
+11/09 07:00    821     90,754,072    1,031,389        6,488,763   1379    4596     98.9
+11/09 08:00   2228     14,442,247      585,595        7,814,725    586    2078     95.9
+                   -------------- ------------ ---------------- ------ -------
+sum                   106,232,475    1,713,232       14,458,812   2005    6837
+
+Top SQLs by BUFFER GETS
+
+RANK    BUFFER_GETS  GETS/EXEC     EXECS   DISK_READS        PROCESSED    CPU ELAPSED          HASH_VALUE
+---- -------------- ---------- --------- ------------ ---------------- ------ ------- -------------------
+   1     51,532,992   51532992         0       33,953            5,346    217     472          3265339574
+   2     13,171,566   13171566         0       31,231          457,608     73     295          1924677898
+   3      5,840,510    5840510         1       72,086          206,818    206     308          3544469755
+   4      5,688,411          3   1772430        2,917           11,144     74     101          1449663171
+   5      3,991,085     570155         7      297,126                0     41     178           997201943
+   6      3,156,704          4    789111        2,257          789,111     28      29          1981022226
+   7      1,857,490    1857490         1      329,490        1,520,929     55     127          2321524863
+   8      1,783,583        107     16669          494              330     23      25          1431396296
+   9      1,360,451        129     10531          207           12,520     60      59          1395607204
+  10      1,207,362     201227         6        4,362          197,401      6      19          2694969192
+  11        762,366        152      5029            0          136,521      6       6          1375825383
+  12        748,422          3    249474            1          249,474      8       8          3733622060
+  13        738,658         56     13276          628           13,276     18      26          4033995641
+  14        662,283     331142         2        9,797            1,553      6     100          1116368370
+  15        661,460     110243         6      211,412          150,536     48     373          3706097074
+  16        656,722       6913        95       47,785               95    102     212          3434658212
+  17        591,332       1372       431          598            3,879     44      50          3074907936
+  18        589,904          3    195296            6          195,296     38      42          3716207873
+  19        531,395       4119       129          280            2,783     19      21          2839786585
+  20        506,817         79      6422           18          494,658      9       8          4074836947
+     --------------            --------- ------------ ---------------- ------ -------
+sum      96,039,513              3058916    1,044,648        4,449,278   1081    2459
+
+Top SQLs by DISK READS
+
+RANK   DISK_READS READS/EXEC     EXECS    BUFFER_GETS        PROCESSED    CPU ELAPSED          HASH_VALUE
+---- ------------ ---------- --------- -------------- ---------------- ------ ------- -------------------
+   1      329,490     329490         1      1,857,490        1,520,929     55     127          2321524863
+   2      297,126      42447         7      3,991,085                0     41     178           997201943
+   3      237,671      19806        12        242,077              646     27     231           164074433
+   4      211,412      35235         6        661,460          150,536     48     373          3706097074
+   5       72,086      72086         1      5,840,510          206,818    206     308          3544469755
+   6       67,283      22428         3         67,389            1,060      6      34           294159033
+   7       58,879      58879         0        281,296        3,349,492     45      66          2777117154
+   8       49,489       1269        39        327,181            1,566     17      54          3501880954
+   9       47,785        503        95        656,722               95    102     212          3434658212
+  10       33,953      33953         0     51,532,992            5,346    217     472          3265339574
+  11       32,063      32063         0        114,115        4,560,015     46     102          3766984196
+  12       31,231      31231         0     13,171,566          457,608     73     295          1924677898
+  13       28,317       1416        20        253,646            2,228     10     221          1592267977
+  14       23,467          1     16669        202,309           16,669      4     147          1917257782
+  15       19,128       4782         4         38,365                0      5      26          4223633474
+  16       18,009       3002         6        158,004           16,669    486    2117          2472701388
+  17       13,237          0     33338        491,555           33,338      5     109           597695447
+  18       13,172          1     16669        171,978           13,926      3      97           371605053
+  19       13,104          2      7420         30,292            7,420      4     130           865148149
+  20       13,008          2      7316         29,634            7,278      2     130          3702697947
+     ------------            --------- -------------- ---------------- ------ -------
+sum     1,609,910                81606     80,119,666       10,351,639   1402    5429
+
+Top SQLs by CPU
+
+RANK    CPU ELAPSED   DISK_READS READS/EXEC     EXECS    BUFFER_GETS        PROCESSED          HASH_VALUE
+---- ------ ------- ------------ ---------- --------- -------------- ---------------- -------------------
+   1    486    2117       18,009       3002         6        158,004           16,669          2472701388
+   2    217     472       33,953      33953         0     51,532,992            5,346          3265339574
+   3    206     308       72,086      72086         1      5,840,510          206,818          3544469755
+   4    102     212       47,785        503        95        656,722               95          3434658212
+   5     74     101        2,917          0   1772430      5,688,411           11,144          1449663171
+   6     73     295       31,231      31231         0     13,171,566          457,608          1924677898
+   7     60      59          207          0     10531      1,360,451           12,520          1395607204
+   8     55     127      329,490     329490         1      1,857,490        1,520,929          2321524863
+   9     48      49          229          0      6697        308,062            6,697          3286148528
+  10     48     373      211,412      35235         6        661,460          150,536          3706097074
+  11     46     102       32,063      32063         0        114,115        4,560,015          3766984196
+  12     45      66       58,879      58879         0        281,296        3,349,492          2777117154
+  13     44      50          598          1       431        591,332            3,879          3074907936
+  14     41     178      297,126      42447         7      3,991,085                0           997201943
+  15     38      42            6          0    195296        589,904          195,296          3716207873
+  16     28      29        2,257          0    789111      3,156,704          789,111          1981022226
+  17     27     231      237,671      19806        12        242,077              646           164074433
+  18     26      27            4          0     61748        432,883           61,748          2867623898
+  19     23      25          494          0     16669      1,783,583              330          1431396296
+  20     19      21          280          2       129        531,395            2,783          2839786585
+     ------ ------- ------------            --------- -------------- ----------------
+sum    1706    4884    1,376,697              2853170     92,950,042       11,351,662
+
+Top SQLs by Cost
+
+RANK      COSTS     EXECS    BUFFER_GETS   DISK_READS MODULE                                  HASH_VALUE
+---- ---------- --------- -------------- ------------ ------------------------------ -------------------
+   1      68875         6        158,004       18,009 perl@rp4440-g (TNS V1-V3)               2472701388
+   2      34775         1      1,857,490      329,490 01@<SOL_EXELON_CUSTOMER_CONTAC          2321524863
+                                                      T_AND_CALL_LOG.sql
+
+   3       7343         1      5,840,510       72,086 01@<SOL_EXELON_CUSTOMER_CONTAC          3544469755
+                                                      T_AND_CALL_LOG.sql
+
+   4       4814         7      3,991,085      297,126 perl@rp4440-g (TNS V1-V3)                997201943
+   5       2569         8         60,984        2,372 w3wp.exe                                 366627828
+   6       2160         3         67,389       67,283 PPLS.EDI.DocumentLoader.exe              294159033
+   7       2094        12        242,077      237,671 w3wp.exe                                 164074433
+   8       1623         6        661,460      211,412 perl@rp4440-g (TNS V1-V3)               3706097074
+   9       1274        28             86            4 w3wp.exe                                 121696744
+  10       1194         1          2,930        1,020 perl@rp4440-g (TNS V1-V3)               4160011827
+  11       1161        39        327,181       49,489 w3wp.exe                                3501880954
+  12        918         1          9,591        7,910 MSACCESS.EXE                            2969023867
+  13        918         4         38,365       19,128 SQL*Plus                                4223633474
+  14        860         1          9,035            0 MSACCESS.EXE                            2852994123
+  15        381        66        324,759        2,360 SQL*Plus                                 512654485
+  16        251        36        300,532           14 Oracle Enterprise Manager.Metr           224817855
+                                                      ic Engine
+
+  17        199        14             42            0 w3wp.exe                                 761536809
+  18        161        20        253,646       28,317 w3wp.exe                                1592267977
+  19        160         2          3,430          323 PPLS.EDI.DocumentLoader.exe              646641888
+  20        160         5          6,860        2,222 w3wp.exe                                2073515392
+                --------- -------------- ------------
+sum                   261     14,155,456    1,346,236
+
+=======================================================================================================
+                            SQL 121696744
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT * FROM ( SELECT ROWNUM ROWNUMBER, A.* FROM ( SELECT E.KY_ from
+SERVICE_LEVEL, CQ.*, (P_CIS_COLLECTIONS.GET_USER_ID(CQ.ID_USER_G
+UID_HANDLING)) ID_USER_ID, (CASE E.FL_KEY_CUSTOMER WHEN 'Y' THEN
+ 'Y' ELSE 'N' END )FL_KEY_CUSTOMER FROM PPLSCIS.CIS_COLLECTIONS_ from
+QUEUE CQ JOIN ENROLL E ON CQ.KY_SUPPLIER = E.KY_SUPPLIER AND CQ.
+KY_ENROLL = E.KY_ENROLL WHERE CQ.KY_SUPPLIER = :B2 AND CQ.CD_QUE where
+UE_STATUS = :B1 ORDER BY CQ.TX_CUSTOMER_NAME ) A )B WHERE B.ROWN where
+UMBER >= :B4 AND B.ROWNUMBER <= :B3
+
+FIRST TIME = 2012-11-09 07:48
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                               1274
+FILTER
+VIEW                                                           1274               612
+COUNT
+VIEW                                                           1274               612
+SORT                 ORDER BY                                  1274     1274      612
+NESTED LOOPS                                                   1245     1245      612
+TABLE ACCESS         BY INDEX ROWID CIS_COLLECTIONS_QUEU         21       21      612
+                                    E
+
+INDEX                RANGE SCAN     CIS_COLLECTIONS_QUEU          1        1      612
+                                    E_IDX_2
+
+TABLE ACCESS         BY INDEX ROWID ENROLL                        2        2        1
+INDEX                UNIQUE SCAN    ENROLL_PK                     1        1        1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+ENROLL                1871844    199 11/03/12 05:21  100%     386     384     418   15   40
+CIS_COLLECTIONS_QU      24461    162 07/11/11 20:28    4%       5       4       4   10   40
+EUE
+
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+ENROLL             ENROLL_CONTRACT_IDX             1   1 TX_CONTRACT_NAME       1842   10370
+                   ENROLL_IDX                      1   1 KY_ENROLL             17489       0
+                                                       2 KY_SUPPLIER              15       0
+                   ENROLL_PK            UNIQ       1   1 KY_ENROLL             17489       0
+                   ENROLL_TID_IDX                  0   1 TX_TRACKING_ID         3076   10500
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 08    60      0       0        14             43            2         0 w3wp.exe
+11/09 08    60      0       0        14             43            2         0 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        120      0       0        28             86            4         0
+
+=======================================================================================================
+                            SQL 164074433
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT CLH.KY_CALL_LOG_ID, CLH.ID_USER_GUID, CLH.KY_ENROLL, CLH.
+TX_BILLING_NUMBER, SUP.TX_SUPPLIER_DESCRIPTION AS TX_CUSTOMER_NA
+ME , CLH.TX_FIRST_NAME, CLH.TX_LAST_NAME, CLH.TX_EMAIL, CLH.TX_P
+HONE_NO, CLH.TX_POSITION, CLH.CD_FOLLOW_UP_STATUS AS FOLLOW_UP_S
+TATUS , CLH.CD_FOLLOW_UP_HOURS , CLH.FL_CRITICAL_COMMENT, CLH.TS
+_CRITICAL_COMMENT_EXPIRE, CLH.TS_ADDED, CLH.TS_MODIFIED, (CASE C
+LH.KY_NOTATE_TYPE WHEN 'C' THEN 'Call' WHEN 'N' THEN 'Notate' EL
+SE 'Unknown' END) KY_NOTATE_TYPE, CLH.TX_DELETE_REASON, CLH.CD_S
+TATUS, CLH.TX_MODIFIED_BY FROM CIS_CL_HEADER CLH , PVIEW.ACCOUNT from
+ ACT , CIS_SUPPLIER SUP WHERE CLH.KY_ENROLL = ACT.KY_ENROLL AND  where
+ACT.KY_SUPPLIER = SUP.KY_SUPPLIER_ID AND CLH.ID_USER_GUID = :B1
+AND CLH.CD_FOLLOW_UP_STATUS = 'OPEN_FL_REQ' ORDER BY CLH.TS_ADDE
+D
+
+FIRST TIME = 2012-11-09 07:31
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                               2094
+SORT                 ORDER BY                                  2094     2094     1388
+HASH JOIN                                                      2053     2053     1388
+TABLE ACCESS         FULL           CIS_CL_HEADER              1125     1125     1373
+HASH JOIN                                                       730      730  1542063
+TABLE ACCESS         FULL           CIS_SUPPLIER                  2        2       25
+INDEX                FAST FULL SCAN ACCT_IDX                    721      721  1850476
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CIS_SUPPLIER               25     37 07/11/11 20:29  100%       0       0       0   10   40
+CIS_CL_HEADER          782660    106 06/17/12 04:08  100%      91      91      88   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CIS_CL_HEADER      CIS_CL_HEADER_PK     UNIQ       0   1 KY_CALL_LOG_ID         2274       0
+                   CL_HEADER_ENROLL                0   1 KY_ENROLL               505       0
+                   IDX_CL_HDR_1_7COLS                  1 CD_FOLLOW_UP_STATU        2       0
+                                                         S
+
+                                                       2 TS_MODIFIED             904     124
+                                                       3 KY_CALL_LOG_ID         2274       0
+                                                       4 KY_ENROLL               505       0
+                                                       5 TX_BILLING_NUMBER       204       0
+                                                       6 ID_USER_GUID             17       0
+                                                       7 TS_ADDED               1028       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 08    60     27     231        12        242,077      237,671       646 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60     27     231        12        242,077      237,671       646
+
+=======================================================================================================
+                            SQL 224817855
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+insert into mgmt_db_size_gtt  select tablespace_name,NVL(sum(byt
+es)/1048576, 0) sz  from sys.dba_free_space group by tablespace_ from
+name
+
+FIRST TIME = 2012-11-05 11:05
+MODULE     = Oracle Enterprise Manager.Metric Engine
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+INSERT STATEMENT                                                251
+SORT                 GROUP BY                                   251      251     1955
+VIEW                                                            230              1955
+UNION-ALL
+NESTED LOOPS                                                    106      106     1953
+NESTED LOOPS                                                    106      106    28448
+TABLE ACCESS         FULL           TS$                          25       25        9
+TABLE ACCESS         CLUSTER        FET$                          9        9     3161
+INDEX                UNIQUE SCAN    I_FILE2                                         1
+NESTED LOOPS                                                    124      124        2
+NESTED LOOPS                                                    124      124       33
+TABLE ACCESS         FULL           TS$                          25       25        9
+FIXED TABLE          FIXED INDEX    X$KTFBFE (ind:1)             11                 4
+INDEX                UNIQUE SCAN    I_FILE2                                         1
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 06    60      1       1        12        100,176            6       264 Oracle Enterprise
+11/09 07    60      1       1        12        100,178            3       264 Oracle Enterprise
+11/09 08    60      1       1        12        100,178            5       264 Oracle Enterprise
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        180      3       3        36        300,532           14       792
+
+=======================================================================================================
+                            SQL 294159033
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT ID_EDI_FILE_HEADER, CD_BUSINESS_UNIT, CD_TRANS_DIRECTION,
+ CD_COMM_CHANNEL, CD_EDI_FILE_TYPE, ID_FILENET_DOC_GUID, DT_TRAN
+S_DATE FROM EDI_FILE_HEADER WHERE ID_FILENET_DOC_GUID IS NOT NUL from
+L AND FL_DOCUMENT_PARSED = 'N' AND DT_TRANS_DATE IS NOT NULL AND
+ TRUNC(DT_TRANS_DATE) >= TRUNC(TO_DATE('01/01/2009','mm/dd/yyyy'
+))
+
+FIRST TIME = 2012-11-09 05:31
+MODULE     = PPLS.EDI.DocumentLoader.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                               2160
+TABLE ACCESS         FULL           EDI_FILE_HEADER            2160     2160    20540
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+EDI_FILE_HEADER       1232703    132 11/09/12 03:30  100%     176     175     172   10   40
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 06    60      2      10         1         22,460       22,436        20 PPLS.EDI.Document
+11/09 07    60      2      11         1         22,460       22,446        20 PPLS.EDI.Document
+11/09 08    60      2      13         1         22,469       22,401      1020 PPLS.EDI.Document
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        180      6      34         3         67,389       67,283      1060
+
+=======================================================================================================
+                            SQL 366627828
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT A.KY_ENROLL, A.KY_ACCOUNT_TYPE, A.TX_SERVICE_LINE_1, A.TX
+_SERVICE_ZIP, A.TX_UTILITY_ACCOUNT, E.KY_ENROLL_STATUS FROM PVIE from
+W.ACCOUNT A, PVIEW.ENROLL E WHERE A.KY_ENROLL = E.KY_ENROLL AND  where
+A.KY_SUPPLIER = :B2 AND A.TX_DAY_PHONE_AREA = SUBSTR(:B1 ,1,3) A
+ND A.TX_DAY_PHONE = SUBSTR(:B1 ,5,8) AND E.KY_ENROLL_STATUS IN (
+'TBR','RREQ','RFLD','TBC','PTBC','CUST','PRMT','PSPT','PFNL')
+
+FIRST TIME = 2012-11-09 07:38
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                               2569
+NESTED LOOPS                                                   2569     2569        1
+TABLE ACCESS         BY INDEX ROWID ACCOUNT                    2567     2567        1
+INDEX                RANGE SCAN     ACCT_SUPPLIER_IDX           180      180    61683
+TABLE ACCESS         BY INDEX ROWID ENROLL                        2        2        1
+INDEX                UNIQUE SCAN    ENROLL_PK                     1        1        1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+ACCOUNT               1850476    202 11/03/12 03:00  100%     398     397     396   10   40
+ENROLL                1871844    199 11/03/12 05:21  100%     386     384     418   15   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+ACCOUNT            ACCOUNT_PK           UNIQ       1   1 KY_ENROLL             18394       0
+                   ACCT_CITY_IDX                   1   1 TX_SERVICE_CITY        1862       0
+                   ACCT_DOING_IDX                  0   1 TX_DOING_BUSINESS_     1562   15221
+                                                         AS
+
+                   ACCT_IDX                        1   1 KY_ENROLL             18394       0
+                                                       2 KY_SUPPLIER              15       0
+                   ACCT_IDX2                       1   1 TX_UTILITY_ACCOUNT    18134       0
+                   ACCT_NAME_IDX                   1   1 TX_CUSTOMER_NAME       8218       0
+                   IDX_ACCOUNT_1_3COLS             1   1 KY_ENROLL             18394       0
+                                                       2 KY_SUPPLIER              15       0
+                                                       3 TX_CUSTOMER_NAME       8218       0
+ENROLL             ENROLL_CONTRACT_IDX             1   1 TX_CONTRACT_NAME       1842   10370
+                   ENROLL_IDX                      1   1 KY_ENROLL             17489       0
+                                                       2 KY_SUPPLIER              15       0
+                   ENROLL_PK            UNIQ       1   1 KY_ENROLL             17489       0
+                   ENROLL_TID_IDX                  0   1 TX_TRACKING_ID         3076   10500
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 08    60      3      10         8         60,984        2,372         0 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60      3      10         8         60,984        2,372         0
+
+=======================================================================================================
+                            SQL 371605053
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT PAYMENTS.AT_PAYMENT_ADJUSTMENT, PAYMENTS.DT_PAYMENT_ADJUS
+TMENT FROM (SELECT AT_PAYMENT_ADJUSTMENT, DT_PAYMENT_ADJUSTMENT  from
+FROM PAYMENT_ADJUSTMENT WHERE KY_ENROLL = :B1 AND KY_PAYMENT_ADJ where
+USTMENT_TYPE = '0200' ORDER BY DT_PAYMENT_ADJUSTMENT DESC) PAYME
+NTS WHERE ROWNUM = 1                                             where
+
+FIRST TIME = 2012-11-09 06:08
+MODULE     = perl@rp4440-g (TNS V1-V3)
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                 31
+COUNT                STOPKEY
+VIEW                                                             31                 1
+SORT                 ORDER BY STOPK                              31       31        1
+                     EY
+
+TABLE ACCESS         BY INDEX ROWID PAYMENT_ADJUSTMENT           15       15        1
+INDEX                RANGE SCAN     PAY_ADJ_IDX                   3        3       13
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+PAYMENT_ADJUSTMENT   19283913     55 11/03/12 08:38  100%    1192    1191    1124   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+PAYMENT_ADJUSTMENT PAYMENT_ADJUSTMENT_P UNIQ       2   1 KY_PAYMENT_ADJUSTM   138350       0
+                   K                                     ENT
+
+                   PAYMENT_ADJUSTMENT_U            0   1 KY_SR_SEQ_NO           1178  137084
+                   Q_IX
+
+                   PAY_ADJ_IDX                     4   1 KY_ENROLL             14702       0
+                                                       2 KY_SUPPLIER              12       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 07    60      3      97     16669        171,978       13,172     13926 perl@rp4440-g (TN
+11/09 08    60      0       0         0              0            0         0 perl@rp4440-g (TN
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        120      3      97     16669        171,978       13,172     13926
+
+=======================================================================================================
+                            SQL 512654485
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT SUM(BYTES) FROM DBA_SEGMENTS WHERE TABLESPACE_NAME = :B1  from
+
+
+FIRST TIME = 2012-11-09 05:45
+MODULE     = SQL*Plus
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                381
+SORT                 AGGREGATE                                                      1
+VIEW                                                            381                 6
+UNION-ALL
+NESTED LOOPS         OUTER                                      279      279        1
+NESTED LOOPS                                                    278      278        1
+HASH JOIN                                                       277      277        1
+NESTED LOOPS                                                     58       58        8
+NESTED LOOPS                                                     58       58      158
+TABLE ACCESS         BY INDEX ROWID TS$                           2        2        1
+INDEX                UNIQUE SCAN    I_TS1                         1        1        1
+TABLE ACCESS         CLUSTER        SEG$                         56       56      158
+INDEX                RANGE SCAN     I_FILE#_BLOCK#                2        2      158
+INDEX                UNIQUE SCAN    I_FILE2                                         1
+VIEW                                                            218              1847
+UNION-ALL
+TABLE ACCESS         FULL           TAB$                         52       52       13
+TABLE ACCESS         FULL           TABPART$                      2        2       27
+TABLE ACCESS         FULL           CLU$                         52       52       10
+TABLE ACCESS         FULL           IND$                         52       52     1761
+TABLE ACCESS         FULL           INDPART$                      2        2       25
+TABLE ACCESS         FULL           LOB$                         52       52        8
+TABLE ACCESS         FULL           TABSUBPART$                   2        2        1
+TABLE ACCESS         FULL           INDSUBPART$                   2        2        1
+TABLE ACCESS         FULL           LOBFRAG$                      2        2        1
+TABLE ACCESS         BY INDEX ROWID OBJ$                          1        1        1
+INDEX                UNIQUE SCAN    I_OBJ1                                          1
+TABLE ACCESS         CLUSTER        USER$                         1        1        1
+INDEX                UNIQUE SCAN    I_USER#                                         1
+NESTED LOOPS         OUTER                                       41       41        2
+NESTED LOOPS                                                     39       39        2
+NESTED LOOPS                                                     39       39        2
+NESTED LOOPS                                                      4        4        5
+TABLE ACCESS         BY INDEX ROWID TS$                           2        2        1
+INDEX                UNIQUE SCAN    I_TS1                         1        1        1
+TABLE ACCESS         FULL           UNDO$                         2        2        5
+TABLE ACCESS         CLUSTER        SEG$                          7        7        1
+INDEX                UNIQUE SCAN    I_FILE#_BLOCK#                                  1
+INDEX                UNIQUE SCAN    I_FILE2                                         1
+TABLE ACCESS         CLUSTER        USER$                         1        1        1
+INDEX                UNIQUE SCAN    I_USER#                                         1
+NESTED LOOPS         OUTER                                       61       61        3
+NESTED LOOPS                                                     58       58        3
+NESTED LOOPS                                                     58       58       64
+TABLE ACCESS         BY INDEX ROWID TS$                           2        2        1
+INDEX                UNIQUE SCAN    I_TS1                         1        1        1
+TABLE ACCESS         CLUSTER        SEG$                         56       56       64
+INDEX                RANGE SCAN     I_FILE#_BLOCK#                2        2      158
+INDEX                UNIQUE SCAN    I_FILE2                                         1
+TABLE ACCESS         CLUSTER        USER$                         1        1        1
+INDEX                UNIQUE SCAN    I_USER#                                         1
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 06    60      0       2        22        108,253          424        22 SQL*Plus
+11/09 07    60      1       3        22        108,253        1,016        22 SQL*Plus
+11/09 08    60      0       4        22        108,253          920        22 SQL*Plus
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        180      1       9        66        324,759        2,360        66
+
+=======================================================================================================
+                            SQL 597695447
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT MAX(A.KY_PND_SEQ_TRANS) FROM CPM_PND_TRAN_HDR A JOIN (SEL from
+ECT KY_SUPPLIER, KY_UTILITY_NAME, KY_ENROLL FROM ACCOUNT) B ON A from
+.KY_ENROLL = B.KY_ENROLL WHERE A.KY_ENROLL = :B1 AND A.CD_TRAN_S where
+TATUS = '75'
+
+FIRST TIME = 2012-11-09 06:08
+MODULE     = perl@rp4440-g (TNS V1-V3)
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                 15
+SORT                 AGGREGATE                                                      1
+NESTED LOOPS                                                     15       15       11
+INDEX                UNIQUE SCAN    ACCOUNT_PK                    2        2        1
+TABLE ACCESS         BY INDEX ROWID CPM_PND_TRAN_HDR             13       13       11
+INDEX                RANGE SCAN     CPM_PND_TRAN_HDR_IX3          2        2       11
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CPM_PND_TRAN_HDR     17125700    194 11/04/12 01:37    1%    3475    3472    3961   20   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CPM_PND_TRAN_HDR   CPM_PND_TRAN_HDR_IX1            0   1 KY_BA                  1001    3518
+                   CPM_PND_TRAN_HDR_IX1            0   1 CD_TRAN_STATUS           12       0
+                   0
+
+                                                       2 CD_TRAN_TYPE_867          7       0
+                                                       3 CD_PURPOSE                2       0
+                   CPM_PND_TRAN_HDR_IX2            0   1 KY_SUPPLIER              14       0
+                   CPM_PND_TRAN_HDR_IX3            0   1 KY_ENROLL              1001    3518
+                   CPM_PND_TRAN_HDR_IX4            0   1 ID_TRANS_REF_NUM_8     5641       0
+                                                         67
+
+                   CPM_PND_TRAN_HDR_IX5            0   1 ID_EDC_ACCT_NUM        4361       0
+                   CPM_PND_TRAN_HDR_IX6            0   1 CD_TRAN_STATUS           12       0
+                                                       2 KY_PND_SEQ_TRANS       5752       0
+                   CPM_PND_TRAN_HDR_IX7            0   1 ID_TRANS_REF_NUM_8     2246     325
+                                                         10
+
+                   CPM_PND_TRAN_HDR_IX8            0   1 KY_ROW_SEQ_TRANS_8     2239    3343
+                                                         10
+
+                   CPM_PND_TRAN_HDR_IX9            0   1 DT_BILLED_BY_CSS        332    4138
+                   CPM_PND_TRAN_HDR_PK  UNIQ       0   1 KY_PND_SEQ_TRANS       5752       0
+                   MTI_TEST_2                      0   1 KY_SUPPLIER              14       0
+                                                       2 CD_TRAN_STATUS           12       0
+                                                       3 CD_PURPOSE                2       0
+                                                       4 ID_EDC_DUNS              49       0
+                                                       5 KY_ENROLL              1001    3518
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 07    60      5     109     33338        491,555       13,237     33338 perl@rp4440-g (TN
+11/09 08    60      0       0         0              0            0         0 perl@rp4440-g (TN
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        120      5     109     33338        491,555       13,237     33338
+
+=======================================================================================================
+                            SQL 646641888
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+select overload, decode(position,0,'RETURN_VALUE',nvl(argument_n
+ame,chr(0))) name, decode(in_out,'IN',1,'IN/OUT',3,'OUT',decode(
+argument_name,null,6,2),1) direction, decode(data_type, 'BFILE',
+1, 'BLOB',2, 'CHAR',3, 'CLOB',4, 'DATE',6, 'FLOAT',13, 'INTERVAL
+ YEAR TO MONTH',8, 'INTERVAL DAY TO SECOND',7, 'LONG',10, 'LONG
+RAW',9, 'NCHAR',11, 'NCLOB',12, 'NUMBER',13, 'NVARCHAR2',14, 'RA
+W',15, 'REF CURSOR',5, 'ROWID',16, 'TIMESTAMP',18, 'TIMESTAMP WI
+TH LOCAL TIME ZONE',19, 'TIMESTAMP WITH TIME ZONE',20, 'VARCHAR2
+',22,22) oracletype, decode(data_type, 'CHAR',2000, 'LONG',21474
+83647, 'LONG RAW',2147483647, 'NCHAR',4000, 'NVARCHAR2',4000, 'R
+AW',2000, 'VARCHAR2',2000,0) length, nvl(data_precision, 255) pr
+ecision, nvl(data_scale, 255) scale from all_arguments where dat from
+a_level = 0 and data_type is not null and owner = 'PVIEW' and pa
+ckage_name is null and object_name = 'GET_SUPPIER_DUNS_SECURITY'
+  order by overload, position
+
+FIRST TIME = 2012-11-09 05:31
+MODULE     = PPLS.EDI.DocumentLoader.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                160
+SORT                 ORDER BY                                   160      160        1
+FILTER
+HASH JOIN                                                       144      144        1
+NESTED LOOPS                                                     41       41      200
+TABLE ACCESS         BY INDEX ROWID USER$                         2        2        1
+INDEX                UNIQUE SCAN    I_USER1                       1        1        1
+TABLE ACCESS         BY INDEX ROWID OBJ$                         39       39      200
+INDEX                RANGE SCAN     I_OBJ2                        2        2     1444
+TABLE ACCESS         FULL           ARGUMENT$                   102      102      974
+FIXED TABLE          FULL           X$KZSPR                      11                 1
+NESTED LOOPS                                                     13       13        1
+INDEX                RANGE SCAN     I_OBJAUTH1                    2        2        1
+FIXED TABLE          FULL           X$KZSRO                      11                 1
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 07    60      0       0         1          1,715            0         2 PPLS.EDI.Document
+11/09 08    60      1       1         1          1,715          323         2 PPLS.EDI.Document
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        120      1       1         2          3,430          323         4
+
+=======================================================================================================
+                            SQL 761536809
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT COUNT(*) FROM PPLSCIS.CIS_COLLECTIONS_QUEUE CQ JOIN ENROL from
+L E ON CQ.KY_SUPPLIER = E.KY_SUPPLIER AND CQ.KY_ENROLL = E.KY_EN
+ROLL WHERE CQ.KY_SUPPLIER = :B2 AND CQ.CD_QUEUE_STATUS = :B1     where
+
+FIRST TIME = 2012-11-09 07:48
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                199
+SORT                 AGGREGATE                                                      1
+HASH JOIN                                                       199      199      612
+TABLE ACCESS         BY INDEX ROWID CIS_COLLECTIONS_QUEU         21       21      612
+                                    E
+
+INDEX                RANGE SCAN     CIS_COLLECTIONS_QUEU          1        1      612
+                                    E_IDX_2
+
+INDEX                RANGE SCAN     ENROLL_IDX2                 177      177    62395
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CIS_COLLECTIONS_QU      24461    162 07/11/11 20:28    4%       5       4       4   10   40
+EUE
+
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 08    60      0       0        14             42            0        14 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60      0       0        14             42            0        14
+
+=======================================================================================================
+                            SQL 865148149
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT SUM(AT_CHARGE) FROM BILL_CHARGE_DTL WHERE KY_BILL = :B1   from
+
+FIRST TIME = 2012-11-09 06:15
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                  4
+SORT                 AGGREGATE                                                      1
+TABLE ACCESS         BY INDEX ROWID BILL_CHARGE_DTL               4        4        2
+INDEX                RANGE SCAN     BILL_CH_DTL_IDX               3        3        2
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+BILL_CHARGE_DTL      38820479     47 11/03/12 03:08  100%    1918    1916    1933   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+BILL_CHARGE_DTL    BILL_CHARGE_DTL_IDX             8   1 KY_ENROLL             12279       0
+                                                       2 KY_SUPPLIER              13       0
+                   BILL_CHARGE_DTL_PK   UNIQ       5   1 KY_BILL_CHARGE_DTL   292699       0
+                   BILL_CHARGE_DTL_UQ_I            0   1 KY_SR_SEQ_NO           6171  283809
+                   X
+
+                   BILL_CH_DTL_IDX                10   1 KY_BILL              134923       0
+                                                       2 KY_ENROLL             12279       0
+                                                       3 KY_SUPPLIER              13       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 07    60      1      16       892          3,587        1,711       892 w3wp.exe
+11/09 07    60      1      16       892          3,587        1,711       892 w3wp.exe
+11/09 08    60      1      49      2818         11,559        4,841      2818 w3wp.exe
+11/09 08    60      1      49      2818         11,559        4,841      2818 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        240      4     130      7420         30,292       13,104      7420
+
+=======================================================================================================
+                            SQL 997201943
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+DELETE FROM PPLSCIS.CIS_COLLECTIONS_QUEUE WHERE KY_ENROLL IN (SE from
+LECT A.KY_ENROLL FROM PPLSCIS.CIS_COLLECTIONS_QUEUE A JOIN ENROL from
+L E ON A.KY_ENROLL = E.KY_ENROLL WHERE E.KY_UTILITY_PROGRAM ='NO where
+PE')
+
+FIRST TIME = 2012-11-09 06:24
+MODULE     = perl@rp4440-g (TNS V1-V3)
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+DELETE STATEMENT                                               4814
+DELETE
+HASH JOIN            SEMI                                      4814     4814    24461
+TABLE ACCESS         FULL           CIS_COLLECTIONS_QUEU         55       55    24461
+                                    E
+
+VIEW                                                           4723             24461
+NESTED LOOPS                                                   4723     4723    24461
+TABLE ACCESS         FULL           ENROLL                     4723     4723    90394
+INDEX                UNIQUE SCAN    CIS_COLLECTIONS_QUEU                            1
+                                    E_UK
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+ENROLL                1871844    199 11/03/12 05:21  100%     386     384     418   15   40
+CIS_COLLECTIONS_QU      24461    162 07/11/11 20:28    4%       5       4       4   10   40
+EUE
+
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+ENROLL             ENROLL_CONTRACT_IDX             1   1 TX_CONTRACT_NAME       1842   10370
+                   ENROLL_IDX                      1   1 KY_ENROLL             17489       0
+                                                       2 KY_SUPPLIER              15       0
+                   ENROLL_PK            UNIQ       1   1 KY_ENROLL             17489       0
+                   ENROLL_TID_IDX                  0   1 TX_TRACKING_ID         3076   10500
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 07    60     41     178         7      3,991,085      297,126         0 perl@rp4440-g (TN
+11/09 08    60      0       0         0              0            0         0 perl@rp4440-g (TN
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        120     41     178         7      3,991,085      297,126         0
+
+=======================================================================================================
+                            SQL 1116368370
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+INSERT INTO STATS$SQLTEXT ( HASH_VALUE , TEXT_SUBSET , PIECE , S
+QL_TEXT , ADDRESS , COMMAND_TYPE , LAST_SNAP_ID ) SELECT ST1.HAS
+H_VALUE , SS.TEXT_SUBSET , ST1.PIECE , ST1.SQL_TEXT , ST1.ADDRES
+S , ST1.COMMAND_TYPE , SS.SNAP_ID FROM V$SQLTEXT ST1 , STATS$SQL from
+_SUMMARY SS WHERE SS.SNAP_ID = :B3 AND SS.DBID = :B2 AND SS.INST where
+ANCE_NUMBER = :B1 AND ST1.HASH_VALUE = SS.HASH_VALUE AND ST1.ADD
+RESS = SS.ADDRESS AND NOT EXISTS (SELECT 1 FROM STATS$SQLTEXT ST from
+2 WHERE ST2.HASH_VALUE = SS.HASH_VALUE AND ST2.TEXT_SUBSET = SS. where
+TEXT_SUBSET ) ORDER BY ST1.HASH_VALUE,SS.TEXT_SUBSET
+
+FIRST TIME = 2012-11-09 06:00
+MODULE     =
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+INSERT STATEMENT                                                 30
+SORT                 ORDER BY                                    30       30        1
+TABLE ACCESS         BY INDEX ROWID STATS$SQL_SUMMARY             3        3        1
+NESTED LOOPS                                                     14       14        1
+FIXED TABLE          FULL           X$KGLNA                      11                 1
+INDEX                RANGE SCAN     STATS$SQL_SUMMARY_PK          2        2        1
+INDEX                RANGE SCAN     STATS$SQLTEXT_PK              3        3        1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+STATS$SQL_SUMMARY      312463    134 07/16/12 13:53  100%     310     310      42    5   40
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 07    60      3      39         1        334,405        4,278       454
+11/09 08    60      3      61         1        327,878        5,519      1099
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        120      6     100         2        662,283        9,797      1553
+
+=======================================================================================================
+                            SQL 1375825383
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+select column_name, data_type                   from all_tab_col from
+umns                 where owner = :p_schema                 and where
+ table_name = :p_obj                 order by column_id
+
+FIRST TIME = 2012-11-09 07:08
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                 26
+SORT                 ORDER BY                                    26       26        1
+FILTER
+NESTED LOOPS         OUTER                                       10       10        1
+NESTED LOOPS         OUTER                                        9        9        1
+NESTED LOOPS         OUTER                                        7        7        1
+NESTED LOOPS         OUTER                                        6        6        1
+NESTED LOOPS                                                      5        5        1
+NESTED LOOPS                                                      4        4        1
+TABLE ACCESS         BY INDEX ROWID USER$                         2        2        1
+INDEX                UNIQUE SCAN    I_USER1                       1        1        1
+TABLE ACCESS         BY INDEX ROWID OBJ$                          2        2        1
+INDEX                RANGE SCAN     I_OBJ2                        1        1        1
+TABLE ACCESS         CLUSTER        COL$                          1        1        1
+INDEX                UNIQUE SCAN    I_OBJ#                                          1
+TABLE ACCESS         CLUSTER        COLTYPE$                      1        1        1
+INDEX                RANGE SCAN     I_HH_OBJ#_INTCOL#             1        1        1
+TABLE ACCESS         BY INDEX ROWID OBJ$                          2        2        1
+INDEX                RANGE SCAN     I_OBJ3                        1        1       39
+TABLE ACCESS         CLUSTER        USER$                         1        1        1
+INDEX                UNIQUE SCAN    I_USER#                                         1
+TABLE ACCESS         CLUSTER        TAB$                          2        2        1
+INDEX                UNIQUE SCAN    I_OBJ#                        1        1        1
+NESTED LOOPS                                                     13       13        1
+INDEX                RANGE SCAN     I_OBJAUTH1                    2        2        1
+FIXED TABLE          FULL           X$KZSRO                      11                 1
+FIXED TABLE          FULL           X$KZSPR                      11                 1
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 08    60      6       6      5029        762,366            0    136521 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60      6       6      5029        762,366            0    136521
+
+=======================================================================================================
+                            SQL 1395607204
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+UPDATE CIS_COLLECTIONS_QUEUE SET QY_QUEUE_PRIORITY = :B3 WHERE T where
+X_CUSTOMER_NAME = :B2 AND KY_SUPPLIER = :B1
+
+FIRST TIME = 2012-11-09 06:24
+MODULE     = perl@rp4440-g (TNS V1-V3)
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+UPDATE STATEMENT                                                  5
+UPDATE
+INDEX                RANGE SCAN     CIS_COLLECTIONS_QUEU          4        4        2
+                                    E_IDX_3
+
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 07    60     60      59     10531      1,360,451          207     12520 perl@rp4440-g (TN
+11/09 08    60      0       0         0              0            0         0 perl@rp4440-g (TN
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        120     60      59     10531      1,360,451          207     12520
+
+=======================================================================================================
+                            SQL 1431396296
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT ID_USER_GUID_HANDLING FROM PPLSCIS.CIS_COLLECTIONS_Q_FOLL from
+OWUP_TMP WHERE KY_ENROLL = :B1 GROUP BY ID_USER_GUID_HANDLING    where
+
+FIRST TIME = 2012-11-09 06:08
+MODULE     = perl@rp4440-g (TNS V1-V3)
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                 18
+SORT                 GROUP BY                                    18       18        1
+TABLE ACCESS         FULL           CIS_COLLECTIONS_Q_FO          2        2        1
+                                    LLOWUP_TMP
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CIS_COLLECTIONS_Q_          0      0 07/11/11 20:28    0%       0       0       0   10   40
+FOLLOWUP_TMP
+
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 07    60     23      25     16669      1,783,583          494       330 perl@rp4440-g (TN
+11/09 08    60      0       0         0              0            0         0 perl@rp4440-g (TN
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        120     23      25     16669      1,783,583          494       330
+
+=======================================================================================================
+                            SQL 1449663171
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT M.CD_MEMBER_TYPE FROM CPM_AGG_MEMBER M, CPM_AGG_HEADER H  from
+WHERE M.KY_ENROLL = :B1 AND TRUNC(SYSDATE) BETWEEN M.DT_EFF_FROM
+ AND M.DT_EFF_TO AND H.KY_CPM_AGG_HEADER = M.KY_CPM_AGG_HEADER A
+ND H.CD_AGG_TYPE IN ('SUMBILL', 'EDCSUMBILL') AND H.CD_AGG_HEADE
+R_STATUS = 'ACTIVE'
+
+FIRST TIME = 2012-11-09 06:49
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                  5
+NESTED LOOPS                                                      5        5        1
+TABLE ACCESS         BY INDEX ROWID CPM_AGG_MEMBER                4        4        1
+INDEX                RANGE SCAN     CPM_AGG_MEMBER_IX1            3        3        1
+TABLE ACCESS         BY INDEX ROWID CPM_AGG_HEADER                1        1        1
+INDEX                UNIQUE SCAN    CPM_AGG_HEADER_PK                               1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CPM_AGG_HEADER           7774    101 11/03/12 10:14  100%       1       1       1   10   40
+CPM_AGG_MEMBER         106427     83 11/03/12 10:14  100%      13      13       9   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CPM_AGG_HEADER     CPM_AGG_HEADER_PK    UNIQ       0   1 KY_CPM_AGG_HEADER        54       0
+                   CPM_AGG_HEADER_U1    UNIQ       0   1 KY_SUPPLIER               4       0
+                                                       2 CD_AGG_TYPE               6       0
+                                                       3 TX_AGG_VALUE             38       0
+CPM_AGG_MEMBER     CPM_AGG_MEMBER_IX1              0   1 KY_ENROLL                41       0
+                                                       2 DT_EFF_FROM               5       0
+                   CPM_AGG_MEMBER_IX2              0   1 KY_CPM_AGG_HEADER        27       0
+                   CPM_AGG_MEMBER_PK    UNIQ       0   1 KY_CPM_AGG_MEMBER        42       0
+                   CPM_AGG_MEMBER_U1    UNIQ       0   1 KY_ENROLL                41       0
+                                                       2 KY_CPM_AGG_HEADER        27       0
+                                                       3 DT_EFF_FROM               5       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 07    60     74     101   1772285      5,687,863        2,899     11143 w3wp.exe
+11/09 08    60      0       0       145            548           18         1 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        120     74     101   1772430      5,688,411        2,917     11144
+
+=======================================================================================================
+                            SQL 1592267977
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT A.KY_BA, :B3 AS ID, A.TX_OWNER_USER_ID, PA.TX_CUSTOMER_NA
+ME, DECODE_CODE (PA.KY_ACCOUNT_TYPE, PA.KY_SUPPLIER, 'ACCOUNT',
+'Y' ) AS TX_SERVICE_TYPE, PA.TX_UTILITY_ACCOUNT, DECODE_CODE (PA
+.KY_UTILITY_NAME, PA.KY_SUPPLIER, 'EDC_NAME', 'Y' ) AS TX_UTILIT
+Y_NAME, UAA.FL_DEFAULT, DECODE (A.TX_OWNER_USER_ID, :B3 , 'Y') A
+S FL_OWNER, P_SS_SECURITY.GET_ACCT_SECURITY_SUM (A.KY_ENROLL) AS
+ QY_SECURITY_SUM, PA.KY_ACCOUNT_TYPE, BA.FL_RECURRING_PAYMENT, P
+VIEW.P_EPAY.GETEPAYELIGIBILITY (A.KY_ENROLL) AS "ePayStatus", KY
+_SS_REGION AS TX_REGION, API_SS_USER_ACCOUNT_ACCESS.GET_ACCOUNT_
+SHARE_STATUS (:B3 , A.TX_OWNER_USER_ID, A.KY_ENROLL ) AS SHAREST
+ATUS, NVL (AT_BALANCE, 0) AS AT_BALANCE, BILLHDR.DT_BILL_DUE DT_
+BILL_DUE FROM SS_EDC_REGION_XREF REG, SS_ACCOUNT A, SS_USER_ACCO from
+UNT_ACCESS UAA, ACCOUNT PA, BILL_ACCOUNT BA, (SELECT T1.KY_ENROL
+L, MAX (T1.DT_BILL_DUE) DT_BILL_DUE FROM BILL_HDR T1 WHERE T1.KY from
+_SUPPLIER = :B1 GROUP BY T1.KY_ENROLL) BILLHDR WHERE A.KY_ENROLL where
+ = UAA.KY_ENROLL AND REG.KY_UTILITY_NAME = PA.KY_UTILITY_NAME AN
+D BILLHDR.KY_ENROLL(+) = PA.KY_ENROLL AND BA.KY_ENROLL = A.KY_EN
+ROLL AND UAA.TX_USER_ID_GRANTED_ACCESS = :B3 AND PA.KY_SUPPLIER
+= :B1 AND PA.KY_ENROLL = A.KY_ENROLL AND (A.KY_BA = :B2 OR :B2 I
+S NULL) ORDER BY PA.TX_CUSTOMER_NAME, A.KY_BA
+
+FIRST TIME = 2012-11-09 06:39
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                161
+SORT                 GROUP BY                                   161      161       17
+NESTED LOOPS         OUTER                                      145      145       17
+NESTED LOOPS                                                    103      103       14
+NESTED LOOPS                                                     75       75       14
+NESTED LOOPS                                                     61       61       14
+NESTED LOOPS                                                     33       33       14
+TABLE ACCESS         BY INDEX ROWID SS_USER_ACCOUNT_ACCE          5        5       14
+                                    SS
+
+INDEX                RANGE SCAN     SS_USER_ACCOUNT_ACCE          3        3       14
+                                    SS_IDX1
+
+TABLE ACCESS         BY INDEX ROWID SS_ACCOUNT                    2        2        1
+INDEX                UNIQUE SCAN    SS_ACCOUNT_PK                 1        1        1
+TABLE ACCESS         BY INDEX ROWID ACCOUNT                       2        2        1
+INDEX                UNIQUE SCAN    ACCOUNT_PK                    1        1        1
+TABLE ACCESS         BY INDEX ROWID SS_EDC_REGION_XREF            1        1        1
+INDEX                UNIQUE SCAN    SS_EDC_REGION_XREF_U                            1
+                                    K
+
+TABLE ACCESS         BY INDEX ROWID BILL_ACCOUNT                  2        2        1
+INDEX                UNIQUE SCAN    BILL_ACCOUNT_PK               1        1        1
+TABLE ACCESS         BY INDEX ROWID BILL_HDR                      3        3        1
+INDEX                RANGE SCAN     BILL_HDR_IDX2                 2        2        1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+ACCOUNT               1850476    202 11/03/12 03:00  100%     398     397     396   10   40
+BILL_ACCOUNT          1741734    110 11/03/12 03:05  100%     206     206     215   15   40
+BILL_HDR             18127548    107 11/03/12 03:46  100%    2136    2132    2055   10   40
+SS_EDC_REGION_XREF         91     57 11/03/12 09:12  100%       0       0       0   10   40
+SS_USER_ACCOUNT_AC     185918     58 11/03/12 09:12  100%      14      14      11   10   40
+CESS
+
+SS_ACCOUNT             876532     87 11/03/12 09:11  100%      86      86      81   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+ACCOUNT            ACCOUNT_PK           UNIQ       1   1 KY_ENROLL             18394       0
+                   ACCT_CITY_IDX                   1   1 TX_SERVICE_CITY        1862       0
+                   ACCT_DOING_IDX                  0   1 TX_DOING_BUSINESS_     1562   15221
+                                                         AS
+
+                   ACCT_IDX                        1   1 KY_ENROLL             18394       0
+                                                       2 KY_SUPPLIER              15       0
+                   ACCT_IDX2                       1   1 TX_UTILITY_ACCOUNT    18134       0
+                   ACCT_NAME_IDX                   1   1 TX_CUSTOMER_NAME       8218       0
+                   IDX_ACCOUNT_1_3COLS             1   1 KY_ENROLL             18394       0
+                                                       2 KY_SUPPLIER              15       0
+                                                       3 TX_CUSTOMER_NAME       8218       0
+BILL_ACCOUNT       BILL_ACCOUNT_PK      UNIQ       0   1 KY_ENROLL             27602       0
+                   BILL_ACCT_IDX                   1   1 KY_ENROLL             27602       0
+                                                       2 KY_SUPPLIER              23       0
+                   BILL_ACCT_IDX2                  1   1 TX_BILLING_NUMBER     27596       1
+BILL_HDR           BILL_HDR_IDX                    5   1 KY_BILL              130470       0
+                                                       2 KY_ENROLL             12056       0
+                                                       3 KY_SUPPLIER              12       0
+                   BILL_HDR_KY_ENROLL_I            3   1 KY_ENROLL             12056       0
+                   DX
+
+                   BILL_HDR_UQ_IX                  0   1 KY_SR_SEQ_NO           1096  129374
+SS_ACCOUNT         SS_ACCOUNT_IDX1                 0   1 TX_OWNER_USER_ID         19    6565
+                   SS_ACCOUNT_PK        UNIQ       0   1 KY_ENROLL              6735       0
+                   SS_ACCOUNT_UK        UNIQ       0   1 KY_BA                  6735       0
+SS_USER_ACCOUNT_AC SS_USER_ACCOUNT_ACCE            0   1 TX_USER_ID_GRANTED       29       0
+CESS               SS_IDX1                               _ACCESS
+
+                   SS_USER_ACCOUNT_ACCE UNIQ       0   1 KY_ENROLL               169       0
+                   SS_PK
+
+                                                       2 TX_USER_ID_GRANTED       29       0
+                                                         _ACCESS
+
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 07    60      3      76         5         60,425       10,630       531 w3wp.exe
+11/09 08    60      7     145        15        193,221       17,687      1697 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        120     10     221        20        253,646       28,317      2228
+
+=======================================================================================================
+                            SQL 1917257782
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT BILLS.AT_BILL_ACCOUNT_BALANCE, BILLS.DT_BILL, BILLS.DT_BI
+LL_DUE FROM (SELECT AT_BILL_ACCOUNT_BALANCE, DT_BILL, DT_BILL_DU from
+E FROM BILL_HDR WHERE KY_ENROLL = :B1 AND KY_BILL_TYPE = '0400'  from
+ORDER BY DT_BILL DESC) BILLS WHERE ROWNUM = 1                    where
+
+FIRST TIME = 2012-11-09 06:08
+MODULE     = perl@rp4440-g (TNS V1-V3)
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                 31
+COUNT                STOPKEY
+VIEW                                                             31                 6
+SORT                 ORDER BY STOPK                              31       31        6
+                     EY
+
+TABLE ACCESS         BY INDEX ROWID BILL_HDR                     15       15        6
+INDEX                RANGE SCAN     BILL_HDR_KY_ENROLL_I          3        3       11
+                                    DX
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+BILL_HDR             18127548    107 11/03/12 03:46  100%    2136    2132    2055   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+BILL_HDR           BILL_HDR_IDX                    5   1 KY_BILL              130470       0
+                                                       2 KY_ENROLL             12056       0
+                                                       3 KY_SUPPLIER              12       0
+                   BILL_HDR_KY_ENROLL_I            3   1 KY_ENROLL             12056       0
+                   DX
+
+                   BILL_HDR_UQ_IX                  0   1 KY_SR_SEQ_NO           1096  129374
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 07    60      4     147     16669        202,309       23,467     16669 perl@rp4440-g (TN
+11/09 08    60      0       0         0              0            0         0 perl@rp4440-g (TN
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        120      4     147     16669        202,309       23,467     16669
+
+=======================================================================================================
+                            SQL 1924677898
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT D.KY_BILL                ||'|'||         D.KY_ENROLL
+                        ||'|'||         D.KY_SUPPLIER
+        ||'|'||         B.ID_GEOCODE                    ||'|'||
+        C.TX_LOCATION                   ||'|'||         C.QY_TAX
+RATE                    ||'|'||         C.TX_DESCRIPTION FROM CP from
+M_PND_TRAN_HDR A, CPM_TAX_LOG_HDR B, CPM_TAX_LOG_DTL C, BILL_HDR
+ D WHERE A.ky_pnd_seq_trans = B.ky_pnd_seq_trans AND B.ky_log_se where
+q = C.ky_log_seq AND A.ky_enroll = D.ky_enroll AND A.dt_billed_b
+y_css = D.dt_bill AND A.cd_tran_status = '75' AND A.cd_purpose I
+N (SELECT ky_cpm_cd_purpose FROM cpm_cd_purpose  WHERE cd_major_ from
+type = 'BILL') AND A.ky_enroll = B.ky_enroll AND A.ky_supplier =
+ B.ky_supplier AND B.ky_enroll = D.ky_enroll AND B.ky_supplier =
+ D.ky_supplier AND A.ky_supplier = 'XOOM' AND B.ky_supplier = 'X
+OOM' AND D.ky_supplier = 'XOOM' AND nvl(A.dt_billed_by_css,sysda
+te) > to_date('01/01/1965 12:00:00 AM','mm/dd/yyyy hh:mi:ss AM')
+ AND nvl(B.dt_billed,sysdate) > to_date('01/01/1965 12:00:00 AM'
+,'mm/dd/yyyy hh:mi:ss AM') AND (A.ts_last_updated > to_date('01/
+01/1965','mm/dd/yyyy hh:mi:ss AM')  OR d.dt_modify > to_date('01
+/01/1965','mm/dd/yyyy hh:mi:ss AM'))
+
+FIRST TIME = 2012-11-09 06:55
+MODULE     = 01@</client37files/PSOL_XOOM_CPM_TAX_LOG
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                              10702
+TABLE ACCESS         BY INDEX ROWID CPM_TAX_LOG_DTL               3        3        2
+NESTED LOOPS                                                  10702    10702        1
+NESTED LOOPS                                                  10699    10699        1
+NESTED LOOPS                                                  10698    10698        1
+MERGE JOIN                                                     7700     7700     1499
+INDEX                RANGE SCAN     BILL_HDR_IDX2              3700     3700   647412
+SORT                 JOIN                                      4000     4000    34937
+TABLE ACCESS         BY INDEX ROWID CPM_TAX_LOG_HDR            3779     3779    34937
+INDEX                RANGE SCAN     CPM_TAX_LOG_HDR_IX1        1280     1280       11
+TABLE ACCESS         BY INDEX ROWID CPM_PND_TRAN_HDR              2        2        1
+INDEX                UNIQUE SCAN    CPM_PND_TRAN_HDR_PK           1        1        1
+TABLE ACCESS         BY INDEX ROWID CPM_CD_PURPOSE                1        1        1
+INDEX                UNIQUE SCAN    CPM_CD_PURPOSE_PK                               1
+INDEX                RANGE SCAN     CPM_TAX_LOG_DTL_AK1           2        2        2
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CPM_PND_TRAN_HDR     17125700    194 11/04/12 01:37    1%    3475    3472    3961   20   40
+CPM_CD_PURPOSE              6     33 11/03/12 10:27  100%       0       0       0   10   40
+CPM_TAX_LOG_HDR      16769677    103 11/03/12 15:14  100%    1823    1811    1830   10   40
+CPM_TAX_LOG_DTL      25307791     68 11/03/12 14:58  100%    1959    1945    1824   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CPM_CD_PURPOSE     CPM_CD_PURPOSE_PK    UNIQ       0   1 KY_CPM_CD_PURPOSE         6       0
+CPM_PND_TRAN_HDR   CPM_PND_TRAN_HDR_IX1            0   1 KY_BA                  1001    3518
+                   CPM_PND_TRAN_HDR_IX1            0   1 CD_TRAN_STATUS           12       0
+                   0
+
+                                                       2 CD_TRAN_TYPE_867          7       0
+                                                       3 CD_PURPOSE                2       0
+                   CPM_PND_TRAN_HDR_IX2            0   1 KY_SUPPLIER              14       0
+                   CPM_PND_TRAN_HDR_IX3            0   1 KY_ENROLL              1001    3518
+                   CPM_PND_TRAN_HDR_IX4            0   1 ID_TRANS_REF_NUM_8     5641       0
+                                                         67
+
+                   CPM_PND_TRAN_HDR_IX5            0   1 ID_EDC_ACCT_NUM        4361       0
+                   CPM_PND_TRAN_HDR_IX6            0   1 CD_TRAN_STATUS           12       0
+                                                       2 KY_PND_SEQ_TRANS       5752       0
+                   CPM_PND_TRAN_HDR_IX7            0   1 ID_TRANS_REF_NUM_8     2246     325
+                                                         10
+
+                   CPM_PND_TRAN_HDR_IX8            0   1 KY_ROW_SEQ_TRANS_8     2239    3343
+                                                         10
+
+                   CPM_PND_TRAN_HDR_IX9            0   1 DT_BILLED_BY_CSS        332    4138
+                   CPM_PND_TRAN_HDR_PK  UNIQ       0   1 KY_PND_SEQ_TRANS       5752       0
+                   MTI_TEST_2                      0   1 KY_SUPPLIER              14       0
+                                                       2 CD_TRAN_STATUS           12       0
+                                                       3 CD_PURPOSE                2       0
+                                                       4 ID_EDC_DUNS              49       0
+                                                       5 KY_ENROLL              1001    3518
+CPM_TAX_LOG_DTL    CPM_TAX_LOG_DTL_AK1             0   1 KY_LOG_SEQ              163       0
+                   CPM_TAX_LOG_DTL_PK   UNIQ       0   1 KY_LOG_DTL_SEQ          453       0
+CPM_TAX_LOG_HDR    CPM_TAX_LOG_HDR_IX1             0   1 KY_SUPPLIER               8       0
+                                                       2 DT_BILLED                50     114
+                   CPM_TAX_LOG_HDR_IX2             0   1 KY_ENROLL               104       0
+                   CPM_TAX_LOG_HDR_IX3             0   1 KY_EXTRN_KEY            175       0
+                   CPM_TAX_LOG_HDR_IX4             0   1 KY_PND_SEQ_TRANS        124      53
+                   CPM_TAX_LOG_HDR_IX5             0   1 KY_BA                   105       0
+                   CPM_TAX_LOG_HDR_PK   UNIQ       0   1 KY_LOG_SEQ              177       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 07    60     73     295         0     13,171,566       31,231    457608 01@</client37file
+11/09 08    60      0       0         0              0            0         0 01@</client37file
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        120     73     295         0     13,171,566       31,231    457608
+
+=======================================================================================================
+                            SQL 1981022226
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT * FROM SS_ACCOUNT WHERE KY_ENROLL = :B1                   from
+
+FIRST TIME = 2012-11-09 06:49
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                  3
+TABLE ACCESS         BY INDEX ROWID SS_ACCOUNT                    3        3        1
+INDEX                UNIQUE SCAN    SS_ACCOUNT_PK                 2        2        1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+SS_ACCOUNT             876532     87 11/03/12 09:11  100%      86      86      81   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+SS_ACCOUNT         SS_ACCOUNT_IDX1                 0   1 TX_OWNER_USER_ID         19    6565
+                   SS_ACCOUNT_PK        UNIQ       0   1 KY_ENROLL              6735       0
+                   SS_ACCOUNT_UK        UNIQ       0   1 KY_BA                  6735       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 07    60      0       0        33            132            0        33 w3wp.exe
+11/09 08    60     28      29    789078      3,156,572        2,257    789078 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        120     28      29    789111      3,156,704        2,257    789111
+
+=======================================================================================================
+                            SQL 2073515392
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+select overload, decode(position,0,'RETURN_VALUE',nvl(argument_n
+ame,chr(0))) name, decode(in_out,'IN',1,'IN/OUT',3,'OUT',decode(
+argument_name,null,6,2),1) direction, decode(data_type, 'BFILE',
+1, 'BLOB',2, 'CHAR',3, 'CLOB',4, 'DATE',6, 'FLOAT',13, 'INTERVAL
+ YEAR TO MONTH',8, 'INTERVAL DAY TO SECOND',7, 'LONG',10, 'LONG
+RAW',9, 'NCHAR',11, 'NCLOB',12, 'NUMBER',13, 'NVARCHAR2',14, 'RA
+W',15, 'REF CURSOR',5, 'ROWID',16, 'TIMESTAMP',18, 'TIMESTAMP WI
+TH LOCAL TIME ZONE',19, 'TIMESTAMP WITH TIME ZONE',20, 'VARCHAR2
+',22,22) oracletype, decode(data_type, 'CHAR',2000, 'LONG',21474
+83647, 'LONG RAW',2147483647, 'NCHAR',4000, 'NVARCHAR2',4000, 'R
+AW',2000, 'VARCHAR2',2000,0) length, nvl(data_precision, 255) pr
+ecision, nvl(data_scale, 255) scale from all_arguments where dat from
+a_level = 0 and data_type is not null and owner = 'PPLSCIS' and
+package_name = 'P_CIS_LOGGING' and object_name = 'LOG_WEB_EVENT'
+  order by overload, position
+
+FIRST TIME = 2012-11-09 05:50
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                160
+SORT                 ORDER BY                                   160      160        1
+FILTER
+HASH JOIN                                                       144      144        1
+NESTED LOOPS                                                     41       41      200
+TABLE ACCESS         BY INDEX ROWID USER$                         2        2        1
+INDEX                UNIQUE SCAN    I_USER1                       1        1        1
+TABLE ACCESS         BY INDEX ROWID OBJ$                         39       39      200
+INDEX                RANGE SCAN     I_OBJ2                        2        2     1444
+TABLE ACCESS         FULL           ARGUMENT$                   102      102      974
+FIXED TABLE          FULL           X$KZSPR                      11                 1
+NESTED LOOPS                                                     13       13        1
+INDEX                RANGE SCAN     I_OBJAUTH1                    2        2        1
+FIXED TABLE          FULL           X$KZSRO                      11                 1
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 06    60      1       2         4          5,488        1,111        36 w3wp.exe
+11/09 07    60      0       1         1          1,372        1,111         9 w3wp.exe
+11/09 08    60      0       0         0              0            0         0 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        180      1       3         5          6,860        2,222        45
+
+=======================================================================================================
+                            SQL 2321524863
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT KY_CUSTOMER_CONTACT ||'|'||KY_ENROLL ||'|'||KY_SUPPLIER |
+|'|'||KY_CALL_REP ||'|'||KY_CONTACT_TYPE ||'|'||TX_REQUESTED_BY
+||'|'||REPLACE(REPLACE(TX_REMARKS,CHR(10)),CHR(13)) ||'|'||TO_CH
+AR(DT_CONTACT,'mm/dd/yyyy') ||'|'||TO_CHAR(DT_MODIFY,'mm/dd/yyyy
+ hh:mi:ss am') DATA FROM CUSTOMER_CONTACT WHERE KY_SUPPLIER = :B from
+2 AND DT_MODIFY > TO_DATE(:B1 ,'mm/dd/yyyy hh:mi:ss AM')
+
+FIRST TIME = 2012-11-09 06:39
+MODULE     = 01@<SOL_EXELON_CUSTOMER_CONTACT_AND_CALL
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                              34775
+TABLE ACCESS         FULL           CUSTOMER_CONTACT          34775    34775    33998
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CUSTOMER_CONTACT     19039068    119 11/03/12 04:54  100%    2826    2825    2401   10   40
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 07    60     55     127         1      1,857,490      329,490   1520929 01@<SOL_EXELON_CU
+11/09 08    60      0       0         0              0            0         0 01@<SOL_EXELON_CU
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        120     55     127         1      1,857,490      329,490   1520929
+
+=======================================================================================================
+                            SQL 2472701388
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT ACCT.KY_ENROLL, ARREARAGE.TX_BILLING_NUMBER, ACCT.TX_UTIL
+ITY_ACCOUNT, ACCT.TX_CUSTOMER_NAME, ACCT.TX_DAY_PHONE_AREA || '-
+' || ACCT.TX_DAY_PHONE "TX_DAY_PHONE", ACCT.KY_UTILITY_NAME, ACC
+T.KY_SERVICE_STATE, NVL(BA.KY_BILLING_STATUS, 'N/A') "KY_BILLING
+_STATUS", BA.KY_BILL_OPTION, BA.KY_CUSTOMER_CARE, ARREARAGE.DT_B
+ILL, ARREARAGE.DT_DUE, TO_NUMBER(TRUNC(SYSDATE) - TO_DATE(ARREAR
+AGE.DT_DUE, 'YYYY-MM-DD')) "QY_DAYS_OVERDUE", ARREARAGE.AT_DB "A
+T_BILL", ARREARAGE.AT_REMN_DB "AT_OVERDUE", ENR.KY_ACCOUNT_MANAG
+ER "KY_ACCOUNT_MANAGER", ENR.KY_SERVICE_LEVEL FROM ( SELECT --+  from
+USE_HASH(B C ACCT_INFO)  LPAD(TO_CHAR(ACCT_INFO.KY_BA), 10, '0')
+ TX_BILLING_NUMBER, MIN(ACCT_INFO.DT_BILL) DT_BILL, ACCT_INFO.AT
+_DB AT_DB, SUM(ACCT_INFO.AT_REMN_DB) AT_REMN_DB, ACCT_INFO.KY_SU
+PPLIER_ID, MIN(B.DT_DUE) DT_DUE, C.DT_TARGET_END_CALC, (TO_DATE(
+MIN(B.DT_DUE), 'YYYY-MM-DD') + :B1 ) PAST_DUE_DATE FROM BILL_INF from
+O_HDR@CL2X B, TARGET_CONTRACT@CL2X C, ACCT_INFO WHERE ACCT_INFO. where
+KY_BA = B.KY_BA AND ACCT_INFO.DT_BILL = B.DT_BILL AND B.KY_BA =
+C.KY_BA AND (B.DT_DUE <= TO_CHAR(SYSDATE - :B1 , 'YYYY-MM-DD'))
+GROUP BY ACCT_INFO.KY_SUPPLIER_ID,ACCT_INFO.AT_DB, C.DT_TARGET_E
+ND_CALC,ACCT_INFO.KY_BA ) ARREARAGE JOIN BILL_ACCOUNT BA ON BA.T
+X_BILLING_NUMBER = ARREARAGE.TX_BILLING_NUMBER JOIN ACCOUNT ACCT
+ ON ACCT.KY_ENROLL = BA.KY_ENROLL JOIN ENROLL ENR ON ACCT.KY_ENR
+OLL = ENR.KY_ENROLL WHERE ACCT.KY_ENROLL NOT IN (SELECT KY_ENROL where
+L FROM PPLSCIS.CIS_COLLECTIONS_QUEUE_LOG WHERE DT_CALL_COMPLETED from
+ > TRUNC(SYSDATE) - 5) AND ARREARAGE.AT_REMN_DB >= :B2 ORDER BY
+ACCT.TX_CUSTOMER_NAME, ARREARAGE.DT_BILL
+
+FIRST TIME = 2012-11-09 06:03
+MODULE     = perl@rp4440-g (TNS V1-V3)
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                              68875
+SORT                 ORDER BY                                 68875    68875       18
+HASH JOIN            ANTI                                     68859    68859       18
+NESTED LOOPS                                                  68856    68856       18
+NESTED LOOPS                                                  68820    68820       18
+NESTED LOOPS                                                  68784    68784       18
+VIEW                                                          68730                18
+FILTER
+SORT                 GROUP BY                                 68730    68730       18
+HASH JOIN                                                     68712    68712      344
+HASH JOIN                                                     67569    67569      344
+TABLE ACCESS         FULL           ACCT_INFO                    72       72     4570
+REMOTE                                                        67284            892035
+REMOTE                                                         1101           1737092
+TABLE ACCESS         BY INDEX ROWID BILL_ACCOUNT                  3        3        1
+INDEX                RANGE SCAN     BILL_ACCT_IDX2                2        2        1
+TABLE ACCESS         BY INDEX ROWID ACCOUNT                       2        2        1
+INDEX                UNIQUE SCAN    ACCOUNT_PK                    1        1        1
+TABLE ACCESS         BY INDEX ROWID ENROLL                        2        2        1
+INDEX                UNIQUE SCAN    ENROLL_PK                     1        1        1
+TABLE ACCESS         FULL           CIS_COLLECTIONS_QUEU          2        2        1
+                                    E_LOG
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+ACCOUNT               1850476    202 11/03/12 03:00  100%     398     397     396   10   40
+BILL_ACCOUNT          1741734    110 11/03/12 03:05  100%     206     206     215   15   40
+ENROLL                1871844    199 11/03/12 05:21  100%     386     384     418   15   40
+ACCT_INFO                4570     48 11/03/12 03:04  100%       7       6       0   10   40
+CIS_COLLECTIONS_QU          0      0 07/11/11 20:28    0%       0       0       0   10   40
+EUE_LOG
+
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+ACCOUNT            ACCOUNT_PK           UNIQ       1   1 KY_ENROLL             18394       0
+                   ACCT_CITY_IDX                   1   1 TX_SERVICE_CITY        1862       0
+                   ACCT_DOING_IDX                  0   1 TX_DOING_BUSINESS_     1562   15221
+                                                         AS
+
+                   ACCT_IDX                        1   1 KY_ENROLL             18394       0
+                                                       2 KY_SUPPLIER              15       0
+                   ACCT_IDX2                       1   1 TX_UTILITY_ACCOUNT    18134       0
+                   ACCT_NAME_IDX                   1   1 TX_CUSTOMER_NAME       8218       0
+                   IDX_ACCOUNT_1_3COLS             1   1 KY_ENROLL             18394       0
+                                                       2 KY_SUPPLIER              15       0
+                                                       3 TX_CUSTOMER_NAME       8218       0
+BILL_ACCOUNT       BILL_ACCOUNT_PK      UNIQ       0   1 KY_ENROLL             27602       0
+                   BILL_ACCT_IDX                   1   1 KY_ENROLL             27602       0
+                                                       2 KY_SUPPLIER              23       0
+                   BILL_ACCT_IDX2                  1   1 TX_BILLING_NUMBER     27596       1
+ENROLL             ENROLL_CONTRACT_IDX             1   1 TX_CONTRACT_NAME       1842   10370
+                   ENROLL_IDX                      1   1 KY_ENROLL             17489       0
+                                                       2 KY_SUPPLIER              15       0
+                   ENROLL_PK            UNIQ       1   1 KY_ENROLL             17489       0
+                   ENROLL_TID_IDX                  0   1 TX_TRACKING_ID         3076   10500
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 07    60    486    2117         6        158,004       18,009     16669 perl@rp4440-g (TN
+11/09 08    60      0       0         0              0            0         0 perl@rp4440-g (TN
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        120    486    2117         6        158,004       18,009     16669
+
+=======================================================================================================
+                            SQL 2694969192
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+DELETE FROM ACCT_INFO                                            from
+
+FIRST TIME = 2012-11-09 06:02
+MODULE     = perl@rp4440-g (TNS V1-V3)
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+DELETE STATEMENT                                                 72
+DELETE
+TABLE ACCESS         FULL           ACCT_INFO                    72       72     4570
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+ACCT_INFO                4570     48 11/03/12 03:04  100%       7       6       0   10   40
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 07    60      6      19         6      1,207,362        4,362    197401 perl@rp4440-g (TN
+11/09 08    60      0       0         0              0            0         0 perl@rp4440-g (TN
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        120      6      19         6      1,207,362        4,362    197401
+
+=======================================================================================================
+                            SQL 2777117154
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT ky_bill       ||'|'||  ky_enroll      ||'|'||  ky_supplie
+r     ||'|'||  ky_charge_type   ||'|'||  at_charge      ||'|'||
+ TO_CHAR(dt_modify,'mm/dd/yyyy hh:mi:ss AM') FROM bill_charge_dt from
+l WHERE ky_supplier = 'TESI' and dt_modify > to_date('11/08/2007 where
+','mm/dd/yyyy hh:mi:ss AM')
+
+FIRST TIME = 2012-11-09 06:32
+MODULE     = 01@</client14files/PSOL_TESI_BILL_CHARGE
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                              23584
+TABLE ACCESS         FULL           BILL_CHARGE_DTL           23584    23584   733855
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+BILL_CHARGE_DTL      38820479     47 11/03/12 03:08  100%    1918    1916    1933   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+BILL_CHARGE_DTL    BILL_CHARGE_DTL_IDX             8   1 KY_ENROLL             12279       0
+                                                       2 KY_SUPPLIER              13       0
+                   BILL_CHARGE_DTL_PK   UNIQ       5   1 KY_BILL_CHARGE_DTL   292699       0
+                   BILL_CHARGE_DTL_UQ_I            0   1 KY_SR_SEQ_NO           6171  283809
+                   X
+
+                   BILL_CH_DTL_IDX                10   1 KY_BILL              134923       0
+                                                       2 KY_ENROLL             12279       0
+                                                       3 KY_SUPPLIER              13       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 07    60     45      66         0        281,296       58,879   3349492 01@</client14file
+11/09 08    60      0       0         0              0            0         0 01@</client14file
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        120     45      66         0        281,296       58,879   3349492
+
+=======================================================================================================
+                            SQL 2839786585
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT HDR.KY_PND_SEQ_TRANS, HDR.KY_SUPPLIER, SUPPLIER.TX_SUPPLI
+ER_NAME "SupplierNameLookup", HDR.CD_TRAN_STATUS, STATUS.TX_DESC
+RIPTION "TranStatusLookup", HDR.ID_EDC_DUNS, HDR.ID_EDC_ACCT_NUM
+, HDR.ID_BA_ESCO, HDR.KY_BA, HDR.KY_ENROLL, HDR.ID_TRANS_REF_NUM
+_867, HDR.ID_TRANS_REF_NUM_810, HDR.CD_TRAN_TYPE_867, TRANTYPE.T
+X_DESCRIPTION "TranTypeLookup", HDR.KY_ROW_SEQ_TRANS_810, HDR.DT
+_PERIOD_START, HDR.DT_PERIOD_END, HDR.CD_PURPOSE, PURPOSE.TX_DES
+CRIPTION "PurposeLookup", HDR.CD_FAULT_REASON, FAULTREASON.TX_DE
+SCRIPTION "FaultReasonLookup", HDR.FL_SOLUTION_FAULT, HDR.CD_BIL
+L_TYPE, HDR.CD_BILL_CALC_METHOD, BO.KY_CPM_CD_BILL_OPTION "BillO
+ptionLookup", HDR.DT_DOC_DUE, HDR.FL_RETAG, HDR.FL_INTERNAL_REBI
+LL, HDR.CD_FINAL, FINAL.TX_DESCRIPTION "FinalLookup", HDR.CD_SER
+VICE, SERVICE.TX_DESCRIPTION "AcctTypeLookup", HDR.TX_COMMENT, H
+DR.TS_SENT_TO_CSS, HDR.DT_BILLED_BY_CSS, HDR.TS_LAST_UPDATED, HD
+R.TS_CREATED, HDR.ROWID "RowIdentifier", CALC_CHECKSUM('CUSTPRO'
+, 'cpm_pnd_tran_hdr', HDR.ROWID) "CheckSum", HDR.TS_IDR_START, H
+DR.TS_IDR_END FROM CPM_PND_TRAN_HDR HDR, CPM_SUPPLIER_NAME SUPPL from
+IER, CPM_CD_TRAN_STATUS STATUS, CPM_CD_TRAN_TYPE TRANTYPE, CPM_C
+D_PURPOSE PURPOSE, CPM_CD_FAULT_REASON FAULTREASON, CPM_CD_BILL_
+OPTION BO, CPM_CD_FINAL FINAL, CPM_CD_SERVICE SERVICE WHERE HDR. where
+KY_ENROLL = :B1 AND HDR.KY_SUPPLIER = SUPPLIER.KY_SUPPLIER(+) AN
+D HDR.CD_TRAN_STATUS = STATUS.CD_TRAN_STATUS(+) AND HDR.CD_TRAN_
+TYPE_867 = TRANTYPE.KY_CPM_CD_TRAN_TYPE(+) AND HDR.CD_PURPOSE =
+PURPOSE.KY_CPM_CD_PURPOSE(+) AND HDR.CD_FAULT_REASON = FAULTREAS
+ON.KY_CPM_CD_FAULT_REASON(+) AND HDR.CD_BILL_TYPE = BO.CD_BILL_T
+YPE(+) AND HDR.CD_BILL_CALC_METHOD = BO.CD_BILL_CALC_METHOD(+) A
+ND HDR.CD_FINAL = FINAL.KY_CPM_CD_FINAL(+) AND HDR.CD_SERVICE =
+SERVICE.KY_CPM_CD_SERVICE(+) ORDER BY HDR.TS_CREATED DESC
+
+FIRST TIME = 2012-11-09 07:08
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                118
+SORT                 ORDER BY                                   118      118       11
+NESTED LOOPS         OUTER                                      102      102       11
+NESTED LOOPS         OUTER                                       91       91       11
+NESTED LOOPS         OUTER                                       80       80       11
+NESTED LOOPS         OUTER                                       69       69       11
+NESTED LOOPS         OUTER                                       58       58       11
+NESTED LOOPS         OUTER                                       47       47       11
+NESTED LOOPS         OUTER                                       36       36       11
+NESTED LOOPS         OUTER                                       25       25       11
+TABLE ACCESS         BY INDEX ROWID CPM_PND_TRAN_HDR             14       14       11
+INDEX                RANGE SCAN     CPM_PND_TRAN_HDR_IX3          3        3       11
+TABLE ACCESS         BY INDEX ROWID CPM_CD_FINAL                  1        1        1
+INDEX                UNIQUE SCAN    CPM_CD_FINAL_PK                                 1
+TABLE ACCESS         BY INDEX ROWID CPM_CD_SERVICE                1        1        1
+INDEX                UNIQUE SCAN    CPM_CD_SERVICE_PK                               1
+TABLE ACCESS         BY INDEX ROWID CPM_CD_BILL_OPTION            1        1        1
+INDEX                UNIQUE SCAN    CPM_CD_BILL_OPTION_A                            1
+                                    K1
+
+TABLE ACCESS         BY INDEX ROWID CPM_CD_PURPOSE                1        1        1
+INDEX                UNIQUE SCAN    CPM_CD_PURPOSE_PK                               1
+TABLE ACCESS         BY INDEX ROWID CPM_CD_TRAN_TYPE              1        1        1
+INDEX                UNIQUE SCAN    CPM_CD_TRAN_TYPE_PK                             1
+TABLE ACCESS         BY INDEX ROWID CPM_CD_FAULT_REASON           1        1        1
+INDEX                UNIQUE SCAN    CPM_CD_FAULT_REASON_                            1
+                                    PK
+
+TABLE ACCESS         BY INDEX ROWID CPM_CD_TRAN_STATUS            1        1        1
+INDEX                UNIQUE SCAN    CPM_CD_TRAN_STATUS_P                            1
+                                    K
+
+TABLE ACCESS         BY INDEX ROWID CPM_SUPPLIER_NAME             1        1        1
+INDEX                UNIQUE SCAN    CPM_SUPPLIER_NAME_PK                            1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CPM_SUPPLIER_NAME          36     34 11/03/12 14:58  100%       0       0       0   10   40
+CPM_PND_TRAN_HDR     17125700    194 11/04/12 01:37    1%    3475    3472    3961   20   40
+CPM_CD_FAULT_REASO         10     38 11/03/12 10:27  100%       0       0       0   10   40
+N
+
+CPM_CD_PURPOSE              6     33 11/03/12 10:27  100%       0       0       0   10   40
+CPM_CD_SERVICE              3     18 11/03/12 10:27  100%       0       0       0   10   40
+CPM_CD_TRAN_STATUS         18     29 11/03/12 10:27  100%       0       0       0   10   40
+CPM_CD_FINAL                2     15 11/03/12 10:27  100%       0       0       0   10   40
+CPM_CD_BILL_OPTION          4     30 11/03/12 10:27  100%       0       0       0   10   40
+CPM_CD_TRAN_TYPE            9     29 11/03/12 10:27  100%       0       0       0   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CPM_CD_BILL_OPTION CPM_CD_BILL_OPTION_A UNIQ       0   1 CD_BILL_TYPE              3       0
+                   K1
+
+                                                       2 CD_BILL_CALC_METHO        2       0
+                                                         D
+
+                   CPM_CD_BILL_OPTION_P UNIQ       0   1 KY_CPM_CD_BILL_OPT        4       0
+                   K                                     ION
+
+CPM_CD_FAULT_REASO CPM_CD_FAULT_REASON_ UNIQ       0   1 KY_CPM_CD_FAULT_RE       10       0
+N                  PK                                    ASON
+
+CPM_CD_FINAL       CPM_CD_FINAL_PK      UNIQ       0   1 KY_CPM_CD_FINAL           2       0
+CPM_CD_PURPOSE     CPM_CD_PURPOSE_PK    UNIQ       0   1 KY_CPM_CD_PURPOSE         6       0
+CPM_CD_SERVICE     CPM_CD_SERVICE_PK    UNIQ       0   1 KY_CPM_CD_SERVICE         3       0
+CPM_CD_TRAN_STATUS CPM_CD_TRAN_STATUS_P UNIQ       0   1 CD_TRAN_STATUS           18       0
+                   K
+
+CPM_CD_TRAN_TYPE   CPM_CD_TRAN_TYPE_PK  UNIQ       0   1 KY_CPM_CD_TRAN_TYP        9       0
+                                                         E
+
+CPM_PND_TRAN_HDR   CPM_PND_TRAN_HDR_IX1            0   1 KY_BA                  1001    3518
+                   CPM_PND_TRAN_HDR_IX1            0   1 CD_TRAN_STATUS           12       0
+                   0
+
+                                                       2 CD_TRAN_TYPE_867          7       0
+                                                       3 CD_PURPOSE                2       0
+                   CPM_PND_TRAN_HDR_IX2            0   1 KY_SUPPLIER              14       0
+                   CPM_PND_TRAN_HDR_IX3            0   1 KY_ENROLL              1001    3518
+                   CPM_PND_TRAN_HDR_IX4            0   1 ID_TRANS_REF_NUM_8     5641       0
+                                                         67
+
+                   CPM_PND_TRAN_HDR_IX5            0   1 ID_EDC_ACCT_NUM        4361       0
+                   CPM_PND_TRAN_HDR_IX6            0   1 CD_TRAN_STATUS           12       0
+                                                       2 KY_PND_SEQ_TRANS       5752       0
+                   CPM_PND_TRAN_HDR_IX7            0   1 ID_TRANS_REF_NUM_8     2246     325
+                                                         10
+
+                   CPM_PND_TRAN_HDR_IX8            0   1 KY_ROW_SEQ_TRANS_8     2239    3343
+                                                         10
+
+                   CPM_PND_TRAN_HDR_IX9            0   1 DT_BILLED_BY_CSS        332    4138
+                   CPM_PND_TRAN_HDR_PK  UNIQ       0   1 KY_PND_SEQ_TRANS       5752       0
+                   MTI_TEST_2                      0   1 KY_SUPPLIER              14       0
+                                                       2 CD_TRAN_STATUS           12       0
+                                                       3 CD_PURPOSE                2       0
+                                                       4 ID_EDC_DUNS              49       0
+                                                       5 KY_ENROLL              1001    3518
+CPM_SUPPLIER_NAME  CPM_SUPPLIER_NAME_PK UNIQ       0   1 KY_SUPPLIER              35       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 08    60     19      21       129        531,395          280      2783 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60     19      21       129        531,395          280      2783
+
+=======================================================================================================
+                            SQL 2852994123
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT SR.SR_SEQ_NO  FROM CUSTPRO.CPM_SUMMBILL_SR_LNK SR  WHERE  from
+SR.KY_PND_SEQ_MASTER = 18330901
+
+FIRST TIME = 2012-11-09 07:36
+MODULE     = MSACCESS.EXE
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                860
+INDEX                FAST FULL SCAN CPM_SUMMBILL_SR_LNK_        860      860      225
+                                    PK
+
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 08    60      1       0         1          9,035            0         8 MSACCESS.EXE
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60      1       0         1          9,035            0         8
+
+=======================================================================================================
+                            SQL 2867623898
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT SYSDATE, SYSDATE, EDI_TRANSACTION_SEQ.NEXTVAL FROM DUAL   from
+
+FIRST TIME = 2012-11-09 05:32
+MODULE     = PPLS.EDI.DocumentLoader.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                  2
+SEQUENCE
+TABLE ACCESS         FULL           DUAL                          2        2        1
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 08    60     26      27     61748        432,883            4     61748 PPLS.EDI.Document
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60     26      27     61748        432,883            4     61748
+
+=======================================================================================================
+                            SQL 2969023867
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT SR.SR_SEQ_NO,SR.KY_ENROLL  FROM CUSTPRO.CPM_SUMMBILL_SR_L from
+NK SR  WHERE SR.KY_PND_SEQ_MASTER = 18330901                     where
+
+FIRST TIME = 2012-11-09 07:36
+MODULE     = MSACCESS.EXE
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                918
+TABLE ACCESS         FULL           CPM_SUMMBILL_SR_LNK         918      918      225
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CPM_SUMMBILL_SR_LN    2123976     28 11/03/12 14:57  100%      74      74      63   10   40
+K
+
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CPM_SUMMBILL_SR_LN CPM_SUMMBILL_SR_LNK_ UNIQ       0   1 SR_SEQ_NO                 0       0
+K                  PK
+
+                                                       2 KY_PND_SEQ_MASTER         0       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 08    60      2      14         1          9,591        7,910         8 MSACCESS.EXE
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60      2      14         1          9,591        7,910         8
+
+=======================================================================================================
+                            SQL 3074907936
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+select overload, decode(position,0,'RETURN_VALUE',nvl(argument_n
+ame,chr(0))) name, decode(in_out,'IN',1,'IN/OUT',3,'OUT',decode(
+argument_name,null,6,2),1) direction, decode(data_type, 'BFILE',
+1, 'BLOB',2, 'CHAR',3, 'CLOB',4, 'DATE',6, 'FLOAT',13, 'INTERVAL
+ YEAR TO MONTH',8, 'INTERVAL DAY TO SECOND',7, 'LONG',10, 'LONG
+RAW',9, 'NCHAR',11, 'NCLOB',12, 'NUMBER',13, 'NVARCHAR2',14, 'RA
+W',15, 'REF CURSOR',5, 'ROWID',16, 'TIMESTAMP',18, 'TIMESTAMP WI
+TH LOCAL TIME ZONE',19, 'TIMESTAMP WITH TIME ZONE',20, 'VARCHAR2
+',22,22) oracletype, decode(data_type, 'CHAR',2000, 'LONG',21474
+83647, 'LONG RAW',2147483647, 'NCHAR',4000, 'NVARCHAR2',4000, 'R
+AW',2000, 'VARCHAR2',2000,0) length, nvl(data_precision, 255) pr
+ecision, nvl(data_scale, 255) scale from all_arguments where dat from
+a_level = 0 and data_type is not null and owner = 'PPLSCIS' and
+package_name = 'P_EDI' and object_name = 'CREATE_NEW_FILE_RECORD
+'  order by overload, position
+
+FIRST TIME = 2012-11-08 10:04
+MODULE     = PPLS.EDI.DocumentLoader.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                160
+SORT                 ORDER BY                                   160      160        1
+FILTER
+HASH JOIN                                                       144      144        1
+NESTED LOOPS                                                     41       41      200
+TABLE ACCESS         BY INDEX ROWID USER$                         2        2        1
+INDEX                UNIQUE SCAN    I_USER1                       1        1        1
+TABLE ACCESS         BY INDEX ROWID OBJ$                         39       39      200
+INDEX                RANGE SCAN     I_OBJ2                        2        2     1444
+TABLE ACCESS         FULL           ARGUMENT$                   102      102      974
+FIXED TABLE          FULL           X$KZSPR                      11                 1
+NESTED LOOPS                                                     13       13        1
+INDEX                RANGE SCAN     I_OBJAUTH1                    2        2        1
+FIXED TABLE          FULL           X$KZSRO                      11                 1
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 06    60     16      17       155        212,660            0      1395 PPLS.EDI.Document
+11/09 07    60     13      15       123        168,756           54      1107 PPLS.EDI.Document
+11/09 08    60     15      18       153        209,916          544      1377 PPLS.EDI.Document
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        180     44      50       431        591,332          598      3879
+
+=======================================================================================================
+                            SQL 3265339574
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT D.KY_BILL                ||'|'||         D.KY_ENROLL
+                        ||'|'||         D.KY_SUPPLIER
+        ||'|'||         B.ID_GEOCODE                    ||'|'||
+        C.TX_LOCATION                   ||'|'||         C.QY_TAX
+RATE                    ||'|'||         C.TX_DESCRIPTION FROM CP from
+M_PND_TRAN_HDR A, CPM_TAX_LOG_HDR B, CPM_TAX_LOG_DTL C, BILL_HDR
+ D WHERE A.ky_pnd_seq_trans = B.ky_pnd_seq_trans AND B.ky_log_se where
+q = C.ky_log_seq AND A.ky_enroll = D.ky_enroll AND A.dt_billed_b
+y_css = D.dt_bill AND A.cd_tran_status = '75' AND A.cd_purpose I
+N (SELECT ky_cpm_cd_purpose FROM cpm_cd_purpose  WHERE cd_major_ from
+type = 'BILL') AND A.ky_enroll = B.ky_enroll AND A.ky_supplier =
+ B.ky_supplier AND B.ky_enroll = D.ky_enroll AND B.ky_supplier =
+ D.ky_supplier AND A.ky_supplier = 'GEXA' AND B.ky_supplier = 'G
+EXA' AND D.ky_supplier = 'GEXA' AND nvl(A.dt_billed_by_css,sysda
+te) > to_date('01/01/1965 12:00:00 AM','mm/dd/yyyy hh:mi:ss AM')
+ AND nvl(B.dt_billed,sysdate) > to_date('01/01/1965 12:00:00 AM'
+,'mm/dd/yyyy hh:mi:ss AM') AND (A.ts_last_updated > to_date('11/
+08/2012','mm/dd/yyyy hh:mi:ss AM')  OR d.dt_modify > to_date('11
+/08/2012','mm/dd/yyyy hh:mi:ss AM'))
+
+FIRST TIME = 2012-11-09 06:37
+MODULE     = 01@</client23files/PSOL_GEXA_CPM_TAX_LOG
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                              10702
+TABLE ACCESS         BY INDEX ROWID CPM_TAX_LOG_DTL               3        3        2
+NESTED LOOPS                                                  10702    10702        1
+NESTED LOOPS                                                  10699    10699        1
+NESTED LOOPS                                                  10698    10698        1
+MERGE JOIN                                                     7700     7700     1499
+INDEX                RANGE SCAN     BILL_HDR_IDX2              3700     3700   647412
+SORT                 JOIN                                      4000     4000    34937
+TABLE ACCESS         BY INDEX ROWID CPM_TAX_LOG_HDR            3779     3779    34937
+INDEX                RANGE SCAN     CPM_TAX_LOG_HDR_IX1        1280     1280       11
+TABLE ACCESS         BY INDEX ROWID CPM_PND_TRAN_HDR              2        2        1
+INDEX                UNIQUE SCAN    CPM_PND_TRAN_HDR_PK           1        1        1
+TABLE ACCESS         BY INDEX ROWID CPM_CD_PURPOSE                1        1        1
+INDEX                UNIQUE SCAN    CPM_CD_PURPOSE_PK                               1
+INDEX                RANGE SCAN     CPM_TAX_LOG_DTL_AK1           2        2        2
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CPM_PND_TRAN_HDR     17125700    194 11/04/12 01:37    1%    3475    3472    3961   20   40
+CPM_CD_PURPOSE              6     33 11/03/12 10:27  100%       0       0       0   10   40
+CPM_TAX_LOG_HDR      16769677    103 11/03/12 15:14  100%    1823    1811    1830   10   40
+CPM_TAX_LOG_DTL      25307791     68 11/03/12 14:58  100%    1959    1945    1824   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CPM_CD_PURPOSE     CPM_CD_PURPOSE_PK    UNIQ       0   1 KY_CPM_CD_PURPOSE         6       0
+CPM_PND_TRAN_HDR   CPM_PND_TRAN_HDR_IX1            0   1 KY_BA                  1001    3518
+                   CPM_PND_TRAN_HDR_IX1            0   1 CD_TRAN_STATUS           12       0
+                   0
+
+                                                       2 CD_TRAN_TYPE_867          7       0
+                                                       3 CD_PURPOSE                2       0
+                   CPM_PND_TRAN_HDR_IX2            0   1 KY_SUPPLIER              14       0
+                   CPM_PND_TRAN_HDR_IX3            0   1 KY_ENROLL              1001    3518
+                   CPM_PND_TRAN_HDR_IX4            0   1 ID_TRANS_REF_NUM_8     5641       0
+                                                         67
+
+                   CPM_PND_TRAN_HDR_IX5            0   1 ID_EDC_ACCT_NUM        4361       0
+                   CPM_PND_TRAN_HDR_IX6            0   1 CD_TRAN_STATUS           12       0
+                                                       2 KY_PND_SEQ_TRANS       5752       0
+                   CPM_PND_TRAN_HDR_IX7            0   1 ID_TRANS_REF_NUM_8     2246     325
+                                                         10
+
+                   CPM_PND_TRAN_HDR_IX8            0   1 KY_ROW_SEQ_TRANS_8     2239    3343
+                                                         10
+
+                   CPM_PND_TRAN_HDR_IX9            0   1 DT_BILLED_BY_CSS        332    4138
+                   CPM_PND_TRAN_HDR_PK  UNIQ       0   1 KY_PND_SEQ_TRANS       5752       0
+                   MTI_TEST_2                      0   1 KY_SUPPLIER              14       0
+                                                       2 CD_TRAN_STATUS           12       0
+                                                       3 CD_PURPOSE                2       0
+                                                       4 ID_EDC_DUNS              49       0
+                                                       5 KY_ENROLL              1001    3518
+CPM_TAX_LOG_DTL    CPM_TAX_LOG_DTL_AK1             0   1 KY_LOG_SEQ              163       0
+                   CPM_TAX_LOG_DTL_PK   UNIQ       0   1 KY_LOG_DTL_SEQ          453       0
+CPM_TAX_LOG_HDR    CPM_TAX_LOG_HDR_IX1             0   1 KY_SUPPLIER               8       0
+                                                       2 DT_BILLED                50     114
+                   CPM_TAX_LOG_HDR_IX2             0   1 KY_ENROLL               104       0
+                   CPM_TAX_LOG_HDR_IX3             0   1 KY_EXTRN_KEY            175       0
+                   CPM_TAX_LOG_HDR_IX4             0   1 KY_PND_SEQ_TRANS        124      53
+                   CPM_TAX_LOG_HDR_IX5             0   1 KY_BA                   105       0
+                   CPM_TAX_LOG_HDR_PK   UNIQ       0   1 KY_LOG_SEQ              177       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 07    60    217     472         0     51,532,992       33,953      5346 01@</client23file
+11/09 08    60      0       0         0              0            0         0 01@</client23file
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        120    217     472         0     51,532,992       33,953      5346
+
+=======================================================================================================
+                            SQL 3286148528
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+select c.name, u.name from con$ c, cdef$ cd, user$ u  where c.co from
+n# = cd.con# and cd.enabled = :1 and c.owner# = u.user#
+
+FIRST TIME = 2012-11-09 05:44
+MODULE     =
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                 12
+HASH JOIN                                                        12       12        7
+TABLE ACCESS         BY INDEX ROWID CDEF$                         3        3        7
+INDEX                RANGE SCAN     I_CDEF4                       1        1        1
+HASH JOIN                                                         8        8     5067
+TABLE ACCESS         FULL           USER$                         3        3      261
+TABLE ACCESS         FULL           CON$                          4        4     5067
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 06    60      0       0         0              0            0         0
+11/09 07    60      0       0         7            322           74         7
+11/09 08    60     48      49      6690        307,740          155      6690
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        180     48      49      6697        308,062          229      6697
+
+=======================================================================================================
+                            SQL 3434658212
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT DBMS_XMLGEN.GETXML('     SELECT  CIS_CL_HEADER.KY_CALL_LO
+G_ID,             P_CIS_CALL_LOG.get_call_rep_name(CIS_CL_HEADER
+.ID_USER_GUID) AS NOTATED_BY,             CIS_CL_HEADER.TX_BILLI
+NG_NUMBER,             CIS_CL_HEADER.TX_FIRST_NAME,
+CIS_CL_HEADER.TX_LAST_NAME,             CIS_CL_HEADER.TX_EMAIL,
+            CIS_CL_HEADER.TX_PHONE_NO,             CIS_CL_HEADER
+.TX_POSITION,             CIS_CL_HEADER.CD_FOLLOW_UP_STATUS,
+         CIS_CL_HEADER.CD_FOLLOW_UP_HOURS,             CIS_CL_HE
+ADER.FL_CRITICAL_COMMENT,             CIS_CL_HEADER.TS_CRITICAL_
+COMMENT_EXPIRE,             CIS_CL_HEADER.KY_NOTATE_TYPE,
+      CIS_CL_HEADER.TS_ADDED,             CIS_CL_HEADER.TS_MODIF
+IED,             CIS_CL_MESSAGES.TX_CALL_LOG_MSG,              C
+URSOR(SELECT   CIS_CL_CALL_TYPES.TX_CALL_TYPE
+   FROM   CIS_CL_CALL_TYPES                     WHERE   CIS_CL_C from
+ALL_TYPES.KY_CALL_LOG_ID = CIS_CL_HEADER.KY_CALL_LOG_ID) CALL_TY
+PES,             CURSOR(SELECT   CIS_CL_LINKED_ACCOUNTS.TX_BILLI
+NG_NUMBER, CIS_CL_LINKED_ACCOUNTS.FL_ACTIVE
+ FROM   CIS_CL_LINKED_ACCOUNTS                     WHERE   CIS_C from
+L_LINKED_ACCOUNTS.KY_CALL_LOG_ID = CIS_CL_HEADER.KY_CALL_LOG_ID)
+ LINKED_ACCOUNTS     FROM    CIS_CL_HEADER,             CIS_CL_M from
+ESSAGES      WHERE   CIS_CL_MESSAGES.KY_CALL_LOG_ID = CIS_CL_HEA where
+DER.KY_CALL_LOG_ID       AND   (CIS_CL_HEADER.CD_STATUS IS NULL
+OR CIS_CL_HEADER.CD_STATUS <> ''D'')       AND   CIS_CL_HEADER.K
+Y_CALL_LOG_ID in (                 SELECT   CIS_CL_LINKED_ACCOUN
+TS.KY_CALL_LOG_ID                   FROM   CIS_CL_LINKED_ACCOUNT from
+S                  WHERE   CIS_CL_LINKED_ACCOUNTS.tx_billing_num where
+ber = '|| :B1 ||') ORDER BY CIS_CL_HEADER.TS_ADDED DESC', 0) ADD
+L_CALL_LOGS FROM DUAL                                            from
+
+FIRST TIME = 2012-11-09 07:24
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                  2
+TABLE ACCESS         FULL           DUAL                          2        2        1
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 08    60    102     212        95        656,722       47,785        95 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60    102     212        95        656,722       47,785        95
+
+=======================================================================================================
+                            SQL 3501880954
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT * FROM V_MASS_CHANGE_FILE_LIST WHERE ("ApprovalStatusCode from
+" IS NULL OR "ApprovalStatusCode" = 'A') AND "ImportedFlag" = 'Y
+' AND "FileID" IN ( SELECT KY_FILE_ID FROM GOODWRENCH_IMPORT WHE from
+RE (FL_PROCESS IS NULL OR FL_PROCESS = 'N') AND KY_TRANSACTION_T
+YPE NOT IN ( SELECT KY_CODE FROM CODE WHERE KY_TABLE = 'DATA_REP from
+AIR' ) ) ORDER BY "FileID"
+
+FIRST TIME = 2012-11-09 07:25
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                               1161
+SORT                 GROUP BY                                  1161     8268    10085
+MERGE JOIN                                                      896     8003    10085
+MERGE JOIN           SEMI                                       720     7827       22
+SORT                 JOIN                                        36       36       22
+HASH JOIN                                                        20       20       22
+TABLE ACCESS         FULL           GW_MASS_CHANGE_FILE           2        2       21
+TABLE ACCESS         FULL           CODE                         17       17      230
+SORT                 UNIQUE                                     685     7792     2369
+VIEW                                                           7772              2369
+FILTER
+INDEX                FAST FULL SCAN GOODWRENCH_IMPORT_ID        665      665     2369
+                                    X3
+
+INDEX                RANGE SCAN     CODE_TAB_CODE                 3        3       11
+SORT                 JOIN                                       176      176    20122
+TABLE ACCESS         FULL           GOODWRENCH_TRANSACTI        114      114    20122
+                                    ONS
+
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CODE                    18822     46 11/03/12 04:45  100%       2       1       1   10   40
+GOODWRENCH_TRANSAC      20122     13 11/03/12 08:24  100%       9       9       0   10   40
+TIONS
+
+GW_MASS_CHANGE_FIL         43    136 11/03/12 08:24  100%       0       0       0   10   40
+E
+
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CODE               CODE_IDX                        0   1 KY_SUPPLIER              26       0
+                                                       2 KY_TABLE                 78       0
+                   CODE_PK              UNIQ       0   1 KY_CODE                6063       0
+                                                       2 KY_SUPPLIER              26       0
+                                                       3 KY_TABLE                 78       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 08    60     17      54        39        327,181       49,489      1566 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60     17      54        39        327,181       49,489      1566
+
+=======================================================================================================
+                            SQL 3544469755
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT D.KY_CUSTOMER_CONTACT ||'|'||D.KY_ENROLL ||'|'||D.KY_SUPP
+LIER ||'|'||D.KY_CALL_REP ||'|'||D.KY_CONTACT_TYPE ||'|'||D.TX_R
+EQUESTED_BY ||'|' AS BEFORE_MSG ,REPLACE(REPLACE(CCM.TX_CALL_LOG
+_MSG,CHR(10)),CHR(13)) AS MSG ,'|'||TO_CHAR(D.DT_CONTACT,'mm/dd/
+yyyy') ||'|'||TO_CHAR(D.DT_MODIFY,'mm/dd/yyyy hh:mi:ss am') AS A
+FTER_MSG FROM (SELECT DISTINCT CCH.KY_CALL_LOG_ID ,(CCH.KY_CALL_ from
+LOG_ID * -1) AS KY_CUSTOMER_CONTACT ,CCH.KY_ENROLL AS KY_ENROLL
+,A.KY_SUPPLIER AS KY_SUPPLIER ,CUX.ID_USER_ID AS KY_CALL_REP ,'T
+-'||NVL(CCCT.ID_TIER1,0)||'-'||NVL(CCCT.ID_TIER2,0)||'-'||NVL(CC
+CT.ID_TIER3,0)||'-'||NVL(CCCT.ID_TIER4,0) AS KY_CONTACT_TYPE ,DE
+CODE(NVL(CCH.TX_FIRST_NAME,'.') ,'.', '' ,UPPER(CCH.TX_FIRST_NAM
+E)||DECODE(NVL(CCH.TX_LAST_NAME,'.'),'.','',' ') ) ||DECODE(NVL(
+CCH.TX_LAST_NAME,'.') , '.', '' , UPPER(CCH.TX_LAST_NAME) ) AS T
+X_REQUESTED_BY ,CCH.TS_ADDED AS DT_CONTACT ,NVL(CCH.TS_MODIFIED,
+ CCH.TS_ADDED) AS DT_MODIFY FROM PPLSCIS.CIS_CL_HEADER CCH ,PPLS from
+CIS.CIS_CL_CALL_TYPES CCCT ,PPLSCIS.CIS_USER_XREF CUX ,PVIEW.ACC
+OUNT A WHERE CCH.KY_CALL_LOG_ID = CCCT.KY_CALL_LOG_ID AND CCH.ID where
+_USER_GUID = CUX.ID_USER_GUID (+) AND CCH.KY_ENROLL = A.KY_ENROL
+L AND A.KY_SUPPLIER = :B2 AND (CCH.TS_ADDED > TO_DATE(:B1 ,'mm/d
+d/yyyy hh:mi:ss AM') OR CCH.TS_MODIFIED > TO_DATE(:B1 ,'mm/dd/yy
+yy hh:mi:ss AM') ) ) D ,PPLSCIS.CIS_CL_MESSAGES CCM WHERE D.KY_C where
+ALL_LOG_ID = CCM.KY_CALL_LOG_ID (+)
+
+FIRST TIME = 2012-11-09 06:41
+MODULE     = 01@<SOL_EXELON_CUSTOMER_CONTACT_AND_CALL
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                               7343
+HASH JOIN            OUTER                                     7343     7343    72767
+VIEW                                                           4439             72767
+SORT                 UNIQUE                                    4439     4439    72767
+HASH JOIN            OUTER                                     3011     3011    72767
+HASH JOIN                                                      2719     2719    72767
+TABLE ACCESS         FULL           CIS_CL_CALL_TYPES           237      237   201889
+HASH JOIN                                                      2019     2019    72767
+INDEX                FAST FULL SCAN ACCT_IDX                    721      721    61683
+TABLE ACCESS         FULL           CIS_CL_HEADER              1125     1125    76309
+INDEX                FAST FULL SCAN CIS_USER_XREF_UK              3        3      930
+TABLE ACCESS         FULL           CIS_CL_MESSAGES             496      496   190246
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CIS_CL_MESSAGES        190246    215 07/11/11 20:28    1%      40      40      43   10   40
+CIS_CL_HEADER          782660    106 06/17/12 04:08  100%      91      91      88   10   40
+CIS_CL_CALL_TYPES      201889     85 07/11/11 20:28    1%      19      19      18   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CIS_CL_HEADER      CIS_CL_HEADER_PK     UNIQ       0   1 KY_CALL_LOG_ID         2274       0
+                   CL_HEADER_ENROLL                0   1 KY_ENROLL               505       0
+                   IDX_CL_HDR_1_7COLS                  1 CD_FOLLOW_UP_STATU        2       0
+                                                         S
+
+                                                       2 TS_MODIFIED             904     124
+                                                       3 KY_CALL_LOG_ID         2274       0
+                                                       4 KY_ENROLL               505       0
+                                                       5 TX_BILLING_NUMBER       204       0
+                                                       6 ID_USER_GUID             17       0
+                                                       7 TS_ADDED               1028       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 07    60    206     308         1      5,840,510       72,086    206818 01@<SOL_EXELON_CU
+11/09 08    60      0       0         0              0            0         0 01@<SOL_EXELON_CU
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        120    206     308         1      5,840,510       72,086    206818
+
+=======================================================================================================
+                            SQL 3702697947
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT QY_USAGE FROM BILL_USAGE_DTL WHERE KY_BILL = :B1 AND KY_U from
+SAGE_TYPE IN ('978', '860')
+
+FIRST TIME = 2012-11-09 06:15
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                  4
+TABLE ACCESS         BY INDEX ROWID BILL_USAGE_DTL                4        4        1
+INDEX                RANGE SCAN     BILL_USG_DTL_IDX              3        3        2
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+BILL_USAGE_DTL       37052856     49 11/03/12 04:17  100%    1926    1925    1924   10   40
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 07    60      1      15       860          3,462        1,672       856 w3wp.exe
+11/09 07    60      1      15       860          3,462        1,672       856 w3wp.exe
+11/09 08    60      0      50      2798         11,355        4,832      2783 w3wp.exe
+11/09 08    60      0      50      2798         11,355        4,832      2783 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        240      2     130      7316         29,634       13,008      7278
+
+=======================================================================================================
+                            SQL 3706097074
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+INSERT INTO CIS_CL_CALL_STATISTICS SELECT (SELECT D.KY_SUPPLIER
+FROM PVIEW.ACCOUNT D WHERE D.KY_ENROLL = A.KY_ENROLL) AS SUPPLIE where
+R_ID , (SELECT C.ID_TIER FROM PPLSCIS.CIS_CL_TIER C WHERE C.ID_T from
+IER = B.ID_TIER1) AS ID_TIER1, (SELECT C.TX_TIER FROM PPLSCIS.CI from
+S_CL_TIER C WHERE C.ID_TIER = B.ID_TIER1) AS TX_TIER1, (SELECT C where
+.ID_TIER FROM PPLSCIS.CIS_CL_TIER C WHERE C.ID_TIER = B.ID_TIER2 from
+) AS ID_TIER2, (SELECT C.TX_TIER FROM PPLSCIS.CIS_CL_TIER C WHER from
+E C.ID_TIER = B.ID_TIER2) AS TX_TIER2, COUNT(DISTINCT A.KY_CALL_
+LOG_ID) AS CALL_COUNT, TRUNC(A.TS_ADDED) AS NOTATED_DATE, SYSDAT
+E AS TS_ADDED FROM PPLSCIS.CIS_CL_HEADER A JOIN PPLSCIS.CIS_CL_C from
+ALL_TYPES B ON A.KY_CALL_LOG_ID = B.KY_CALL_LOG_ID WHERE TRUNC(A where
+.TS_ADDED) >= TRUNC(SYSDATE - 30) AND B.ID_TIER1 <> 0 AND A.KY_N
+OTATE_TYPE = 'C' GROUP BY B.ID_TIER1, B.ID_TIER2, TRUNC(A.TS_ADD
+ED), A.KY_ENROLL ORDER BY TRUNC(A.TS_ADDED) DESC
+
+FIRST TIME = 2012-11-09 05:30
+MODULE     = perl@rp4440-g (TNS V1-V3)
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+INSERT STATEMENT                                               1623
+SORT                 ORDER BY                                  1623     1623    19566
+SORT                 GROUP BY                                  1623     1623    19566
+HASH JOIN                                                      1406     1406    19566
+TABLE ACCESS         FULL           CIS_CL_HEADER              1125     1125    19567
+TABLE ACCESS         FULL           CIS_CL_CALL_TYPES           237      237   134593
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CIS_CL_HEADER          782660    106 06/17/12 04:08  100%      91      91      88   10   40
+CIS_CL_CALL_TYPES      201889     85 07/11/11 20:28    1%      19      19      18   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CIS_CL_HEADER      CIS_CL_HEADER_PK     UNIQ       0   1 KY_CALL_LOG_ID         2274       0
+                   CL_HEADER_ENROLL                0   1 KY_ENROLL               505       0
+                   IDX_CL_HDR_1_7COLS                  1 CD_FOLLOW_UP_STATU        2       0
+                                                         S
+
+                                                       2 TS_MODIFIED             904     124
+                                                       3 KY_CALL_LOG_ID         2274       0
+                                                       4 KY_ENROLL               505       0
+                                                       5 TX_BILLING_NUMBER       204       0
+                                                       6 ID_USER_GUID             17       0
+                                                       7 TS_ADDED               1028       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 06    60     15     103         2        220,548       68,913     50174 perl@rp4440-g (TN
+11/09 07    60     17     146         2        220,471       74,105     50174 perl@rp4440-g (TN
+11/09 08    60     16     124         2        220,441       68,394     50188 perl@rp4440-g (TN
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        180     48     373         6        661,460      211,412    150536
+
+=======================================================================================================
+                            SQL 3716207873
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+update seq$ set increment$=:2,minvalue=:3,maxvalue=:4,cycle#=:5,
+order$=:6,cache=:7,highwater=:8,audit$=:9,flags=:10 where obj#=: where
+1
+
+FIRST TIME = 2012-11-04 13:17
+MODULE     =
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+UPDATE STATEMENT                                                  2
+UPDATE
+INDEX                UNIQUE SCAN    I_SEQ1                        1        1        1
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 06    60      1       1      4437         13,394            0      4437
+11/09 06    60      1       1      4437         13,394            0      4437
+11/09 07    60      5       6     22244         67,379            1     22244
+11/09 07    60      5       6     22244         67,379            1     22244
+11/09 08    60     13      14     70967        214,179            2     70967
+11/09 08    60     13      14     70967        214,179            2     70967
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        360     38      42    195296        589,904            6    195296
+
+=======================================================================================================
+                            SQL 3733622060
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT NEXT_DAY(TO_DATE('03/07/'||TO_CHAR(:B1 ) || ' 02:00:00','
+mm/dd/yyyy hh24:mi:ss'), 'SUNDAY') FROM DUAL                     from
+
+FIRST TIME = 2012-11-09 06:10
+MODULE     = SQL*Plus
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                  2
+TABLE ACCESS         FULL           DUAL                          2        2        1
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 07    60      7       6    187064        561,192            0    187064 SQL*Plus
+11/09 08    60      1       2     62410        187,230            1     62410 SQL*Plus
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        120      8       8    249474        748,422            1    249474
+
+=======================================================================================================
+                            SQL 3766984196
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT a.KY_PA_SEQ ||'|'||  a.KY_PROFHDR_SEQ  ||'|'||  a.KY_PROF
+DTL_SEQ  ||'|'||  a.QY_ELEM_VALUE   ||'|'||  a.TX_ELEM_VALUE   |
+|'|'||  c.TX_DESCRIPTION  ||'|'||  b.KY_ENROLL       ||'|'||  b.
+KY_SUPPLIER  FROM CPM_BILL_DETERMINANT  a  , CPM_PRODUCT_ACCOUNT from
+  b  , CPM_PRICE_PROFILE_DTL  c WHERE a.KY_PA_SEQ = b.KY_PA_SEQ  where
+  AND a.KY_PROFHDR_SEQ = c.KY_PROFHDR_SEQ  AND    a.KY_PROFDTL_S
+EQ = c.KY_PROFDTL_SEQ  AND a.ky_pa_seq IN (SELECT A.KY_PA_SEQ
+                   FROM CPM_PRODUCT_ACCOUNT A                    from
+      , CPM_PRICE_PROFILE_HDR B                      WHERE  A.KY where
+_PROFHDR_SEQ = B.KY_PROFHDR_SEQ                      AND  A.KY_S
+UPPLIER = 'TESI'                      AND A.ts_updated > to_date
+('11/08/2007','mm/dd/yyyy hh:mi:ss AM'))
+
+FIRST TIME = 2012-11-09 07:54
+MODULE     = 01@<nt14files/PSOL_TESI_CPM_BILL_DETERMI
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                              64544
+HASH JOIN                                                     64544    64544   807563
+TABLE ACCESS         FULL           CPM_PRICE_PROFILE_DT          3        3     1668
+                                    L
+
+HASH JOIN                                                     64487    64487   807563
+HASH JOIN            SEMI                                     49834    49834   807563
+TABLE ACCESS         FULL           CPM_BILL_DETERMINANT      10642    10642 ########
+VIEW                                                           4694            192309
+NESTED LOOPS                                                   4694     4694   192309
+TABLE ACCESS         BY INDEX ROWID CPM_PRODUCT_ACCOUNT        4694     4694   192309
+INDEX                RANGE SCAN     CPM_PRODUCT_ACCOUNTX        524      524   292613
+                                    _IX2
+
+INDEX                UNIQUE SCAN    CPM_PRICE_PROFILE_HD                            1
+                                    R_PK
+
+TABLE ACCESS         FULL           CPM_PRODUCT_ACCOUNT        5623     5623  6730095
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CPM_BILL_DETERMINA   28261542     23 11/03/12 10:14  100%     868     864     689   10   40
+NT
+
+CPM_PRICE_PROFILE_       1668     47 11/03/12 14:51  100%       0       0       0   10   40
+DTL
+
+CPM_PRODUCT_ACCOUN    6730095     59 11/03/12 14:51  100%     457     457     421   10   40
+T
+
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CPM_BILL_DETERMINA CPM_BILL_DETERMINANT UNIQ      13   1 KY_PA_SEQ             80175       0
+NT                 _PK
+
+                                                       2 KY_PROFHDR_SEQ           91       0
+                                                       3 KY_PROFDTL_SEQ           32       0
+CPM_PRICE_PROFILE_ CPM_PRICE_PROFILE_DT UNIQ       0   1 KY_PROFHDR_SEQ          260       0
+DTL                L_PK
+
+                                                       2 KY_PROFDTL_SEQ           32       0
+CPM_PRODUCT_ACCOUN CPM_PRODUCT_ACCOUNTX            3   1 KY_SUPPLIER              11       0
+T                  _IX2
+
+                   CPM_PRODUCT_ACCOUNT_            3   1 KY_ENROLL             15545       0
+                   IX1
+
+                   CPM_PRODUCT_ACCOUNT_            3   1 KY_PROFHDR_SEQ           95       0
+                   IX3
+
+                   CPM_PRODUCT_ACCOUNT_ UNIQ       1   1 KY_PA_SEQ             80195       0
+                   PK
+
+                   MTI_TEST_3                      2   1 KY_PROFHDR_SEQ           95       0
+                                                       2 KY_ENROLL             15545       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 08    60     46     102         0        114,115       32,063   4560015 01@<nt14files/PSO
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60     46     102         0        114,115       32,063   4560015
+
+=======================================================================================================
+                            SQL 4033995641
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+UPDATE CPM_PND_TRAN_HDR SET KY_SUPPLIER = :B31 , CD_TRAN_STATUS
+= :B30 , ID_EDC_DUNS = :B29 , ID_EDC_ACCT_NUM = :B28 , ID_BA_ESC
+O = :B27 , KY_BA = :B26 , KY_ENROLL = :B25 , ID_TRANS_REF_NUM_86
+7 = :B24 , ID_TRANS_REF_NUM_810 = :B23 , CD_TRAN_TYPE_867 = :B22
+ , KY_ROW_SEQ_TRANS_810 = :B21 , DT_PERIOD_START = :B20 , DT_PER
+IOD_END = :B19 , CD_PURPOSE = :B18 , CD_FAULT_REASON = :B17 , FL
+_SOLUTION_FAULT = :B16 , CD_BILL_TYPE = :B15 , CD_BILL_CALC_METH
+OD = :B14 , DT_DOC_DUE = :B13 , FL_RETAG = :B12 , FL_INTERNAL_RE
+BILL = :B11 , CD_FINAL = :B10 , CD_SERVICE = :B9 , TX_COMMENT =
+:B8 , TS_SENT_TO_CSS = :B7 , DT_BILLED_BY_CSS = :B6 , TS_LAST_UP
+DATED = :B5 , TS_CREATED = :B4 , TS_IDR_START = :B3 , TS_IDR_END
+ = :B2 WHERE KY_PND_SEQ_TRANS = :B1                              where
+
+FIRST TIME = 2012-11-09 07:19
+MODULE     = SQL*Plus
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+UPDATE STATEMENT                                                  3
+UPDATE
+TABLE ACCESS         BY INDEX ROWID CPM_PND_TRAN_HDR              3        3        1
+INDEX                UNIQUE SCAN    CPM_PND_TRAN_HDR_PK           2        2        1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CPM_PND_TRAN_HDR     17125700    194 11/04/12 01:37    1%    3475    3472    3961   20   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CPM_PND_TRAN_HDR   CPM_PND_TRAN_HDR_IX1            0   1 KY_BA                  1001    3518
+                   CPM_PND_TRAN_HDR_IX1            0   1 CD_TRAN_STATUS           12       0
+                   0
+
+                                                       2 CD_TRAN_TYPE_867          7       0
+                                                       3 CD_PURPOSE                2       0
+                   CPM_PND_TRAN_HDR_IX2            0   1 KY_SUPPLIER              14       0
+                   CPM_PND_TRAN_HDR_IX3            0   1 KY_ENROLL              1001    3518
+                   CPM_PND_TRAN_HDR_IX4            0   1 ID_TRANS_REF_NUM_8     5641       0
+                                                         67
+
+                   CPM_PND_TRAN_HDR_IX5            0   1 ID_EDC_ACCT_NUM        4361       0
+                   CPM_PND_TRAN_HDR_IX6            0   1 CD_TRAN_STATUS           12       0
+                                                       2 KY_PND_SEQ_TRANS       5752       0
+                   CPM_PND_TRAN_HDR_IX7            0   1 ID_TRANS_REF_NUM_8     2246     325
+                                                         10
+
+                   CPM_PND_TRAN_HDR_IX8            0   1 KY_ROW_SEQ_TRANS_8     2239    3343
+                                                         10
+
+                   CPM_PND_TRAN_HDR_IX9            0   1 DT_BILLED_BY_CSS        332    4138
+                   CPM_PND_TRAN_HDR_PK  UNIQ       0   1 KY_PND_SEQ_TRANS       5752       0
+                   MTI_TEST_2                      0   1 KY_SUPPLIER              14       0
+                                                       2 CD_TRAN_STATUS           12       0
+                                                       3 CD_PURPOSE                2       0
+                                                       4 ID_EDC_DUNS              49       0
+                                                       5 KY_ENROLL              1001    3518
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 08    60      9      13      6638        369,329          314      6638 SQL*Plus
+11/09 08    60      9      13      6638        369,329          314      6638 SQL*Plus
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        120     18      26     13276        738,658          628     13276
+
+=======================================================================================================
+                            SQL 4074836947
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT A.CD_ATTRIBUTE ATT_NAME, A.DT_EFF_FROM, A.DT_EFF_TO, A.QY
+_VALUE, A.TX_VALUE, 'PEER' TX_LOADED_FROM FROM CPM_EDC_ATTRIBUTE from
+ A, CPM_EDC_STATE ST WHERE ST.ID_EDC_DUNS = :B4 AND ST.CD_SERVIC where
+E = :B3 AND A.CD_SERV_SUPP = ST.CD_SERV_SUPP AND A.DT_EFF_FROM <
+= :B2 AND A.DT_EFF_TO >= :B1 ORDER BY A.CD_ATTRIBUTE, A.DT_EFF_F
+ROM
+
+FIRST TIME = 2012-11-09 07:19
+MODULE     = SQL*Plus
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                                 19
+SORT                 ORDER BY                                    19       19        2
+NESTED LOOPS                                                      3        3        2
+TABLE ACCESS         BY INDEX ROWID CPM_EDC_STATE                 1        1        1
+INDEX                UNIQUE SCAN    CPM_EDC_STATE_U1                                1
+TABLE ACCESS         BY INDEX ROWID CPM_EDC_ATTRIBUTE             2        2        2
+INDEX                RANGE SCAN     CPM_EDC_ATTRIBUTE_PK          1        1        1
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CPM_EDC_STATE             100     59 11/03/12 10:32  100%       0       0       0   10   40
+CPM_EDC_ATTRIBUTE        9548     53 11/03/12 10:32  100%       1       1       1   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CPM_EDC_ATTRIBUTE  CPM_EDC_ATTRIBUTE_PK UNIQ       0   1 CD_SERV_SUPP             91       0
+                                                       2 CD_ATTRIBUTE           3967       0
+                                                       3 DT_EFF_FROM              79       0
+CPM_EDC_STATE      CPM_EDC_STATE_PK     UNIQ       0   1 CD_SERV_SUPP             98       0
+                   CPM_EDC_STATE_U1     UNIQ       0   1 ID_EDC_DUNS              94       0
+                                                       2 CD_SERVICE                3       0
+                   CPM_EDC_STATE_UK1    UNIQ       0   1 CD_EDC_NM                98       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 08    60      9       8      6422        506,817           18    494658 SQL*Plus
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60      9       8      6422        506,817           18    494658
+
+=======================================================================================================
+                            SQL 4160011827
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT A.KY_ENROLL, A.TS_CREATED FROM CUSTPRO.CPM_PND_TRAN_HDR A from
+ WHERE A.TS_CREATED > SYSDATE - 180 AND A.KY_ENROLL IN (SELECT D where
+ISTINCT KY_ENROLL FROM CIS_USER_FAVORITE_ACCTS)                  from
+
+FIRST TIME = 2012-11-08 19:02
+MODULE     = perl@rp4440-g (TNS V1-V3)
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+SELECT STATEMENT                                               1194
+TABLE ACCESS         BY INDEX ROWID CPM_PND_TRAN_HDR             12       12        1
+NESTED LOOPS                                                   1194     1194      125
+SORT                 UNIQUE
+TABLE ACCESS         FULL           CIS_USER_FAVORITE_AC          2        2       98
+                                    CTS
+
+INDEX                RANGE SCAN     CPM_PND_TRAN_HDR_IX3          2        2       11
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CIS_USER_FAVORITE_         98     68 07/11/11 20:29  100%       0       0       0   10   40
+ACCTS
+
+CPM_PND_TRAN_HDR     17125700    194 11/04/12 01:37    1%    3475    3472    3961   20   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CPM_PND_TRAN_HDR   CPM_PND_TRAN_HDR_IX1            0   1 KY_BA                  1001    3518
+                   CPM_PND_TRAN_HDR_IX1            0   1 CD_TRAN_STATUS           12       0
+                   0
+
+                                                       2 CD_TRAN_TYPE_867          7       0
+                                                       3 CD_PURPOSE                2       0
+                   CPM_PND_TRAN_HDR_IX2            0   1 KY_SUPPLIER              14       0
+                   CPM_PND_TRAN_HDR_IX3            0   1 KY_ENROLL              1001    3518
+                   CPM_PND_TRAN_HDR_IX4            0   1 ID_TRANS_REF_NUM_8     5641       0
+                                                         67
+
+                   CPM_PND_TRAN_HDR_IX5            0   1 ID_EDC_ACCT_NUM        4361       0
+                   CPM_PND_TRAN_HDR_IX6            0   1 CD_TRAN_STATUS           12       0
+                                                       2 KY_PND_SEQ_TRANS       5752       0
+                   CPM_PND_TRAN_HDR_IX7            0   1 ID_TRANS_REF_NUM_8     2246     325
+                                                         10
+
+                   CPM_PND_TRAN_HDR_IX8            0   1 KY_ROW_SEQ_TRANS_8     2239    3343
+                                                         10
+
+                   CPM_PND_TRAN_HDR_IX9            0   1 DT_BILLED_BY_CSS        332    4138
+                   CPM_PND_TRAN_HDR_PK  UNIQ       0   1 KY_PND_SEQ_TRANS       5752       0
+                   MTI_TEST_2                      0   1 KY_SUPPLIER              14       0
+                                                       2 CD_TRAN_STATUS           12       0
+                                                       3 CD_PURPOSE                2       0
+                                                       4 ID_EDC_DUNS              49       0
+                                                       5 KY_ENROLL              1001    3518
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 06    60      0       0         0              0            0         0 perl@rp4440-g (TN
+11/09 07    60      0      11         1          2,930        1,020       465 perl@rp4440-g (TN
+11/09 08    60      0       0         0              0            0         0 perl@rp4440-g (TN
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum        180      0      11         1          2,930        1,020       465
+
+=======================================================================================================
+                            SQL 4223633474
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+DELETE FROM CPM_SUMMBILL_SR_LNK WHERE KY_PND_SEQ_MASTER = :B1    from
+
+FIRST TIME = 2012-11-09 07:20
+MODULE     = SQL*Plus
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME                COST  IO_COST     ROWS
+-------------------- -------------- -------------------- ---------- -------- --------
+DELETE STATEMENT                                                918
+DELETE
+TABLE ACCESS         FULL           CPM_SUMMBILL_SR_LNK         918      918      225
+
+TABLE_NAME           NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ ---------- ------ -------------- ----- ------- ------- ------- ---- ----
+CPM_SUMMBILL_SR_LN    2123976     28 11/03/12 14:57  100%      74      74      63   10   40
+K
+
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CPM_SUMMBILL_SR_LN CPM_SUMMBILL_SR_LNK_ UNIQ       0   1 SR_SEQ_NO                 0       0
+K                  PK
+
+                                                       2 KY_PND_SEQ_MASTER         0       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- ------------------------------
+11/09 08    60      5      26         4         38,365       19,128         0 SQL*Plus
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60      5      26         4         38,365       19,128         0

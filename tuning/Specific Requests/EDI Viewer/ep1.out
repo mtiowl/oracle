@@ -1,0 +1,35 @@
+custpro@psolpt.world> @ep1
+
+Session altered.
+
+
+15 rows deleted.
+
+
+Explained.
+
+
+Plan Table                                                                                          
+-------------------------------------------------------------------------------------------         
+| Operation                        |  Name                         |  Rows | Bytes|  Cost |         
+-------------------------------------------------------------------------------------------         
+| SELECT STATEMENT                 |                              |   500 |  298K|   195 |          
+|  VIEW                            |                              |   500 |  298K|   195 |          
+|   COUNT STOPKEY                  |                              |       |      |       |          
+|    VIEW                          |                              |   500 |  291K|   195 |          
+|     SORT ORDER BY STOPKEY        |                              |   139K|   45M| 54235 |          
+|      HASH JOIN OUTER             |                              |   139K|   45M| 47263 |          
+|       HASH JOIN                  |                              |   139K|   44M| 23754 |          
+|        TABLE ACCESS BY INDEX ROWI|EDI_TRANSACTION               |   257K|   47M| 13406 |          
+|         INDEX RANGE SCAN         |IDX_EDI_TRANS_TRNTYP_SUBTYP   |   257K|      |   659 |          
+|        HASH JOIN                 |                              |   474K|   64M|  5267 |          
+|         TABLE ACCESS FULL        |EDI_FUNC_GROUP                |   877K|   22M|  1019 |          
+|         HASH JOIN                |                              |   279K|   30M|  1428 |          
+|          TABLE ACCESS FULL       |EDI_FILE_HEADER               |    34K|    3M|   122 |          
+|          TABLE ACCESS FULL       |EDI_HEADER                    |   515K|    7M|   566 |          
+|       INDEX FAST FULL SCAN       |EDI_REASON_IDX                |    18M|  177M|  4970 |          
+--------------------------------------------------------------------------------                    
+
+18 rows selected.
+
+custpro@psolpt.world> spool off

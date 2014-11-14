@@ -1,0 +1,8 @@
+SELECT MIN(a.ky_row_seq_trans)
+      FROM bt_ecr_header a
+          ,bt_common_header b
+          ,bt_ecr_header h
+     WHERE a.ky_row_seq_trans = b.ky_row_seq_trans
+       AND h.ky_row_seq_trans = b.ky_row_seq_trans
+       AND b.ky_row_seq_trans = 105929714
+/

@@ -1,0 +1,42 @@
+
+Session altered.
+
+
+Session altered.
+
+
+7 rows deleted.
+
+
+Explained.
+
+
+PLAN_TABLE_OUTPUT                                                                                   
+----------------------------------------------------------------------------------------------------
+                                                                                                    
+----------------------------------------------------------------------------------                  
+| Id  | Operation               |  Name                  | Rows  | Bytes | Cost  |                  
+----------------------------------------------------------------------------------                  
+|   0 | SELECT STATEMENT        |                        |  1455 |   230K|   883 |                  
+|*  1 |  FILTER                 |                        |       |       |       |                  
+|   2 |   NESTED LOOPS          |                        |  1455 |   230K|   883 |                  
+|*  3 |    HASH JOIN            |                        |  1366 |   144K|   200 |                  
+|*  4 |     INDEX FAST FULL SCAN| CL_HDR_MTI_TEST        |  1366 |   105K|     4 |                  
+|   5 |     INDEX FAST FULL SCAN| ACCT_MTI_TEST2         |  1818K|    50M|     4 |                  
+|*  6 |    INDEX RANGE SCAN     | CL_CALL_TYPE_MTI_TEST  |     1 |    54 |     1 |                  
+----------------------------------------------------------------------------------                  
+                                                                                                    
+Predicate Information (identified by operation id):                                                 
+---------------------------------------------------                                                 
+                                                                                                    
+   1 - filter(TRUNC(SYSDATE@!)-90<=TRUNC(SYSDATE@!))                                                
+   3 - access("A"."KY_ENROLL"="D"."KY_ENROLL")                                                      
+   4 - filter(TRUNC("A"."TS_MODIFIED")>=TRUNC(SYSDATE@!)-90 AND                                     
+              TRUNC("A"."TS_MODIFIED")<=TRUNC(SYSDATE@!) AND                                        
+              "A"."CD_FOLLOW_UP_STATUS"<>'CLOSED')                                                  
+   6 - access("A"."KY_CALL_LOG_ID"="C"."KY_CALL_LOG_ID")                                            
+                                                                                                    
+Note: cpu costing is off                                                                            
+
+24 rows selected.
+

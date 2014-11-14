@@ -1,0 +1,16 @@
+select idx.index_name, cols.column_name
+      ,GLOBAL_STATS
+      ,DOMIDX_STATUS
+      ,DOMIDX_OPSTATUS
+      ,FUNCIDX_STATUS
+--      ,JOIN_INDEX
+      ,last_analyzed
+      ,exp.column_expression
+from all_ind_columns cols
+    ,all_indexes idx
+    ,all_ind_expressions exp
+where idx.table_name = UPPER('&table_name')
+  and idx.index_name = cols.index_name
+  and idx.index_name = exp.index_name(+)
+order by idx.index_name, cols.column_position
+/

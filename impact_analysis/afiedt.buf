@@ -1,0 +1,3 @@
+select * from NCID_COMMENT 
+where rownum < 11
+/

@@ -1,0 +1,2292 @@
+CREATE OR REPLACE PACKAGE BODY SV_ACCOUNT_EXTRACT
+IS
+
+--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- Examines the provided record to see if all the parameter required by the MSFT Membership Provider
+--  CreateNewUser() method is present and valid.
+-- Date: 27Oct11
+-- Author: E165001
+--
+--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+FUNCTION SS_ValidateCreateParameters(p_email_ad IN VARCHAR2,
+                                     p_first_name IN VARCHAR2,
+                                     p_last_name IN VARCHAR2,
+                                     p_service_zip IN VARCHAR2,
+                                     p_phone_acd IN VARCHAR2,
+                                     p_phone_No IN VARCHAR2)
+RETURN VARCHAR2
+IS
+        l_return_value  VARCHAR2(1024) := NULL;
+        l_email_ad      VARCHAR2(40);
+        l_first_name    VARCHAR2(40);
+        l_last_name     VARCHAR2(40);
+        l_service_zip   VARCHAR2(10);
+        l_phone_acd     VARCHAR2(5);
+        l_phone_No      VARCHAR2(10);
+BEGIN
+        l_email_ad      := p_email_ad;
+        l_first_name    := p_first_name;
+        l_last_name     := p_last_name;
+        l_service_zip   := p_service_zip;
+        l_phone_acd     := p_phone_acd;
+        l_phone_No      := p_phone_No;
+
+              IF l_email_ad IS NULL or l_email_ad = '' THEN
+                    l_return_value := l_return_value || '|' ||  MISSING_EMAIL_MSG;
+              END IF;
+              
+              IF l_first_name IS NULL or l_first_name = '' THEN
+                    l_return_value := l_return_value || '|' ||   MISSING_FIRST_NAME_MSG ;
+              END IF;
+              
+              IF l_last_name  IS NULL or l_last_name  = '' THEN
+                    l_return_value := l_return_value || '|' ||   MISSING_LAST_NAME_MSG;
+              END IF;
+              
+              IF l_service_zip IS NULL or l_service_zip = '' THEN
+                    l_return_value := l_return_value || '|' ||   MISSING_ZIP_CODE_MSG;
+              END IF;
+              
+              IF l_phone_acd IS NULL or l_phone_acd = '' THEN
+                    l_return_value := l_return_value || '|' ||   MISSING_PHONE_AREA_CODE_MSG;
+              END IF;
+              
+              IF l_phone_No IS NULL or l_phone_No = '' THEN
+                    l_return_value := l_return_value || '|' ||   MISSING_PHONE_NBR_MSG;
+              END IF;
+              
+              RETURN l_return_value;
+END;
+
+
+--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- Generic Logging handler for enhanced auto linking..
+ -- Date: 27Oct11
+-- Author: E165001
+--
+--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+PROCEDURE SS_EnhancedAutoLnkLogHandler(p_rec IN SYN_SS_ENHANCED_AUTOLINK_LOG@psol%ROWTYPE)
+IS
+BEGIN
+            INSERT INTO SYN_SS_ENHANCED_AUTOLINK_LOG@psol(TX_GROUP_ID
+                                                         ,KY_ENROLL
+                                                         ,KY_SUPPLIER
+                                                         ,TX_NEW_USER_ID
+                                                         ,TX_TEMP_PASSWORD
+                                                         ,TX_REGISTER_USER_XML
+                                                         ,KY_ER_REF_ID
+                                                         ,TX_COMMENT
+                                                         ,TX_ENCRYPTED_AUTH_KEY
+                                                         ,NM_WELCOME_EMAIL_SENT_COUNT
+                                                         ,DT_WELCOME_EMAIL_SENT
+                                                         ,DT_AUTHENTICATED
+                                                         ,FL_PASSWORD_CHANGED
+                                                         ,DT_PASSWORD_CHANGED
+                                                         ,FL_IS_AUTHENTICATED
+                                                         ,FL_IS_ACTIVE
+                                                         ,FL_SUCCESS_OR_FAIL 
+                                                         ,TX_PROCESS_CODE)
+            VALUES( p_rec.TX_GROUP_ID
+                   ,p_rec.KY_ENROLL
+                   ,p_rec.KY_SUPPLIER
+                   ,p_rec.TX_NEW_USER_ID
+                   ,p_rec.TX_TEMP_PASSWORD
+                   ,p_rec.TX_REGISTER_USER_XML
+                   ,p_rec.KY_ER_REF_ID
+                   ,p_rec.TX_COMMENT
+                   ,p_rec.TX_ENCRYPTED_AUTH_KEY
+                   ,p_rec.NM_WELCOME_EMAIL_SENT_COUNT
+                   ,p_rec.DT_WELCOME_EMAIL_SENT
+                   ,p_rec.DT_AUTHENTICATED
+                   ,p_rec.FL_PASSWORD_CHANGED
+                   ,p_rec.DT_PASSWORD_CHANGED
+                   ,p_rec.FL_IS_AUTHENTICATED
+                   ,p_rec.FL_IS_ACTIVE
+                   ,p_rec.FL_SUCCESS_OR_FAIL
+                   ,p_rec.TX_PROCESS_CODE);
+            COMMIT;
+              
+EXCEPTION
+WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE(SQLERRM);
+    RAISE ABEND_ERROR;                                   
+END;
+
+
+--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- Generates a unique user ID for the first name and last name provided.
+-- Used on: Intended to be used to generate a new User ID that is to be provided to the Microsoft
+--          Membership Provider to create a new user login for the Self Service web site.  
+-- Comment: Used with enhanced AutoLinking where SUEZ requested that users be autolinked and registered without having
+--          to go thru the registration process on the Self Service web site. Users must be registered and autolinked
+--          programatically.
+--  EXAMPLE: If name is John Smith, user id will be JoSmith4650
+--  EXAMPLE: If name is Alice Wonderland, user id will be AlWonde2547
+--  EXAMPLE: If name is Nu Lyn, user id will be NuLyn6298
+--  Where: the numberic value is random. 
+-- Date: 27Oct11
+-- Author: E165001
+--
+--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+FUNCTION SS_CreateNewUserId(p_first_name IN VARCHAR2,
+                            p_last_name  IN VARCHAR2)
+RETURN VARCHAR2
+IS
+    l_new_user_id                 VARCHAR2(30);
+    l_first_name_token            VARCHAR2(2);
+    l_last_name_token             VARCHAR(5);
+    l_length_first_name           NUMBER;
+    l_length_last_name            NUMBER;
+    l_max_first_name_length       CONSTANT NUMBER := 2;
+    l_max_last_name_length        CONSTANT NUMBER := 5;
+
+BEGIN
+
+    if p_first_name is null or p_last_name is null then
+        RETURN NULL;
+    end if;
+    
+    -- Get the existing lengths
+    l_length_first_name := length(p_first_name);
+    l_length_last_name := length(p_last_name);
+    
+    -- Check if the first name is shorter than our constant value. If it is, use it as is.  If not, truncate it. 
+    IF l_length_first_name < l_max_first_name_length then
+       l_first_name_token := p_first_name;
+    else
+       l_first_name_token := substr(p_first_name, 0, l_max_first_name_length);
+    END IF;
+    
+    -- Check if the last name is shorter than our constant value. If it is, use it as is.  If not, truncate it.
+    IF l_length_last_name < l_max_last_name_length then
+       l_last_name_token := p_last_name;
+    else
+       l_last_name_token := substr(p_last_name, 0, l_max_last_name_length);
+    END IF;
+    
+    -- Generate a new user id and add a 4 digit random number at the end. 
+    l_new_user_id := 
+        l_first_name_token || l_last_name_token || trim(to_char(dbms_random.value(1000,9999), '9999'));
+    
+    l_new_user_id := replace(l_new_user_id, ' ', '_');
+    RETURN l_new_user_id;
+    
+END;
+
+--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- Generates a unique password.
+-- Used on: Intended to be used to generate a new password that is to be provided to the Microsoft
+--          Membership Provider to create a new user login for the Self Service web site.  
+-- Comment: Used with enhanced AutoLinking where SUEZ requested that users be autolinked and registered without having
+--          to go thru the registration process on the Self Service web site. Users must be registered and autolinked
+--          programatically.
+-- Date: 27Oct11
+-- Author: E165001
+--
+--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+FUNCTION SS_CreateNewPassword
+RETURN VARCHAR2
+IS
+BEGIN
+      RETURN 'Welcome'  || TRIM(TO_CHAR(dbms_random.value(10000,20000), '99999'));
+END;
+
+--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- Generates a unique user ID and password and registers the user in the MSFT Membership Provider.
+-- Used on: Intended to be used to programatically register a user rather than have the user register manually
+--          via the Self Service web site.  
+-- Comment: Used with enhanced AutoLinking where SUEZ requested that users be autolinked and registered without having
+--          to go thru the registration process on the Self Service web site. Users must be registered and autolinked
+--          programatically.
+-- Date: 27Oct11
+-- Author: E165001
+--
+--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+FUNCTION SS_CreateAndRegisterNewUser(p_er_cust_rec in SYN_ER_CUSTOMER%ROWTYPE,
+                                     p_ky_supplier IN VARCHAR2,
+                                     p_rec IN OUT SYN_SS_ENHANCED_AUTOLINK_LOG@psol%ROWTYPE)
+                                  
+RETURN VARCHAR2
+IS
+       l_user_id                        VARCHAR2(15) := NULL;
+       l_password                       VARCHAR2(15) := NULL;
+       l_msg                            VARCHAR2(4000);
+       l_encrypted_auth_key             VARCHAR2(2048);
+       l_response_xml                   VARCHAR2(32767);
+       l_temp                           VARCHAR2(2048);
+       l_delimiter                      CHAR(1) := '|';
+       l_encrypted_password             VARCHAR2(1024);
+            
+BEGIN
+                           
+   l_user_id := SS_CreateNewUserID(p_er_cust_rec.NM_CNTC2_1ST_1,p_er_cust_rec.NM_CNTC2_LST_1 );
+   
+   if l_user_id IS NOT NULL THEN
+   
+        l_password := SS_CreateNewPassword();
+        
+        SELFSERV.P_SS_MEMBERSHIP_INFO.SS_RegisterUser@psol( l_user_id,
+                                                           l_password,
+                                                           p_er_cust_rec.TX_CNTC2_EMAIL_AD,
+                                                           p_er_cust_rec.NM_CNTC2_1ST_1,
+                                                           p_er_cust_rec.NM_CNTC2_LST_1,
+                                                           p_er_cust_rec.AD_SERV_ZIP,
+                                                           p_er_cust_rec.TX_CNTC2_PHN_ACD || ' ' || p_er_cust_rec.TX_CNTC2_PHN_NO,
+                                                           p_ky_supplier,
+                                                           p_er_cust_rec.TX_GROUPING_ID,
+                                                           l_msg,
+                                                           l_response_xml);
+                                                   
+       --DBMS_OUTPUT.PUT_LINE('RESPONSE: ' || l_response_xml);
+       p_rec.TX_REGISTER_USER_XML := substr(l_response_xml, 1, 4000);
+       --DBMS_OUTPUT.PUT_LINE('MSG:' || l_msg);
+       
+       P_SS_SECURITY.encrypt_long_string@psol(l_password, l_encrypted_password);
+       
+       if instr( l_response_xml, UPPER('SOAPEXCEPTION')) > 0 THEN
+           l_user_id := NULL;
+           p_rec.TX_PROCESS_CODE := CREATE_USER_FAILED_MSG;
+        ELSE
+             IF l_msg <> 'SUCCESS' THEN
+                l_user_id := NULL;
+                p_rec.TX_PROCESS_CODE := CREATE_USER_FAILED_MSG;
+             ELSE
+                p_rec.TX_TEMP_PASSWORD := l_encrypted_password;
+                p_rec.TX_NEW_USER_ID := l_user_id;
+                p_rec.TX_PROCESS_CODE :=  REGISTRATION_SUCCESS_MSG;
+                
+                l_temp := l_user_id || l_delimiter || l_password;
+                        
+                P_SS_SECURITY.encrypt_long_string@psol(l_temp, l_encrypted_auth_key);
+                p_rec.TX_ENCRYPTED_AUTH_KEY := l_encrypted_auth_key;
+             END IF;
+        END IF;
+
+   END IF;
+   
+   RETURN l_user_id; -- Returning NULL means something went wrong. 
+ 
+END;
+
+--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- This is the main entry point function to perform enhanced auto linking.
+-- Generates a unique user ID for the names provided.
+-- Used on: Intended to be used to generate a new User ID that is to be provided to the Microsoft
+--          Membership Provider to create a new user login for the Self Service web site.  
+-- Comment: Used with enhanced AutoLinking where SUEZ requested that users be autolinked and registered without having
+--          to go thru the registration process on the Self Service web site. Users must be registered and autolinked
+--          programatically.
+-- Date: 27Oct11
+-- Author: E165001
+--
+--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Procedure SS_HandleEnhancedAutoLinking(p_email_ad IN VARCHAR2,
+                                       p_first_name IN VARCHAR2,
+                                       p_last_name IN VARCHAR2,
+                                       p_service_zip IN VARCHAR2,
+                                       p_phone_acd IN VARCHAR2,
+                                       p_phone_No IN VARCHAR2, 
+                                       p_ky_supplier IN VARCHAR2,
+                                       p_ky_enroll IN NUMBER)
+IS
+    p_er_cust_rec               SYN_ER_CUSTOMER%ROWTYPE;
+    l_grouping_id               SYN_ER_CUSTOMER.TX_GROUPING_ID%TYPE;
+    l_ky_supplier               PVIEW.METER_FILE.ky_supplier@PSOL%TYPE;
+    l_ky_enroll                 PVIEW.METER.ky_enroll@PSOL%TYPE;
+    l_current_def_user_id       VARCHAR2(30) := NULL;
+    l_flag_must_create_user     BOOLEAN := FALSE;
+    l_new_user_id               VARCHAR2(15) := NULL;
+    l_create_parameters_err_msg VARCHAR2(1024);
+    l_autolink_log_rec          SYN_SS_ENHANCED_AUTOLINK_LOG@psol%ROWTYPE;
+    l_existing_email_address    varchar2(100);
+    l_existing_user_id          varchar2(100);      
+    
+BEGIN
+              
+    l_grouping_id               := p_er_cust_rec.TX_GROUPING_ID;
+    l_ky_supplier               := TRIM(p_ky_supplier);
+    l_ky_enroll                 := TRIM(p_ky_enroll);
+         
+    -- Set up for error logging
+       l_autolink_log_rec.TX_GROUP_ID   := p_er_cust_rec.TX_GROUPING_ID;
+       l_autolink_log_rec.KY_ENROLL     := l_ky_enroll;
+       l_autolink_log_rec.KY_SUPPLIER   := l_ky_supplier;
+       l_autolink_log_rec.KY_ER_REF_ID  := p_er_cust_rec.KY_ER_REF_ID;
+
+    -- Q. Why are we getting the TX_GROUPING_ID from the ER_CUSTOMER table?
+    -- A. Because that's the only place it exists at this point in the code. 
+    
+    --dbms_output.put_line('Handle Enhanced AUTOLINKING started for Group ID:' || p_er_cust_rec.tx_grouping_ID);
+    
+    -- If the grouping id is null, we can't proceed.  We need to report that the grouping id was not present.
+    IF p_er_cust_rec.TX_GROUPING_ID IS  NULL THEN
+        
+        l_autolink_log_rec.TX_PROCESS_CODE := MISSING_GROUP_ID_MSG;
+        l_autolink_log_rec.FL_SUCCESS_OR_FAIL := 0; 
+        
+        SS_EnhancedAutoLnkLogHandler(l_autolink_log_rec);
+        
+        --dbms_output.put_line('Missing group id');
+        
+        RETURN;
+    END IF;
+
+    BEGIN
+    
+        -- Get the column value from the SS_AUTO_LINK.TX_DEFAULT_OWNER_USER_ID.
+        -- NOTE: There may not be a record with the group id in play here in the SS_AUTO_LINK table at this point. 
+        
+        l_current_def_user_id := P_SS_AUTO_LINKING.GetDefaultUserId@PSOL(l_grouping_id, l_ky_supplier);
+        --dbms_output.put_line('default user id' || l_current_def_user_id);
+        
+        -- If a real persons user id is not present, we need to create a user and register him/her.
+        -- NOTE: If an id of the form '~DEF_USER_' is present, that means the group id has been thru the
+        --       autolink process before, but no real person is assigned as the owner yet.  Before enhanced
+        --       autolinking, the next expected step was to have the user manually register via the web site, and
+        --       that manual registration would cause that persons new user id to replace the '~DEF_USER_nnnn' name.
+        --       However, with enhanced auto linking, we are going to create the user and register him/her 
+        --       programmatically here in this procedure.  
+        
+       
+        
+       IF l_current_def_user_id IS NULL OR
+           l_current_def_user_id = '' OR
+           substr(l_current_def_user_id, 0, 10) = '~DEF_USER_' THEN
+                
+                l_flag_must_create_user := True; -- DEFAULT    
+                l_existing_user_id :=  SELFSERV.P_SS_MEMBERSHIP_INFO.SS_DoesEmailAddressExist@psol(p_er_cust_rec.tx_cntc2_email_ad,
+                                                                                                   l_ky_supplier);
+                if l_existing_user_id is not null then
+                     l_new_user_id := l_existing_user_id;
+                     l_flag_must_create_user := false;
+                end if;
+            
+        END IF;
+        
+        IF l_flag_must_create_user = TRUE then
+         --dbms_output.put_line('creating new user');
+            -- Make sure all the required data for the membership provider is present. 
+            l_create_parameters_err_msg := SS_ValidateCreateParameters(p_er_cust_rec.tx_cntc2_email_ad,
+                                                                        p_er_cust_rec.nm_cntc2_lst_1,
+                                                                        p_er_cust_rec.nm_cntc3_lst_1,
+                                                                        p_er_cust_rec.ad_serv_zip,
+                                                                        p_er_cust_rec.tx_cntc2_phn_acd,
+                                                                        p_er_cust_rec.tx_cntc2_phn_no);
+              
+            IF l_create_parameters_err_msg IS NULL THEN
+            
+                -- Here is where we create the user id, temp password and register the user in the membership provider.
+                l_new_user_id := SS_CreateAndRegisterNewUser(p_er_cust_rec, l_ky_supplier,  l_autolink_log_rec);
+                
+                -- If we get back a null user id, that means something went wrong. 
+                if l_new_user_id IS NULL then
+                   l_autolink_log_rec.FL_SUCCESS_OR_FAIL := 0;
+                   SS_EnhancedAutoLnkLogHandler(l_autolink_log_rec);
+                   RETURN;
+                else
+                   l_autolink_log_rec.FL_SUCCESS_OR_FAIL := 1;
+                END IF;
+            ELSE
+                l_autolink_log_rec.TX_PROCESS_CODE := l_create_parameters_err_msg;
+                l_autolink_log_rec.FL_SUCCESS_OR_FAIL := 0;
+                SS_EnhancedAutoLnkLogHandler(l_autolink_log_rec);
+                RETURN;
+            END IF;
+        END IF;
+       
+        -- The following procedure will:
+        -- If there is no row with this group id in the SS_AUT0_LINk table, it will create a new row.
+        -- If it has to create the row, it will also create a default user id of the form '~DEF_USER_' and insert it.
+        -- If there is an existing row with this group id in the table, then it will add the account (ky_enroll) to the
+        -- existing accounts. This will happen even if the user is of the form '~DEF_USER_'. 
+        -- This process is the same for normal autolinking or enhanced autolinking. 
+        
+        P_SS_AUTO_LINKING.AttemptToAutoLinkByEr@PSOL(l_grouping_id, 
+                                                     l_ky_supplier, 
+                                                     l_ky_enroll);
+                                                    
+        -- If we had to create a new user id above, that means that no real person has ownership of the accounts
+        -- currently linked, no matter how many times the procedure in the line above has been called historically. 
+        -- This is indicated by our test for user id being null, '', or '~DEF_USER_NNNN') in the
+        -- SS_AUT0_LINK table.  Since we now have a real person registered, we need to change update the table to
+        -- reflect the new user.  Before enhanced autolinking, the Visual Basic program would have done this when
+        -- the user registered via the web site. 
+                                                    
+        IF l_new_user_id IS NOT NULL THEN                                        
+            P_SS_AUTO_LINKING.ChangeUserId@PSOL(l_grouping_id, l_ky_supplier, l_new_user_id, 'Y');
+        END IF;
+        
+        SS_EnhancedAutoLnkLogHandler(l_autolink_log_rec);
+                
+    END;
+    
+    EXCEPTION
+        WHEN OTHERS THEN
+            DBMS_OUTPUT.put_line('Auto-Link Attempt Failed for '||p_ky_enroll||', Group ID: '||l_grouping_id);
+            DBMS_OUTPUT.put_line('SQLCODE :  '||SQLCODE);
+            
+            l_autolink_log_rec.FL_SUCCESS_OR_FAIL := 0;
+            
+            l_autolink_log_rec.TX_PROCESS_CODE := l_autolink_log_rec.TX_PROCESS_CODE || 
+                'Auto-Link Attempt Failed for KY_ENROLL: '|| p_ky_enroll ||', Group ID: '||l_grouping_id || ' SQLERRM :  '||SQLERRM;
+            
+            SS_EnhancedAutoLnkLogHandler(l_autolink_log_rec);
+            RAISE ABEND_ERROR;
+
+END;
+
+--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+-- Test procedure to test the various functions and procedures used in enhanced auto linking. 
+-- Date: 2Nov11
+-- Author: E165001
+--
+--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+PROCEDURE SS_TestCreateRegisterUser
+IS
+        l_er_cust_rec        SYN_ER_CUSTOMER%ROWTYPE;
+        l_ky_supplier        VARCHAR2(30) := 'PSolSS';
+        l_autolink_log_rec   SYN_SS_ENHANCED_AUTOLINK_LOG@psol%ROWTYPE;
+        l_user_id            VARCHAR2(50);
+        l_validate_errors    VARCHAR2(32767);
+        l_response_xml       VARCHAR2(32767);
+BEGIN
+         l_er_cust_rec.KY_ER_REF_ID := '1246';
+         l_er_cust_rec.TX_GROUPING_ID := 'MyTestGroupID_23';     
+         l_er_cust_rec.TX_CNTC2_EMAIL_AD := 'mogreen9923@noreply.com';
+         l_er_cust_rec.AD_SERV_ZIP := '18101';
+         l_er_cust_rec.NM_CNTC2_LST_1 := 'Green23';
+         l_er_cust_rec.NM_CNTC2_1ST_1 := 'Mo';
+         l_er_cust_rec.TX_CNTC2_PHN_ACD := '610';
+         l_er_cust_rec.TX_CNTC2_PHN_NO := '555-1212';
+         l_er_cust_rec.KY_SUPPLIER_ID := l_ky_supplier;
+        
+         l_autolink_log_rec.TX_GROUP_ID   := l_er_cust_rec.TX_GROUPING_ID;
+         l_autolink_log_rec.KY_ENROLL     := '1234578';
+         l_autolink_log_rec.KY_SUPPLIER   := l_ky_supplier;
+         l_autolink_log_rec.KY_ER_REF_ID  := l_er_cust_rec.KY_ER_REF_ID;
+         
+         l_validate_errors := SS_ValidateCreateParameters(l_er_cust_rec.tx_cntc2_email_ad,
+                                                            l_er_cust_rec.nm_cntc2_lst_1,
+                                                            l_er_cust_rec.nm_cntc3_lst_1,
+                                                            l_er_cust_rec.ad_serv_zip,
+                                                            l_er_cust_rec.tx_cntc2_phn_acd,
+                                                            l_er_cust_rec.tx_cntc2_phn_no);
+         l_autolink_log_rec.TX_PROCESS_CODE := l_validate_errors;
+         
+         --DBMS_OUTPUT.PUT_LINE('ValidateParams returned: ' || l_validate_errors);
+         
+         IF l_validate_errors IS NULL THEN
+         
+            l_user_id := SS_CreateAndRegisterNewUser(l_er_cust_rec, l_ky_supplier, l_autolink_log_rec);
+            
+            IF l_user_id is null then
+               l_autolink_log_rec.FL_SUCCESS_OR_FAIL := 0; -- failed
+            else
+               l_autolink_log_rec.FL_SUCCESS_OR_FAIL := 1; -- success
+            END IF;
+            
+            --DBMS_OUTPUT.PUT_LINE('CreateAndRegUser returned: ' || l_user_id);
+         ELSE
+              l_autolink_log_rec.FL_SUCCESS_OR_FAIL := 0; -- failed
+         END IF;
+         
+         SS_EnhancedAutoLnkLogHandler(l_autolink_log_rec);
+         
+        EXCEPTION
+        WHEN OTHERS THEN
+            DBMS_OUTPUT.put_line('Auto-Link Attempt Failed for'||' Group ID: '||l_er_cust_rec.TX_GROUPING_ID);
+            DBMS_OUTPUT.put_line('SQLMSG :  ' || SUBSTR(SQLERRM, 0, 240));
+            
+            l_autolink_log_rec.FL_SUCCESS_OR_FAIL := 0;
+            
+            l_autolink_log_rec.TX_PROCESS_CODE := l_autolink_log_rec.TX_PROCESS_CODE || 
+                'Auto-Link Attempt Failed for '||' Group ID: '||l_er_cust_rec.TX_GROUPING_ID || ' SQLMSG:  '||SQLERRM;
+            
+            SS_EnhancedAutoLnkLogHandler(l_autolink_log_rec);
+
+END;
+
+--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    FUNCTION DoSelfServeExtract(ws_ky_supplier      VARCHAR2,
+                                ws_ky_enroll        NUMBER)
+                                RETURN BOOLEAN
+    IS
+    
+        l_ss_account_rec        SS_ACCOUNT@PSOL%ROWTYPE;
+    
+        FUNCTION DoesSupplierParticipate RETURN BOOLEAN
+        IS
+            l_ss_test               NUMBER := 0;
+        BEGIN
+           
+            SELECT
+                1
+            INTO
+                l_ss_test
+            FROM
+                SS_EXCLUDED_SUPPLIERS
+            WHERE
+                ky_supplier = UPPER(rtrim(ws_ky_supplier)); --T21343
+            
+            IF l_ss_test > 0 THEN
+                --dbms_output.put_line('supplier Does not participate');
+                RETURN FALSE;
+            ELSE
+                RETURN TRUE;
+            END IF;
+        --dbms_output.put_line('Yes supplier Participate in Self Serve');
+        EXCEPTION
+            WHEN NO_DATA_FOUND THEN
+                -- Not on the table; continue
+                RETURN TRUE;
+            WHEN OTHERS THEN
+                -- Do nothing; no extract.
+                RETURN FALSE;
+      
+        END;
+        
+        FUNCTION CheckUtilityProgram RETURN BOOLEAN
+        IS
+            l_cd_utility_program    SYN_ER_CUSTOMER.CD_UTILITY_PROGRAM%TYPE;    
+        BEGIN
+        
+            -- Check the utility program
+            SELECT
+                CD_UTILITY_PROGRAM
+            INTO
+                l_cd_utility_program
+            FROM
+                SYN_ER_CUSTOMER
+            WHERE
+                KY_ER_REF_ID = ws_ky_enroll;
+                
+            -- Gexa-specific; if this is a NOPEC account, abort immediately
+            IF l_cd_utility_program IS NOT NULL THEN
+                IF UPPER(l_cd_utility_program) = 'NOPE' THEN
+                    --dbms_output.put_line('utility program: NOPE' || l_cd_utility_program);
+                    RETURN FALSE;
+                     
+                END IF;
+            END IF;
+            
+            RETURN TRUE;
+            
+        EXCEPTION
+            WHEN OTHERS THEN
+                -- Couldn't find a utility program; assume we can continue
+                RETURN TRUE;
+        END;
+        
+    BEGIN
+    
+        -- Check first if this supplier is excluded from list of suppliers who
+        -- participate in Self-Service
+        IF DoesSupplierParticipate = FALSE THEN
+            --dbms_output.put_line('IF DoesSupplierParticipate is FALSE');
+            RETURN FALSE;
+        END IF;
+        
+        -- Check second that the utility program isn't excluded
+        IF CheckUtilityProgram = FALSE THEN
+            --dbms_output.put_line('IF CheckUtilityProgram is FALSE');
+            RETURN FALSE;
+        END IF;
+    
+        -- Check for summary billing status
+        IF LOWER(Custpro.PCPM_SUMMBILL_SUPPORT.IsSummbillMaster@psol(ws_ky_enroll, SYSDATE)) = 'y' THEN
+            --dbms_output.put_line('Check for summary billing status in Custpro');
+            RETURN FALSE;
+        END IF;
+    
+        -- Check if the account already exists on the SS_ACCOUNT table
+        BEGIN
+            API_SS_ACCOUNT.Select_SS_Account@psol(ws_ky_enroll, l_ss_account_rec);
+        EXCEPTION
+            WHEN NO_DATA_FOUND THEN
+                RETURN TRUE;
+            WHEN OTHERS THEN
+                dbms_output.put_line('Failure calling API_SS_ACCOUNT.Select_SS_Account@psol for ky_enroll ['||ws_ky_enroll||'].');
+                RAISE ABEND_ERROR;
+        END;
+        
+        -- If for any reason we did NOT explicitly set a TRUE for the return value, assume
+        -- false
+        dbms_output.put_line('If for any reason we did NOT explicitly set a TRUE for the return value, assume False');
+        RETURN FALSE;
+   
+    
+    END;
+
+/*************************************************************
+* Name: SV_Account_Extract.ProcessNewAccounts
+*
+* Description: Called by batch process nightly to send new CSS account information
+*              to the portal.
+*
+* Author: TKS
+* Date:   July 24, 2001
+* Revision History:  TKS -- Portal Releases Prior to 2.5 (changes weren't documented)
+*                    TKS -- Rls 3.0 -- 03/14/2003 -- Bill cycle from CTP
+*                    DRB -- 10/07/2003 Varialbe LPC
+*                        -- New field added in Portal qy_lpc_pct on:
+*                        -- BILL_ACCOUNT and ENROLL
+* ##D#08/30/04  #T#5803  #P#LBP  #C# Add first two numbers of EDC acct # to Centerpoint EDC
+* ##D#10/26/04  #T#5454  #P#LBP  #C# Keep voided accounts from going to the Portal.
+* ##D# 11/29/2004 #T#6153 #P# LBP #C# Add logic for meter cycle
+* ##D#01/25/05  #T#5637  #P#LBP  #C# Pass bill option and pct. tax exempt to the Portal
+* ##D#01/26/05  #T#6699  #P#LBP  #C#Changes to doing business as logic
+* ##D#05/09/05  #T#6974  #P#DRB  #C# Insert Portal meter_file table for client 2 accounts
+* ##D#08/24/05  #T#8026  #P#LBB  #C#Added zip+4 to the extract
+*##D#11/28/2005 #T#8549  #P#RNistala#C# to add p_ky_supplier param in procedure call
+* ##D#02/28/06  #T#      #P#KEK  #C#added bill print message for Maagic
+* ##D#03/29/06  #T#9434  #P#DDK  #C#added code to insert row into selfserv.ss_account table if it does not exist for selecte suppliers.
+* ##D#05/17/06  #T#9452  #P#KEK  #C#added fl_icap
+* ##D#02/20/06  #T#11975 #P#DDK  #C#Qualify objects with schema name to fix Oracle 9i upgrade issues.
+* ##D#03/13/07  #T#12089 #P#JAL  #C#Modified ProcessNewAccounts() to exclude specific suppliers from extract to selfserv.ss_account table for End User Self Service
+* ##D#03/19/07  #T#12301 #P#KEK  #C#Added premise check to address issue where 2 accounts have same ky_ad
+* ##D#12/24/07  #T#15142 #P#DDK  #C#Exclude supplier EPLUSGREEN accounts in the interface to the SELFSERV.SS_ACCOUNT table.
+* ##D#10/23/08  #T#17578 #P#JAL  #C#Modified ProcessNewAccounts() to exclude summary billing master accounts from extract to Self Service
+* ##D#10/23/08  #T#      #P#TCW #C#Change reference to fl_summary_bill to utilize syn_fl_summary_bill function from CUSTPRO
+* ##D#04/03/09  #T#19022 #P#NWR  #C#Modifed GetBillAccountInfo() to include tx_bp_mesg field for Recurring CC. Also includes performance enhancements under Load Test environment.
+*   10/14/09    T21343   C.O'Neill  RTRIM the supplier before quering ss_exclude
+**************************************************************/
+PROCEDURE ProcessNewAccounts(p_ky_supplier css_sv_update.ky_supplier%TYPE,
+                             p_cd_rtn OUT NUMBER)
+IS
+p_account_rec           PVIEW.ACCOUNT@PSOL%ROWTYPE;
+l_ss_account_rec        SS_ACCOUNT@PSOL%ROWTYPE;
+l_ky_enroll             SS_ACCOUNT.ky_enroll@PSOL%TYPE;
+fl_insert_ss_account    BOOLEAN;
+p_bill_account_rec      PVIEW.BILL_ACCOUNT@PSOL%ROWTYPE;
+ws_process_log_rec      EXTRACT_PROCESS_LOG%ROWTYPE;
+ws_ky_ba                SUPPLIER_ACCOUNT.ky_ba%TYPE;
+ws_ky_prem_no           BILL_ACCT.ky_prem_no%TYPE;
+ws_ky_ad                BILL_ACCT.ky_ad%TYPE;
+ws_cd_ad_type           BILL_ACCT.cd_ad_type%TYPE;
+ws_ky_supplier          SUPPLIER.ky_supplier_id%TYPE;
+ws_affinity_1           p_bill_account_rec.ky_affinity%TYPE;
+ws_affinity_2           p_bill_account_rec.ky_affinity2%TYPE;
+ws_rate_class           PRICE_USAGE.tx_edc_tar_sch%TYPE;
+ws_ky_account_type      PVIEW.ACCOUNT.ky_account_type@PSOL%TYPE;
+ws_ky_enroll            NUMBER(10);
+ws_mad_rec              MAD%ROWTYPE;
+ws_bill_cycle           PVIEW.BILL_ACCOUNT.tx_billing_cycle@PSOL%TYPE;
+ws_er_cust_rec          SYN_ER_CUSTOMER%ROWTYPE;
+
+ws_css_bill_acct_rec     css_bill_acct_rec_type;
+ws_css_cust_address_rec  css_cust_address_rec_type;
+ws_css_price_usage_rec   css_price_usage_rec_type;
+ws_dt_contract_end       DATE;
+ws_error_code            NUMBER;
+ws_count                 NUMBER;
+ws_rate_ready_fl         NUMBER;
+ws_tax_exception_rec     css_tax_exception_rec_type;
+ws_customer_rec          css_customer_rec_type;
+
+l_ss_extract             BOOLEAN;
+l_rcd_cnt                NUMBER := 0;
+
+l_summary_bill_fl        VARCHAR2(5);
+
+BEGIN
+DBMS_OUTPUT.ENABLE (500000);
+p_cd_rtn := 0;
+IF p_ky_supplier = 'ACCENT' THEN
+   gky_supplier2 := 'ACCENT2';
+ELSE
+   gky_supplier2 := ltrim(rtrim(p_ky_supplier));
+END IF;
+
+-- Retrieve the list of suppliers from Portal and put it in the local temporary table
+INSERT INTO
+    SS_EXCLUDED_SUPPLIERS
+SELECT 
+    UPPER(KY_SUPPLIER)
+FROM
+    PVIEW.SUPPLIER@PSOL
+WHERE
+    FL_SELFSERVE_EXTRACT = 'N';
+--dbms_output.put_line('Supplier Name' || p_ky_supplier);
+--dbms_output.put_line('Starting Cursor NewAccounts');
+FOR new_accounts_rec IN NewAccounts(p_ky_supplier) LOOP
+BEGIN
+  l_rcd_cnt := l_rcd_cnt + 1;
+  p_account_rec           := NULL;
+  p_bill_account_rec      := NULL;
+  ws_process_log_rec      := NULL;
+
+  ws_css_bill_acct_rec    := NULL;
+  ws_css_cust_address_rec := NULL;
+  ws_css_price_usage_rec  := NULL;
+  ws_affinity_1           := NULL;
+  ws_affinity_2           := NULL;
+  ws_mad_rec              := NULL;
+  ws_count                := 0;
+
+
+  ws_ky_ba                               :=  new_accounts_rec.ky_ba;
+  ws_ky_supplier                         :=  new_accounts_rec.ky_supplier_id;
+  
+  --dbms_output.put_line('cursor: ky_ba: ' || ws_ky_ba);
+  --dbms_output.put_line('cursor: ws_ky_supplier: ' || ws_ky_supplier);
+  
+
+     
+  
+  
+  GetServicePtInfo(ws_ky_ba, ws_ky_account_type);
+     p_account_rec.ky_account_type := ws_ky_account_type;
+
+  p_bill_account_rec.tx_billing_number   :=  ws_ky_ba;
+
+  GetBillAcctInfo(ws_ky_ba, ws_css_bill_acct_rec);
+     ws_ky_enroll               := RTRIM(ws_css_bill_acct_rec.ky_old_acctno, gSpace);
+     ws_ky_prem_no              := ws_css_bill_acct_rec.ky_prem_no;
+     ws_ky_ad                   := ws_css_bill_acct_rec.ky_ad;
+     ws_cd_ad_type              := ws_css_bill_acct_rec.cd_ad_type;
+
+     p_bill_account_rec.ky_billing_status  := ws_css_bill_acct_rec.cd_ba_stat;
+     p_bill_account_rec.fl_eft             := ws_css_bill_acct_rec.fl_ele_trnsfr;
+     --p_bill_account_rec.fl_summary_bill    := syn_fl_summary_bill(to_number(ws_ky_enroll));--(ws_css_bill_acct_rec.fl_sum_bill;
+     --p_bill_account_rec.fl_summary_bill    := custpro.fl_summary_bill@psol(to_number(ws_ky_enroll));--(ws_css_bill_acct_rec.fl_sum_bill;
+     p_bill_account_rec.qy_due_days        := ws_css_bill_acct_rec.no_due_days;
+     p_bill_account_rec.qy_lpc_pct         :=
+                 trunc((ws_css_bill_acct_rec.qy_lpc_pc * 100), 2);
+     p_bill_account_rec.fl_lpc_eligible    := ws_css_bill_acct_rec.fl_lpc_eligible;     
+     
+     -- 02/02/2009 NWR added fl_recurring_payment for recurring CC
+      IF ws_css_bill_acct_rec.tx_bp_mesg = 'RC' THEN
+        p_bill_account_rec.fl_recurring_payment := 'Y';
+      ELSE
+        p_bill_account_rec.fl_recurring_payment := 'N';
+      END IF;       
+
+  IF (p_bill_account_rec.ky_billing_status = gVoid) THEN
+      RAISE VOID_ERROR;
+  END IF;
+  
+  SYN_PACCOUNT_TEMP.CountAccount(ws_ky_enroll, ws_count, ws_error_code);
+
+  IF ws_error_code <> 0 THEN
+    DBMS_OUTPUT.put_line('Failure in SYN_PACCOUNT_TEMP.CountAccount : '||ws_error_code);
+  END IF;
+
+  IF ws_count > 0 THEN
+  
+       SYN_PACCOUNT_TEMP.SelectAccount(ws_ky_enroll, p_account_rec, ws_error_code);
+    
+         IF ws_error_code <> 0 THEN
+            DBMS_OUTPUT.put_line('Failure in SYN_PACCOUNT_TEMP.SelectAccount : '||ws_error_code);
+         END IF;
+         
+  END IF;
+
+    -- Call function to see if Self-Serve extract should take place
+    fl_insert_ss_account := DoSelfServeExtract(ws_ky_supplier,ws_ky_enroll);
+  
+  --12301 added check for premise to address issue where two accounts have same ky_ad
+  IF ws_cd_ad_type = gMailingAd
+  THEN
+     GetCustAddressesInfo(ws_ky_ba, ws_ky_ad, gFive, gMailingAd, ws_css_cust_address_rec);
+
+        p_account_rec.tx_mail_line_1   := ws_css_cust_address_rec.ad_ln_1;
+        p_account_rec.tx_mail_line_2   := ws_css_cust_address_rec.ad_ln_2;
+        p_account_rec.tx_mail_city     := ws_css_cust_address_rec.ad_city;
+        p_account_rec.ky_mail_state    := ws_css_cust_address_rec.ad_serv_st;
+        p_account_rec.tx_mail_zip      := LPAD(ws_css_cust_address_rec.ad_serv_zip, gFive, gZero);
+
+     GetCustAddressesInfo(ws_ky_ba, ws_ky_prem_no, gFour, gPremiseAd, ws_css_cust_address_rec);
+
+        p_account_rec.tx_service_line_1   := ws_css_cust_address_rec.ad_ln_1;
+        p_account_rec.tx_service_line_2   := ws_css_cust_address_rec.ad_ln_2;
+        p_account_rec.tx_service_city     := ws_css_cust_address_rec.ad_city;
+        p_account_rec.ky_service_state    := ws_css_cust_address_rec.ad_serv_st;
+        p_account_rec.tx_service_zip      := LPAD(ws_css_cust_address_rec.ad_serv_zip, gFive, gZero);
+
+      /*DRBreininger item 1005 ******************************************************/
+      /* p_account_rec.tx_customer_name    := ws_css_cust_address_rec.nm_compressed;*/
+      /*                                                                            */
+        p_account_rec.tx_customer_name := ws_css_cust_address_rec.nm_cust_1;
+        p_account_rec.tx_doing_business_as:= ws_css_cust_address_rec.nm_do_business_as;
+
+      /*******************************************************************************/
+
+   ELSIF ws_cd_ad_type = gPremiseAd
+   THEN
+      GetCustAddressesInfo(ws_ky_ba, ws_ky_ad, gFour, gPremiseAd, ws_css_cust_address_rec);
+
+        p_account_rec.tx_mail_line_1   := ws_css_cust_address_rec.ad_ln_1;
+        p_account_rec.tx_mail_line_2   := ws_css_cust_address_rec.ad_ln_2;
+        p_account_rec.tx_mail_city     := ws_css_cust_address_rec.ad_city;
+        p_account_rec.ky_mail_state    := ws_css_cust_address_rec.ad_serv_st;
+        p_account_rec.tx_mail_zip      := LPAD(ws_css_cust_address_rec.ad_serv_zip, gFive, gZero);
+
+        p_account_rec.tx_service_line_1   := ws_css_cust_address_rec.ad_ln_1;
+        p_account_rec.tx_service_line_2   := ws_css_cust_address_rec.ad_ln_2;
+        p_account_rec.tx_service_city     := ws_css_cust_address_rec.ad_city;
+        p_account_rec.ky_service_state    := ws_css_cust_address_rec.ad_serv_st;
+        p_account_rec.tx_service_zip      := LPAD(ws_css_cust_address_rec.ad_serv_zip, gFive, gZero);
+
+      /*DRBreininger item 1005 *********************************************************/
+      /*p_account_rec.tx_customer_name    := ws_css_cust_address_rec.nm_compressed;    */
+      /*                                                                               */
+        p_account_rec.tx_customer_name := ws_css_cust_address_rec.nm_cust_1;
+        --Removed 01/26/2005 Tracker #6699
+        --p_account_rec.tx_doing_business_as:= ws_css_cust_address_rec.nm_do_business_as;
+
+      /*********************************************************************************/
+
+    END IF;
+
+    GetPUInfo(ws_ky_ba, ws_css_price_usage_rec);
+
+       ws_rate_class                            := ws_css_price_usage_rec.tx_edc_tar_sch;
+       p_bill_account_rec.qy_kw_capacity_oblgtn := ws_css_price_usage_rec.at_capacity_oblg;
+       p_bill_account_rec.qy_kw_trans_oblgtn    := ws_css_price_usage_rec.at_trans_oblg;
+       --08/30/04 Tracker #5803 Start
+       --Centerpoint EDC acct. no. has a length of 22.  Need to add first two numbers in
+       --acct. no. when sending to Portal.
+       IF (ws_css_price_usage_rec.cd_serv_supp = '0171' AND SUBSTR(ws_css_price_usage_rec.id_ba_esco,1,5) <> '99999') THEN
+         p_account_rec.tx_utility_account         := '10' || ws_css_price_usage_rec.id_ba_esco;
+       ELSIF (ws_css_price_usage_rec.cd_serv_supp = '0171' AND SUBSTR(ws_css_price_usage_rec.id_ba_esco,1,5) = '99999') THEN
+         p_account_rec.tx_utility_account         := '99' || ws_css_price_usage_rec.id_ba_esco;
+       ELSE
+         p_account_rec.tx_utility_account         := ws_css_price_usage_rec.id_ba_esco;
+       END IF;
+       --08/30/04 Tracker #5803 End
+   --    p_account_rec.ky_utility_name            := ws_css_price_usage_rec.edc_code;
+       p_bill_account_rec.dt_contract_start     := TO_DATE(ws_css_price_usage_rec.dt_last_esco_set, gdateFormat);
+
+       --01/24/05 Tracker #5637 Start
+       --Bill option must first be converted to 1 or 2 before sending to Portal.
+       IF (ws_css_price_usage_rec.fl_tar_one_bill = 'Y') THEN
+         p_bill_account_rec.ky_bill_option       := gPortalOneBill;
+       ELSIF (ws_css_price_usage_rec.fl_tar_one_bill = 'N') THEN
+         p_bill_account_rec.ky_bill_option       := gPortalTwoBill;
+       END IF;
+       --01/24/05 Tracker #5637 End
+
+
+
+    GetTCEnd(ws_ky_ba, ws_dt_contract_end);
+       p_bill_account_rec.dt_contract_end       := ws_dt_contract_end;
+
+    GetAffinity(ws_ky_ba, ws_affinity_1, ws_affinity_2);
+       p_bill_account_rec.ky_affinity  := ws_affinity_1;
+       p_bill_account_rec.ky_affinity2 := ws_affinity_2;
+
+    GetMadInfo(ws_ky_ba, ws_mad_rec);
+    p_bill_account_rec.ky_customer_care := ws_mad_rec.cd_cust_care;
+    p_bill_account_rec.tx_supplier_rate_code := ws_mad_rec.tx_curr_supp_rt_cd;
+    p_bill_account_rec.ky_credit_rating := ws_mad_rec.cd_credit_rating;
+    p_bill_account_rec.tx_comment := ws_mad_rec.tx_client_comment;
+
+    --05/02/2004 DRB - bill cycle now stored in MAD, no longer need to fetch from CTP
+    p_bill_account_rec.tx_billing_cycle := ws_mad_rec.tx_bill_cycle;
+    --GetCTPBillCycle(ws_ky_ba, RTRIM(ws_css_price_usage_rec.id_ba_esco), ws_ky_enroll, ws_bill_cycle);
+
+    --02/28/2006 KEK --added bill print message for Maagic
+    p_bill_account_rec.ky_bill_print_message := ws_mad_rec.cd_supp_mesg;
+
+    --05/17/2006 KEK --added fl_icap
+    p_bill_account_rec.fl_icap := ws_mad_rec.fl_icap;
+
+    --08/24/2005 Tracker 8026 Start--LBB
+    p_account_rec.tx_service_zip4 := ws_mad_rec.tx_zip_plus_4;
+    --08/24/2005 Tracker 8026 End
+
+    p_account_rec.ky_enroll               :=  ws_ky_enroll;
+    p_account_rec.ky_supplier      :=  ws_ky_supplier;
+
+    p_bill_account_rec.ky_enroll          := ws_ky_enroll;
+    p_bill_account_rec.ky_supplier             := ws_ky_supplier;
+   -- p_bill_account_rec.tx_billing_cycle   := ws_bill_cycle;
+
+
+    --01/24/05 Tracker #5637 Start
+    GetTaxExceptionInfo(ws_ky_ba, ws_tax_exception_rec);
+    --Convert tax exception before sending to the Portal.
+    --Portal stores tax exception the opposite of CSS.
+    p_bill_account_rec.qy_pct_tax_exempt := ((ws_tax_exception_rec.pc_tax_excep - 100) * -1);
+    --01/24/05 Tracker #5637 End
+
+    --01/26/05 Tracker #6699 Start
+    GetCustomerInfo(ws_ky_ba, ws_customer_rec);
+    p_account_rec.tx_doing_business_as := ws_customer_rec.nm_cust_2;
+    --01/26/05 Tracker #6699 End
+    ws_error_code := 0;
+
+    IF ws_count = 0 and ws_ky_account_type = gGas OR
+       ws_count = 0 and ws_ky_account_type = gTcom THEN
+       p_account_rec.ky_utility_name := ws_css_price_usage_rec.edc_code;
+       CreateDummyEnrollRec(p_account_rec, ws_ky_ba, ws_error_code);
+    END IF;
+
+    IF ws_error_code = 0 THEN
+
+       CallInsertUpdateAccount(p_account_rec, ws_count, ws_error_code);
+       
+       IF ws_error_code <> 0 THEN
+        DBMS_OUTPUT.put_line('Failure in CallInsertUpdateAccount : '||ws_error_code); 
+       END IF;
+       
+       CallInsertBillAccount(p_bill_account_rec, ws_error_code);
+       
+       IF ws_error_code <> 0 THEN
+        DBMS_OUTPUT.put_line('Failure in CallInsertBillAccount : '||ws_error_code); 
+       END IF;
+       
+    END IF;
+
+    IF ws_error_code = 0 THEN
+       IF rtrim(new_accounts_rec.ky_supplier_id) != gClient2 THEN
+          ProcessMeters(ws_ky_prem_no, ws_ky_enroll, ws_ky_supplier, ws_rate_class,
+                        ws_css_price_usage_rec.id_lmp_bus_no, ws_css_price_usage_rec.tx_edc_profile_grp,
+                        ws_mad_rec.tx_meter_cycle, ws_error_code);
+           IF ws_error_code <> 0 THEN
+                DBMS_OUTPUT.put_line('Failure in ProcessMeters (1) : '||ws_error_code); 
+           END IF;
+       ELSE
+       --T#6974 Start
+          ProcessMeters(ws_ky_ba,ws_ky_prem_no, ws_ky_enroll, p_account_rec.tx_utility_account,
+                        ws_ky_supplier,ws_rate_class,ws_css_price_usage_rec.id_lmp_bus_no,
+                        ws_css_price_usage_rec.tx_edc_profile_grp,ws_mad_rec.tx_meter_cycle,
+                        p_bill_account_rec.dt_contract_start,p_bill_account_rec.dt_contract_end,
+                        ws_error_code);
+          IF ws_error_code <> 0 THEN
+                DBMS_OUTPUT.put_line('Failure in ProcessMeters (2) : '||ws_error_code); 
+          END IF;
+       --T#6974 End
+       END IF;
+    END IF;
+
+    IF ws_ky_account_type = gElec and ws_error_code = 0 THEN
+       ws_rate_ready_fl := GW_TRANSACTION.IsRateReady(ws_ky_ba);
+       IF  ws_rate_ready_fl = 0 THEN
+          ProcessRateReadySimplePrice(ws_ky_ba, ws_ky_enroll, ws_ky_supplier);
+       ELSIF ws_rate_ready_fl = 1 THEN
+          ProcessSimplePrice(ws_ky_ba, ws_ky_enroll, ws_ky_supplier);
+       ELSE
+          DBMS_OUTPUT.PUT_LINE(ws_ky_ba ||' FATAL ERROR: GW_TRANSACTION.IsRateReady');
+          ws_error_code := ws_rate_ready_fl;
+       END IF;
+    END IF;
+    
+    --DBMS_OUTPUT.put_line('Reached if fl_insert_ss_account:');
+    
+    IF fl_insert_ss_account = TRUE and ws_error_code = 0 THEN
+       l_ss_account_rec                   := NULL;
+       l_ss_account_rec.KY_ENROLL         := ws_ky_enroll;
+       l_ss_account_rec.KY_BA             := ws_ky_ba;
+       l_ss_account_rec.KY_SUPPLIER       := TRIM(ws_ky_supplier);
+       l_ss_account_rec.TS_CREATE         := SYSDATE;
+       l_ss_account_rec.TX_CREATE_USER_ID := USER;
+       l_ss_account_rec.TS_MODIFY         := SYSDATE;
+       l_ss_account_rec.TX_MODIFY_USER_ID := USER;
+       BEGIN
+            --DBMS_OUTPUT.put_line('if fl_insert_ss_account is TRUE ans ws_error_code = 0 THEN Insert_ss_account() BEGIN');
+           -- DBMS_OUTPUT.put_line('fl_insert_ss_account is TRUE and ws_error_code is: ' || ws_error_code);
+            --DBMS_OUTPUT.put_line('fl_insert_ss_account is TRUE and ws_error_code is: ' || l_ky_enroll);
+          api_ss_account.insert_ss_account@PSOL(l_ss_account_rec, l_ky_enroll);
+       EXCEPTION
+          WHEN OTHERS THEN
+             dbms_output.put_line('Failure calling API_SS_ACCOUNT.insert_ss_account@psol for ky_enroll ['||l_ss_account_rec.KY_ENROLL ||'] SQLERRM: '||SUBSTR(SQLERRM,1,100)||'.');
+             RAISE ABEND_ERROR;
+       END;
+       
+       --dbms_output.put_line('Supplier Name' || p_ky_supplier);
+       --dbms_output.put_line('Supplier Name' || ws_ky_supplier);
+       --dbms_output.put_line('Auto LINKING Process about to begin');
+       
+       IF P_SS_AUTO_LINKING.CheckEnhancedAutoLinking@PSOL(TRIM(ws_ky_supplier)) THEN
+            
+            --dbms_output.put_line('If returned true');
+          
+            BEGIN
+                
+                    -- Attempt to retrieve the CUSTOMER record from ER
+                    SELECT 
+                        * 
+                    INTO 
+                        ws_er_cust_rec 
+                    FROM 
+                        SYN_ER_CUSTOMER
+                    WHERE 
+                        KY_ER_REF_ID = ws_ky_enroll;
+                
+                EXCEPTION
+                    WHEN NO_DATA_FOUND THEN
+                        DBMS_OUTPUT.put_line('Could not find ER Customer record for ER '||ws_ky_enroll||'.');
+                        RAISE ABEND_ERROR;
+                END;
+                
+            SS_HandleEnhancedAutoLinking(
+            ws_er_cust_rec.tx_cntc2_email_ad,
+            ws_er_cust_rec.nm_cntc2_lst_1,
+            ws_er_cust_rec.nm_cntc3_lst_1,
+            ws_er_cust_rec.ad_serv_zip,
+            ws_er_cust_rec.tx_cntc2_phn_acd,
+            ws_er_cust_rec.tx_cntc2_phn_no, 
+            TRIM(ws_ky_supplier),
+            TRIM(ws_ky_enroll));
+            
+            
+       ELSE
+            --dbms_output.put_line('If returned false');
+           -- Attempt to auto-link the account if applicable for the given supplier
+           IF P_SS_AUTO_LINKING.DoesSupplierParticipate@PSOL(TRIM(ws_ky_supplier)) THEN
+           
+                BEGIN
+                
+                    -- Attempt to retrieve the CUSTOMER record from ER
+                    SELECT 
+                        * 
+                    INTO 
+                        ws_er_cust_rec 
+                    FROM 
+                        SYN_ER_CUSTOMER
+                    WHERE 
+                        KY_ER_REF_ID = ws_ky_enroll;
+                
+                EXCEPTION
+                    WHEN NO_DATA_FOUND THEN
+                        DBMS_OUTPUT.put_line('Could not find ER Customer record for ER '||ws_ky_enroll||'.');
+                        RAISE ABEND_ERROR;
+                END;
+                
+                -- Only auto-link the account if the grouping ID is not null
+                IF ws_er_cust_rec.TX_GROUPING_ID IS NOT NULL THEN
+                
+                    BEGIN
+                        -- Auto-Link the account based on group ID, supplier and ER Number
+                        P_SS_AUTO_LINKING.AttemptToAutoLinkByEr@PSOL(ws_er_cust_rec.TX_GROUPING_ID, 
+                                                                     TRIM(ws_ky_supplier), 
+                                                                     ws_ky_enroll);
+                    EXCEPTION
+                        WHEN OTHERS THEN
+                            DBMS_OUTPUT.put_line('Auto-Link Attempt Failed for '||ws_ky_enroll||', Group ID '||ws_er_cust_rec.TX_GROUPING_ID);
+                            DBMS_OUTPUT.put_line('SQLCODE :  '||SQLCODE);
+                            RAISE ABEND_ERROR;
+                    END;
+                
+                END IF; 
+     
+           END IF;      -- END IF DoesSupplierParticipate
+       END IF; --P_SS_AUTO_LINKING.CheckEnhancedAutoLinking
+       
+       
+       
+    END IF;     -- END IF fl_insert_ss_account = 'Y'
+    
+    -- 02/02/2009 NWR added fl_recurring_payment flag
+    IF ws_css_bill_acct_rec.tx_bp_mesg = 'RC' THEN
+        p_bill_account_rec.fl_recurring_payment := 'Y';
+    ELSE
+        p_bill_account_rec.fl_recurring_payment := 'N';
+    END IF;
+
+    IF ws_error_code = 0 THEN
+      --   UPDATE css_sv_update set fl_updated = gUpdated
+        -- WHERE CURRENT OF NewAccounts;
+      UPDATE css_sv_update set fl_updated = gUpdated
+       WHERE  ky_ba = new_accounts_rec.ky_ba
+      AND css_tbl_name = new_accounts_rec.css_tbl_name;
+        --- WHERE CURRENT OF NewAccounts;
+    ELSE
+       --dbms_output.put_line('Raising  the errors  ');
+       RAISE ABEND_ERROR;
+    END IF;
+
+EXCEPTION
+   WHEN NO_DATA_FOUND THEN
+      IF RTRIM(new_accounts_rec.ky_supplier_id) <> gEPLUS THEN
+         p_cd_rtn := 99;
+         DBMS_OUTPUT.PUT_LINE('FATAL ERROR: ' || ws_error_code || 'Account #: ' || ws_ky_ba  || ' ' || SQLCODE);
+      ELSE
+         DBMS_OUTPUT.PUT_LINE('ERROR: ' || ws_error_code || 'Account #: ' || ws_ky_ba  || ' ' || SQLCODE);
+      END IF;
+  WHEN ABEND_ERROR THEN
+     IF RTRIM(new_accounts_rec.ky_supplier_id) <> gEPLUS THEN
+        p_cd_rtn := 99;
+        DBMS_OUTPUT.PUT_LINE('FATAL ERROR IN ACCOUNT EXTRACT!: '||ws_error_code||' '||ws_ky_ba||' '||SQLERRM);
+     ELSE
+        DBMS_OUTPUT.PUT_LINE('ERROR: ' || ws_error_code || 'Account #: ' || ws_ky_ba  || ' ' || SQLCODE);
+      END IF;
+  WHEN VOID_ERROR THEN
+      UPDATE css_sv_update set fl_updated = gUpdated
+      WHERE ky_css_sv_update = new_accounts_rec.ky_css_sv_update;
+         --WHERE CURRENT OF NewAccounts;
+      DBMS_OUTPUT.PUT_LINE('VOIDED ACCOUNT: '|| ws_ky_ba || ' was updated on css_sv_update');
+  WHEN OTHERS THEN
+      IF RTRIM(new_accounts_rec.ky_supplier_id) <> gEPLUS THEN
+        p_cd_rtn := 99;
+        DBMS_OUTPUT.PUT_LINE('FATAL ERROR IN ACCOUNT EXTRACT!: '||ws_error_code||' '||ws_ky_ba||' '||SQLERRM);
+      ELSE
+         DBMS_OUTPUT.PUT_LINE('ERROR: ' || ws_error_code || 'Account #: ' || ws_ky_ba  || ' ' || SQLCODE);
+      END IF;
+
+  IF mod(l_rcd_cnt,gCommitCount) = 0 THEN
+      COMMIT;
+      l_rcd_cnt := 0;
+  END IF;
+
+END;
+
+END LOOP;
+COMMIT;
+
+IF p_cd_rtn = 0 THEN
+   ws_process_log_rec.KY_PROCESS := gAccountExtract;
+   ws_process_log_rec.TX_PROCESS := gAESuccessful;
+   ws_process_log_rec.DT_BATCH_PROCESS := SYSDATE;
+   SYN_PEXTRACT_PROCESS_LOG.InsertExtractProcessLog(ws_process_log_rec,ws_error_code);
+
+   
+     
+   IF ws_error_code <> 0 THEN
+      RAISE process_log_error;
+   ELSE
+      COMMIT;
+   END IF;
+END IF;
+
+EXCEPTION
+WHEN process_log_error THEN
+   DBMS_OUTPUT.PUT_LINE('SIGNAL ABEND, PROCESS LOG NOT WRITTEN: ' || ws_error_code);
+   p_cd_rtn := 99;
+WHEN OTHERS THEN
+   p_cd_rtn := 99;
+   DBMS_OUTPUT.PUT_LINE('FATAL ERROR ProcessNewAccounts: ' || SQLERRM);
+END ProcessNewAccounts;
+
+/*************************************************************
+* Name: SV_Account_Extract.GetBillAcctInfo
+*
+* Description: Fetch pertinant bill account information from CSS bill_acct,
+*              bus_dir_no_instmt, and supplier_account tables.
+*
+* Author: TKS
+* Date:   July 24, 2001
+* Revision History:  TKS -- Portal Releases Prior to 2.5 (changes weren't documented)
+*                    DRB -- 10/08/2003 Variable LPC changes
+*                        -- Get qy_lpc_pc from SUPPLIER_ACCOUNT
+**************************************************************/
+PROCEDURE GetBillAcctInfo (p_ky_ba IN NUMBER,
+                        p_css_bill_acct IN OUT css_bill_acct_rec_type)
+IS
+BEGIN
+SELECT ky_ba, ky_prem_no, ky_old_acctno, ky_ad, cd_ad_type, cd_ba_stat,
+ --       fl_ele_trnsfr, fl_sum_bill, fl_lpc_eligible -- Change to reference custpro.fl_summary_bill function
+--         fl_ele_trnsfr, syn_fl_summary_bill(TO_NUMBER(ky_old_acctno)), fl_lpc_eligible --TCW 
+         fl_ele_trnsfr --,custpro.fl_summary_bill@psol(TO_NUMBER(ky_old_acctno))
+         , fl_lpc_eligible --TCW 
+
+  INTO p_css_bill_acct.ky_ba, p_css_bill_acct.ky_prem_no, p_css_bill_acct.ky_old_acctno,
+       p_css_bill_acct.ky_ad,  p_css_bill_acct.cd_ad_type,  p_css_bill_acct.cd_ba_stat,
+       p_css_bill_acct.fl_ele_trnsfr, --p_css_bill_acct.fl_sum_bill, 
+       p_css_bill_acct.fl_lpc_eligible 
+  FROM bill_acct
+  WHERE ky_ba = p_ky_ba
+  AND   cd_stat = gActStat;
+
+/*DRBreininger item 1107 *******************************/
+  SELECT max(dt_rdg_to)
+  INTO   p_css_bill_acct.dt_rdg_to
+  FROM   RDG_CONS_HDR
+  WHERE  ky_ba = p_ky_ba
+  AND    cd_rdg_stat IN ('B', ' ');
+/******************************************************/
+
+ SELECT min(dt_eff)
+  INTO p_css_bill_acct.dt_eff
+  FROM bus_dir_no_instmt
+  WHERE ky_ba = p_ky_ba;
+
+ SELECT no_due_days, qy_lpc_pc, tx_bp_mesg
+ INTO p_css_bill_acct.no_due_days, p_css_bill_acct.qy_lpc_pc, p_css_bill_acct.tx_bp_mesg
+ FROM supplier_account
+ WHERE ky_ba = p_ky_ba;
+END;
+
+/*************************************************************
+* Name: SV_Account_Extract.GetCustAddressesInfo
+*
+* Description: Fetch address information
+*
+* Author: TKS
+* Date:   July 24, 2001
+* Revision History:  TKS -- Portal Releases Prior to 2.5 (changes weren't documented)
+* ##D#01/26/2005 #T#6699 #P#LBP #C# Remove doing business as logic
+* ##D#03/19/2007 #T#12301#P#KEK #C# added premise check for those accounts with matching ky_ad
+**************************************************************/
+PROCEDURE GetCustAddressesInfo (p_ky_ba in NUMBER, p_ky_ad IN NUMBER, p_cd_ad_ln IN NUMBER, p_cd_ad_type IN VARCHAR2,
+                             p_cust_address IN OUT css_cust_address_rec_type)
+IS
+CURSOR AddressesInfo
+IS
+   SELECT cd_ad_ln, ad_ln
+      FROM addresses
+      WHERE ky_ad = p_ky_ad
+      AND   cd_ad_ln < p_cd_ad_ln
+      AND   cd_stat = gActStat
+      AND   cd_ad_type = p_cd_ad_type
+      ORDER BY cd_ad_ln DESC;
+
+addresses_info_rec AddressesInfo%ROWTYPE;
+
+ws_cd_ad_ln addresses_info_rec.cd_ad_ln%TYPE;
+ws_ad_ln     VARCHAR2(28);
+ws_ad_length        NUMBER;
+ws_zip_start NUMBER;
+ws_st_start  NUMBER;
+ws_st_end    NUMBER;
+ws_city_end  NUMBER;
+fl_three     CHAR(1);
+
+BEGIN
+p_cust_address := NULL;
+
+fl_three  := gNo;
+
+FOR addresses_info_rec IN AddressesInfo LOOP
+   ws_cd_ad_ln := addresses_info_rec.cd_ad_ln;
+   ws_ad_ln    := RTRIM(addresses_info_rec.ad_ln, gSpace);
+
+   IF ws_cd_ad_ln = gFour
+   THEN
+      ws_ad_length := LENGTH(ws_ad_ln);
+      ws_zip_start := ws_ad_length - gFour;
+      ws_st_end    := ws_zip_start - gOne;
+      ws_st_start  := ws_zip_start - gThree;
+      ws_city_end  := ws_st_start - gOne;
+
+      p_cust_address.ad_serv_zip     := SUBSTR(ws_ad_ln, ws_zip_start, gFive);
+      p_cust_address.ad_serv_st      := SUBSTR(ws_ad_ln, ws_st_start, gTwo);
+      p_cust_address.ad_city         := SUBSTR(ws_ad_ln, gOne, ws_city_end);
+   ELSIF ws_cd_ad_ln = gThree
+   THEN
+      p_cust_address.ad_ln_2 := ws_ad_ln;
+      fl_three  := gYes;
+   ELSIF ws_cd_ad_ln = gTwo and fl_three = gYes
+   THEN
+      p_cust_address.ad_ln_1 := ws_ad_ln;
+   ELSIF ws_cd_ad_ln = gTwo and fl_three = gNo
+   THEN
+      p_cust_address.ad_ln_2 := ws_ad_ln;
+   ELSIF ws_cd_ad_ln = gOne and fl_three = gYes
+   THEN
+      p_cust_address.ad_ln_1 := ws_ad_ln || gSpace || p_cust_address.ad_ln_1;
+   ELSIF ws_cd_ad_ln = gOne and fl_three = gNo
+   THEN
+      p_cust_address.ad_ln_1 := ws_ad_ln;
+   END IF;
+END LOOP;
+
+--p_cust_address.nm_compressed := gSpace;
+
+IF p_cd_ad_ln = gFour
+THEN
+   SELECT ad_serv_city, ad_serv_st, ad_serv_zip--, nm_compressed
+     INTO p_cust_address.ad_city, p_cust_address.ad_serv_st,
+          p_cust_address.ad_serv_zip--, p_cust_address.nm_compressed
+     FROM SAD
+     WHERE ky_ba = p_ky_ba
+     AND cd_cust_respnsbl = gRltn;
+
+/* DRBreininger item 1005 **********************/
+
+--Removed 01/26/2005 Tracker #6699
+/*   SELECT nm_do_business_as
+     INTO p_cust_address.nm_do_business_as
+     FROM BA_CUST_CR_INFO
+     WHERE ky_ba = p_ky_ba; */
+
+    SELECT nm_cust_1
+      INTO p_cust_address.nm_cust_1
+      FROM CUSTOMER c, BILL_ACCT b
+      WHERE b.ky_ba = p_ky_ba
+        AND c.ky_cust_no = b.ky_cust_no;
+
+/**********************************************/
+
+END IF;
+
+EXCEPTION
+   WHEN others THEN
+      DBMS_OUTPUT.PUT_LINE(p_ky_ba || ' ADDRESS INFO ERROR! ERROR IS: ' || SQLCODE);
+      NULL;
+END;
+
+/*************************************************************
+* Name: SV_Account_Extract.GetPUInfo
+*
+* Description: Fetch price_usage information
+*
+* Author: TKS
+* Date:   July 24, 2001
+* Revision History:  TKS -- Portal Releases Prior to 2.5 (changes weren't documented)
+*                    DRB 03/08/04 - no longer search price_usage by cd_pu_status, always get
+*                                   the '01' row with the max(dt_term)
+* ##D# 01/24/05 #T#5637 #P#LBP #C# Add bill option flag.
+**************************************************************/
+PROCEDURE GetPUInfo (p_ky_ba IN NUMBER, p_price_usage_info IN OUT css_price_usage_rec_type)
+IS
+ws_cd_serv_supp PRICE_USAGE.CD_SERV_SUPP%TYPE;
+BEGIN
+
+SELECT id_ba_esco, cd_serv_supp, tx_edc_tar_sch, dt_last_esco_set, at_capacity_oblg,
+       at_trans_oblg, id_lmp_bus_no, tx_edc_profile_grp, cd_serv_supp, fl_tar_one_bill
+INTO p_price_usage_info.id_ba_esco , ws_cd_serv_supp,
+       p_price_usage_info.tx_edc_tar_sch, p_price_usage_info.dt_last_esco_set,
+       p_price_usage_info.at_capacity_oblg, p_price_usage_info.at_trans_oblg,
+       p_price_usage_info.id_lmp_bus_no, p_price_usage_info.tx_edc_profile_grp,
+       p_price_usage_info.cd_serv_supp, p_price_usage_info.fl_tar_one_bill
+  FROM price_usage
+  WHERE ky_ba = p_ky_ba
+  AND   cd_pu_rec_type = gRltn
+  AND   dt_term = (SELECT MAX(dt_term)
+                   FROM   price_usage
+                   WHERE  ky_ba=p_ky_ba
+                   AND    cd_pu_rec_type = gRltn)
+  --AND   cd_pu_status in (gPUActStat,gPUPendAct,gPUInactStat)
+  AND   cd_row_stat = gActStat;
+
+
+BEGIN
+   SELECT a.code
+     INTO p_price_usage_info.edc_code
+     FROM edc_name a, marketer_details b
+     WHERE b.cd_serv_supp = ws_cd_serv_supp
+     AND   b. cd_esco_dtl_type = gDuns
+     AND   RTRIM(b.tx_esco_dtl_type, gSpace) = a.duns_num;
+EXCEPTION
+      WHEN NO_DATA_FOUND THEN
+         p_price_usage_info.edc_code := ws_cd_serv_supp;
+      WHEN others THEN
+         DBMS_OUTPUT.PUT_LINE(p_ky_ba || ' EDC NAME ERROR! ERROR IS: ' || SQLCODE);
+          NULL;
+END;
+
+END;
+
+/*************************************************************
+* Name: SV_Account_Extract.GetTCEnd
+*
+* Description: Fetch target_contract (end) information
+*
+* Author: TKS
+* Date:   July 24, 2001
+* Revision History:  TKS -- Portal Releases Prior to 2.5 (changes weren't documented)
+*
+**************************************************************/
+PROCEDURE GetTCEnd (p_ky_ba IN NUMBER, p_dt_contract_end IN OUT DATE)
+IS
+ws_month CHAR(2);
+ws_year  CHAR(4);
+ws_calc  CHAR(10);
+BEGIN
+SELECT dt_target_end_calc, dt_target_end_mth, dt_target_end_year
+  INTO ws_calc, ws_month, ws_year
+  FROM target_contract
+  WHERE ky_ba = p_ky_ba
+  AND   cd_tgt_status = gActStat;
+  --AND   (dt_target_end_calc = gSpace OR dt_target_end_calc > gSysDate);
+
+IF ws_calc = gSpace
+THEN
+   p_dt_contract_end := TO_DATE(ws_year || ws_month || gFirstMo, gDateFormat);
+ELSE
+   p_dt_contract_end := TO_DATE(ws_calc, gDateFormat);
+END IF;
+
+EXCEPTION
+   WHEN NO_DATA_FOUND THEN
+      p_dt_contract_end := NULL;
+   WHEN others THEN
+      DBMS_OUTPUT.PUT_LINE(p_ky_ba || ' TARGET CONTRACT INFO ERROR! ERROR IS: ' || SQLCODE);
+      NULL;
+END;
+
+/*************************************************************
+* Name: SV_Account_Extract.GetAffinity
+*
+* Description: Fetch affinity information
+*
+* Author: TKS
+* Date:   July 24, 2001
+* Revision History:  TKS -- Portal Releases Prior to 2.5 (changes weren't documented)
+* ##D#02/20/06  #T#11975 #P#DDK  #C#Qualify objects with schema name to fix Oracle 9i upgrade issues.
+*
+**************************************************************/
+PROCEDURE GetAffinity (p_ky_ba IN NUMBER, p_affinity_1 IN OUT PVIEW.BILL_ACCOUNT.ky_affinity@PSOL%TYPE,
+                                       p_affinity_2 IN OUT PVIEW.BILL_ACCOUNT.ky_affinity@PSOL%TYPE)
+IS
+BEGIN
+DECLARE
+   ws_count NUMBER(1);
+   CURSOR custaff
+   IS
+      SELECT ky_cust_no
+        FROM ba_resp_cust
+        WHERE ky_ba = p_ky_ba
+        AND cd_cust_respnsbl = gAffinity
+        AND cd_row_stat = gActStat;
+    BEGIN
+       ws_count := 1;
+       p_affinity_1 := NULL;
+       p_affinity_2 := NULL;
+       FOR custaff_rec IN custaff LOOP
+          IF ws_count = 1
+          THEN
+             p_affinity_1 := custaff_rec.ky_cust_no;
+          ELSIF ws_count = 2
+          THEN
+             p_affinity_2 := custaff_rec.ky_cust_no;
+          END IF;
+          ws_count := ws_count + 1;
+       END LOOP;
+
+    EXCEPTION
+       WHEN others THEN
+          p_affinity_1 := ' ';
+          p_affinity_2 := ' ';
+          DBMS_OUTPUT.PUT_LINE(p_ky_ba || ' AFFINITY INFO ERROR! ERROR IS: ' || SQLCODE);
+    END;
+END;
+
+/*************************************************************
+* Name: SV_Account_Extract.GetMadInfo
+*
+* Description: Fetch MAD (Miscellaneous Account Data) information.
+*
+* Author: TKS
+* Date:   April 15, 2002
+* Revision History:  TKS -- Portal Releases Prior to 2.5 (changes weren't documented)
+*         05/02/2004 DRB -- Made changes to use API to access MAD
+**************************************************************/
+PROCEDURE GetMadInfo (p_ky_ba in NUMBER, p_mad_rec IN OUT MAD%ROWTYPE)
+IS
+ws_error   NUMBER;
+
+BEGIN
+PMAD_API.SelectMad(p_ky_ba, p_mad_rec, ws_error);
+IF ws_error <> 0 THEN
+   DBMS_OUTPUT.PUT_LINE(p_ky_ba || ' MAD INFO ERROR! ERROR IS: ' || ws_error);
+END IF;
+
+/*
+SELECT * INTO p_mad_rec
+   FROM MAD
+   WHERE ky_ba = p_ky_ba;*/
+
+EXCEPTION
+   WHEN others THEN
+      DBMS_OUTPUT.PUT_LINE(p_ky_ba || ' MAD INFO ERROR! ERROR IS: ' || SQLCODE);
+      NULL;
+END;
+
+/*************************************************************
+* Name: SV_Account_Extract.GetCTPBillCycle
+*
+* Description: Fetch Bill Cycle from EDC
+*
+* Author: TKS
+* Date:   Mar. 11, 2003
+* Revision History:
+*
+**************************************************************/
+PROCEDURE GetCTPBillCycle(p_ky_ba IN NUMBER, p_id_ba_esco IN VARCHAR,
+                       p_ky_enroll IN NUMBER, p_bill_cycle IN OUT VARCHAR)
+IS
+BEGIN
+SELECT cd_billing_cycle INTO p_bill_cycle
+   FROM bt_814_acct_info@edop
+   WHERE ky_row_seq_trans in
+   (SELECT MAX(ky_row_seq_trans) FROM bt_common_header@edop
+      WHERE ky_trans_set_id = '814' and
+      ky_trans_subtype = '81' and
+      id_edc_acct_num = RTRIM(p_id_ba_esco) and
+      id_er_acct_num = p_ky_enroll);
+EXCEPTION
+   WHEN others THEN
+      DBMS_OUTPUT.PUT_LINE(p_ky_ba || ' CTP BILL CYCLE INFO ERROR! ERROR IS: ' || SQLCODE);
+      NULL;
+END;
+
+/*************************************************************
+* Name: SV_Account_Extract.ProcessMeters
+*
+* Description: Process Meter Information
+*
+* Author: TKS
+* Date:   July 24, 2001
+* Revision History:  TKS -- Portal Releases Prior to 2.5 (changes weren't documented)
+*                     TKS -- May 09, 2003 -- Release 4.0 -- lmp_bus, profile,
+* ##D# 11/29/2004 #T#6153 #P# LBP #C# Add logic for meter cycle
+* ##D#02/20/06  #T#11975 #P#DDK  #C#Qualify objects with schema name to fix Oracle 9i upgrade issues.
+**************************************************************/
+PROCEDURE ProcessMeters (p_ky_prem_no  IN BILL_ACCT.KY_PREM_NO%TYPE,
+                      p_ky_enroll   IN PVIEW.METER.ky_enroll@PSOL%TYPE,
+                      p_ky_supplier IN PVIEW.METER.ky_supplier@PSOL%TYPE,
+                      p_ky_utility_rate_class IN PVIEW.METER.ky_utility_rate_class@PSOL%TYPE,
+                      p_id_lmp_bus_no IN PRICE_USAGE.id_lmp_bus_no%TYPE,
+                      p_profile_grp   IN PRICE_USAGE.tx_edc_profile_grp%TYPE,
+                      p_meter_cycle   IN MAD.tx_meter_cycle%TYPE,
+                      p_error_code OUT NUMBER)
+IS
+p_meter_rec PVIEW.METER@PSOL%ROWTYPE;
+
+
+CURSOR meters
+IS
+   SELECT tx_meter_details, cd_row_stat
+     FROM mpt_details_tbl
+     WHERE ky_prem_no = p_ky_prem_no
+     AND cd_mpt_dtl_type = gMeterNoType;
+BEGIN
+p_meter_rec                       := NULL;
+p_meter_rec.ky_enroll             := p_ky_enroll;
+p_meter_rec.ky_supplier           := p_ky_supplier;
+p_meter_rec.ky_utility_rate_class := p_ky_utility_rate_class;
+p_meter_rec.tx_zone               := p_id_lmp_bus_no;
+p_meter_rec.tx_profile_group      := p_profile_grp;
+p_meter_rec.tx_meter_cycle        := LTRIM(RTRIM(p_meter_cycle));
+
+FOR meters_rec IN meters LOOP
+   p_meter_rec.ky_meter    := meters_rec.tx_meter_details;
+
+   IF meters_rec.cd_row_stat = gActStat THEN
+      p_meter_rec.tx_system := gBill;
+   ELSE
+      p_meter_rec.tx_system := gBillOld;
+   END IF;
+
+   CallInsertMeter(p_meter_rec, p_error_code);
+
+END LOOP;
+
+p_error_code := 0;
+EXCEPTION
+   WHEN others THEN
+
+      DBMS_OUTPUT.PUT_LINE(p_ky_prem_no || ' METER INFO ERROR! ERROR IS: ' || SQLCODE);
+      p_error_code := SQLCODE;
+END;
+
+/*************************************************************
+* Name: SV_Account_Extract.ProcessMeters
+*
+* Description: Process Meter Information (including METER_FILE table)
+*
+* Author: DRB (T#6974)
+* Date:   May 9, 2005
+* Revision History:
+* 05/09/2005 DRB  Overloaded procedure to include additional
+*                 parameters necessary to establish a record
+*                 on the METER_FILE table for Client 2 accounts.
+* ##D#02/20/06  #T#11975 #P#DDK  #C#Qualify objects with schema name to fix Oracle 9i upgrade issues.
+**************************************************************/
+PROCEDURE ProcessMeters (p_ky_ba       IN BILL_ACCT.ky_ba%TYPE,
+                      p_ky_prem_no  IN BILL_ACCT.KY_PREM_NO%TYPE,
+                      p_ky_enroll   IN PVIEW.METER.ky_enroll@PSOL%TYPE,
+                      p_util_acct   IN PVIEW.ACCOUNT.tx_utility_account@PSOL%TYPE,
+                      p_ky_supplier IN PVIEW.METER.ky_supplier@PSOL%TYPE,
+                      p_ky_utility_rate_class IN PVIEW.METER.ky_utility_rate_class@PSOL%TYPE,
+                      p_id_lmp_bus_no IN PRICE_USAGE.id_lmp_bus_no%TYPE,
+                      p_profile_grp   IN PRICE_USAGE.tx_edc_profile_grp%TYPE,
+                      p_meter_cycle   IN MAD.tx_meter_cycle%TYPE,
+                      p_dt_contract_start IN PVIEW.METER_FILE.dt_contract_start@PSOL%TYPE,
+                      p_dt_contract_end   IN PVIEW.METER_FILE.dt_contract_end@PSOL%TYPE,
+                      p_error_code  OUT NUMBER)
+IS
+p_meter_rec PVIEW.METER@PSOL%ROWTYPE;
+fl_error    BOOLEAN := FALSE;
+
+CURSOR meters
+IS
+   SELECT tx_meter_details,ky_mtr_equip_no,cd_row_stat
+     FROM mpt_details_tbl
+     WHERE ky_prem_no = p_ky_prem_no
+     AND cd_mpt_dtl_type = gMeterNoType;
+
+BEGIN
+p_meter_rec                       := NULL;
+p_meter_rec.ky_enroll             := p_ky_enroll;
+p_meter_rec.ky_supplier           := p_ky_supplier;
+p_meter_rec.ky_utility_rate_class := p_ky_utility_rate_class;
+p_meter_rec.tx_zone               := p_id_lmp_bus_no;
+p_meter_rec.tx_profile_group      := p_profile_grp;
+p_meter_rec.tx_meter_cycle        := LTRIM(RTRIM(p_meter_cycle));
+
+FOR meters_rec IN meters LOOP
+   p_meter_rec.ky_meter    := meters_rec.tx_meter_details;
+
+   IF meters_rec.cd_row_stat = gActStat THEN
+      p_meter_rec.tx_system := gBill;
+   ELSE
+      p_meter_rec.tx_system := gBillOld;
+   END IF;
+
+   CallInsertMeter(p_meter_rec, p_error_code);
+
+   IF p_error_code != 0 THEN
+      dbms_output.put_line('METER TABLE ERROR: ky_enroll '||p_ky_enroll||
+                           ' utility meter '||rtrim(meters_rec.tx_meter_details));
+      fl_error := TRUE;
+   END IF;
+
+   IF meters_rec.cd_row_stat = gActStat THEN
+   --Only create a new record for active meters
+      CreateMeterFile(p_ky_enroll,to_char(p_ky_ba),p_util_acct,
+                      p_ky_supplier,rtrim(meters_rec.tx_meter_details),
+                      rtrim(meters_rec.ky_mtr_equip_no),p_dt_contract_start,
+                      p_dt_contract_end,p_error_code);
+
+      IF p_error_code != 0 THEN
+         dbms_output.put_line('METER_FILE TABLE ERROR: ky_enroll '||p_ky_enroll||
+                              ' utility meter '||rtrim(meters_rec.tx_meter_details));
+         fl_error := TRUE;
+      END IF;
+   END IF;
+END LOOP;
+
+IF fl_error THEN p_error_code := 99; END IF;
+
+EXCEPTION
+   WHEN others THEN
+      DBMS_OUTPUT.PUT_LINE(p_ky_prem_no || ' METER INFO ERROR! ERROR IS: ' || SQLCODE);
+      p_error_code := SQLCODE;
+END;
+
+/*************************************************************
+* Name: SV_Account_Extract.ProcessSimplePrice
+*
+* Description: Get simple Electric Price
+*
+* Author: TKS
+* Date:   July 24, 2002
+* Revision History:  TKS -- Portal Releases Prior to 2.5 (changes weren't documented)
+*                    LBP -- 11/21/03--Production Support Issue: transmission price was not sent
+*                                     to the Portal correctly.  Changed logic to fix problem.
+* ##D#02/20/06  #T#11975 #P#DDK  #C#Qualify objects with schema name to fix Oracle 9i upgrade issues.
+**************************************************************/
+PROCEDURE ProcessSimplePrice (p_ky_ba IN BILL_ACCT.ky_ba%TYPE, p_ky_enroll IN PVIEW.BILL_ACCOUNT.ky_enroll@PSOL%TYPE,
+                           p_ky_supplier IN PVIEW.BILL_ACCOUNT.ky_supplier@PSOL%TYPE)
+IS
+ws_count       NUMBER := 0;
+
+-- 06/28/04 | Tracker no. 1921 | PWummer | Replace code to with new code that sends
+--          |                  |         | to the Portal most prices and populates
+--          |                  |         | teh new portal table: Pricing.
+
+CURSOR get_con IS SELECT CD_RIDER, DT_EFF, DT_TERM, QY_CONTR_CMP_VAL_1
+ FROM contracts where ky_ba = p_ky_ba
+  AND cd_rider IN ('50', '51','57','60','61','62','63','64',
+      '65','66','67','68','69','70','71','73','76','E7','E8','EE',
+      'EI','EJ','EK','EL','EM','EN','EO','EP','ES','SH')
+  AND NOT dt_eff = ' ';
+
+ws_pri         PVIEW.pricing@psol%ROWTYPE;
+ws_con         get_con%ROWTYPE;
+
+ws_error_msg   VARCHAR2(4000);
+ws_error_code  NUMBER;
+
+BEGIN
+
+ ws_count := 0;
+ DECLARE
+
+      BEGIN
+         FOR ws_con IN get_con LOOP
+            ws_error_code := 0;
+            ws_count      := ws_count + 1;
+            ws_pri.ky_enroll    := p_ky_enroll;
+            ws_pri.ky_supplier  := p_ky_supplier;
+            ws_pri.ky_rider     := ws_con.cd_rider;
+            ws_pri.dt_effective := to_date(ws_con.dt_eff, 'YYYY-MM-DD');
+            ws_pri.dt_terminate := to_date(ws_con.dt_term, 'YYYY-MM-DD');
+            ws_pri.at_price     := ws_con.qy_contr_cmp_val_1;
+
+            SYN_PPRICING.InsertPricing(ws_pri, ws_error_code);
+
+         END LOOP;
+      ws_error_code := 0;
+      IF ws_count > 0 THEN
+         syn_pview_utility.pUpdate_Simple_Elec_Price(p_ky_enroll,ws_error_code,ws_error_msg);
+         IF ws_error_code <> 0 THEN
+            DBMS_OUTPUT.PUT_LINE(p_ky_ba ||' ERROR! '||ws_error_msg);
+         END IF;
+      END IF;
+      END;
+EXCEPTION
+   WHEN others THEN
+      DBMS_OUTPUT.PUT_LINE(p_ky_ba || ' PRICE INFO ERROR! ERROR IS: ' || SQLCODE);
+END;
+
+/*************************************************************
+* Name: SV_Account_Extract.ProcessRateReadySimplePrice
+*
+* Description: Get simple Electric Price for Rate Ready accounts
+*
+* Author: DRB
+* Date:   December 18, 2003
+* Revision History:
+*
+* ##D#02/20/06  #T#11975 #P#DDK  #C#Qualify objects with schema name to fix Oracle 9i upgrade issues.
+**************************************************************/
+PROCEDURE ProcessRateReadySimplePrice(p_ky_ba IN BILL_ACCT.ky_ba%TYPE,
+                                     p_ky_enroll IN PVIEW.BILL_ACCOUNT.ky_enroll@PSOL%TYPE,
+                                     p_ky_supplier IN PVIEW.BILL_ACCOUNT.ky_supplier@PSOL%TYPE)
+IS
+ws_ky_ba       BILL_ACCT.ky_ba%TYPE;
+ws_ky_enroll   PVIEW.SIMPLE_ELECTRIC_PRICE.ky_enroll@PSOL%TYPE;
+ws_ky_supplier PVIEW.SIMPLE_ELECTRIC_PRICE.ky_supplier@PSOL%TYPE;
+
+-- 06/28/04 | Tracker no. 1921 | PWummer | Replace code to with new code that sends
+--          |                  |         | to the Portal most prices and populates
+--          |                  |         | teh new portal table: Pricing.
+
+CURSOR get_rr IS SELECT CD_RIDER, DT_EFF, DT_TERM, QY_CONTR_CMP_VAL_1
+  FROM RATE_READY_PRICE where ky_ba = ws_ky_ba
+   AND cd_rider IN ('50', '51','57','60','61','62','63','64',
+      '65','66','67','68','69','70','71','73','76','E7','E8','EE',
+      'EI','EJ','EK','EL','EM','EN','EO','EP','ES','SH')
+   AND NOT dt_eff = ' ';
+
+ws_pri           PVIEW.pricing@psol%ROWTYPE;
+ws_rr            get_rr%ROWTYPE;
+
+ws_error_msg   VARCHAR2(4000);
+ws_count       NUMBER := 0;
+ws_error_code  NUMBER;
+
+BEGIN
+ws_ky_enroll := p_ky_enroll;
+ws_ky_ba     := p_ky_ba;
+ws_ky_supplier := p_ky_supplier;
+
+DECLARE
+   BEGIN
+
+      FOR ws_rr IN get_rr
+        LOOP
+          ws_error_code := 0;
+          ws_count := ws_count + 1;
+
+          ws_pri.ky_enroll    := ws_ky_enroll;
+          ws_pri.ky_supplier  := ws_ky_supplier;
+          ws_pri.ky_rider     := ws_rr.cd_rider;
+          ws_pri.dt_effective := to_date(ws_rr.dt_eff, 'YYYY-MM-DD');
+          ws_pri.dt_terminate := to_date(ws_rr.dt_term, 'YYYY-MM-DD');
+          ws_pri.at_price     := ws_rr.qy_contr_cmp_val_1;
+          ws_pri.dt_modify    := sysdate;
+
+          SYN_PPRICING.InsertPricing(ws_pri, ws_error_code);
+
+      END LOOP;
+
+      ws_error_code := 0;
+      IF ws_count > 0 THEN
+         syn_pview_utility.pUpdate_Simple_Elec_Price(ws_ky_enroll,ws_error_code,ws_error_msg);
+         IF ws_error_code <> 0 THEN
+            DBMS_OUTPUT.PUT_LINE(p_ky_ba ||ws_error_msg);
+         END IF;
+      END IF;
+
+END;
+
+END;
+
+/*************************************************************
+* Name: SV_Account_Extract.GetServicePtInfo
+*
+* Description: Fetch service_pt information
+*
+* Author: TKS
+* Date:   July 24, 2001
+* Revision History:  TKS -- Portal Releases Prior to 2.5 (changes weren't documented)
+*
+* ##D#02/20/06  #T#11975 #P#DDK  #C#Qualify objects with schema name to fix Oracle 9i upgrade issues.
+**************************************************************/
+PROCEDURE GetServicePtInfo (p_ky_ba in NUMBER, p_cd_spt_type IN OUT PVIEW.ACCOUNT.ky_account_type@PSOL%TYPE)
+IS
+ws_spt_type SERVICE_PT.cd_spt_type%TYPE;
+BEGIN
+p_cd_spt_type := NULL;
+
+SELECT tx_service
+  INTO p_cd_spt_type
+  FROM supplier_account
+  WHERE ky_ba = p_ky_ba;
+
+  /*IF ws_spt_type = gElecSpt THEN
+     p_cd_spt_type := gElec;
+  ELSE
+     p_cd_spt_type := gGas;
+  END IF;*/
+
+EXCEPTION
+   WHEN others THEN
+      DBMS_OUTPUT.PUT_LINE(p_ky_ba || ' SERVICE POINT ERROR!  ERROR IS: ' || SQLCODE);
+      NULL;
+END;
+
+/*************************************************************
+* Name: SV_Account_Extract.CreateDummyEnrollRec
+*
+* Description: Create enrollment record for portal in case enrollment was
+*              accomplished using MS Access tool. This makes sure the user
+*              can fetch the account in the portal.
+*
+* Author: TKS
+* Date:   ???
+* Revision History:  TKS -- Portal Releases Prior to 2.5 (changes weren't documented)
+*                    DRB -- 10/07/2003 Variable LPC changes
+*                        -- Get LPC from supplier_account
+* ##D#02/20/06  #T#11975 #P#DDK  #C#Qualify objects with schema name to fix Oracle 9i upgrade issues.
+**************************************************************/
+PROCEDURE CreateDummyEnrollRec(p_account_rec IN PVIEW.ACCOUNT@PSOL%ROWTYPE, ws_ky_ba IN BILL_ACCT.KY_BA%TYPE,
+                            p_error_code OUT NUMBER)
+IS
+ws_enroll PVIEW.ENROLL@PSOL%ROWTYPE;
+
+ws_dt_supply_start    price_usage.dt_last_esco_set%type;
+ws_dt_contract_start  price_usage.dt_last_esco_set%type;
+ws_dt_temp            price_usage.dt_last_esco_set%type;
+ws_dt_target_end      target_contract.dt_target_end_calc%type;
+ws_qy_pct_tax_exempt  tax_exception.pc_tax_excep%type;
+ws_cd_serv_supp       price_usage.cd_serv_supp%type;
+ws_qy_lpc_pc          supplier_account.qy_lpc_pc%type;
+
+BEGIN
+   ws_enroll.ky_enroll          := p_account_rec.ky_enroll;
+   ws_enroll.ky_supplier        := p_account_rec.ky_supplier;
+   ws_enroll.ky_utility_name    := p_account_rec.ky_utility_name;
+   ws_enroll.tx_utility_account := p_account_rec.tx_utility_account;
+
+   ws_enroll.ky_enroll_status    := 'CUST';
+   ws_enroll.fl_special_handling := 'Y';
+   ws_enroll.ky_bill_option      := '2';
+   ws_enroll.ky_customer_care    := 'CC93';
+
+   begin
+      select qy_lpc_pc
+      into   ws_qy_lpc_pc
+      from   supplier_account
+      where  ky_ba = ws_ky_ba;
+
+      ws_enroll.qy_lpc_pct := trunc((ws_qy_lpc_pc * 100),2);
+   exception
+      when no_data_found then
+         ws_enroll.qy_lpc_pct := gLatePmtPct;
+      when others then
+         ws_enroll.qy_lpc_pct := gLatePmtPct;
+         dbms_output.put_line('Variable LPC error: ' || SQLCODE || ' ' || ws_ky_ba);
+   end;
+
+   begin
+      select dt_target_end_calc into ws_dt_target_end
+         from target_contract
+         where ky_ba = ws_ky_ba;
+   exception
+      when no_data_found then
+         ws_dt_target_end := null;
+      when others then
+         ws_dt_target_end := null;
+         dbms_output.put_line('Other account end date error: ' || SQLCODE || ' ' || ws_ky_ba);
+   end;
+
+   begin
+      select distinct pc_tax_excep into ws_qy_pct_tax_exempt
+         from tax_exception
+         where ky_ba = ws_ky_ba
+         and dt_term >= to_char(sysdate, 'YYYY-MM-DD');
+   exception
+      when no_data_found then
+         ws_qy_pct_tax_exempt := 0;
+      when others then
+         ws_qy_pct_tax_exempt := 0;
+         dbms_output.put_line('Other account tax exception error: ' || SQLCODE || ' ' || ws_ky_ba);
+   end;
+
+   begin
+      select cd_serv_supp, dt_last_esco_set into ws_cd_serv_supp, ws_dt_temp
+         from price_usage
+         where ky_ba = ws_ky_ba
+         and cd_pu_rec_type = '01';
+
+      ws_dt_supply_start := ws_dt_temp;
+      ws_dt_contract_start := ws_dt_temp;
+
+   exception
+      when no_data_found then
+         ws_dt_supply_start   := null;
+         ws_dt_contract_start := null;
+      when others then
+         ws_dt_supply_start   := null;
+         ws_dt_contract_start := null;
+         dbms_output.put_line('Other account tax exception error: ' || SQLCODE || ' ' || ws_ky_ba);
+   end;
+
+   if ws_dt_target_end is not null and not ws_dt_target_end  = '          ' then
+      ws_enroll.dt_target_end     := to_date(ws_dt_target_end, 'YYYY-MM-DD');
+   end if;
+
+   if ws_dt_target_end = '          ' then
+      ws_enroll.dt_target_end     := null;
+   end if;
+
+   if ws_dt_contract_start is not null then
+      ws_enroll.dt_contract_start := to_date(ws_dt_contract_start, 'YYYY-MM-DD');
+   end if;
+
+   if ws_dt_supply_start is not null then
+      ws_enroll.dt_supply_start   := to_date(ws_dt_supply_start, 'YYYY-MM-DD');
+   end if;
+
+   if ws_enroll.ky_utility_name is null then
+      ws_enroll.ky_utility_name := ws_cd_serv_supp;
+   end if;
+
+   ws_enroll.qy_pct_tax_exempt := ws_qy_pct_tax_exempt;
+
+   SYN_PENROLL_TEMP.insertenroll(ws_enroll, p_error_code);
+
+   if p_error_code <> 0 then
+      dbms_output.put_line('Insertion Error: ' || p_error_code || ' ' || ws_ky_ba);
+   end if;
+
+   p_error_code := 0;
+exception
+   when others then
+      dbms_output.put_line('Other Error: ' || SQLCODE || ' ' || ws_ky_ba);
+      p_error_code := SQLCODE;
+END;
+
+/*************************************************************
+* Name: SV_Account_Extract.CallInsertUpdateAccount
+*
+* Description: Call portal API to insert/update account.
+*
+* Author: TKS
+* Date:   July 24, 2001
+* Revision History:  TKS -- Portal Releases Prior to 2.5 (changes weren't documented)
+*
+* ##D#02/20/06  #T#11975 #P#DDK  #C#Qualify objects with schema name to fix Oracle 9i upgrade issues.
+**************************************************************/
+PROCEDURE CallInsertUpdateAccount (p_account_rec IN PVIEW.ACCOUNT@PSOL%ROWTYPE, p_count IN NUMBER,
+                          p_error_code OUT NUMBER)
+IS
+BEGIN
+
+BEGIN
+
+   IF p_account_rec.ky_account_type = gGas OR
+      p_account_rec.ky_account_type = gTcom THEN
+      IF p_count = 0 THEN
+         SYN_PACCOUNT_TEMP.InsertAccount(p_account_rec, p_error_code);
+      ELSE
+         SYN_PACCOUNT_TEMP.UpdateAccount(p_account_rec, p_error_code);
+      END IF;
+   ELSIF p_account_rec.ky_account_type = gElec THEN
+      SYN_PACCOUNT_TEMP.UpdateAccount(p_account_rec, p_error_code);
+   END IF;
+
+   IF p_error_code = '100' THEN
+      SYN_PACCOUNT_TEMP.InsertAccount(p_account_rec, p_error_code);
+   END IF;
+
+   --p_error_code := 0;
+EXCEPTION
+   WHEN others THEN
+      DBMS_OUTPUT.put_line('CallInsertUpdateAccount Failed for KY_ENROLL : '||p_account_rec.ky_enroll);
+      p_error_code := SQLCODE;
+END;
+END;
+
+/*************************************************************
+* Name: SV_Account_Extract.CallInsertBillAccount
+*
+* Description: Call portal API to insert bill_account.
+*
+* Author: TKS
+* Date:   July 24, 2001
+* Revision History:  TKS -- Portal Releases Prior to 2.5 (changes weren't documented)
+*
+* ##D#02/20/06  #T#11975 #P#DDK  #C#Qualify objects with schema name to fix Oracle 9i upgrade issues.
+**************************************************************/
+PROCEDURE CallInsertBillAccount (p_bill_account_rec IN PVIEW.BILL_ACCOUNT@PSOL%ROWTYPE,
+                              p_error_code OUT NUMBER)
+IS
+BEGIN
+BEGIN
+   SYN_PBILL_ACCOUNT.DeleteBillAccount(p_bill_account_rec.ky_enroll, p_error_code);
+   --p_error_code := 0;
+EXCEPTION
+   WHEN others THEN
+      DBMS_OUTPUT.put_line('CallInsertBillAccount.Delete Failed for KY_ENROLL : '||p_bill_account_rec.ky_enroll);
+      p_error_code := SQLCODE;
+END;
+
+BEGIN
+   SYN_PBILL_ACCOUNT.InsertBillAccount(p_bill_account_rec, p_error_code);
+   --p_error_code := 0;
+EXCEPTION
+   WHEN others THEN
+      DBMS_OUTPUT.put_line('CallInsertBillAccount.Insert Failed for KY_ENROLL : '||p_bill_account_rec.ky_enroll);
+      p_error_code := SQLCODE;
+END;
+END;
+
+/*************************************************************
+* Name: SV_Account_Extract.CallInsertMeter
+*
+* Description: Call portal API to insert meter information.
+*
+* Author: TKS
+* Date:   July 24, 2001
+* Revision History:  TKS -- Portal Releases Prior to 2.5 (changes weren't documented)
+*
+* ##D#02/20/06  #T#11975 #P#DDK  #C#Qualify objects with schema name to fix Oracle 9i upgrade issues.
+**************************************************************/
+PROCEDURE CallInsertMeter (p_meter_rec IN PVIEW.METER@PSOL%ROWTYPE, p_error_code IN OUT NUMBER)
+IS
+BEGIN
+BEGIN
+   SYN_PMETER_TEMP.InsertMeter(p_meter_rec, p_error_code);
+   --p_error_code := 0;
+EXCEPTION
+   WHEN others THEN
+    p_error_code := SQLCODE;
+END;
+END;
+
+/*************************************************************
+* Name: SV_Account_Extract.CallInsertEnroll
+*
+* Description: Call portal API to insert enroll information.
+*
+* Author: TKS
+* Date:   ???
+* Revision History:  TKS -- Portal Releases Prior to 2.5 (changes weren't documented)
+*
+* ##D#02/20/06  #T#11975 #P#DDK  #C#Qualify objects with schema name to fix Oracle 9i upgrade issues.
+**************************************************************/
+PROCEDURE CallInsertEnroll (p_enroll_rec IN PVIEW.ENROLL@PSOL%ROWTYPE, p_error_code OUT NUMBER)
+IS
+BEGIN
+BEGIN
+   SYN_PENROLL_TEMP.InsertEnroll(p_enroll_rec, p_error_code);
+   --p_error_code := 0;
+EXCEPTION
+   WHEN others THEN
+      p_error_code := SQLCODE;
+END;
+END;
+
+/*************************************************************
+* Name: SV_Account_Extract.CallInsertSimpleElectricPrice
+*
+* Description: Call portal API to insert simple electric price information.
+*
+* Author: TKS
+* Date:   July 24, 2002
+* Revision History:  TKS -- Portal Releases Prior to 2.5 (changes weren't documented)
+*
+* ##D#02/20/06  #T#11975 #P#DDK  #C#Qualify objects with schema name to fix Oracle 9i upgrade issues.
+**************************************************************/
+PROCEDURE CallInsertSimpleElectricPrice (p_sep_rec IN PVIEW.SIMPLE_ELECTRIC_PRICE@PSOL%ROWTYPE, p_error_code OUT NUMBER)
+IS
+BEGIN
+BEGIN
+   SYN_PSIMPLE_ELECTRIC_PRICE.InsertSimpleElectricPrice(p_sep_rec, p_error_code);
+   --p_error_code := 0;
+EXCEPTION
+   WHEN others THEN
+      p_error_code := SQLCODE;
+END;
+END;
+
+/*************************************************************
+* Name: SV_Account_Extract.GetTaxExceptionInfo
+*
+* Description: Fetch tax exception information
+*
+* Author: LBP
+* Date:   January 24, 2005
+* Revision History:
+*
+**************************************************************/
+PROCEDURE GetTaxExceptionInfo (p_ky_ba in NUMBER, p_tax_exception_info IN OUT css_tax_exception_rec_type)
+IS
+BEGIN
+ SELECT pc_tax_excep
+   INTO p_tax_exception_info.pc_tax_excep
+   FROM tax_exception
+  WHERE ky_ba = p_ky_ba
+    AND cd_row_stat = gActStat;
+
+
+ EXCEPTION
+      --If no row is found, then the pc_tax_excep is 100
+      WHEN NO_DATA_FOUND THEN
+         p_tax_exception_info.pc_tax_excep := 100;
+      WHEN others THEN
+         DBMS_OUTPUT.PUT_LINE(p_ky_ba || ' TAX_EXCEPTION ERROR! ERROR IS: ' || SQLCODE);
+          NULL;
+END;
+/*************************************************************
+* Name: SV_Account_Extract.GetCustomerInfo
+*
+* Description: Fetch customer information
+*
+* Author: LBP
+* Date:   January 26, 2005
+* Revision History:
+*
+**************************************************************/
+PROCEDURE GetCustomerInfo (p_ky_ba IN NUMBER, p_customer_info IN OUT css_customer_rec_type)
+IS
+BEGIN
+ SELECT nm_cust_2,
+        nm_cust_1
+   INTO p_customer_info.nm_cust_2,
+        p_customer_info.nm_cust_1
+   FROM customer c, bill_acct b
+  WHERE b.ky_cust_no = c.ky_cust_no
+    AND b.ky_ba = p_ky_ba
+    AND c.cd_cust_stat = '01'; --Active status
+
+ EXCEPTION
+      --If no row is found, then the pass back null
+      WHEN NO_DATA_FOUND THEN
+         p_customer_info.nm_cust_2 := NULL;
+      WHEN others THEN
+         DBMS_OUTPUT.PUT_LINE(p_ky_ba || 'CUSTOMER ERROR! ERROR IS: ' || SQLCODE);
+          NULL;
+
+END;
+
+/*************************************************************
+* Name: SV_Account_Extract.CreateMeterFile
+*
+* Description: Inserts a row into the Portal METER_FILE table for
+*              each meter of a newly enrolled account
+*
+* Author: DRB (T#6974)
+* Date:   May 6, 2005
+* Revision History:
+*
+* ##D#02/20/06  #T#11975 #P#DDK  #C#Qualify objects with schema name to fix Oracle 9i upgrade issues.
+**************************************************************/
+PROCEDURE CreateMeterFile(p_ky_enroll   IN PVIEW.METER_FILE.ky_enroll@PSOL%TYPE,
+                       p_billing_number IN PVIEW.METER_FILE.tx_billing_number@psol%TYPE,
+                       p_util_acct IN PVIEW.METER_FILE.tx_utility_account@PSOL%TYPE,
+                       p_ky_supplier IN PVIEW.METER_FILE.ky_supplier@PSOL%TYPE,
+                       p_ky_meter IN PVIEW.METER_FILE.ky_meter@PSOL%TYPE,
+                       p_meter_equip_no IN MPT_DETAILS_TBL.ky_mtr_equip_no%TYPE,
+                       p_dt_contract_start IN PVIEW.METER_FILE.dt_contract_start@PSOL%TYPE,
+                       p_dt_contract_end IN PVIEW.METER_FILE.dt_contract_end@PSOL%TYPE,
+                       p_error_code OUT NUMBER)
+IS
+l_meter_file_rec  PVIEW.METER_FILE@PSOL%ROWTYPE;
+l_er_meter_rec    ER_METER%ROWTYPE;
+l_error_msg       VARCHAR2(1000);
+METER_FILE_EXCEPTION EXCEPTION;
+BEGIN
+p_error_code := 0;
+l_meter_file_rec.ky_enroll := p_ky_enroll;
+l_meter_file_rec.tx_billing_number := p_billing_number;
+l_meter_file_rec.ky_supplier := p_ky_supplier;
+l_meter_file_rec.tx_utility_account := rtrim(p_util_acct);
+
+IF rtrim(p_ky_meter) = 'CTPMETER001' THEN
+   l_meter_file_rec.ky_meter := NULL;
+ELSE
+   l_meter_file_rec.ky_meter := rtrim(p_ky_meter);
+END IF;
+
+l_meter_file_rec.tx_meter_details := 'A'||ltrim(rtrim(p_meter_equip_no));
+
+l_meter_file_rec.dt_contract_start := p_dt_contract_start;
+l_meter_file_rec.dt_service_start  := l_meter_file_rec.dt_contract_start;
+IF p_dt_contract_end = to_date(gHighDate,gDateFormat) THEN
+   l_meter_file_rec.dt_contract_end := NULL;
+ELSE
+   l_meter_file_rec.dt_contract_end := p_dt_contract_end;
+END IF;
+l_meter_file_rec.dt_service_end    := NULL;  --date to be null until account is final
+
+BEGIN
+   select rtrim(mdt.tx_meter_details)
+   into l_meter_file_rec.ky_meter_old
+   from mpt_details_tbl mdt, bill_acct ba
+   where ba.ky_ba = to_number(p_billing_number)
+   and mdt.ky_prem_no = ba.ky_prem_no
+   and mdt.cd_mpt_dtl_type ='0017'
+   and mdt.cd_row_stat = '01'
+   and mdt.ky_mtr_equip_no = p_meter_equip_no
+   and mdt.dt_details_eff =
+      (select max(dt_details_eff)
+       from mpt_details_tbl mdt, bill_acct ba
+       where ba.ky_ba = to_number(p_billing_number)
+       and mdt.ky_prem_no = ba.ky_prem_no
+       and mdt.ky_mtr_equip_no = p_meter_equip_no
+       and mdt.cd_mpt_dtl_type ='0017'
+       and cd_row_stat = '01');
+EXCEPTION
+   WHEN OTHERS THEN
+      l_meter_file_rec.ky_meter_old := NULL;
+END;
+
+SYN_ERS_METER.SelectMeterRecord(p_ky_enroll,p_ky_meter,l_er_meter_rec,p_error_code,
+                                l_error_msg);
+
+IF p_error_code != 0 THEN
+   l_error_msg := 'Error in call to SYN_ERS_METER.SelectMeterRecord';
+   RAISE METER_FILE_EXCEPTION;
+END IF;
+
+l_meter_file_rec.ky_utility_rate_class := l_er_meter_rec.tx_edc_rate_class;
+
+SYN_PMETER_FILE.Insert_Meter_File(l_meter_file_rec,p_error_code,l_error_msg);
+
+IF p_error_code != 0 THEN
+   l_error_msg := 'Error in call to SYN_PMETER_FILE.Insert_Meter_File';
+   RAISE METER_FILE_EXCEPTION;
+END IF;
+
+EXCEPTION
+WHEN METER_FILE_EXCEPTION THEN
+   dbms_output.put_line(l_error_msg);
+WHEN OTHERS THEN
+   p_error_code := sqlcode;
+   l_error_msg  := sqlerrm;
+END;
+
+
+PROCEDURE test IS
+
+BEGIN
+  dbms_output.put_line ('testing');
+END;
+
+
+END;
+/

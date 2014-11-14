@@ -1,0 +1,42 @@
+custpro@psolpt.world> @ep3
+
+NAME                                 TYPE        VALUE                                                                                                                                                                                                                                                      
+------------------------------------ ----------- ------------------------------                                                                                                                                                                                                                             
+optimizer_mode                       string      CHOOSE                                                                                                                                                                                                                                                     
+
+Session altered.
+
+Elapsed: 00:00:00.00
+
+14 rows deleted.
+
+Elapsed: 00:00:00.00
+
+Explained.
+
+Elapsed: 00:00:00.00
+
+Plan Table                                                                                                                                                                                                                                                                                                  
+-------------------------------------------------------------------------------------------                                                                                                                                                                                                                 
+| Operation                        |  Name                         |  Rows | Bytes|  Cost |                                                                                                                                                                                                                 
+-------------------------------------------------------------------------------------------                                                                                                                                                                                                                 
+| SELECT STATEMENT                 |                              |     4K|  769K|  4542 |                                                                                                                                                                                                                  
+|  TABLE ACCESS BY INDEX ROWID     |CPM_CD_MEMBER_TYPE            |     1 |   27 |     2 |                                                                                                                                                                                                                  
+|   INDEX RANGE SCAN               |CPM_CD_MEMBER_TYPE_PK         |     1 |      |     1 |                                                                                                                                                                                                                  
+|  HASH JOIN                       |                              |     4K|  769K|  4542 |                                                                                                                                                                                                                  
+|   TABLE ACCESS FULL              |CPM_AGG_HEADER                |   789 |   26K|    10 |                                                                                                                                                                                                                  
+|   MERGE JOIN                     |                              |    93K|   12M|  4519 |                                                                                                                                                                                                                  
+|    SORT JOIN                     |                              |     1M|   87M|  3378 |                                                                                                                                                                                                                  
+|     MERGE JOIN CARTESIAN         |                              |     1M|   87M|  3378 |                                                                                                                                                                                                                  
+|      TABLE ACCESS BY INDEX ROWID |CPM_CD_AGG_TYPE               |     1 |   37 |     2 |                                                                                                                                                                                                                  
+|       INDEX RANGE SCAN           |CPM_CD_AGG_TYPE_PK            |     1 |      |     1 |                                                                                                                                                                                                                  
+|      BUFFER SORT                 |                              |     1M|   31M|  3376 |                                                                                                                                                                                                                  
+|       TABLE ACCESS FULL          |ACCOUNT                       |     1M|   31M|  3376 |                                                                                                                                                                                                                  
+|    SORT JOIN                     |                              |    82K|    6M|  1141 |                                                                                                                                                                                                                  
+|     TABLE ACCESS FULL            |CPM_AGG_MEMBER                |    82K|    6M|   110 |                                                                                                                                                                                                                  
+--------------------------------------------------------------------------------                                                                                                                                                                                                                            
+
+17 rows selected.
+
+Elapsed: 00:00:00.00
+custpro@psolpt.world> spool c:\temp\ep3.out

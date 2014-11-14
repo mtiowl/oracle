@@ -1,0 +1,36 @@
+custpro@psolpt.world> @ep1
+
+Session altered.
+
+
+16 rows deleted.
+
+
+Explained.
+
+
+Plan Table                                                                                          
+-------------------------------------------------------------------------------------------         
+| Operation                        |  Name                         |  Rows | Bytes|  Cost |         
+-------------------------------------------------------------------------------------------         
+| SELECT STATEMENT                 |                              |   500 |  298K|  5831 |          
+|  VIEW                            |                              |   500 |  298K|  5831 |          
+|   COUNT STOPKEY                  |                              |       |      |       |          
+|    NESTED LOOPS OUTER            |                              |   501 |  168K|  5831 |          
+|     NESTED LOOPS                 |                              |   499 |  162K|  4833 |          
+|      NESTED LOOPS                |                              |   923 |  211K|  3743 |          
+|       NESTED LOOPS               |                              |   923 |  197K|  1897 |          
+|        TABLE ACCESS BY INDEX ROWI|EDI_TRANSACTION               |   257K|   47M|    51 |          
+|         INDEX RANGE SCAN         |IDX_EDI_TRANS_TRNTYP_SUBTYP   |     5M|      |     5 |          
+|        TABLE ACCESS BY INDEX ROWI|EDI_FUNC_GROUP                |     1 |   27 |     2 |          
+|         INDEX UNIQUE SCAN        |EDI_FUNC_GROUP_PK             |     1 |      |     1 |          
+|       TABLE ACCESS BY INDEX ROWID|EDI_HEADER                    |     1 |   16 |     2 |          
+|        INDEX UNIQUE SCAN         |EDI_HEADER_PK                 |     1 |      |     1 |          
+|      TABLE ACCESS BY INDEX ROWID |EDI_FILE_HEADER               |     1 |   99 |     2 |          
+|       INDEX UNIQUE SCAN          |EDI_FILE_HEADER_PK            |     1 |      |       |          
+|     INDEX RANGE SCAN             |EDI_REASON_IDX                |     1 |   10 |     2 |          
+--------------------------------------------------------------------------------                    
+
+19 rows selected.
+
+custpro@psolpt.world> spool off

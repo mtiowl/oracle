@@ -1,0 +1,94 @@
+Connected.
+
+                                                   ********   CL2PRPT   ********                                                  
+                                                   =============================                                                  
+Database Link Report                                                                                                              
+--------------------                                                                                                              
+                                                                                                                                  
+OWNER                DB_LINK                             USERNAME                       HOST       CREATED                        
+-------------------- ----------------------------------- ------------------------------ ---------- -----------                    
+                                                                                                                                  
+CL2PRP               MY_CL2PRP.WORLD                     E168000                        CL2PRP     30-APR-2012                    
+Connected.
+
+                                                                                                                                  
+                                                                                                                                  
+                                                                                                                                  
+                                                                                                                                  
+                                                   ********   PSOLPT   ********                                                   
+                                                   =============================                                                  
+Database Link Report                                                                                                              
+--------------------                                                                                                              
+                                                                                                                                  
+OWNER                DB_LINK                             USERNAME                       HOST       CREATED                        
+-------------------- ----------------------------------- ------------------------------ ---------- ---------                      
+                                                                                                                                  
+CUSTPRO              LMP_P_CUSTPRO_BATCH_USER.WORLD      LMP_P_CUSTPRO_BATCH_USER       LMP_P      30-APR-12                      
+CUSTPRO              MY_CL2PRP.WORLD                     E168000                        CL2PRP     30-APR-12                      
+CUSTPRO              MY_PSOLP.WORLD                      E168000                        PSOLP      30-APR-12                      
+
+                                                                                                                                  
+                                                                                                                                  
+                                                                                                                                  
+DBMS_JOB Test                                                                                                                     
+--------------------                                                                                                              
+                                                                                                                                  
+SYSDATE                       JOB WHAT                 LAST_DATE               NEXT_DATE               B                          
+----------------------- --------- -------------------- ----------------------- ----------------------- -                          
+01-MAY-2012 07:24:22 AM        61 statspack.snap;      01-MAY-2012 07:00:00 AM 01-MAY-2012 08:00:00 AM N                          
+01-MAY-2012 07:24:22 AM        21 dbms_refresh.refresh 28-APR-2012 01:30:01 AM 05-MAY-2012 01:30:00 AM N                          
+                                  ('"RPT_PSOL"."HRPR_V                                                                            
+                                  W"');                                                                                           
+                                                                                                                                  
+01-MAY-2012 07:24:22 AM       101 dbms_refresh.refresh 01-MAY-2012 04:00:00 AM 02-MAY-2012 04:00:00 AM N                          
+                                  ('"PVIEW"."MVIEW_AAL                                                                            
+                                  _GEXA"');                                                                                       
+                                                                                                                                  
+01-MAY-2012 07:24:22 AM       121 MTI_TEST;                                    01-MAY-2012 07:24:32 AM N                          
+                                                                                                                                  
+   >>> DBMS_JOB was successful                                                                                                    
+                                                                                                                                  
+Connected.
+
+                                                                                                                                  
+                                                                                                                                  
+                                                                                                                                  
+                                                                                                                                  
+                                                    ********   EDOPT   ********                                                   
+                                                   =============================                                                  
+Database Link Report                                                                                                              
+--------------------                                                                                                              
+                                                                                                                                  
+OWNER                DB_LINK                             USERNAME                       HOST       CREATED                        
+-------------------- ----------------------------------- ------------------------------ ---------- ---------                      
+                                                                                                                                  
+EDOADMIN             DBL_CTP_PFEP.WORLD                  DBL_CTP_PFEP                   PFEP       30-APR-12                      
+EDOADMIN             DBL_CTP_PFIP.WORLD                  DBL_CTP_PFIP                   PFIP       30-APR-12                      
+
+                                                                                                                                  
+                                                                                                                                  
+                                                                                                                                  
+DBMS_JOB Test                                                                                                                     
+--------------------                                                                                                              
+                                                                                                                                  
+SYSDATE                       JOB WHAT                 LAST_DATE               NEXT_DATE               B                          
+----------------------- --------- -------------------- ----------------------- ----------------------- -                          
+01-MAY-2012 07:24:33 AM        22 MTI_TEST;                                    01-MAY-2012 07:24:42 AM N                          
+01-MAY-2012 07:24:33 AM        21 statspack.snap;      01-MAY-2012 07:00:01 AM 01-MAY-2012 08:00:00 AM N                          
+                                                                                                                                  
+   >>> DBMS_JOB was successful                                                                                                    
+                                                                                                                                  
+Connected.
+
+                                                                                                                                  
+                                                                                                                                  
+                                                                                                                                  
+                                                                                                                                  
+                                                    ********   ERSPT   ********                                                   
+                                                   =============================                                                  
+Database Link Report                                                                                                              
+--------------------                                                                                                              
+                                                                                                                                  
+OWNER                DB_LINK                             USERNAME                       HOST       CREATED                        
+-------------------- ----------------------------------- ------------------------------ ---------- ---------                      
+                                                                                                                                  

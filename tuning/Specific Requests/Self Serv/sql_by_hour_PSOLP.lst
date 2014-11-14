@@ -1,0 +1,1050 @@
+
+NAME      REPORT          FIRST_SNAP LAST_SNAP REPORT_TIME
+--------- --------------- ---------- --------- ----------------
+PSOLP     10 LARGEST SQLS      42415     42418 2012-02-28 14:35
+
+VERSION           HOST_NAME    STARTUP
+----------------- ------------ ----------------
+9.2.0.8.0         rp4440-g     2011-03-26 13:38
+
+2012-02-28 13:00 FIRST SNAPSHOT     42415
+2012-02-28 14:00  LAST SNAPSHOT     42418
+
+STARTING      SQLS    BUFFER_GETS   DISK_READS    PROCESSED    CPU ELAPSED BUFF_HIT
+----------- ------ -------------- ------------ ------------ ------ ------- --------
+02/28 13:00    283      6,545,415      629,826      420,680    428    1657     90.4
+                   -------------- ------------ ------------ ------ -------
+sum                     6,545,415      629,826      420,680    428    1657
+
+Top SQLs by BUFFER GETS
+
+RANK    BUFFER_GETS GETS/EXEC     EXECS   DISK_READS    PROCESSED    CPU ELAPSED          HASH_VALUE
+---- -------------- --------- --------- ------------ ------------ ------ ------- -------------------
+   1      1,816,201      4175       435      533,462          435     68     185          3785268355
+   2        885,375      3704       239        7,139          239    118     157          3434658212
+   3        564,993      1817       311            9        4,220      8       9           121696744
+   4        421,971     16230        26            0           46      3       5           146485652
+   5        291,034        22     13228            5       13,190     17      18          1582627454
+   6        257,024      1428       180        2,725          180     22      29          1062528727
+   7        152,060       636       239        2,720          239      6      33          3687986935
+   8        131,230        40      3297          261       60,670      1       3          1876070458
+   9        100,683        33      3051           33        3,051      3       4          4116883403
+  10         82,377        27      3051           33           36      1       1            60480237
+     --------------           --------- ------------ ------------ ------ -------
+sum       4,702,948               24057      546,387       82,306    247     444
+
+Top SQLs by DISK READS
+
+RANK   DISK_READS READS/EXEC     EXECS    BUFFER_GETS    PROCESSED    CPU ELAPSED          HASH_VALUE
+---- ------------ ---------- --------- -------------- ------------ ------ ------- -------------------
+   1      533,462       1226       435      1,816,201          435     68     185          3785268355
+   2       13,194         53       250         82,015        4,967      4     131           339329303
+   3        9,614          1      8666         35,899        8,666      2      90           865148149
+   4        9,300          1      8295         33,791        8,276      2      84          3702697947
+   5        7,394         47       157         65,720        2,926      2      63          3104751934
+   6        7,351         19       393         16,032          393      0       0          3243572472
+   7        7,139         30       239        885,375          239    118     157          3434658212
+   8        4,590          5      1004         78,079          999      9      63          1530130716
+   9        4,571         29       157         29,266        2,737      1      44           571412582
+  10        3,074          2      1394         43,167        1,393     13      55           804598086
+     ------------            --------- -------------- ------------ ------ -------
+sum       599,689                20990      3,085,545       31,031    219     872
+
+Top SQLs by CPU
+
+RANK    CPU ELAPSED   DISK_READS READS/EXEC     EXECS    BUFFER_GETS    PROCESSED          HASH_VALUE
+---- ------ ------- ------------ ---------- --------- -------------- ------------ -------------------
+   1    118     157        7,139         30       239        885,375          239          3434658212
+   2     68     185      533,462       1226       435      1,816,201          435          3785268355
+   3     22      29        2,725         15       180        257,024          180          1062528727
+   4     18      19            1          0       404         72,247          404           761536809
+   5     18      92            0          0      1064          2,829        1,064          2069932676
+   6     17      18            5          0     13228        291,034       13,190          1582627454
+   7     13      55        3,074          2      1394         43,167        1,393           804598086
+   8     10      44          173          0       982         17,088          982          3111501438
+   9      9      63        4,590          5      1004         78,079          999          1530130716
+  10      8       9            9          0       311        564,993        4,220           121696744
+     ------ ------- ------------            --------- -------------- ------------
+sum     301     671      551,178                19241      4,028,037       23,106
+
+=======================================================================================================
+                            SQL 60480237
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT OB_PAGE_SETTINGS FROM CIS_WIDGET_PERS_USER WHERE KY_PAGE_ from
+PATH = :B2 AND ID_USER = :B1
+
+FIRST TIME = 2012-02-28 05:59
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME               COST  IO_COST     ROWS
+-------------------- -------------- -------------------- --------- -------- --------
+SELECT STATEMENT                                                 4
+TABLE ACCESS         FULL           CIS_WIDGET_PERS_USER         4        4        1
+
+TABLE_NAME          NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ --------- ------ -------------- ----- ------- ------- ------- ---- ----
+CIS_WIDGET_PERS_US        99    898 07/11/11 20:29  100%       0       0       0   10   40
+ER
+
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+02/28 13    60      1       1      3051         82,377           33        36 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60      1       1      3051         82,377           33        36
+
+=======================================================================================================
+                            SQL 121696744
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT * FROM ( SELECT ROWNUM ROWNUMBER, A.* FROM ( SELECT E.KY_ from
+SERVICE_LEVEL, CQ.*, (P_CIS_COLLECTIONS.GET_USER_ID(CQ.ID_USER_G
+UID_HANDLING)) ID_USER_ID, (CASE E.FL_KEY_CUSTOMER WHEN 'Y' THEN
+ 'Y' ELSE 'N' END )FL_KEY_CUSTOMER FROM PPLSCIS.CIS_COLLECTIONS_ from
+QUEUE CQ JOIN ENROLL E ON CQ.KY_SUPPLIER = E.KY_SUPPLIER AND CQ.
+KY_ENROLL = E.KY_ENROLL WHERE CQ.KY_SUPPLIER = :B2 AND CQ.CD_QUE where
+UE_STATUS = :B1 ORDER BY CQ.TX_CUSTOMER_NAME ) A )B WHERE B.ROWN where
+UMBER >= :B4 AND B.ROWNUMBER <= :B3
+
+FIRST TIME = 2012-02-28 08:01
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME               COST  IO_COST     ROWS
+-------------------- -------------- -------------------- --------- -------- --------
+SELECT STATEMENT                                              1271
+FILTER
+VIEW                                                          1271               612
+COUNT
+VIEW                                                          1271               612
+SORT                 ORDER BY                                 1271     1271      612
+NESTED LOOPS                                                  1245     1245      612
+TABLE ACCESS         BY INDEX ROWID CIS_COLLECTIONS_QUEU        21       21      612
+                                    E
+
+INDEX                RANGE SCAN     CIS_COLLECTIONS_QUEU         1        1      612
+                                    E_IDX_2
+
+TABLE ACCESS         BY INDEX ROWID ENROLL                       2        2        1
+INDEX                UNIQUE SCAN    ENROLL_PK                    1        1        1
+
+TABLE_NAME          NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ --------- ------ -------------- ----- ------- ------- ------- ---- ----
+ENROLL               1505073    200 02/25/12 05:55  100%     310     309     338   15   40
+CIS_COLLECTIONS_QU     24461    162 07/11/11 20:28    4%       5       4       4   10   40
+EUE
+
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CIS_COLLECTIONS_QU CIS_COLLECTIONS_QUEU                1 KY_SUPPLIER              10       0
+EUE                E_IDX_2
+
+                                                       2 CD_QUEUE_STATUS           4       0
+                   CIS_COLLECTIONS_QUEU                1 KY_SUPPLIER              10       0
+                   E_IDX_3
+
+                                                       2 CD_QUEUE_STATUS           4       0
+                                                       3 ID_USER_GUID_HANDL       23   24438
+                                                         ING
+
+                                                       4 TX_CUSTOMER_NAME       1126       0
+                   CIS_COLLECTIONS_QUEU UNIQ       1   1 KY_ENROLL             24461       0
+                   E_UK
+
+ENROLL             ENROLL_CLIENT_ACCT_I            7   1 TX_CLIENT_ACCOUNT    233401 #######
+                   DX
+
+                   ENROLL_CONTRACT_IDX            55   1 TX_CONTRACT_NAME     895248  112104
+                   ENROLL_IDX                     95   1 KY_ENROLL           #######       0
+                                                       2 KY_SUPPLIER              30       0
+                   ENROLL_IDX2                    28   1 KY_SUPPLIER              30       0
+                                                       2 KY_ENROLL           #######       0
+                   ENROLL_PK            UNIQ      76   1 KY_ENROLL           #######       0
+                   ENROLL_TID_IDX                  7   1 TX_TRACKING_ID        81951 #######
+                   ENROLL_UTILITYNAME_I           28   1 KY_UTILITY_NAME         102       0
+                   DX
+
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+02/28 13    60      8       9       311        564,993            9      4220 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60      8       9       311        564,993            9      4220
+
+=======================================================================================================
+                            SQL 146485652
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT CQ.TX_CUSTOMER_NAME, CQ.QY_QUEUE_PRIORITY, P_CIS_COLLECTI
+ONS.GET_QUEUE_STATUS_PRIORITY(CD_QUEUE_STATUS) QUEUE_PRIORITY, E
+.FL_KEY_CUSTOMER FL_KEY_CUSTOMER FROM PPLSCIS.CIS_COLLECTIONS_QU from
+EUE CQ JOIN ENROLL E ON CQ.KY_SUPPLIER = E.KY_SUPPLIER AND CQ.KY
+_ENROLL = E.KY_ENROLL WHERE CQ.ID_USER_GUID_HANDLING IS NULL AND where
+ CQ.KY_SUPPLIER = UPPER(:B2 ) AND CQ.CD_QUEUE_STATUS IN (:B1 ) F
+OR UPDATE OF CQ.ID_USER_GUID_HANDLING, CQ.CD_QUEUE_STATUS ORDER
+BY QUEUE_PRIORITY, CQ.QY_QUEUE_PRIORITY, CQ.TX_CUSTOMER_NAME
+
+FIRST TIME = 2012-02-28 08:37
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME               COST  IO_COST     ROWS
+-------------------- -------------- -------------------- --------- -------- --------
+SELECT STATEMENT                                              1260
+FOR UPDATE
+SORT                 ORDER BY                                 1260     1260      611
+NESTED LOOPS                                                  1243     1243      611
+TABLE ACCESS         BY INDEX ROWID CIS_COLLECTIONS_QUEU        21       21      611
+                                    E
+
+INDEX                RANGE SCAN     CIS_COLLECTIONS_QUEU         1        1      612
+                                    E_IDX_2
+
+TABLE ACCESS         BY INDEX ROWID ENROLL                       2        2        1
+INDEX                UNIQUE SCAN    ENROLL_PK                    1        1        1
+
+TABLE_NAME          NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ --------- ------ -------------- ----- ------- ------- ------- ---- ----
+ENROLL               1505073    200 02/25/12 05:55  100%     310     309     338   15   40
+CIS_COLLECTIONS_QU     24461    162 07/11/11 20:28    4%       5       4       4   10   40
+EUE
+
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CIS_COLLECTIONS_QU CIS_COLLECTIONS_QUEU                1 KY_SUPPLIER              10       0
+EUE                E_IDX_2
+
+                                                       2 CD_QUEUE_STATUS           4       0
+                   CIS_COLLECTIONS_QUEU                1 KY_SUPPLIER              10       0
+                   E_IDX_3
+
+                                                       2 CD_QUEUE_STATUS           4       0
+                                                       3 ID_USER_GUID_HANDL       23   24438
+                                                         ING
+
+                                                       4 TX_CUSTOMER_NAME       1126       0
+                   CIS_COLLECTIONS_QUEU UNIQ       1   1 KY_ENROLL             24461       0
+                   E_UK
+
+ENROLL             ENROLL_CLIENT_ACCT_I            7   1 TX_CLIENT_ACCOUNT    233401 #######
+                   DX
+
+                   ENROLL_CONTRACT_IDX            55   1 TX_CONTRACT_NAME     895248  112104
+                   ENROLL_IDX                     95   1 KY_ENROLL           #######       0
+                                                       2 KY_SUPPLIER              30       0
+                   ENROLL_IDX2                    28   1 KY_SUPPLIER              30       0
+                                                       2 KY_ENROLL           #######       0
+                   ENROLL_PK            UNIQ      76   1 KY_ENROLL           #######       0
+                   ENROLL_TID_IDX                  7   1 TX_TRACKING_ID        81951 #######
+                   ENROLL_UTILITYNAME_I           28   1 KY_UTILITY_NAME         102       0
+                   DX
+
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+02/28 13    60      3       5        26        421,971            0        46 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60      3       5        26        421,971            0        46
+
+=======================================================================================================
+                            SQL 339329303
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT KY_BILL, KY_SUPPLIER, KY_BILL_TYPE, DT_BILL, DT_READING_F
+ROM, DT_READING_TO, NVL(AT_BILL_ACCOUNT_BALANCE,0) AS AT_BALANCE
+, NVL(AT_CANCEL_AMOUNT,0) AS AT_CANCEL_AMOUNT, (SELECT SUM(AT_CH
+ARGE) FROM BILL_CHARGE_DTL BCD WHERE BCD.KY_BILL = BH.KY_BILL) T from
+OTAL_AMOUNT, P_CIS_CUSTINFO.GET_USAGE_INFO(KY_BILL_TYPE, KY_BILL
+) AS TOTAL_USAGE FROM BILL_HDR BH WHERE KY_ENROLL = :B2 AND DT_B from
+ILL >= :B1 ORDER BY DT_BILL DESC
+
+FIRST TIME = 2012-02-28 07:52
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME               COST  IO_COST     ROWS
+-------------------- -------------- -------------------- --------- -------- --------
+SELECT STATEMENT                                                28
+SORT                 AGGREGATE                                                     1
+TABLE ACCESS         BY INDEX ROWID BILL_CHARGE_DTL              4        4        2
+INDEX                RANGE SCAN     BILL_CH_DTL_IDX              3        3        2
+SORT                 ORDER BY                                   28       28       12
+TABLE ACCESS         BY INDEX ROWID BILL_HDR                    15       15       12
+INDEX                RANGE SCAN     BILL_HDR_KY_ENROLL_I         3        3       12
+                                    DX
+
+
+TABLE_NAME          NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ --------- ------ -------------- ----- ------- ------- ------- ---- ----
+BILL_HDR            14571079    106 02/25/12 04:08  100%    1706    1701    1637   10   40
+BILL_CHARGE_DTL     32487424     47 02/25/12 03:11  100%    1580    1577    1618   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+BILL_CHARGE_DTL    BILL_CHARGE_DTL_IDX           540   1 KY_ENROLL           #######       0
+                                                       2 KY_SUPPLIER              27       0
+                   BILL_CHARGE_DTL_PK   UNIQ     565   1 KY_BILL_CHARGE_DTL  #######       0
+                   BILL_CHARGE_DTL_UQ_I          486   1 KY_SR_SEQ_NO        ####### #######
+                   X
+
+                   BILL_CH_DTL_IDX               815   1 KY_BILL             #######       0
+                                                       2 KY_ENROLL           #######       0
+                                                       3 KY_SUPPLIER              27       0
+BILL_HDR           BILL_HDR_DT_BILL_DUE          405   1 DT_BILL_DUE            4259  420662
+                   _IDX
+
+                   BILL_HDR_IDX                  692   1 KY_BILL             #######       0
+                                                       2 KY_ENROLL           #######       0
+                                                       3 KY_SUPPLIER              27       0
+                   BILL_HDR_IDX2                 551   1 KY_SUPPLIER              27       0
+                                                       2 KY_ENROLL           #######       0
+                                                       3 DT_BILL                4275       0
+                                                       4 DT_MODIFY           #######       0
+                                                       5 KY_BILL             #######       0
+                   BILL_HDR_IDX4                 412   1 KY_SUPPLIER              27       0
+                                                       2 DT_BILL                4275       0
+                   BILL_HDR_KY_ENROLL_I          250   1 KY_ENROLL           #######       0
+                   DX
+
+                   BILL_HDR_UQ_IX                222   1 KY_SR_SEQ_NO        ####### #######
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+02/28 13    60      4     131       250         82,015       13,194      4967 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60      4     131       250         82,015       13,194      4967
+
+=======================================================================================================
+                            SQL 571412582
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT BH.KY_BILL, BH.DT_BILL, BH.KY_BILL_TYPE, BH.DT_READING_FR
+OM AS DTREADINGFROM, BH.DT_READING_TO AS DTREADINGTO, BH.KY_ENRO
+LL, P_SS_UTILITY.DERIVE_SELFSERV_SUPPLIER(BH.KY_SUPPLIER) AS "KY
+_SUPPLIER", B.CD_REC_TYPE, NVL(TRIM(B.TX_METER_NUMBER), 'N/A') A
+S TX_METER_NUMBER, B.CD_MEAS_SIGNIFICANCE, 'Total' AS TX_MEAS_DE
+SCR, CT.KY_UOM, CT.TX_DESCRIPTION AS TX_UOM_DESCR, A.CD_SERVICE,
+ DECODE( BH.KY_BILL_TYPE, '0400', B.QY_QUANTITY, '0095', -1 * B.
+QY_QUANTITY, B.QY_QUANTITY ) AS QY_USAGE FROM CUSTPRO.CPM_PND_TR from
+AN_HDR A, CUSTPRO.CPM_PND_MONTHLY_867 B, BILL_HDR BH, CUSTPRO.CP
+M_CD_UOM CT WHERE A.KY_PND_SEQ_TRANS = B.KY_PND_SEQ_TRANS AND B. where
+FL_METER_DATA = 'Y' AND A.KY_ENROLL = :B2 AND BH.KY_ENROLL = A.K
+Y_ENROLL AND BH.DT_BILL = A.DT_BILLED_BY_CSS AND CT.KY_UOM = B.C
+D_QUANTITY_UOM AND CT.CD_SERVICE = A.CD_SERVICE AND B.CD_REC_TYP
+E = '03' AND BH.DT_BILL >= :B1 AND ( (BH.KY_BILL_TYPE = '0400' A
+ND A.CD_PURPOSE IN ('00', '18')) OR (BH.KY_BILL_TYPE = '0095' AN
+D A.CD_PURPOSE IN ('01', '17') AND BH.DT_READING_FROM = A.DT_PER
+IOD_START) ) ORDER BY A.KY_ENROLL, BH.KY_BILL DESC, B.CD_REC_TYP
+E DESC, A.DT_PERIOD_START DESC, A.DT_PERIOD_END DESC, B.TX_METER
+_NUMBER, TX_MEAS_DESCR, CT.TX_DESCRIPTION
+
+FIRST TIME = 2012-02-28 07:15
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME               COST  IO_COST     ROWS
+-------------------- -------------- -------------------- --------- -------- --------
+SELECT STATEMENT                                                53
+SORT                 ORDER BY                                   53       53        1
+NESTED LOOPS                                                    40       40        1
+NESTED LOOPS                                                    38       38        2
+HASH JOIN                                                       30       30        2
+TABLE ACCESS         BY INDEX ROWID CPM_PND_TRAN_HDR            14       14       11
+INDEX                RANGE SCAN     CPM_PND_TRAN_HDR_IX3         3        3       11
+TABLE ACCESS         BY INDEX ROWID BILL_HDR                    15       15       12
+INDEX                RANGE SCAN     BILL_HDR_KY_ENROLL_I         3        3       12
+                                    DX
+
+TABLE ACCESS         BY INDEX ROWID CPM_PND_MONTHLY_867          4        4        1
+INDEX                RANGE SCAN     CPM_PND_MONTHLY_867_         3        3        3
+                                    PK
+
+TABLE ACCESS         BY INDEX ROWID CPM_CD_UOM                   1        1        1
+INDEX                UNIQUE SCAN    CPM_CD_UOM_PK                                  1
+
+TABLE_NAME          NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ --------- ------ -------------- ----- ------- ------- ------- ---- ----
+BILL_HDR            14571079    106 02/25/12 04:08  100%    1706    1701    1637   10   40
+CPM_PND_TRAN_HDR    13523300    197 02/25/12 23:40    1%    2748    2745    3176   20   40
+CPM_PND_MONTHLY_86  33984233     93 02/25/12 12:02  100%    3506    3499    3349   10   40
+7
+
+CPM_CD_UOM                12     20 02/25/12 10:16  100%       0       0       0   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+BILL_HDR           BILL_HDR_DT_BILL_DUE          405   1 DT_BILL_DUE            4259  420662
+                   _IDX
+
+                   BILL_HDR_IDX                  692   1 KY_BILL             #######       0
+                                                       2 KY_ENROLL           #######       0
+                                                       3 KY_SUPPLIER              27       0
+                   BILL_HDR_IDX2                 551   1 KY_SUPPLIER              27       0
+                                                       2 KY_ENROLL           #######       0
+                                                       3 DT_BILL                4275       0
+                                                       4 DT_MODIFY           #######       0
+                                                       5 KY_BILL             #######       0
+                   BILL_HDR_IDX4                 412   1 KY_SUPPLIER              27       0
+                                                       2 DT_BILL                4275       0
+                   BILL_HDR_KY_ENROLL_I          250   1 KY_ENROLL           #######       0
+                   DX
+
+                   BILL_HDR_UQ_IX                222   1 KY_SR_SEQ_NO        ####### #######
+CPM_CD_UOM         CPM_CD_UOM_PK        UNIQ       0   1 CD_SERVICE                2       0
+                                                       2 KY_UOM                   12       0
+CPM_PND_MONTHLY_86 CPM_PND_MONTHLY_867_         1079   1 KY_ROW_SEQ_TRANS    #######  301846
+7                  IX1
+
+                   CPM_PND_MONTHLY_867_ UNIQ    1327   1 KY_PND_SEQ_TRANS    #######       0
+                   PK
+
+                                                       2 KY_867_SEQ          #######       0
+CPM_PND_TRAN_HDR   CPM_PND_TRAN_HDR_IX1          342   1 KY_BA               #######   46221
+                   CPM_PND_TRAN_HDR_IX1          303   1 CD_TRAN_STATUS            8       0
+                   0
+
+                                                       2 CD_TRAN_TYPE_867         10       0
+                                                       3 CD_PURPOSE                6       0
+                   CPM_PND_TRAN_HDR_IX1          227   1 KY_SUPPLIER              22       0
+                   1
+
+                                                       2 CD_TRAN_STATUS            8       0
+                   CPM_PND_TRAN_HDR_IX3          341   1 KY_ENROLL           #######   56095
+                   CPM_PND_TRAN_HDR_IX4          811   1 ID_TRANS_REF_NUM_8  #######     229
+                                                         67
+
+                   CPM_PND_TRAN_HDR_IX5          241   1 ID_EDC_ACCT_NUM     #######    1940
+                   CPM_PND_TRAN_HDR_IX6          353   1 CD_TRAN_STATUS            8       0
+                                                       2 KY_PND_SEQ_TRANS    #######       0
+                   CPM_PND_TRAN_HDR_IX7          620   1 ID_TRANS_REF_NUM_8  #######  362764
+                                                         10
+
+                   CPM_PND_TRAN_HDR_IX8          268   1 KY_ROW_SEQ_TRANS_8  ####### #######
+                                                         10
+
+                   CPM_PND_TRAN_HDR_IX9          241   1 DT_BILLED_BY_CSS       1663  609270
+                   CPM_PND_TRAN_HDR_PK  UNIQ     323   1 KY_PND_SEQ_TRANS    #######       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+02/28 13    60      1      44       157         29,266        4,571      2737 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60      1      44       157         29,266        4,571      2737
+
+=======================================================================================================
+                            SQL 761536809
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT COUNT(*) FROM PPLSCIS.CIS_COLLECTIONS_QUEUE CQ JOIN ENROL from
+L E ON CQ.KY_SUPPLIER = E.KY_SUPPLIER AND CQ.KY_ENROLL = E.KY_EN
+ROLL WHERE CQ.KY_SUPPLIER = :B2 AND CQ.CD_QUEUE_STATUS = :B1     where
+
+FIRST TIME = 2012-02-28 08:01
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME               COST  IO_COST     ROWS
+-------------------- -------------- -------------------- --------- -------- --------
+SELECT STATEMENT                                               145
+SORT                 AGGREGATE                                                     1
+HASH JOIN                                                      145      145      612
+TABLE ACCESS         BY INDEX ROWID CIS_COLLECTIONS_QUEU        21       21      612
+                                    E
+
+INDEX                RANGE SCAN     CIS_COLLECTIONS_QUEU         1        1      612
+                                    E_IDX_2
+
+INDEX                RANGE SCAN     ENROLL_IDX2                123      123    50169
+
+TABLE_NAME          NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ --------- ------ -------------- ----- ------- ------- ------- ---- ----
+CIS_COLLECTIONS_QU     24461    162 07/11/11 20:28    4%       5       4       4   10   40
+EUE
+
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CIS_COLLECTIONS_QU CIS_COLLECTIONS_QUEU                1 KY_SUPPLIER              10       0
+EUE                E_IDX_2
+
+                                                       2 CD_QUEUE_STATUS           4       0
+                   CIS_COLLECTIONS_QUEU                1 KY_SUPPLIER              10       0
+                   E_IDX_3
+
+                                                       2 CD_QUEUE_STATUS           4       0
+                                                       3 ID_USER_GUID_HANDL       23   24438
+                                                         ING
+
+                                                       4 TX_CUSTOMER_NAME       1126       0
+                   CIS_COLLECTIONS_QUEU UNIQ       1   1 KY_ENROLL             24461       0
+                   E_UK
+
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+02/28 13    60     18      19       404         72,247            1       404 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60     18      19       404         72,247            1       404
+
+=======================================================================================================
+                            SQL 804598086
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+begin PPLSCIS.P_CIS_CUSTINFO.get_basic_account_context_dn(P_ID_U
+SER_GUID=>:P_ID_USER_GUID, P_KY_ENROLL=>:P_KY_ENROLL, P_KY_BA=>:
+P_KY_BA, P_SUPPLIER=>:P_SUPPLIER, P_STATE=>:P_STATE, P_SVC=>:P_S
+VC, P_DUNS_GRP=>:P_DUNS_GRP, P_TX_BALANCING_ACCOUNT=>:P_TX_BALAN
+CING_ACCOUNT); end;
+
+FIRST TIME = 2012-02-28 06:01
+MODULE     = w3wp.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+02/28 13    60     13      55      1394         43,167        3,074      1393 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60     13      55      1394         43,167        3,074      1393
+
+=======================================================================================================
+                            SQL 865148149
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT SUM(AT_CHARGE) FROM BILL_CHARGE_DTL WHERE KY_BILL = :B1   from
+
+FIRST TIME = 2012-02-22 06:54
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME               COST  IO_COST     ROWS
+-------------------- -------------- -------------------- --------- -------- --------
+SELECT STATEMENT                                                 4
+SORT                 AGGREGATE                                                     1
+TABLE ACCESS         BY INDEX ROWID BILL_CHARGE_DTL              4        4        2
+INDEX                RANGE SCAN     BILL_CH_DTL_IDX              3        3        2
+
+TABLE_NAME          NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ --------- ------ -------------- ----- ------- ------- ------- ---- ----
+BILL_CHARGE_DTL     32487424     47 02/25/12 03:11  100%    1580    1577    1618   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+BILL_CHARGE_DTL    BILL_CHARGE_DTL_IDX           540   1 KY_ENROLL           #######       0
+                                                       2 KY_SUPPLIER              27       0
+                   BILL_CHARGE_DTL_PK   UNIQ     565   1 KY_BILL_CHARGE_DTL  #######       0
+                   BILL_CHARGE_DTL_UQ_I          486   1 KY_SR_SEQ_NO        ####### #######
+                   X
+
+                   BILL_CH_DTL_IDX               815   1 KY_BILL             #######       0
+                                                       2 KY_ENROLL           #######       0
+                                                       3 KY_SUPPLIER              27       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+02/28 13    60      2      90      8666         35,899        9,614      8666 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60      2      90      8666         35,899        9,614      8666
+
+=======================================================================================================
+                            SQL 1062528727
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT COUNT (*) FROM BILL_ACCOUNT BA JOIN ACCOUNT A ON BA.KY_EN from
+ROLL = A.KY_ENROLL JOIN ENROLL E ON BA.KY_ENROLL = E.KY_ENROLL J
+OIN BILL_HDR BH ON BA.KY_ENROLL = BH.KY_ENROLL JOIN CODE C1 ON (
+ BH.KY_BILL_TYPE = C1.KY_CODE AND C1.KY_TABLE = 'TRANSACTION_ID'
+ ) JOIN SS_USER_ACCOUNT_ACCESS UAA ON UAA.KY_ENROLL = BH.KY_ENRO
+LL WHERE BH.KY_BILL_TYPE IN ('0400') AND LOWER (UAA.TX_USER_ID_G where
+RANTED_ACCESS) = LOWER (:B3 ) AND BH.DT_BILL >= (TRUNC (SYSDATE)
+ - :B2 ) AND A.KY_SUPPLIER = P_SS_UTILITY.DECODE_SELFSERV_SUPPLI
+ER (:B1 )
+
+FIRST TIME = 2012-02-28 07:15
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME               COST  IO_COST     ROWS
+-------------------- -------------- -------------------- --------- -------- --------
+SELECT STATEMENT                                               586
+SORT                 AGGREGATE                                                     1
+NESTED LOOPS                                                   586      586       32
+NESTED LOOPS                                                   522      522       32
+NESTED LOOPS                                                   490      490       32
+NESTED LOOPS                                                   458      458       32
+MERGE JOIN           CARTESIAN                                  94       94       28
+INDEX                RANGE SCAN     CODE_PK                      2        2        1
+BUFFER               SORT                                       92       92     1635
+INDEX                FAST FULL SCAN SS_USER_ACCOUNT_ACCE        92       92     1635
+                                    SS_PK
+
+TABLE ACCESS         BY INDEX ROWID BILL_HDR                    13       13        1
+INDEX                RANGE SCAN     BILL_HDR_KY_ENROLL_I         2        2       12
+                                    DX
+
+INDEX                UNIQUE SCAN    BILL_ACCOUNT_PK              1        1        1
+INDEX                UNIQUE SCAN    ENROLL_PK                    1        1        1
+TABLE ACCESS         BY INDEX ROWID ACCOUNT                      2        2        1
+INDEX                UNIQUE SCAN    ACCOUNT_PK                   1        1        1
+
+TABLE_NAME          NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ --------- ------ -------------- ----- ------- ------- ------- ---- ----
+ACCOUNT              1483704    203 02/25/12 03:00  100%     318     318     319   10   40
+BILL_HDR            14571079    106 02/25/12 04:08  100%    1706    1701    1637   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+ACCOUNT            ACCOUNT_PK           UNIQ      79   1 KY_ENROLL           #######       0
+                   ACCT_CITY_IDX                  28   1 TX_SERVICE_CITY       12686       0
+                   ACCT_DOING_IDX                  7   1 TX_DOING_BUSINESS_    66709 #######
+                                                         AS
+
+                   ACCT_IDX                      103   1 KY_ENROLL           #######       0
+                                                       2 KY_SUPPLIER              30       0
+                   ACCT_IDX2                      59   1 TX_UTILITY_ACCOUNT  #######       0
+                   ACCT_NAME_IDX                  57   1 TX_CUSTOMER_NAME     950505       0
+                   ACCT_SUPPLIER_IDX              28   1 KY_SUPPLIER              30       0
+BILL_HDR           BILL_HDR_DT_BILL_DUE          405   1 DT_BILL_DUE            4259  420662
+                   _IDX
+
+                   BILL_HDR_IDX                  692   1 KY_BILL             #######       0
+                                                       2 KY_ENROLL           #######       0
+                                                       3 KY_SUPPLIER              27       0
+                   BILL_HDR_IDX2                 551   1 KY_SUPPLIER              27       0
+                                                       2 KY_ENROLL           #######       0
+                                                       3 DT_BILL                4275       0
+                                                       4 DT_MODIFY           #######       0
+                                                       5 KY_BILL             #######       0
+                   BILL_HDR_IDX4                 412   1 KY_SUPPLIER              27       0
+                                                       2 DT_BILL                4275       0
+                   BILL_HDR_KY_ENROLL_I          250   1 KY_ENROLL           #######       0
+                   DX
+
+                   BILL_HDR_UQ_IX                222   1 KY_SR_SEQ_NO        ####### #######
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+02/28 13    60     22      29       180        257,024        2,725       180 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60     22      29       180        257,024        2,725       180
+
+=======================================================================================================
+                            SQL 1530130716
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+begin PVIEW.P_CIS_COLLECTIONS.is_account_past_due(P_ID_USER_GUID
+=>:P_ID_USER_GUID, P_KY_ENROLL=>:P_KY_ENROLL, P_FL_PAST_DUE=>:P_
+FL_PAST_DUE, P_DT_LAST_BILL=>:P_DT_LAST_BILL, P_DT_LAST_BILL_DUE
+=>:P_DT_LAST_BILL_DUE, P_DAYS_PAST_DUE=>:P_DAYS_PAST_DUE, P_AMT_
+PAST_DUE=>:P_AMT_PAST_DUE); end;
+
+FIRST TIME = 2012-02-28 06:01
+MODULE     = w3wp.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+02/28 13    60      9      63      1004         78,079        4,590       999 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60      9      63      1004         78,079        4,590       999
+
+=======================================================================================================
+                            SQL 1582627454
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT ID_USER_ID FROM CIS_USER_XREF WHERE UPPER(ID_USER_GUID) = from
+ UPPER(:B1 )
+
+FIRST TIME = 2012-02-28 08:01
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME               COST  IO_COST     ROWS
+-------------------- -------------- -------------------- --------- -------- --------
+SELECT STATEMENT                                                 3
+INDEX                FAST FULL SCAN CIS_USER_XREF_UK             3        3        9
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+02/28 13    60     17      18     13228        291,034            5     13190 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60     17      18     13228        291,034            5     13190
+
+=======================================================================================================
+                            SQL 1876070458
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT "A4"."TX_BILLING_NUMBER" "TX_BILLING_NUMBER","A4"."FL_ACT
+IVE" "FL_ACTIVE" FROM "CIS_CL_LINKED_ACCOUNTS" "A4" WHERE "A4"." from
+KY_CALL_LOG_ID"=:CV1$
+
+FIRST TIME = 2012-02-28 07:15
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME               COST  IO_COST     ROWS
+-------------------- -------------- -------------------- --------- -------- --------
+SELECT STATEMENT                                                 2
+TABLE ACCESS         BY INDEX ROWID CIS_CL_LINKED_ACCOUN         2        2      145
+                                    TS
+
+INDEX                RANGE SCAN     CL_LINKEDACCT_LOGID          1        1      145
+
+TABLE_NAME          NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ --------- ------ -------------- ----- ------- ------- ------- ---- ----
+CIS_CL_LINKED_ACCO    223746     35 07/11/11 20:28    0%       9       9       8   10   40
+UNTS
+
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+CIS_CL_LINKED_ACCO CIS_CL_LINKED_ACCOUN UNIQ       5   1 KY_LINKED_ACCOUNT_   223746       0
+UNTS               TS_PK                                 ID
+
+                                                       2 KY_CALL_LOG_ID         1543       0
+                   CL_LINKEDACCT_LOGID                 1 KY_CALL_LOG_ID         1543       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+02/28 13    60      1       3      3297        131,230          261     60670 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60      1       3      3297        131,230          261     60670
+
+=======================================================================================================
+                            SQL 2069932676
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+begin CUSTPRO.BUS_CSS_ACCT_INFO.get_css_info(CSS_KY_BA=>:CSS_KY_
+BA, CSS_ER_NO=>:CSS_ER_NO, CSS_EDC_NO=>:CSS_EDC_NO, CSS_SUPP_ID=
+>:CSS_SUPP_ID, P_SINGLE_FETCH=>:P_SINGLE_FETCH, P_CSS_INFO_CUR=>
+:P_CSS_INFO_CUR); end;
+
+FIRST TIME = 2012-02-28 06:01
+MODULE     = w3wp.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+02/28 13    60     18      92      1064          2,829            0      1064 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60     18      92      1064          2,829            0      1064
+
+=======================================================================================================
+                            SQL 3104751934
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT BH.KY_BILL, BH.KY_ENROLL, P_SS_UTILITY.DERIVE_SELFSERV_SU
+PPLIER(BH.KY_SUPPLIER) AS "KY_SUPPLIER", BH.KY_BILL_OPTION, DECO
+DE_CODE(BH.KY_BILL_OPTION, BH.KY_SUPPLIER, 'BILL_OPTION', 'Y') A
+S "BillOptionLookup", BH.KY_BILL_TYPE, DECODE_CODE(BH.KY_BILL_TY
+PE, BH.KY_SUPPLIER, 'TRANSACTION_ID', 'Y') AS "BillTypeLookup",
+BH.DT_READING_FROM, BH.DT_READING_TO, BH.DT_BILL, BH.QY_NUMBER_O
+F_DAYS, BH.QY_PCT_TAX_EXEMPT, BH.DT_BILL_DUE, NVL(BH.AT_BILL_ACC
+OUNT_BALANCE,0) AS "at_bill_account_balance", NVL(BH.AT_CANCEL_A
+MOUNT,0) AS "at_cancel_amount", BH.DT_MODIFY, BH.TX_EDI_TRACKING
+, NVL(P_SS_ACCTINFO_WS.CALC_BILL_AMOUNT(BH.KY_BILL),0) AS "AtBil
+lAmount", NVL(P_SS_ACCTINFO_WS.CALC_BILL_USAGE(BH.KY_BILL),0) AS
+ "AtBillUsage" FROM BILL_HDR BH WHERE BH.KY_ENROLL = :B2 AND BH. from
+DT_BILL >= :B1 ORDER BY BH.DT_BILL DESC, BH.KY_BILL DESC
+
+FIRST TIME = 2012-02-28 07:15
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME               COST  IO_COST     ROWS
+-------------------- -------------- -------------------- --------- -------- --------
+SELECT STATEMENT                                                28
+SORT                 ORDER BY                                   28       28       12
+TABLE ACCESS         BY INDEX ROWID BILL_HDR                    15       15       12
+INDEX                RANGE SCAN     BILL_HDR_KY_ENROLL_I         3        3       12
+                                    DX
+
+
+TABLE_NAME          NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ --------- ------ -------------- ----- ------- ------- ------- ---- ----
+BILL_HDR            14571079    106 02/25/12 04:08  100%    1706    1701    1637   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+BILL_HDR           BILL_HDR_DT_BILL_DUE          405   1 DT_BILL_DUE            4259  420662
+                   _IDX
+
+                   BILL_HDR_IDX                  692   1 KY_BILL             #######       0
+                                                       2 KY_ENROLL           #######       0
+                                                       3 KY_SUPPLIER              27       0
+                   BILL_HDR_IDX2                 551   1 KY_SUPPLIER              27       0
+                                                       2 KY_ENROLL           #######       0
+                                                       3 DT_BILL                4275       0
+                                                       4 DT_MODIFY           #######       0
+                                                       5 KY_BILL             #######       0
+                   BILL_HDR_IDX4                 412   1 KY_SUPPLIER              27       0
+                                                       2 DT_BILL                4275       0
+                   BILL_HDR_KY_ENROLL_I          250   1 KY_ENROLL           #######       0
+                   DX
+
+                   BILL_HDR_UQ_IX                222   1 KY_SR_SEQ_NO        ####### #######
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+02/28 13    60      2      63       157         65,720        7,394      2926 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60      2      63       157         65,720        7,394      2926
+
+=======================================================================================================
+                            SQL 3111501438
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+begin PPLSCIS.P_CIS_CUSTOMER_SUMMARY.get_account_general_info(P_
+ERNO=>:P_ERNO, P_GENERAL_CUST_INFO=>:P_GENERAL_CUST_INFO); end;
+
+FIRST TIME = 2012-02-28 07:16
+MODULE     = w3wp.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+02/28 13    60     10      44       982         17,088          173       982 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60     10      44       982         17,088          173       982
+
+=======================================================================================================
+                            SQL 3243572472
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT ARR_SUPPLIER_NO FROM CIS_SUPPLIER_GROUP WHERE ID_SUPPLIER from
+_GROUP = :B1
+
+FIRST TIME = 2012-02-28 08:14
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME               COST  IO_COST     ROWS
+-------------------- -------------- -------------------- --------- -------- --------
+SELECT STATEMENT                                                 2
+TABLE ACCESS         FULL           CIS_SUPPLIER_GROUP           2        2        1
+
+TABLE_NAME          NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ --------- ------ -------------- ----- ------- ------- ------- ---- ----
+CIS_SUPPLIER_GROUP         5     94 07/11/11 20:29  100%       0       0       0   10   40
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+02/28 13    60      0       0       393         16,032        7,351       393 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60      0       0       393         16,032        7,351       393
+
+=======================================================================================================
+                            SQL 3434658212
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT DBMS_XMLGEN.GETXML('     SELECT  CIS_CL_HEADER.KY_CALL_LO
+G_ID,             P_CIS_CALL_LOG.get_call_rep_name(CIS_CL_HEADER
+.ID_USER_GUID) AS NOTATED_BY,             CIS_CL_HEADER.TX_BILLI
+NG_NUMBER,             CIS_CL_HEADER.TX_FIRST_NAME,
+CIS_CL_HEADER.TX_LAST_NAME,             CIS_CL_HEADER.TX_EMAIL,
+            CIS_CL_HEADER.TX_PHONE_NO,             CIS_CL_HEADER
+.TX_POSITION,             CIS_CL_HEADER.CD_FOLLOW_UP_STATUS,
+         CIS_CL_HEADER.CD_FOLLOW_UP_HOURS,             CIS_CL_HE
+ADER.FL_CRITICAL_COMMENT,             CIS_CL_HEADER.TS_CRITICAL_
+COMMENT_EXPIRE,             CIS_CL_HEADER.KY_NOTATE_TYPE,
+      CIS_CL_HEADER.TS_ADDED,             CIS_CL_HEADER.TS_MODIF
+IED,             CIS_CL_MESSAGES.TX_CALL_LOG_MSG,              C
+URSOR(SELECT   CIS_CL_CALL_TYPES.TX_CALL_TYPE
+   FROM   CIS_CL_CALL_TYPES                     WHERE   CIS_CL_C from
+ALL_TYPES.KY_CALL_LOG_ID = CIS_CL_HEADER.KY_CALL_LOG_ID) CALL_TY
+PES,             CURSOR(SELECT   CIS_CL_LINKED_ACCOUNTS.TX_BILLI
+NG_NUMBER, CIS_CL_LINKED_ACCOUNTS.FL_ACTIVE
+ FROM   CIS_CL_LINKED_ACCOUNTS                     WHERE   CIS_C from
+L_LINKED_ACCOUNTS.KY_CALL_LOG_ID = CIS_CL_HEADER.KY_CALL_LOG_ID)
+ LINKED_ACCOUNTS     FROM    CIS_CL_HEADER,             CIS_CL_M from
+ESSAGES      WHERE   CIS_CL_MESSAGES.KY_CALL_LOG_ID = CIS_CL_HEA where
+DER.KY_CALL_LOG_ID       AND   (CIS_CL_HEADER.CD_STATUS IS NULL
+OR CIS_CL_HEADER.CD_STATUS <> ''D'')       AND   CIS_CL_HEADER.K
+Y_CALL_LOG_ID in (                 SELECT   CIS_CL_LINKED_ACCOUN
+TS.KY_CALL_LOG_ID                   FROM   CIS_CL_LINKED_ACCOUNT from
+S                  WHERE   CIS_CL_LINKED_ACCOUNTS.tx_billing_num where
+ber = '|| :B1 ||') ORDER BY CIS_CL_HEADER.TS_ADDED DESC', 0) ADD
+L_CALL_LOGS FROM DUAL                                            from
+
+FIRST TIME = 2012-02-28 07:15
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME               COST  IO_COST     ROWS
+-------------------- -------------- -------------------- --------- -------- --------
+SELECT STATEMENT                                                 2
+TABLE ACCESS         FULL           DUAL                         2        2        1
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+02/28 13    60    118     157       239        885,375        7,139       239 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60    118     157       239        885,375        7,139       239
+
+=======================================================================================================
+                            SQL 3687986935
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT DBMS_XMLGEN.GETXML('     SELECT  CIS_CL_HEADER.KY_CALL_LO
+G_ID,             P_CIS_CALL_LOG.get_call_rep_name(CIS_CL_HEADER
+.ID_USER_GUID) AS NOTATED_BY,             CIS_CL_HEADER.TX_BILLI
+NG_NUMBER,             CIS_CL_HEADER.TX_FIRST_NAME,
+CIS_CL_HEADER.TX_LAST_NAME,             CIS_CL_HEADER.TX_EMAIL,
+            CIS_CL_HEADER.TX_PHONE_NO,             CIS_CL_HEADER
+.TX_POSITION,             CIS_CL_HEADER.CD_FOLLOW_UP_STATUS,
+         CIS_CL_HEADER.CD_FOLLOW_UP_HOURS,             CIS_CL_HE
+ADER.FL_CRITICAL_COMMENT,             CIS_CL_HEADER.TS_CRITICAL_
+COMMENT_EXPIRE,             CIS_CL_HEADER.KY_NOTATE_TYPE,
+      CIS_CL_HEADER.TS_ADDED,             CIS_CL_HEADER.TS_MODIF
+IED,             CIS_CL_MESSAGES.TX_CALL_LOG_MSG,             CI
+S_CL_LINKED_WFG.WFG_NUMBER WORKFLOW_GEN_NO,             CURSOR(S
+ELECT   CIS_CL_CALL_TYPES.TX_CALL_TYPE                      FROM from
+   CIS_CL_CALL_TYPES                     WHERE   CIS_CL_CALL_TYP where
+ES.KY_CALL_LOG_ID = CIS_CL_HEADER.KY_CALL_LOG_ID) CALL_TYPES,
+          CURSOR(SELECT   CIS_CL_LINKED_ACCOUNTS.TX_BILLING_NUMB
+ER, CIS_CL_LINKED_ACCOUNTS.FL_ACTIVE                      FROM   from
+ CIS_CL_LINKED_ACCOUNTS                     WHERE   CIS_CL_LINKE where
+D_ACCOUNTS.KY_CALL_LOG_ID = CIS_CL_HEADER.KY_CALL_LOG_ID) LINKED
+_ACCOUNTS     FROM    CIS_CL_HEADER,             CIS_CL_MESSAGES from
+,             CIS_CL_LINKED_WFG       WHERE   CIS_CL_MESSAGES.KY where
+_CALL_LOG_ID = CIS_CL_HEADER.KY_CALL_LOG_ID       AND   CIS_CL_H
+EADER.KY_CALL_LOG_ID = CIS_CL_LINKED_WFG.KY_CALL_LOG_ID (+)
+  AND   (CIS_CL_HEADER.CD_STATUS IS NULL OR CIS_CL_HEADER.CD_STA
+TUS <> ''D'')       AND   CIS_CL_HEADER.KY_ENROLL = ' || :B1 ||
+' ORDER BY CIS_CL_HEADER.TS_ADDED DESC', 0) CALL_LOGS FROM DUAL  from
+
+FIRST TIME = 2012-02-28 07:15
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME               COST  IO_COST     ROWS
+-------------------- -------------- -------------------- --------- -------- --------
+SELECT STATEMENT                                                 2
+TABLE ACCESS         FULL           DUAL                         2        2        1
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+02/28 13    60      6      33       239        152,060        2,720       239 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60      6      33       239        152,060        2,720       239
+
+=======================================================================================================
+                            SQL 3702697947
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+SELECT QY_USAGE FROM BILL_USAGE_DTL WHERE KY_BILL = :B1 AND KY_U from
+SAGE_TYPE IN ('978', '860')
+
+FIRST TIME = 2012-02-22 06:54
+MODULE     = w3wp.exe
+
+EXECUTION PLAN       OPTIONS        OBJECT_NAME               COST  IO_COST     ROWS
+-------------------- -------------- -------------------- --------- -------- --------
+SELECT STATEMENT                                                 4
+TABLE ACCESS         BY INDEX ROWID BILL_USAGE_DTL               4        4        1
+INDEX                RANGE SCAN     BILL_USG_DTL_IDX             3        3        2
+
+TABLE_NAME          NUM_ROWS AVGLEN LAST_ANALYZED  SAMPL      MB USED_MB CALC_MB PCTF PCTU
+------------------ --------- ------ -------------- ----- ------- ------- ------- ---- ----
+BILL_USAGE_DTL      29510986     49 02/25/12 04:43  100%    1504    1501    1532   10   40
+
+TABLE_NAME         INDEX_NAME           UNIQ      MB POS COLUMN_NAME        DISTINCT   NULLS
+------------------ -------------------- ---- ------- --- ------------------ -------- -------
+BILL_USAGE_DTL     BILL_USAGE_DTL_IDX            492   1 KY_ENROLL           #######       0
+                                                       2 KY_SUPPLIER              27       0
+                   BILL_USAGE_DTL_PK    UNIQ     516   1 KY_BILL_USAGE_DTL   #######       0
+                   BILL_USAGE_DTL_UQ_IX          449   1 KY_SR_SEQ_NO        ####### #######
+                   BILL_USG_DTL_IDX              831   1 KY_BILL             #######       0
+                                                       2 KY_ENROLL           #######       0
+                                                       3 KY_SUPPLIER              27       0
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+02/28 13    60      2      84      8295         33,791        9,300      8276 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60      2      84      8295         33,791        9,300      8276
+
+=======================================================================================================
+                            SQL 3785268355
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+begin PPLSCIS.P_CIS_SEARCH.PERFORM_SEARCH(P_ID_USER_GUID=>:P_ID_
+USER_GUID, P_SEARCH_SQL_SELECT=>:P_SEARCH_SQL_SELECT, P_SEARCH_S
+QL_FROM=>:P_SEARCH_SQL_FROM, P_SEARCH_SQL_WHERE=>:P_SEARCH_SQL_W
+HERE, P_STARTING_ROW_INDEX=>:P_STARTING_ROW_INDEX, P_MAX_ROWS=>:
+P_MAX_ROWS, P_RESULTS=>:P_RESULTS, P_SCALAR_ITEMS=>:P_SCALAR_ITE
+MS); end;
+
+FIRST TIME = 2012-02-28 06:01
+MODULE     = w3wp.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+02/28 13    60     68     185       435      1,816,201      533,462       435 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60     68     185       435      1,816,201      533,462       435
+
+=======================================================================================================
+                            SQL 4116883403
+=======================================================================================================
+
+
+SQL_TEXT
+---------------------------------------------------------------- -----
+begin PPLSCIS.P_CIS_WIDGET.load_personalization_data(P_PAGE_PATH
+=>:P_PAGE_PATH, P_ID_USER=>:P_ID_USER, P_SHARED_DATA=>:P_SHARED_
+DATA, P_USER_DATA=>:P_USER_DATA); end;
+
+FIRST TIME = 2012-02-28 05:59
+MODULE     = w3wp.exe
+
+STARTING  MINS    CPU ELAPSED     EXECS    BUFFER_GETS   DISK_READS PROCESSED MODULE
+-------- ----- ------ ------- --------- -------------- ------------ --------- -----------------
+02/28 13    60      3       4      3051        100,683           33      3051 w3wp.exe
+         ----- ------ ------- --------- -------------- ------------ ---------
+sum         60      3       4      3051        100,683           33      3051

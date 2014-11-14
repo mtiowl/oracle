@@ -1,0 +1,4 @@
+select osuser, status, count(*)
+ from v$session
+ group by osuser, status
+/

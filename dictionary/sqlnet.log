@@ -1,0 +1,518 @@
+
+
+***********************************************************************
+Fatal NI connect error 12514, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=lnx-oss-12.ppl.com)(PORT=1526))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=C1REPT.WORLD)(CID=(PROGRAM=C:\oracle\10.2.0\client_1\bin\sqlplusw.exe)(HOST=WS049707)(USER=E40025))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 30-JUL-2014 17:47:00
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12564
+    TNS-12564: TNS:connection refused
+    ns secondary err code: 0
+    nt main err code: 0
+    nt secondary err code: 0
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12514, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=lnx-dbfm-001.ppl.com)(PORT=1526))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=C1REPTS.WORLD)(CID=(PROGRAM=C:\oracle\10.2.0\client_1\bin\sqlplusw.exe)(HOST=WS049707)(USER=E40025))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 30-JUL-2014 17:47:15
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12564
+    TNS-12564: TNS:connection refused
+    ns secondary err code: 0
+    nt main err code: 0
+    nt secondary err code: 0
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12514, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=lnx-oss-12.ppl.com)(PORT=1526))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=C1REPT.WORLD)(CID=(PROGRAM=C:\oracle\10.2.0\client_1\bin\sqlplusw.exe)(HOST=WS049707)(USER=E40025))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 30-JUL-2014 18:26:54
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12564
+    TNS-12564: TNS:connection refused
+    ns secondary err code: 0
+    nt main err code: 0
+    nt secondary err code: 0
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12514, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=lnx-dbfm-001.ppl.com)(PORT=1526))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=C1REPTS.WORLD)(CID=(PROGRAM=C:\oracle\10.2.0\client_1\bin\sqlplusw.exe)(HOST=WS049707)(USER=E40025))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 30-JUL-2014 18:27:06
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12564
+    TNS-12564: TNS:connection refused
+    ns secondary err code: 0
+    nt main err code: 0
+    nt secondary err code: 0
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12514, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=lnx-oss-12.ppl.com)(PORT=1526))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=C1REPT.WORLD)(CID=(PROGRAM=C:\oracle\10.2.0\client_1\bin\sqlplusw.exe)(HOST=WS049707)(USER=E40025))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 30-JUL-2014 19:02:17
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12564
+    TNS-12564: TNS:connection refused
+    ns secondary err code: 0
+    nt main err code: 0
+    nt secondary err code: 0
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12514, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=lnx-dbfm-001.ppl.com)(PORT=1526))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=C1REPTS.WORLD)(CID=(PROGRAM=C:\oracle\10.2.0\client_1\bin\sqlplusw.exe)(HOST=WS049707)(USER=E40025))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 30-JUL-2014 19:02:23
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12564
+    TNS-12564: TNS:connection refused
+    ns secondary err code: 0
+    nt main err code: 0
+    nt secondary err code: 0
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12514, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=lnx-dbfm-001.ppl.com)(PORT=1526))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=C1REPTS.WORLD)(CID=(PROGRAM=C:\oracle\10.2.0\client_1\bin\sqlplusw.exe)(HOST=WS049707)(USER=E40025))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 30-JUL-2014 19:12:27
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12564
+    TNS-12564: TNS:connection refused
+    ns secondary err code: 0
+    nt main err code: 0
+    nt secondary err code: 0
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12514, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=lnx-oss-12.ppl.com)(PORT=1526))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=C1REPT.WORLD)(CID=(PROGRAM=C:\oracle\10.2.0\client_1\bin\sqlplusw.exe)(HOST=WS049707)(USER=E40025))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 30-JUL-2014 19:12:33
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12564
+    TNS-12564: TNS:connection refused
+    ns secondary err code: 0
+    nt main err code: 0
+    nt secondary err code: 0
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12541, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(PORT=1530)(HOST=lnx-dbfm-b-001.ppl.com))(CONNECT_DATA=(SID=PSOLPT)(CID=(PROGRAM=C:\oracle\10.2.0\client_1\bin\sqlplusw.exe)(HOST=WS049707)(USER=E40025))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 30-JUL-2014 19:30:21
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12541
+    TNS-12541: TNS:no listener
+    ns secondary err code: 12560
+    nt main err code: 511
+    TNS-00511: No listener
+    nt secondary err code: 61
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12541, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(PORT=1530)(HOST=lnx-dbfm-b-001.ppl.com))(CONNECT_DATA=(SID=PSOLPT)(CID=(PROGRAM=C:\oracle\10.2.0\client_1\bin\sqlplusw.exe)(HOST=WS049707)(USER=E40025))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 30-JUL-2014 19:30:32
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12541
+    TNS-12541: TNS:no listener
+    ns secondary err code: 12560
+    nt main err code: 511
+    TNS-00511: No listener
+    nt secondary err code: 61
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12541, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(PORT=1530)(HOST=lnx-dbfm-b-001.ppl.com))(CONNECT_DATA=(SID=PSOLPT)(CID=(PROGRAM=C:\oracle\10.2.0\client_1\bin\sqlplusw.exe)(HOST=WS049707)(USER=E40025))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 30-JUL-2014 22:50:38
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12541
+    TNS-12541: TNS:no listener
+    ns secondary err code: 12560
+    nt main err code: 511
+    TNS-00511: No listener
+    nt secondary err code: 61
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12514, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=lnx-dbfm-b-001.ppl.com)(PORT=1530))(CONNECT_DATA=(SERVICE_NAME=REPD.WORLD)(CID=(PROGRAM=C:\oracle\10.2.0\client_1\bin\sqlplusw.exe)(HOST=WS049707)(USER=E40025))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 30-JUL-2014 22:59:59
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12564
+    TNS-12564: TNS:connection refused
+    ns secondary err code: 0
+    nt main err code: 0
+    nt secondary err code: 0
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12514, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=lnx-dbfm-b-001.ppl.com)(PORT=1530))(CONNECT_DATA=(SERVICE_NAME=REPD.WORLD)(CID=(PROGRAM=C:\oracle\10.2.0\client_1\bin\sqlplusw.exe)(HOST=WS049707)(USER=E40025))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 30-JUL-2014 23:00:29
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12564
+    TNS-12564: TNS:connection refused
+    ns secondary err code: 0
+    nt main err code: 0
+    nt secondary err code: 0
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12514, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=lnx-dbfm-b-001.ppl.com)(PORT=1530))(CONNECT_DATA=(SERVICE_NAME=REPD.WORLD)(CID=(PROGRAM=C:\oracle\10.2.0\client_1\bin\sqlplus.exe)(HOST=WS049707)(USER=E40025))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 30-JUL-2014 23:01:54
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12564
+    TNS-12564: TNS:connection refused
+    ns secondary err code: 0
+    nt main err code: 0
+    nt secondary err code: 0
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12170.
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 30-JUL-2014 23:03:47
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12535
+    TNS-12535: TNS:operation timed out
+    ns secondary err code: 12560
+    nt main err code: 505
+    TNS-00505: Operation timed out
+    nt secondary err code: 60
+    nt OS err code: 0
+  Client address: <unknown>
+
+
+***********************************************************************
+Fatal NI connect error 12170.
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 30-JUL-2014 23:05:04
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12535
+    TNS-12535: TNS:operation timed out
+    ns secondary err code: 12560
+    nt main err code: 505
+    TNS-00505: Operation timed out
+    nt secondary err code: 60
+    nt OS err code: 0
+  Client address: <unknown>
+
+
+***********************************************************************
+Fatal NI connect error 12514, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=lnx-dbfm-b-001.ppl.com)(PORT=1530))(CONNECT_DATA=(SERVICE_NAME=REPD.WORLD)(CID=(PROGRAM=C:\oracle\10.2.0\client_1\bin\sqlplus.exe)(HOST=WS049707)(USER=E40025))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 30-JUL-2014 23:11:05
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12564
+    TNS-12564: TNS:connection refused
+    ns secondary err code: 0
+    nt main err code: 0
+    nt secondary err code: 0
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12170.
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 30-JUL-2014 23:12:58
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12535
+    TNS-12535: TNS:operation timed out
+    ns secondary err code: 12560
+    nt main err code: 505
+    TNS-00505: Operation timed out
+    nt secondary err code: 60
+    nt OS err code: 0
+  Client address: <unknown>
+
+
+***********************************************************************
+Fatal NI connect error 12170.
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 30-JUL-2014 23:20:53
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12535
+    TNS-12535: TNS:operation timed out
+    ns secondary err code: 12560
+    nt main err code: 505
+    TNS-00505: Operation timed out
+    nt secondary err code: 60
+    nt OS err code: 0
+  Client address: <unknown>
+
+
+***********************************************************************
+Fatal NI connect error 12170.
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 30-JUL-2014 23:27:39
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12535
+    TNS-12535: TNS:operation timed out
+    ns secondary err code: 12560
+    nt main err code: 505
+    TNS-00505: Operation timed out
+    nt secondary err code: 60
+    nt OS err code: 0
+  Client address: <unknown>
+
+
+***********************************************************************
+Fatal NI connect error 12170.
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 30-JUL-2014 23:28:20
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12535
+    TNS-12535: TNS:operation timed out
+    ns secondary err code: 12560
+    nt main err code: 505
+    TNS-00505: Operation timed out
+    nt secondary err code: 60
+    nt OS err code: 0
+  Client address: <unknown>
+
+
+***********************************************************************
+Fatal NI connect error 12170.
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 31-JUL-2014 20:35:25
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12535
+    TNS-12535: TNS:operation timed out
+    ns secondary err code: 12560
+    nt main err code: 505
+    TNS-00505: Operation timed out
+    nt secondary err code: 60
+    nt OS err code: 0
+  Client address: <unknown>
+
+
+***********************************************************************
+Fatal NI connect error 12170.
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 01-AUG-2014 13:42:30
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12535
+    TNS-12535: TNS:operation timed out
+    ns secondary err code: 12560
+    nt main err code: 505
+    TNS-00505: Operation timed out
+    nt secondary err code: 60
+    nt OS err code: 0
+  Client address: <unknown>
+
+
+***********************************************************************
+Fatal NI connect error 12514, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=LNX-DBFM-G-003)(PORT=1530))(CONNECT_DATA=(SERVICE_NAME=PROD.WORLD)(CID=(PROGRAM=C:\oracle\10.2.0\client_1\bin\sqlplusw.exe)(HOST=WS049707)(USER=E40025))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 01-AUG-2014 13:42:33
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12564
+    TNS-12564: TNS:connection refused
+    ns secondary err code: 0
+    nt main err code: 0
+    nt secondary err code: 0
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12170.
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 01-AUG-2014 13:43:04
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12535
+    TNS-12535: TNS:operation timed out
+    ns secondary err code: 12560
+    nt main err code: 505
+    TNS-00505: Operation timed out
+    nt secondary err code: 60
+    nt OS err code: 0
+  Client address: <unknown>
+
+
+***********************************************************************
+Fatal NI connect error 12514, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=LNX-DBFM-G-003.ppl.com)(PORT=1530))(CONNECT_DATA=(SERVICE_NAME=PROD.WORLD)(CID=(PROGRAM=C:\oracle\10.2.0\client_1\bin\sqlplusw.exe)(HOST=WS049707)(USER=E40025))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 01-AUG-2014 13:43:15
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12564
+    TNS-12564: TNS:connection refused
+    ns secondary err code: 0
+    nt main err code: 0
+    nt secondary err code: 0
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12514, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=lnx-dbfm-g-003.ppl.com)(PORT=1530))(CONNECT_DATA=(SERVICE_NAME=PROD.WORLD)(CID=(PROGRAM=C:\oracle\10.2.0\client_1\bin\sqlplusw.exe)(HOST=WS049707)(USER=E40025))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 01-AUG-2014 13:44:20
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12564
+    TNS-12564: TNS:connection refused
+    ns secondary err code: 0
+    nt main err code: 0
+    nt secondary err code: 0
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12560, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=BEQ)(PROGRAM=oracle)(ARGV0=oracleORCL)(ARGS='(DESCRIPTION=(LOCAL=YES)(ADDRESS=(PROTOCOL=beq)))'))(CONNECT_DATA=(SID=ORCL)(CID=(PROGRAM=C:\oracle\10.2.0\client_1\bin\sqlplusw.exe)(HOST=WS049707)(USER=e40025))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Oracle Bequeath NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.2.0.5.0 - Production
+  Time: 05-AUG-2014 12:07:36
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12560
+    TNS-12560: TNS:protocol adapter error
+    ns secondary err code: 0
+    nt main err code: 530
+    TNS-00530: Protocol adapter error
+    nt secondary err code: 193
+    nt OS err code: 0

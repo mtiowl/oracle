@@ -1,0 +1,4 @@
+select username, osuser, program, status
+  from v$session
+  WHERE upper(program) = 'MSACCESS.EXE'
+/

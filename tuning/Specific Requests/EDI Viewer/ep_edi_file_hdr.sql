@@ -1,0 +1,25 @@
+REM set timing on;
+REM SHOW PARAMETER OPTIMIZER_MODE
+
+
+alter session set optimizer_mode = CHOOSE;
+--alter session set optimizer_mode = RULE;
+
+
+
+DELETE plan_table where statement_id = 'MTI'
+/
+
+EXPLAIN PLAN
+  SET STATEMENT_ID = 'MTI'
+  INTO plan_table
+  FOR
+SELECT ID_EDI_FILE_HEADER, CD_BUSINESS_UNIT, CD_TRANS_DIRECTION, CD_COMM_CHANNEL, CD_EDI_FILE_TYPE, ID_FILENET_DOC_GUID, DT_TRANS_DATE 
+  FROM EDI_FILE_HEADER 
+  WHERE ID_FILENET_DOC_GUID IS NOT NULL 
+    AND FL_DOCUMENT_PARSED = 'N' 
+    AND DT_TRANS_DATE IS NOT NULL 
+    AND TRUNC(DT_TRANS_DATE) >= TRUNC(TO_DATE('01/01/2009','mm/dd/yyyy'))
+/
+
+@C:\Users\E40025\Documents\Oracle\DBA\tuning\utlxpls.sql

@@ -1,0 +1,21 @@
+
+Session altered.
+
+
+3 rows deleted.
+
+
+Explained.
+
+
+Plan Table                                                                                                                                                                                                                                                                                                  
+-------------------------------------------------------------------------------------------                                                                                                                                                                                                                 
+| Operation                        |  Name                         |  Rows | Bytes|  Cost |                                                                                                                                                                                                                 
+-------------------------------------------------------------------------------------------                                                                                                                                                                                                                 
+| SELECT STATEMENT                 |                              |   873K|   21M|    10 |                                                                                                                                                                                                                  
+|  TABLE ACCESS BY INDEX ROWID     |BILL_INFO_HDR                 |   873K|   21M|    10 |                                                                                                                                                                                                                  
+|   INDEX RANGE SCAN               |MTI_TEST                      |   873K|      |     2 |                                                                                                                                                                                                                  
+--------------------------------------------------------------------------------                                                                                                                                                                                                                            
+
+6 rows selected.
+
